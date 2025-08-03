@@ -4,6 +4,10 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 import os
 
+# Import database
+from app.database.database import create_tables
+from app.database.models import User, Celebrity, Vote, Comment, Tag, MBTIType
+
 # Create FastAPI application
 app = FastAPI(
     title="16型花名册",
@@ -52,6 +56,23 @@ def test_endpoint():
         ]
     }
 
+# Database test endpoint
+@app.get("/db-test")
+def test_database():
+    try:
+        # Try to create tables
+        create_tables()
+        return {
+            "status": "success",
+            "message": "Database connection and tables created successfully",
+            "tables": ["users", "celebrities", "votes", "comments", "tags", "celebrity_tags", "daily_user_stats"]
+        }
+    except Exception as e:
+        return {
+            "status": "error",
+            "message": f"Database error: {str(e)}"
+        }
+
 # Environment info
 @app.get("/env")
 def env_info():
@@ -60,6 +81,16 @@ def env_info():
         "fastapi_version": "0.104.1",
         "environment": "local_development"
     }
+
+# Startup event
+@app.on_event("startup")
+async def startup_event():
+    """Initialize database on startup"""
+    try:
+        create_tables()
+        print("✅ Database tables created successfully")
+    except Exception as e:
+        print(f"❌ Database initialization error: {e}")
 
 if __name__ == "__main__":
     import uvicorn
