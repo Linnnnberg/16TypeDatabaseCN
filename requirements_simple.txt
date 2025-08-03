@@ -1,0 +1,6 @@
+# Essential FastAPI dependencies (no Rust required)
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+
+# Basic Python packages
+python-dotenv==1.0.0 
