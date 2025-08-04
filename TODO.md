@@ -3,16 +3,35 @@
 ## Project Overview
 **16型花名册 (MBTI Roster)** - A FastAPI web application for voting on celebrities' MBTI personality types with user authentication, voting system, and comment functionality.
 
+## 🎯 Task ID System & Branching Strategy
+
+### Branch Naming Convention
+- **Feature branches**: `feature/TASK-XXX-description`
+- **Bug fixes**: `fix/TASK-XXX-description`
+- **Hotfixes**: `hotfix/TASK-XXX-description`
+- **Documentation**: `docs/TASK-XXX-description`
+
+### Task ID Format
+- **TASK-001** to **TASK-999** for sequential task numbering
+- **TASK-1000+** for future tasks
+
+### Example Branch Names
+- `feature/TASK-008-voting-endpoints`
+- `fix/TASK-012-auth-bug`
+- `docs/TASK-015-api-documentation`
+
+---
+
 ## 🎯 First Priority Tasks (Phase 1 - Setup & Foundation)
 
-### 1. **Project Structure Setup** ⭐ **COMPLETED** ✅
+### TASK-001: **Project Structure Setup** ⭐ **COMPLETED** ✅
 - [x] Create proper directory structure
 - [x] Set up virtual environment
 - [x] Install dependencies from requirements.txt
 - [x] Create .env file with proper configuration
 - [x] Test basic FastAPI installation
 
-### 2. **Database Setup** ⭐ **COMPLETED** ✅
+### TASK-002: **Database Setup** ⭐ **COMPLETED** ✅
 - [x] **Use SQLite for prototype** (easier, faster development)
 - [x] Implement database models with SQLAlchemy
 - [x] Set up SQLite database connection
@@ -20,13 +39,13 @@
 - [x] Run initial database migrations with Alembic
 - [x] Test database connectivity
 
-### 3. **Core Configuration** ⭐ **COMPLETED** ✅
+### TASK-003: **Core Configuration** ⭐ **COMPLETED** ✅
 - [x] Set up environment variables
 - [x] Configure security settings
 - [x] Set up logging
 - [x] Test configuration loading
 
-### 4. **Dependency Management** ⭐ **COMPLETED** ✅
+### TASK-004: **Dependency Management** ⭐ **COMPLETED** ✅
 - [x] Fix SQLAlchemy Python 3.13 compatibility issues
 - [x] Resolve Pydantic Rust compilation problems
 - [x] Create minimal requirements file for easy installation
@@ -35,7 +54,7 @@
 
 ## 📋 Phase 2 - Core Backend Development
 
-### 5. **Database Models Implementation** ⭐ **COMPLETED** ✅
+### TASK-005: **Database Models Implementation** ⭐ **COMPLETED** ✅
 - [x] Implement User model
 - [x] Implement Celebrity model
 - [x] Implement Vote model
@@ -44,7 +63,7 @@
 - [x] Create database indexes
 - [x] Implement DailyUserStats model
 
-### 6. **Authentication System** ⭐ **COMPLETED** ✅
+### TASK-006: **Authentication System** ⭐ **COMPLETED** ✅
 - [x] Implement user registration
 - [x] Implement user login
 - [x] Set up JWT token system
@@ -56,7 +75,7 @@
 - [x] Add admin user creation functionality
 - [x] Test authentication system end-to-end
 
-### 7. **API Endpoints Development** 🔄 **IN PROGRESS**
+### TASK-007: **API Endpoints Development** 🔄 **IN PROGRESS**
 - [x] Create authentication endpoints (/auth/signup, /auth/login, /auth/me) ✅ **COMPLETED**
 - [x] Create celebrity endpoints (CRUD operations) ⭐ **COMPLETED** ✅
   - [x] Create celebrity service with full CRUD operations
@@ -68,13 +87,13 @@
   - [x] Add admin-only access for create/update/delete operations
   - [x] Test all endpoints successfully
   - [x] Add sample celebrities data (10 celebrities with tags)
-- [ ] Create voting endpoints 🔄 **NEXT PRIORITY**
-- [ ] Create comment endpoints
-- [ ] Add search functionality
+- [ ] **TASK-008: Create voting endpoints** 🔄 **NEXT PRIORITY**
+- [ ] **TASK-009: Create comment endpoints**
+- [ ] **TASK-010: Add search functionality**
 
 ## 🎨 Phase 3 - Frontend & UI
 
-### 8. **Frontend Development**
+### TASK-011: **Frontend Development**
 - [ ] Design user interface
 - [ ] Create responsive layout
 - [ ] Implement celebrity listing page
@@ -82,7 +101,7 @@
 - [ ] Add comment system UI
 - [ ] Implement search functionality
 
-### 9. **User Experience**
+### TASK-012: **User Experience**
 - [ ] Add loading states
 - [ ] Implement error handling
 - [ ] Add success notifications
@@ -91,14 +110,14 @@
 
 ## 🔧 Phase 4 - Advanced Features
 
-### 10. **Voting System Enhancement**
+### TASK-013: **Voting System Enhancement**
 - [ ] Implement daily vote limits
 - [ ] Add reason requirement system
 - [ ] Create vote statistics
 - [ ] Add vote history
 - [ ] Implement vote validation
 
-### 11. **Data Management**
+### TASK-014: **Data Management**
 - [ ] Add celebrity data import
 - [ ] Create admin panel
 - [ ] Implement data backup
@@ -107,13 +126,13 @@
 
 ## 🚀 Phase 5 - Deployment & Production
 
-### 12. **Docker Setup**
+### TASK-015: **Docker Setup**
 - [ ] Create Dockerfile
 - [ ] Set up docker-compose.yml
 - [ ] Configure production environment
 - [ ] Test container deployment
 
-### 13. **Production Deployment**
+### TASK-016: **Production Deployment**
 - [ ] Set up production server
 - [ ] Configure domain and SSL
 - [ ] Set up monitoring
@@ -122,13 +141,13 @@
 
 ## 📊 Phase 6 - Analytics & Monitoring
 
-### 14. **Analytics**
+### TASK-017: **Analytics**
 - [ ] Implement user analytics
 - [ ] Add vote statistics
 - [ ] Create admin dashboard
 - [ ] Set up monitoring alerts
 
-### 15. **Security & Performance**
+### TASK-018: **Security & Performance**
 - [ ] Security audit
 - [ ] Performance testing
 - [ ] Load testing
@@ -241,8 +260,8 @@ python run_local.py
 3. **Create API endpoints**:
    - Authentication endpoints (/auth/signup, /auth/login, /auth/me) ✅ **COMPLETED**
    - Celebrity management endpoints ✅ **COMPLETED**
-   - Voting system endpoints 🔄 **NEXT PRIORITY**
-   - Comment system endpoints
+   - **TASK-008: Voting system endpoints** 🔄 **NEXT PRIORITY**
+   - **TASK-009: Comment system endpoints**
 4. **Add database initialization**:
    - Create tables on startup ✅ **COMPLETED**
    - Add sample data seeding
@@ -268,23 +287,23 @@ python run_local.py
 
 **Next Development Steps:**
 1. **Create celebrity management endpoints** in `app/api/celebrities/` ✅ **COMPLETED**
-2. **Implement voting system endpoints** in `app/api/votes/` 🔄 **NEXT PRIORITY**
-3. **Add comment system endpoints** in `app/api/comments/`
-4. **Build frontend interface**
+2. **TASK-008: Implement voting system endpoints** in `app/api/votes/` 🔄 **NEXT PRIORITY**
+3. **TASK-009: Add comment system endpoints** in `app/api/comments/`
+4. **TASK-011: Build frontend interface**
 
 ### 📋 **ADDITIONAL TASKS IDENTIFIED**
 - [x] Create Pydantic schemas for all models ✅ **COMPLETED**
-- [ ] Set up Alembic for database migrations
-- [ ] Implement rate limiting for API endpoints
-- [ ] Add input validation and error handling
+- [ ] **TASK-019: Set up Alembic for database migrations**
+- [ ] **TASK-020: Implement rate limiting for API endpoints**
+- [ ] **TASK-021: Add input validation and error handling**
 - [x] Create admin user creation script ✅ **COMPLETED**
-- [ ] Set up logging configuration
-- [ ] Add API documentation with examples
-- [ ] Create database seeding scripts
-- [ ] **Plan PostgreSQL migration strategy** (for production)
-- [ ] Add unit tests for API endpoints
-- [ ] Implement password reset functionality
-- [ ] Add email verification system
+- [ ] **TASK-022: Set up logging configuration**
+- [ ] **TASK-023: Add API documentation with examples**
+- [ ] **TASK-024: Create database seeding scripts**
+- [ ] **TASK-025: Plan PostgreSQL migration strategy** (for production)
+- [ ] **TASK-026: Add unit tests for API endpoints**
+- [ ] **TASK-027: Implement password reset functionality**
+- [ ] **TASK-028: Add email verification system**
 
 ### 🎯 **CURRENT ACHIEVEMENTS**
 - ✅ **Local Development Environment** - Fully functional
@@ -311,8 +330,8 @@ python run_local.py
 
 ### 🔄 **NEXT IMMEDIATE TASKS**
 1. **Create celebrity management endpoints** (`app/api/celebrities/`) ✅ **COMPLETED**
-2. **Implement voting system endpoints** (`app/api/votes/`) 🔄 **NEXT PRIORITY**
-3. **Add comment system endpoints** (`app/api/comments/`)
-4. **Build frontend interface**
+2. **TASK-008: Implement voting system endpoints** (`app/api/votes/`) 🔄 **NEXT PRIORITY**
+3. **TASK-009: Add comment system endpoints** (`app/api/comments/`)
+4. **TASK-011: Build frontend interface**
 
 **🎯 Ready to continue with voting system implementation!** 
