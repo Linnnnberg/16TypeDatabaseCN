@@ -21,6 +21,20 @@ A FastAPI-based web application for voting on celebrities' MBTI personality type
 
 ### Installation
 
+#### Option 1: Automated Setup (Recommended)
+```bash
+# Clone the repository
+git clone https://github.com/Linnnnberg/16TypeDatabaseCN.git
+cd 16TypeDatabaseCN
+
+# Create virtual environment
+python -m venv venv
+
+# Run automated setup
+python dev_setup.py --full
+```
+
+#### Option 2: Manual Setup
 1. **Clone the repository**
    ```bash
    git clone https://github.com/Linnnnberg/16TypeDatabaseCN.git
@@ -57,6 +71,31 @@ A FastAPI-based web application for voting on celebrities' MBTI personality type
    ```bash
    venv\Scripts\uvicorn.exe app.main:app --reload
    ```
+
+### Development Commands
+
+#### Quick Server Startup (Windows PowerShell)
+```powershell
+.\start_dev.ps1
+```
+
+#### Development Script Commands
+```bash
+# Full setup (environment, dependencies, sample data, server)
+python dev_setup.py --full
+
+# Start server only
+python dev_setup.py --server
+
+# Test endpoints only
+python dev_setup.py --test
+
+# Create sample data only
+python dev_setup.py --data
+
+# Show development information
+python dev_setup.py --info
+```
 
 ## API Documentation
 

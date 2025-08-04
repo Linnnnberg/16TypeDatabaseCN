@@ -10,6 +10,8 @@ from app.database.models import User, Celebrity, Vote, Comment, Tag, MBTIType
 
 # Import API routers
 from app.api.auth import router as auth_router
+from app.api.celebrities import router as celebrities_router
+from app.api.votes import router as votes_router
 
 # Create FastAPI application
 app = FastAPI(
@@ -33,6 +35,8 @@ templates = Jinja2Templates(directory="templates")
 
 # Include API routers
 app.include_router(auth_router)
+app.include_router(celebrities_router)
+app.include_router(votes_router)
 
 # Root path
 @app.get("/")
