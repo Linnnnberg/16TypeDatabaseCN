@@ -122,6 +122,20 @@ def get_celebrity_votes(
     votes = vote_service.get_celebrity_votes(celebrity_id, skip=skip, limit=limit)
     return [VoteResponse.model_validate(vote) for vote in votes]
 
+@router.get("/mbti-types")
+def get_mbti_types():
+    """
+    Get all available MBTI personality types
+    
+    Returns list of all 16 MBTI types
+    """
+    return [
+        {"value": mbti_type.value, "name": mbti_type.value}
+        for mbti_type in MBTIType
+    ]
+
+
+
 @router.get("/{vote_id}", response_model=VoteResponse)
 def get_vote(
     vote_id: str,
@@ -213,31 +227,4 @@ def get_user_vote_statistics(
     vote_service = VoteService(db)
     return vote_service.get_user_vote_statistics(user_id)
 
-@router.get("/popular-celebrities")
-def get_popular_celebrities_by_votes(
-    limit: int = Query(10, ge=1, le=50, description="Number of celebrities to return"),
-    db: Session = Depends(get_db)
-):
-    """
-    Get celebrities ordered by number of votes
-    
-    - **limit**: Number of celebrities to return (max 50)
-    
-    Returns:
-    - Celebrities with vote counts
-    - Top MBTI type for each celebrity
-    """
-    vote_service = VoteService(db)
-    return vote_service.get_popular_celebrities_by_votes(limit=limit)
-
-@router.get("/mbti-types")
-def get_mbti_types():
-    """
-    Get all available MBTI personality types
-    
-    Returns list of all 16 MBTI types
-    """
-    return [
-        {"value": mbti_type.value, "name": mbti_type.value}
-        for mbti_type in MBTIType
-    ] 
+ 
