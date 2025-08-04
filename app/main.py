@@ -8,6 +8,9 @@ import os
 from app.database.database import create_tables
 from app.database.models import User, Celebrity, Vote, Comment, Tag, MBTIType
 
+# Import API routers
+from app.api.auth import router as auth_router
+
 # Create FastAPI application
 app = FastAPI(
     title="16型花名册",
@@ -27,6 +30,9 @@ app.add_middleware(
 # Static files and templates
 app.mount("/static", StaticFiles(directory="static"), name="static")
 templates = Jinja2Templates(directory="templates")
+
+# Include API routers
+app.include_router(auth_router)
 
 # Root path
 @app.get("/")
