@@ -98,8 +98,26 @@
   - [x] Fix routing conflicts (static routes before dynamic routes)
   - [x] Test all voting endpoints successfully
   - [x] Remove unnecessary popular celebrities endpoint
-- [ ] **TASK-009: Create comment endpoints** 🔄 **NEXT PRIORITY**
-- [ ] **TASK-010: Add search functionality**
+- [x] **TASK-009: Create comment endpoints** ⭐ **COMPLETED** ✅
+  - [x] Create comment service with full CRUD operations
+  - [x] Implement comment creation with nested replies (up to 3 levels)
+  - [x] Add comment validation (celebrity exists, parent comment validation)
+  - [x] Create comment retrieval endpoints (all comments, user comments, celebrity comments)
+  - [x] Implement comment statistics (celebrity stats, user stats)
+  - [x] Add comment update and deletion functionality
+  - [x] Create all API endpoints with proper authentication
+  - [x] Test comment system end-to-end successfully
+  - [x] All comment endpoints working and tested
+- [ ] **TASK-010: Add search functionality** 🔄 **NEXT PRIORITY**
+  - [ ] Implement hybrid search strategy with relevance scoring
+  - [ ] Create enhanced search service with multiple search types
+  - [ ] Add search filters (by tag, MBTI type, popularity)
+  - [ ] Implement search suggestions and autocomplete
+  - [ ] Add search analytics and popular searches tracking
+  - [ ] Create unified search endpoint (/search)
+  - [ ] Add case-insensitive search with improved matching
+  - [ ] Implement search result ranking and pagination
+  - [ ] Test all search functionality end-to-end
 
 ## 🎨 Phase 3 - Frontend & UI
 
@@ -217,6 +235,36 @@ python run_local.py
 - **Caching: Redis optional for prototype** (can add later)
 - **Dependencies: All compatibility issues resolved** ✅
 
+## 🔍 **TASK-010 Search Strategy Documentation**
+
+### **Chosen Strategy: Hybrid Search with Relevance Scoring**
+
+**Why Hybrid Search?**
+- ✅ Perfect for current SQLite prototype scale
+- ✅ Provides excellent user experience with relevance scoring
+- ✅ No external dependencies required
+- ✅ Extensible for future enhancements
+- ✅ Supports all search needs (celebrities, tags, MBTI types)
+
+**Search Priority Levels:**
+1. **Exact Name Match** (Score: 100) - Highest priority
+2. **Name Contains** (Score: 80) - Medium priority  
+3. **Tag Matches** (Score: 60) - Lower priority
+4. **Description Matches** (Score: 40) - Lowest priority
+
+**Search Types to Implement:**
+- **Celebrity Search**: By name (Chinese/English), description
+- **Tag Search**: Find celebrities by tags
+- **MBTI Search**: Find celebrities by MBTI type votes
+- **Combined Search**: All fields with relevance scoring
+
+**Technical Implementation:**
+- Case-insensitive search using `ilike()`
+- Relevance scoring and ranking
+- Pagination support
+- Search analytics tracking
+- Autocomplete suggestions
+
 ## 🔗 Key Files to Implement
 1. `app/main.py` - Main FastAPI application ✅ **COMPLETED**
 2. `app/database/models.py` - Database models ✅ **COMPLETED**
@@ -226,7 +274,7 @@ python run_local.py
 6. `requirements_minimal.txt` - Dependencies ✅ **COMPLETED**
 7. `docker-compose.yml` - Container setup
 
-## 🎯 **CURRENT STATUS: Phase 1 & 2 Foundation Complete, Voting System Ready**
+## 🎯 **CURRENT STATUS: Phase 1 & 2 Foundation Complete, Comment System Ready**
 
 ### ✅ **COMPLETED (Phase 1 & 2 Foundation)**
 - Project structure created ✅
@@ -254,6 +302,13 @@ python run_local.py
   - Vote validation (one vote per celebrity per user)
   - Vote statistics and analytics
   - All voting endpoints tested and working
+- **Comment system fully implemented** ✅
+  - Comment creation with nested replies (up to 3 levels)
+  - Comment validation (celebrity exists, parent comment validation)
+  - Comment retrieval endpoints (all comments, user comments, celebrity comments)
+  - Comment statistics (celebrity stats, user stats)
+  - Comment update and deletion functionality
+  - All comment endpoints tested and working
 - **Pydantic schemas created for all models** ✅
 - **JWT token system working** ✅
 - **Password hashing with bcrypt** ✅
@@ -275,10 +330,11 @@ python run_local.py
    - JWT token system ✅
    - Password hashing with bcrypt ✅
 3. **Create API endpoints**:
-   - Authentication endpoints (/auth/signup, /auth/login, /auth/me) ✅ **COMPLETED**
-   - Celebrity management endpoints ✅ **COMPLETED**
-   - **TASK-008: Voting system endpoints** 🔄 **NEXT PRIORITY**
-   - **TASK-009: Comment system endpoints**
+    - Authentication endpoints (/auth/signup, /auth/login, /auth/me) ✅ **COMPLETED**
+    - Celebrity management endpoints ✅ **COMPLETED**
+    - **TASK-008: Voting system endpoints** ✅ **COMPLETED**
+    - **TASK-009: Comment system endpoints** ✅ **COMPLETED**
+    - **TASK-010: Search functionality** 🔄 **NEXT PRIORITY**
 4. **Add database initialization**:
    - Create tables on startup ✅ **COMPLETED**
    - Add sample data seeding
@@ -304,9 +360,10 @@ python run_local.py
 
 **Next Development Steps:**
 1. **Create celebrity management endpoints** in `app/api/celebrities/` ✅ **COMPLETED**
-2. **TASK-008: Implement voting system endpoints** in `app/api/votes/` 🔄 **NEXT PRIORITY**
-3. **TASK-009: Add comment system endpoints** in `app/api/comments/`
-4. **TASK-011: Build frontend interface**
+2. **TASK-008: Implement voting system endpoints** in `app/api/votes/` ✅ **COMPLETED**
+3. **TASK-009: Add comment system endpoints** in `app/api/comments/` ✅ **COMPLETED**
+4. **TASK-010: Implement search functionality** in `app/services/search_service.py` 🔄 **NEXT PRIORITY**
+5. **TASK-011: Build frontend interface**
 
 ### 📋 **ADDITIONAL TASKS IDENTIFIED**
 - [x] Create Pydantic schemas for all models ✅ **COMPLETED**
@@ -347,8 +404,9 @@ python run_local.py
 
 ### 🔄 **NEXT IMMEDIATE TASKS**
 1. **Create celebrity management endpoints** (`app/api/celebrities/`) ✅ **COMPLETED**
-2. **TASK-008: Implement voting system endpoints** (`app/api/votes/`) 🔄 **NEXT PRIORITY**
-3. **TASK-009: Add comment system endpoints** (`app/api/comments/`)
-4. **TASK-011: Build frontend interface**
+2. **TASK-008: Implement voting system endpoints** (`app/api/votes/`) ✅ **COMPLETED**
+3. **TASK-009: Add comment system endpoints** (`app/api/comments/`) ✅ **COMPLETED**
+4. **TASK-010: Implement search functionality** (`app/services/search_service.py`) 🔄 **NEXT PRIORITY**
+5. **TASK-011: Build frontend interface**
 
-**🎯 Ready to continue with voting system implementation!** 
+**🎯 Ready to continue with search functionality implementation!** 
