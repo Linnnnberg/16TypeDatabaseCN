@@ -15,9 +15,9 @@ A FastAPI-based web application for voting on celebrities' MBTI personality type
 ## Quick Start
 
 ### Prerequisites
-- Python 3.8+
-- PostgreSQL
-- Redis
+- Python 3.8+ (Tested with Python 3.13)
+- SQLite (for development) / PostgreSQL (for production)
+- Redis (optional for development)
 
 ### Installation
 
@@ -35,23 +35,27 @@ A FastAPI-based web application for voting on celebrities' MBTI personality type
 
 3. **Install dependencies**
    ```bash
-   pip install -r requirements.txt
+   pip install -r requirements_minimal.txt
    ```
 
 4. **Configure environment**
    ```bash
-   cp env.example .env
-   # Edit .env with your database credentials
+   python create_env.py  # Creates .env file with proper encoding
    ```
 
-5. **Run the application**
+5. **Create admin user (optional)**
    ```bash
-   python run.py
+   python create_admin.py
+   ```
+
+6. **Run the application**
+   ```bash
+   python run_local.py
    ```
 
    Or directly with uvicorn:
    ```bash
-   uvicorn app.main:app --reload
+   venv\Scripts\uvicorn.exe app.main:app --reload
    ```
 
 ## API Documentation
@@ -59,6 +63,19 @@ A FastAPI-based web application for voting on celebrities' MBTI personality type
 Once running, visit:
 - **API Docs**: http://localhost:8000/docs
 - **Health Check**: http://localhost:8000/health
+- **Test Endpoint**: http://localhost:8000/test
+
+### Authentication Endpoints
+- `POST /auth/signup` - Register new user
+- `POST /auth/login` - Login and get JWT token
+- `GET /auth/me` - Get current user profile
+- `PUT /auth/me` - Update user profile
+- `DELETE /auth/me` - Deactivate user account
+
+### Default Admin User
+- **Email**: admin@mbti-roster.com
+- **Password**: admin123
+- **Role**: SYSTEM (admin privileges)
 
 ## Project Structure
 
@@ -81,7 +98,27 @@ Once running, visit:
 
 ## Development
 
-See [TODO.md](TODO.md) for development tasks and roadmap.
+### Current Status
+- ✅ **Phase 1**: Project setup and foundation - **COMPLETED**
+- ✅ **Phase 2**: Authentication system - **COMPLETED**
+- 🔄 **Phase 3**: Celebrity management and voting system - **IN PROGRESS**
+
+### Features Implemented
+- ✅ User authentication with JWT tokens
+- ✅ Password hashing with bcrypt
+- ✅ User registration and login
+- ✅ Role-based access control (SYSTEM/CLIENT)
+- ✅ Database models and relationships
+- ✅ Pydantic schemas for validation
+- ✅ API documentation with Swagger UI
+
+### Next Steps
+- 🔄 Celebrity management endpoints
+- 🔄 Voting system implementation
+- 🔄 Comment system
+- 🔄 Frontend interface
+
+See [TODO.md](TODO.md) for detailed development tasks and roadmap.
 
 ## License
 

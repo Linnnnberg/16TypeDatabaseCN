@@ -27,7 +27,12 @@ def install_dependencies():
     """安装依赖"""
     print("正在安装Python依赖...")
     try:
-        subprocess.run([sys.executable, "-m", "pip", "install", "-r", "requirements.txt"], check=True)
+        # Use virtual environment Python
+        venv_python = os.path.join("venv", "Scripts", "python.exe")
+        if os.path.exists(venv_python):
+            subprocess.run([venv_python, "-m", "pip", "install", "-r", "requirements_minimal.txt"], check=True)
+        else:
+            subprocess.run([sys.executable, "-m", "pip", "install", "-r", "requirements_minimal.txt"], check=True)
         print("✅ 依赖安装完成")
     except subprocess.CalledProcessError:
         print("❌ 依赖安装失败")
@@ -44,22 +49,33 @@ def run_server():
     print("\n按 Ctrl+C 停止服务器")
     
     try:
-        subprocess.run([
-            "uvicorn", 
-            "app.main:app", 
-            "--host", "0.0.0.0", 
-            "--port", "8000", 
-            "--reload"
-        ])
+        # Use virtual environment uvicorn
+        venv_uvicorn = os.path.join("venv", "Scripts", "uvicorn.exe")
+        if os.path.exists(venv_uvicorn):
+            subprocess.run([
+                venv_uvicorn, 
+                "app.main:app", 
+                "--host", "0.0.0.0", 
+                "--port", "8000", 
+                "--reload"
+            ])
+        else:
+            subprocess.run([
+                "uvicorn", 
+                "app.main:app", 
+                "--host", "0.0.0.0", 
+                "--port", "8000", 
+                "--reload"
+            ])
     except KeyboardInterrupt:
         print("\n👋 服务器已停止")
 
 if __name__ == "__main__":
     print("=== 16型花名册 (MBTI Roster) - 本地开发模式 ===")
     
-    # Check if requirements.txt exists
-    if not os.path.exists("requirements.txt"):
-        print("❌ 错误: requirements.txt 文件不存在")
+    # Check if requirements_minimal.txt exists
+    if not os.path.exists("requirements_minimal.txt"):
+        print("❌ 错误: requirements_minimal.txt 文件不存在")
         sys.exit(1)
     
     # Setup environment
