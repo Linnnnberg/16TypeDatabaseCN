@@ -1,0 +1,74 @@
+[
+  {
+    "name": "刘翔",
+    "name_en": "Liu Xiang",
+    "description": "中国著名男子110米栏运动员，奥运冠军",
+    "image_url": "",
+    "tags": [
+      "sports"
+    ]
+  },
+  {
+    "name": "姚明",
+    "name_en": "Yao Ming",
+    "description": "前NBA球员，中国篮球协会主席",
+    "image_url": "",
+    "tags": [
+      "sports"
+    ]
+  },
+  {
+    "name": "孙杨",
+    "name_en": "Sun Yang",
+    "description": "中国男子游泳运动员，奥运多金得主",
+    "image_url": "",
+    "tags": [
+      "sports"
+    ]
+  },
+  {
+    "name": "马龙",
+    "name_en": "Ma Long",
+    "description": "中国男子乒乓球运动员，多次奥运及世锦赛冠军",
+    "image_url": "",
+    "tags": [
+      "sports"
+    ]
+  },
+  {
+    "name": "王楚钦",
+    "name_en": "Wang Chuqin",
+    "description": "中国乒乓球运动员，新生代主力",
+    "image_url": "",
+    "tags": [
+      "sports"
+    ]
+  },
+  {
+    "name": "林诗栋",
+    "name_en": "Lin Shidong",
+    "description": "中国乒乓球运动员，技术全面的新生代选手",
+    "image_url": "",
+    "tags": [
+      "sports"
+    ]
+  },
+  {
+    "name": "贾一凡",
+    "name_en": "Jia Yifan",
+    "description": "中国羽毛球女子双打选手，世界冠军",
+    "image_url": "",
+    "tags": [
+      "sports"
+    ]
+  },
+  {
+    "name": "郑钦文",
+    "name_en": "Zheng Qinwen",
+    "description": "中国女子网球运动员，新生代希望之星",
+    "image_url": "",
+    "tags": [
+      "sports"
+    ]
+  }
+]

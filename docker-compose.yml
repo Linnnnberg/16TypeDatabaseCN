@@ -1,0 +1,159 @@
+version: '3.8'
+
+services:
+  # Main application
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: development
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+      - ./data_uploads:/app/data_uploads
+      - ./logs:/app/logs
+    environment:
+      - DATABASE_URL=sqlite:///./mbti_roster.db
+      - SECRET_KEY=dev-secret-key-change-in-production
+      - DEBUG=true
+      - LOG_LEVEL=DEBUG
+    depends_on:
+      - redis
+    networks:
+      - mbti-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # Redis for caching (optional for development)
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - mbti-network
+    restart: unless-stopped
+    command: redis-server --appendonly yes
+
+  # PostgreSQL for production-like development
+  postgres:
+    image: postgres:15-alpine
+    environment:
+      - POSTGRES_DB=mbti_roster
+      - POSTGRES_USER=mbti_user
+      - POSTGRES_PASSWORD=mbti_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - mbti-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U mbti_user -d mbti_roster"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Testing service
+  test:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: testing
+    volumes:
+      - .:/app
+      - ./test_reports:/app/test_reports
+    environment:
+      - DATABASE_URL=sqlite:///./test_mbti_roster.db
+      - TESTING=true
+    networks:
+      - mbti-network
+    profiles:
+      - test
+
+  # Performance testing with Locust
+  locust:
+    image: locustio/locust:latest
+    ports:
+      - "8089:8089"
+    volumes:
+      - ./performance_tests:/mnt/locust
+    environment:
+      - LOCUST_FILE=/mnt/locust/locustfile.py
+    command: -f /mnt/locust/locustfile.py --host=http://app:8000
+    networks:
+      - mbti-network
+    profiles:
+      - performance
+
+  # Monitoring with Prometheus
+  prometheus:
+    image: prom/prometheus:latest
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus_data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/etc/prometheus/console_libraries'
+      - '--web.console.templates=/etc/prometheus/consoles'
+      - '--storage.tsdb.retention.time=200h'
+      - '--web.enable-lifecycle'
+    networks:
+      - mbti-network
+    profiles:
+      - monitoring
+
+  # Grafana for visualization
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./monitoring/grafana/dashboards:/etc/grafana/provisioning/dashboards
+      - ./monitoring/grafana/datasources:/etc/grafana/provisioning/datasources
+    networks:
+      - mbti-network
+    profiles:
+      - monitoring
+
+  # Nginx reverse proxy (for production-like setup)
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/ssl:/etc/nginx/ssl
+      - ./static:/usr/share/nginx/html/static
+    depends_on:
+      - app
+    networks:
+      - mbti-network
+    profiles:
+      - production
+
+volumes:
+  redis_data:
+  postgres_data:
+  prometheus_data:
+  grafana_data:
+
+networks:
+  mbti-network:
+    driver: bridge 

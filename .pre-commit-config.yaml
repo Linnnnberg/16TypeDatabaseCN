@@ -1,0 +1,118 @@
+repos:
+  # Pre-commit hooks
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-added-large-files
+      - id: check-merge-conflict
+      - id: check-case-conflict
+      - id: check-docstring-first
+      - id: debug-statements
+
+  # Python code formatting
+  - repo: https://github.com/psf/black
+    rev: 23.11.0
+    hooks:
+      - id: black
+        language_version: python3.13
+
+  # Python linting
+  - repo: https://github.com/pycqa/flake8
+    rev: 6.1.0
+    hooks:
+      - id: flake8
+        args: [--max-line-length=88, --extend-ignore=E203,W503]
+
+  # Type checking
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v1.7.1
+    hooks:
+      - id: mypy
+        additional_dependencies: [types-requests, types-PyYAML]
+        args: [--ignore-missing-imports, --disallow-untyped-defs]
+
+  # Security scanning
+  - repo: https://github.com/PyCQA/bandit
+    rev: 1.7.5
+    hooks:
+      - id: bandit
+        args: [-r, app/]
+
+  # Import sorting
+  - repo: https://github.com/pycqa/isort
+    rev: 5.12.0
+    hooks:
+      - id: isort
+        args: [--profile=black, --line-length=88]
+
+  # Commit message formatting
+  - repo: https://github.com/commitizen-tools/commitizen
+    rev: v3.13.0
+    hooks:
+      - id: commitizen
+        stages: [commit-msg]
+
+  # Dockerfile linting
+  - repo: https://github.com/hadolint/hadolint
+    rev: v2.12.0
+    hooks:
+      - id: hadolint-docker
+
+  # YAML linting
+  - repo: https://github.com/adrienverge/yamllint
+    rev: v1.33.0
+    hooks:
+      - id: yamllint
+        args: [--format, parsable, --strict]
+
+  # JSON linting
+  - repo: https://github.com/pre-commit/mirrors-jsonlint
+    rev: v1.6.3
+    hooks:
+      - id: jsonlint
+
+  # Markdown linting
+  - repo: https://github.com/igorshubovych/markdownlint-cli
+    rev: v0.37.0
+    hooks:
+      - id: markdownlint
+        args: [--fix]
+
+  # Shell script linting
+  - repo: https://github.com/koalaman/shellcheck
+    rev: v0.9.0
+    hooks:
+      - id: shellcheck
+        args: [--severity=warning]
+
+  # Terraform formatting (if using infrastructure as code)
+  - repo: https://github.com/antonbabenko/pre-commit-terraform
+    rev: v1.88.0
+    hooks:
+      - id: terraform_fmt
+      - id: terraform_docs
+      - id: terraform_tflint
+
+  # Git hooks
+  - repo: local
+    hooks:
+      - id: check-todo
+        name: Check for TODO comments
+        entry: bash -c 'if git diff --cached --name-only | xargs grep -l "TODO\|FIXME\|XXX"; then echo "Found TODO/FIXME/XXX comments. Please address them before committing."; exit 1; fi'
+        language: system
+        stages: [commit]
+
+      - id: check-debug
+        name: Check for debug statements
+        entry: bash -c 'if git diff --cached --name-only | xargs grep -l "print(\|debugger\|console.log"; then echo "Found debug statements. Please remove them before committing."; exit 1; fi'
+        language: system
+        stages: [commit]
+
+      - id: check-secrets
+        name: Check for potential secrets
+        entry: bash -c 'if git diff --cached | grep -i "password\|secret\|key\|token"; then echo "Potential secrets found. Please review before committing."; exit 1; fi'
+        language: system
+        stages: [commit] 
