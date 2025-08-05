@@ -18,7 +18,7 @@ class AuthService:
         if existing_user:
             raise HTTPException(
                 status_code=status.HTTP_409_CONFLICT,
-                detail="该邮箱已被注册，请使用其他邮箱或直接登录"
+                detail="该邮箱已被注册，请使用其他邮箱或直接登录。如果您忘记密码，请联系管理员重置"
             )
         
         # Create new user
@@ -45,19 +45,35 @@ class AuthService:
             return None
         return user
     
+    def get_login_error_details(self, email: str, password: str) -> tuple[str, str]:
+        """Get specific error details for login failures"""
+        user = self.db.query(User).filter(User.email == email).first()
+        
+        if not user:
+            return "EMAIL_NOT_FOUND", "该邮箱地址未注册，请先注册账户或检查邮箱地址是否正确"
+        
+        if not verify_password(password, user.hashed_password):
+            return "INVALID_PASSWORD", "密码错误，请重新输入密码。如果忘记密码，请联系管理员重置"
+        
+        if not user.is_active:
+            return "ACCOUNT_DISABLED", "账户已被停用，请联系管理员激活账户"
+        
+        return "UNKNOWN_ERROR", "登录失败，请稍后重试"
+    
     def login_user(self, user_data: UserLogin) -> Token:
         """Login user and return access token"""
         user = self.authenticate_user(user_data.email, user_data.password)
         if not user:
+            error_code, error_message = self.get_login_error_details(user_data.email, user_data.password)
             raise HTTPException(
                 status_code=status.HTTP_401_UNAUTHORIZED,
-                detail="邮箱或密码错误，请检查后重试"
+                detail=error_message
             )
         
         if not user.is_active:
             raise HTTPException(
                 status_code=status.HTTP_400_BAD_REQUEST,
-                detail="账户已被停用，请联系管理员"
+                detail="账户已被停用，请联系管理员激活账户"
             )
         
         # Create access token (24 hours expiration)
@@ -81,19 +97,19 @@ class AuthService:
             if user_id is None:
                 raise HTTPException(
                     status_code=status.HTTP_401_UNAUTHORIZED,
-                    detail="无法验证用户凭据"
+                    detail="登录令牌无效，请重新登录"
                 )
         except HTTPException:
             raise HTTPException(
                 status_code=status.HTTP_401_UNAUTHORIZED,
-                detail="无法验证用户凭据"
+                detail="登录令牌已过期或无效，请重新登录"
             )
         
         user = self.db.query(User).filter(User.id == user_id).first()
         if user is None:
             raise HTTPException(
                 status_code=status.HTTP_401_UNAUTHORIZED,
-                detail="用户不存在"
+                detail="用户账户不存在或已被删除，请重新登录"
             )
         
         if not user.is_active:
