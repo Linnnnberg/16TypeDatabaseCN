@@ -45,6 +45,9 @@ ENV/
 .DS_Store
 Thumbs.db
 
+# Documents
+*.docx
+
 # Logs
 *.log
 
