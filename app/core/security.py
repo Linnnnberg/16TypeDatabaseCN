@@ -2,8 +2,12 @@ from datetime import datetime, timedelta
 from typing import Optional
 from jose import JWTError, jwt
 from passlib.context import CryptContext
-from fastapi import HTTPException, status
+from fastapi import HTTPException, status, Depends
+from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
+from sqlalchemy.orm import Session
 from .config import settings
+from app.database.database import get_db
+from app.database.models import User
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
@@ -31,4 +35,23 @@ def verify_token(token: str) -> dict:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Could not validate credentials",
-        ) 
+        )
+
+def get_current_admin_user(
+    credentials: HTTPAuthorizationCredentials = Depends(HTTPBearer()),
+    db: Session = Depends(get_db)
+) -> User:
+    """Dependency to get current authenticated admin user"""
+    from app.services.auth_service import AuthService
+    from app.database.models import User, UserRole
+    
+    auth_service = AuthService(db)
+    user = auth_service.get_current_user(credentials.credentials)
+    
+    if user.role != UserRole.SYSTEM:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="只有系统管理员才能访问此功能"
+        )
+    
+    return user 
