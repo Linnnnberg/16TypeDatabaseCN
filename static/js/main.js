@@ -76,10 +76,63 @@ async function login(email, password) {
             showNotification('登录成功！', 'success');
             updateAuthUI();
         } else {
-            showNotification(data.detail || '登录失败', 'error');
+            // Handle specific error cases
+            let errorMessage = '登录失败';
+            
+            if (response.status === 422) {
+                // Validation errors
+                if (data.detail && Array.isArray(data.detail)) {
+                    const errors = data.detail.map(error => {
+                        if (error.loc && error.loc.length > 0) {
+                            const field = error.loc[error.loc.length - 1];
+                            switch (field) {
+                                case 'email':
+                                    return '邮箱格式不正确';
+                                case 'password':
+                                    return '密码不能为空';
+                                default:
+                                    return error.msg;
+                            }
+                        }
+                        return error.msg;
+                    });
+                    errorMessage = errors.join('，');
+                } else {
+                    errorMessage = '请检查输入信息是否正确';
+                }
+            } else if (response.status === 401) {
+                errorMessage = '邮箱或密码错误，请检查后重试';
+            } else if (response.status === 404) {
+                errorMessage = '用户不存在，请先注册';
+            } else if (response.status === 400) {
+                if (data.detail) {
+                    if (typeof data.detail === 'string') {
+                        errorMessage = data.detail;
+                    } else if (data.detail.includes('email')) {
+                        errorMessage = '邮箱格式不正确';
+                    } else if (data.detail.includes('password')) {
+                        errorMessage = '密码不能为空';
+                    } else {
+                        errorMessage = data.detail;
+                    }
+                } else {
+                    errorMessage = '登录信息有误，请检查后重试';
+                }
+            } else if (response.status === 500) {
+                errorMessage = '服务器错误，请稍后重试';
+            } else {
+                errorMessage = data.detail || '登录失败，请重试';
+            }
+            
+            showNotification(errorMessage, 'error');
         }
     } catch (error) {
-        showNotification('网络错误，请重试', 'error');
+        console.error('Login error:', error);
+        if (error.name === 'TypeError' && error.message.includes('fetch')) {
+            showNotification('网络连接失败，请检查网络后重试', 'error');
+        } else {
+            showNotification('登录过程中发生错误，请重试', 'error');
+        }
     }
 }
 
@@ -100,10 +153,61 @@ async function signup(email, password) {
             showNotification('注册成功！请登录', 'success');
             showLoginModal();
         } else {
-            showNotification(data.detail || '注册失败', 'error');
+            // Handle specific error cases
+            let errorMessage = '注册失败';
+            
+            if (response.status === 422) {
+                // Validation errors
+                if (data.detail && Array.isArray(data.detail)) {
+                    const errors = data.detail.map(error => {
+                        if (error.loc && error.loc.length > 0) {
+                            const field = error.loc[error.loc.length - 1];
+                            switch (field) {
+                                case 'email':
+                                    return '邮箱格式不正确';
+                                case 'password':
+                                    return '密码长度至少为6位';
+                                default:
+                                    return error.msg;
+                            }
+                        }
+                        return error.msg;
+                    });
+                    errorMessage = errors.join('，');
+                } else {
+                    errorMessage = '请检查输入信息是否正确';
+                }
+            } else if (response.status === 409) {
+                errorMessage = '该邮箱已被注册，请使用其他邮箱或直接登录';
+            } else if (response.status === 400) {
+                if (data.detail) {
+                    if (typeof data.detail === 'string') {
+                        errorMessage = data.detail;
+                    } else if (data.detail.includes('email')) {
+                        errorMessage = '邮箱格式不正确';
+                    } else if (data.detail.includes('password')) {
+                        errorMessage = '密码不符合要求';
+                    } else {
+                        errorMessage = data.detail;
+                    }
+                } else {
+                    errorMessage = '注册信息有误，请检查后重试';
+                }
+            } else if (response.status === 500) {
+                errorMessage = '服务器错误，请稍后重试';
+            } else {
+                errorMessage = data.detail || '注册失败，请重试';
+            }
+            
+            showNotification(errorMessage, 'error');
         }
     } catch (error) {
-        showNotification('网络错误，请重试', 'error');
+        console.error('Signup error:', error);
+        if (error.name === 'TypeError' && error.message.includes('fetch')) {
+            showNotification('网络连接失败，请检查网络后重试', 'error');
+        } else {
+            showNotification('注册过程中发生错误，请重试', 'error');
+        }
     }
 }
 
@@ -346,6 +450,115 @@ async function loadHomepageData() {
     }
 }
 
+// Form validation functions
+function validateEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+}
+
+function validatePassword(password) {
+    return password.length >= 6;
+}
+
+function showFieldError(fieldId, message) {
+    const field = document.getElementById(fieldId);
+    const errorDiv = document.getElementById(`${fieldId}Error`);
+    
+    if (field) {
+        field.classList.add('border-red-500');
+        field.classList.remove('border-gray-300');
+    }
+    
+    if (errorDiv) {
+        errorDiv.textContent = message;
+        errorDiv.classList.remove('hidden');
+    }
+}
+
+function clearFieldError(fieldId) {
+    const field = document.getElementById(fieldId);
+    const errorDiv = document.getElementById(`${fieldId}Error`);
+    
+    if (field) {
+        field.classList.remove('border-red-500');
+        field.classList.add('border-gray-300');
+    }
+    
+    if (errorDiv) {
+        errorDiv.classList.add('hidden');
+    }
+}
+
+function validateSignupForm() {
+    const email = document.getElementById('signupEmail').value;
+    const password = document.getElementById('signupPassword').value;
+    const confirmPassword = document.getElementById('signupConfirmPassword').value;
+    
+    let isValid = true;
+    
+    // Clear previous errors
+    clearFieldError('signupEmail');
+    clearFieldError('signupPassword');
+    clearFieldError('signupConfirmPassword');
+    
+    // Validate email
+    if (!email) {
+        showFieldError('signupEmail', '请输入邮箱地址');
+        isValid = false;
+    } else if (!validateEmail(email)) {
+        showFieldError('signupEmail', '请输入有效的邮箱地址');
+        isValid = false;
+    }
+    
+    // Validate password
+    if (!password) {
+        showFieldError('signupPassword', '请输入密码');
+        isValid = false;
+    } else if (!validatePassword(password)) {
+        showFieldError('signupPassword', '密码长度至少为6位');
+        isValid = false;
+    }
+    
+    // Validate confirm password
+    if (!confirmPassword) {
+        showFieldError('signupConfirmPassword', '请确认密码');
+        isValid = false;
+    } else if (password !== confirmPassword) {
+        showFieldError('signupConfirmPassword', '两次输入的密码不一致');
+        isValid = false;
+    }
+    
+    return isValid;
+}
+
+function validateLoginForm() {
+    const email = document.getElementById('loginEmail').value;
+    const password = document.getElementById('loginPassword').value;
+    
+    let isValid = true;
+    
+    // Clear previous errors
+    clearFieldError('loginEmail');
+    clearFieldError('loginPassword');
+    
+    // Validate email
+    if (!email) {
+        showFieldError('loginEmail', '请输入邮箱地址');
+        isValid = false;
+    } else if (!validateEmail(email)) {
+        showFieldError('loginEmail', '请输入有效的邮箱地址');
+        isValid = false;
+    }
+    
+    // Validate password
+    if (!password) {
+        showFieldError('loginPassword', '请输入密码');
+        isValid = false;
+    }
+    
+    return isValid;
+}
+
 // Event listeners
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize authentication UI
@@ -373,6 +586,11 @@ document.addEventListener('DOMContentLoaded', function() {
     // Form submissions
     document.getElementById('loginForm')?.addEventListener('submit', async (e) => {
         e.preventDefault();
+        
+        if (!validateLoginForm()) {
+            return;
+        }
+        
         const email = document.getElementById('loginEmail').value;
         const password = document.getElementById('loginPassword').value;
         await login(email, password);
@@ -380,16 +598,58 @@ document.addEventListener('DOMContentLoaded', function() {
     
     document.getElementById('signupForm')?.addEventListener('submit', async (e) => {
         e.preventDefault();
+        
+        if (!validateSignupForm()) {
+            return;
+        }
+        
         const email = document.getElementById('signupEmail').value;
         const password = document.getElementById('signupPassword').value;
         const confirmPassword = document.getElementById('signupConfirmPassword').value;
         
-        if (password !== confirmPassword) {
-            showNotification('密码不匹配', 'error');
-            return;
-        }
-        
         await signup(email, password);
+    });
+    
+    // Real-time validation
+    document.getElementById('signupEmail')?.addEventListener('input', function() {
+        const email = this.value;
+        if (email && !validateEmail(email)) {
+            showFieldError('signupEmail', '请输入有效的邮箱地址');
+        } else {
+            clearFieldError('signupEmail');
+        }
+    });
+    
+    document.getElementById('signupPassword')?.addEventListener('input', function() {
+        const password = this.value;
+        if (password && !validatePassword(password)) {
+            showFieldError('signupPassword', '密码长度至少为6位');
+        } else {
+            clearFieldError('signupPassword');
+        }
+    });
+    
+    document.getElementById('signupConfirmPassword')?.addEventListener('input', function() {
+        const confirmPassword = this.value;
+        const password = document.getElementById('signupPassword').value;
+        if (confirmPassword && password !== confirmPassword) {
+            showFieldError('signupConfirmPassword', '两次输入的密码不一致');
+        } else {
+            clearFieldError('signupConfirmPassword');
+        }
+    });
+    
+    document.getElementById('loginEmail')?.addEventListener('input', function() {
+        const email = this.value;
+        if (email && !validateEmail(email)) {
+            showFieldError('loginEmail', '请输入有效的邮箱地址');
+        } else {
+            clearFieldError('loginEmail');
+        }
+    });
+    
+    document.getElementById('loginPassword')?.addEventListener('input', function() {
+        clearFieldError('loginPassword');
     });
     
     // Test functionality
