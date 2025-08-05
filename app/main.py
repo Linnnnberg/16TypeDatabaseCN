@@ -13,6 +13,7 @@ from app.api.auth import router as auth_router
 from app.api.celebrities import router as celebrities_router
 from app.api.votes import router as votes_router
 from app.api.comments import router as comments_router
+from app.api.search import router as search_router
 
 # Create FastAPI application
 app = FastAPI(
@@ -39,6 +40,7 @@ app.include_router(auth_router)
 app.include_router(celebrities_router)
 app.include_router(votes_router)
 app.include_router(comments_router)
+app.include_router(search_router)
 
 # Root path
 @app.get("/")
