@@ -1,0 +1,177 @@
+{% extends "base.html" %}
+
+{% block title %}名人库 - 16型花名册{% endblock %}
+
+{% block content %}
+<div class="min-h-screen bg-gray-50 py-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Header -->
+        <div class="text-center mb-8">
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">名人库</h1>
+            <p class="text-lg text-gray-600">探索不同MBTI类型的知名人物</p>
+        </div>
+
+        <!-- Filters -->
+        <div class="bg-white rounded-lg shadow-lg p-6 mb-8">
+            <div class="flex flex-col md:flex-row gap-4 items-center">
+                <div class="flex-1">
+                    <label for="searchInput" class="block text-sm font-medium text-gray-700 mb-2">搜索名人</label>
+                    <input type="text" id="searchInput" placeholder="输入名人姓名..." 
+                           class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500">
+                </div>
+                
+                <div>
+                    <label for="mbtiFilter" class="block text-sm font-medium text-gray-700 mb-2">MBTI类型</label>
+                    <select id="mbtiFilter" 
+                            class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500">
+                        <option value="">全部类型</option>
+                        <option value="INTJ">INTJ - 建筑师</option>
+                        <option value="INTP">INTP - 逻辑学家</option>
+                        <option value="ENTJ">ENTJ - 指挥官</option>
+                        <option value="ENTP">ENTP - 辩论家</option>
+                        <option value="INFJ">INFJ - 提倡者</option>
+                        <option value="INFP">INFP - 调停者</option>
+                        <option value="ENFJ">ENFJ - 主人公</option>
+                        <option value="ENFP">ENFP - 竞选者</option>
+                        <option value="ISTJ">ISTJ - 物流师</option>
+                        <option value="ISFJ">ISFJ - 守卫者</option>
+                        <option value="ESTJ">ESTJ - 总经理</option>
+                        <option value="ESFJ">ESFJ - 执政官</option>
+                        <option value="ISTP">ISTP - 鉴赏家</option>
+                        <option value="ISFP">ISFP - 探险家</option>
+                        <option value="ESTP">ESTP - 企业家</option>
+                        <option value="ESFP">ESFP - 表演者</option>
+                    </select>
+                </div>
+                
+                <div>
+                    <label for="tagFilter" class="block text-sm font-medium text-gray-700 mb-2">标签</label>
+                    <select id="tagFilter" 
+                            class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500">
+                        <option value="">全部标签</option>
+                        <!-- Tags will be loaded dynamically -->
+                    </select>
+                </div>
+                
+                <div class="flex gap-2">
+                    <button id="clearFilters" 
+                            class="px-4 py-2 text-gray-600 hover:text-gray-800 font-medium">
+                        清除筛选
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Statistics -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
+            <div class="bg-white rounded-lg shadow p-4 text-center">
+                <div class="text-2xl font-bold text-primary-600" id="totalCelebrities">0</div>
+                <div class="text-sm text-gray-600">总名人数量</div>
+            </div>
+            <div class="bg-white rounded-lg shadow p-4 text-center">
+                <div class="text-2xl font-bold text-green-600" id="totalVotes">0</div>
+                <div class="text-sm text-gray-600">总投票数</div>
+            </div>
+            <div class="bg-white rounded-lg shadow p-4 text-center">
+                <div class="text-2xl font-bold text-blue-600" id="totalComments">0</div>
+                <div class="text-sm text-gray-600">总评论数</div>
+            </div>
+            <div class="bg-white rounded-lg shadow p-4 text-center">
+                <div class="text-2xl font-bold text-purple-600" id="mbtiTypes">16</div>
+                <div class="text-sm text-gray-600">MBTI类型</div>
+            </div>
+        </div>
+
+        <!-- Loading State -->
+        <div id="loadingState" class="text-center py-12">
+            <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600 mx-auto"></div>
+            <p class="text-gray-600 mt-4">正在加载名人数据...</p>
+        </div>
+
+        <!-- Celebrities Grid -->
+        <div id="celebritiesGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <!-- Celebrities will be loaded here -->
+        </div>
+
+        <!-- Pagination -->
+        <div id="pagination" class="flex justify-center mt-8 hidden">
+            <nav class="flex items-center space-x-2">
+                <button id="prevPage" class="px-3 py-2 text-gray-500 hover:text-gray-700 disabled:opacity-50">
+                    上一页
+                </button>
+                <span id="pageInfo" class="px-3 py-2 text-gray-700">第 1 页，共 1 页</span>
+                <button id="nextPage" class="px-3 py-2 text-gray-500 hover:text-gray-700 disabled:opacity-50">
+                    下一页
+                </button>
+            </nav>
+        </div>
+
+        <!-- No Results -->
+        <div id="noResults" class="text-center py-12 hidden">
+            <div class="text-gray-400 mb-4">
+                <svg class="w-16 h-16 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                </svg>
+            </div>
+            <h3 class="text-lg font-medium text-gray-900 mb-2">没有找到匹配的名人</h3>
+            <p class="text-gray-600">请尝试调整搜索条件或筛选器</p>
+        </div>
+    </div>
+</div>
+
+<!-- Celebrity Detail Modal -->
+<div id="celebrityModal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50">
+    <div class="flex items-center justify-center min-h-screen p-4">
+        <div class="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <div class="p-6">
+                <div class="flex justify-between items-start mb-6">
+                    <div>
+                        <h3 id="modalName" class="text-2xl font-bold text-gray-900"></h3>
+                        <p id="modalMBTI" class="text-lg text-primary-600 font-medium"></p>
+                    </div>
+                    <button id="closeModal" class="text-gray-400 hover:text-gray-600">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+                
+                <div class="space-y-6">
+                    <div>
+                        <h4 class="text-lg font-semibold text-gray-900 mb-2">描述</h4>
+                        <p id="modalDescription" class="text-gray-600"></p>
+                    </div>
+                    
+                    <div>
+                        <h4 class="text-lg font-semibold text-gray-900 mb-2">标签</h4>
+                        <div id="modalTags" class="flex flex-wrap gap-2">
+                            <!-- Tags will be loaded here -->
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h4 class="text-lg font-semibold text-gray-900 mb-2">投票统计</h4>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="bg-gray-50 p-4 rounded-lg">
+                                <div class="text-2xl font-bold text-primary-600" id="modalVoteCount">0</div>
+                                <div class="text-sm text-gray-600">总投票数</div>
+                            </div>
+                            <div class="bg-gray-50 p-4 rounded-lg">
+                                <div class="text-2xl font-bold text-blue-600" id="modalCommentCount">0</div>
+                                <div class="text-sm text-gray-600">评论数</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h4 class="text-lg font-semibold text-gray-900 mb-2">MBTI投票分布</h4>
+                        <div id="modalVoteDistribution" class="space-y-2">
+                            <!-- Vote distribution will be loaded here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

@@ -1,0 +1,157 @@
+{% extends "base.html" %}
+
+{% block title %}首页 - 16型花名册{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="relative bg-gradient-to-br from-primary-50 to-primary-100 py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center">
+            <h1 class="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
+                探索你的
+                <span class="text-primary-600">MBTI</span>
+                人格类型
+            </h1>
+            <p class="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
+                发现与你相似的名人，了解自己的性格特点，探索16种不同的人格类型。
+                通过我们的MBTI测试，找到属于你的独特人格类型。
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="/test" 
+                   class="bg-primary-600 hover:bg-primary-700 text-white font-semibold py-3 px-8 rounded-lg text-lg transition-colors shadow-lg hover:shadow-xl">
+                    开始MBTI测试
+                </a>
+                <a href="/celebrities" 
+                   class="bg-white hover:bg-gray-50 text-primary-600 font-semibold py-3 px-8 rounded-lg text-lg border-2 border-primary-600 transition-colors">
+                    浏览名人库
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Decorative Elements -->
+    <div class="absolute top-10 left-10 w-20 h-20 bg-primary-200 rounded-full opacity-20"></div>
+    <div class="absolute bottom-10 right-10 w-32 h-32 bg-primary-300 rounded-full opacity-20"></div>
+</section>
+
+<!-- Features Section -->
+<section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold text-gray-900 mb-4">为什么选择我们？</h2>
+            <p class="text-lg text-gray-600">专业的MBTI测试和丰富的名人数据库</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Feature 1 -->
+            <div class="text-center p-6 rounded-lg hover:shadow-lg transition-shadow">
+                <div class="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <svg class="w-8 h-8 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-900 mb-2">专业测试</h3>
+                <p class="text-gray-600">基于科学的MBTI理论，提供准确的人格类型测试</p>
+            </div>
+            
+            <!-- Feature 2 -->
+            <div class="text-center p-6 rounded-lg hover:shadow-lg transition-shadow">
+                <div class="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <svg class="w-8 h-8 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-900 mb-2">名人数据库</h3>
+                <p class="text-gray-600">丰富的名人MBTI类型数据库，发现与你相似的名人</p>
+            </div>
+            
+            <!-- Feature 3 -->
+            <div class="text-center p-6 rounded-lg hover:shadow-lg transition-shadow">
+                <div class="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <svg class="w-8 h-8 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-900 mb-2">快速结果</h3>
+                <p class="text-gray-600">简单快速的测试流程，立即获得详细的人格分析结果</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- MBTI Types Preview -->
+<section class="py-16 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold text-gray-900 mb-4">16种MBTI人格类型</h2>
+            <p class="text-lg text-gray-600">探索不同的人格类型特点</p>
+        </div>
+        
+        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-4">
+            {% set mbti_types = [
+                "INTJ", "INTP", "ENTJ", "ENTP",
+                "INFJ", "INFP", "ENFJ", "ENFP", 
+                "ISTJ", "ISFJ", "ESTJ", "ESFJ",
+                "ISTP", "ISFP", "ESTP", "ESFP"
+            ] %}
+            
+            {% for type in mbti_types %}
+            <div class="bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow text-center">
+                <div class="text-lg font-bold text-primary-600 mb-1">{{ type }}</div>
+                <div class="text-xs text-gray-500">
+                    {% if type.startswith('I') %}内向{% else %}外向{% endif %}
+                    {% if type[1] == 'N' %}直觉{% else %}感觉{% endif %}
+                    {% if type[2] == 'T' %}思考{% else %}情感{% endif %}
+                    {% if type[3] == 'J' %}判断{% else %}感知{% endif %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <div class="text-center mt-8">
+            <a href="/about" class="text-primary-600 hover:text-primary-700 font-medium">
+                了解更多关于MBTI →
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action -->
+<section class="py-16 bg-primary-600">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-3xl font-bold text-white mb-4">准备好发现你的MBTI类型了吗？</h2>
+        <p class="text-xl text-primary-100 mb-8">开始你的MBTI之旅，探索独特的人格魅力</p>
+        <a href="/test" 
+           class="bg-white text-primary-600 font-semibold py-3 px-8 rounded-lg text-lg hover:bg-gray-100 transition-colors shadow-lg">
+            立即开始测试
+        </a>
+    </div>
+</section>
+
+<!-- Recent Celebrities Preview -->
+<section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold text-gray-900 mb-4">热门名人</h2>
+            <p class="text-lg text-gray-600">探索不同MBTI类型的知名人物</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="celebritiesPreview">
+            <!-- This will be populated by JavaScript -->
+            <div class="text-center text-gray-500">
+                <div class="animate-pulse">
+                    <div class="w-32 h-32 bg-gray-200 rounded-full mx-auto mb-4"></div>
+                    <div class="h-4 bg-gray-200 rounded w-24 mx-auto mb-2"></div>
+                    <div class="h-3 bg-gray-200 rounded w-16 mx-auto"></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="text-center mt-8">
+            <a href="/celebrities" class="text-primary-600 hover:text-primary-700 font-medium">
+                查看全部名人 →
+            </a>
+        </div>
+    </div>
+</section>
+{% endblock %} 
