@@ -101,7 +101,7 @@ def create_system_user(
     if current_user.role.value != "SYSTEM":
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN,
-            detail="Only system users can create system accounts"
+            detail="只有系统管理员才能创建系统账户"
         )
     
     auth_service = AuthService(db)

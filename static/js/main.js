@@ -31,6 +31,25 @@ function setLoading(loading = true) {
     });
 }
 
+function setFormLoading(formId, isLoading) {
+    const form = document.getElementById(formId);
+    const submitBtn = form?.querySelector('button[type="submit"]');
+    
+    if (submitBtn) {
+        if (isLoading) {
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white inline" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>处理中...';
+        } else {
+            submitBtn.disabled = false;
+            if (formId === 'loginForm') {
+                submitBtn.innerHTML = '登录';
+            } else if (formId === 'signupForm') {
+                submitBtn.innerHTML = '注册';
+            }
+        }
+    }
+}
+
 // Authentication functions
 function showLoginModal() {
     const modal = document.getElementById('loginModal');
@@ -57,6 +76,7 @@ function hideSignupModal() {
 }
 
 async function login(email, password) {
+    setFormLoading('loginForm', true);
     try {
         const response = await fetch(`${API_BASE_URL}/auth/login`, {
             method: 'POST',
@@ -133,17 +153,20 @@ async function login(email, password) {
         } else {
             showNotification('登录过程中发生错误，请重试', 'error');
         }
+    } finally {
+        setFormLoading('loginForm', false);
     }
 }
 
-async function signup(email, password) {
+async function signup(email, password, name) {
+    setFormLoading('signupForm', true);
     try {
         const response = await fetch(`${API_BASE_URL}/auth/signup`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ email, password }),
+            body: JSON.stringify({ email, password, name }),
         });
 
         const data = await response.json();
@@ -167,6 +190,8 @@ async function signup(email, password) {
                                     return '邮箱格式不正确';
                                 case 'password':
                                     return '密码长度至少为6位';
+                                case 'name':
+                                    return '姓名不能为空';
                                 default:
                                     return error.msg;
                             }
@@ -208,6 +233,8 @@ async function signup(email, password) {
         } else {
             showNotification('注册过程中发生错误，请重试', 'error');
         }
+    } finally {
+        setFormLoading('signupForm', false);
     }
 }
 
@@ -450,7 +477,7 @@ async function loadHomepageData() {
     }
 }
 
-// Form validation functions
+// Enhanced form validation functions
 function validateEmail(email) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
@@ -460,13 +487,17 @@ function validatePassword(password) {
     return password.length >= 6;
 }
 
+function validateName(name) {
+    return name.trim().length >= 1 && name.trim().length <= 100;
+}
+
 function showFieldError(fieldId, message) {
     const field = document.getElementById(fieldId);
     const errorDiv = document.getElementById(`${fieldId}Error`);
     
     if (field) {
         field.classList.add('border-red-500');
-        field.classList.remove('border-gray-300');
+        field.classList.remove('border-gray-300', 'border-green-500');
     }
     
     if (errorDiv) {
@@ -475,12 +506,26 @@ function showFieldError(fieldId, message) {
     }
 }
 
+function showFieldSuccess(fieldId) {
+    const field = document.getElementById(fieldId);
+    const errorDiv = document.getElementById(`${fieldId}Error`);
+    
+    if (field) {
+        field.classList.add('border-green-500');
+        field.classList.remove('border-gray-300', 'border-red-500');
+    }
+    
+    if (errorDiv) {
+        errorDiv.classList.add('hidden');
+    }
+}
+
 function clearFieldError(fieldId) {
     const field = document.getElementById(fieldId);
     const errorDiv = document.getElementById(`${fieldId}Error`);
     
     if (field) {
-        field.classList.remove('border-red-500');
+        field.classList.remove('border-red-500', 'border-green-500');
         field.classList.add('border-gray-300');
     }
     
@@ -493,6 +538,7 @@ function validateSignupForm() {
     const email = document.getElementById('signupEmail').value;
     const password = document.getElementById('signupPassword').value;
     const confirmPassword = document.getElementById('signupConfirmPassword').value;
+    const name = document.getElementById('signupName')?.value || '';
     
     let isValid = true;
     
@@ -500,6 +546,9 @@ function validateSignupForm() {
     clearFieldError('signupEmail');
     clearFieldError('signupPassword');
     clearFieldError('signupConfirmPassword');
+    if (document.getElementById('signupName')) {
+        clearFieldError('signupName');
+    }
     
     // Validate email
     if (!email) {
@@ -508,6 +557,8 @@ function validateSignupForm() {
     } else if (!validateEmail(email)) {
         showFieldError('signupEmail', '请输入有效的邮箱地址');
         isValid = false;
+    } else {
+        showFieldSuccess('signupEmail');
     }
     
     // Validate password
@@ -517,6 +568,8 @@ function validateSignupForm() {
     } else if (!validatePassword(password)) {
         showFieldError('signupPassword', '密码长度至少为6位');
         isValid = false;
+    } else {
+        showFieldSuccess('signupPassword');
     }
     
     // Validate confirm password
@@ -526,6 +579,21 @@ function validateSignupForm() {
     } else if (password !== confirmPassword) {
         showFieldError('signupConfirmPassword', '两次输入的密码不一致');
         isValid = false;
+    } else {
+        showFieldSuccess('signupConfirmPassword');
+    }
+    
+    // Validate name if field exists
+    if (document.getElementById('signupName')) {
+        if (!name) {
+            showFieldError('signupName', '请输入姓名');
+            isValid = false;
+        } else if (!validateName(name)) {
+            showFieldError('signupName', '姓名长度应在1-100个字符之间');
+            isValid = false;
+        } else {
+            showFieldSuccess('signupName');
+        }
     }
     
     return isValid;
@@ -548,12 +616,16 @@ function validateLoginForm() {
     } else if (!validateEmail(email)) {
         showFieldError('loginEmail', '请输入有效的邮箱地址');
         isValid = false;
+    } else {
+        showFieldSuccess('loginEmail');
     }
     
     // Validate password
     if (!password) {
         showFieldError('loginPassword', '请输入密码');
         isValid = false;
+    } else {
+        showFieldSuccess('loginPassword');
     }
     
     return isValid;
@@ -605,51 +677,75 @@ document.addEventListener('DOMContentLoaded', function() {
         
         const email = document.getElementById('signupEmail').value;
         const password = document.getElementById('signupPassword').value;
-        const confirmPassword = document.getElementById('signupConfirmPassword').value;
+        const name = document.getElementById('signupName').value;
         
-        await signup(email, password);
+        await signup(email, password, name);
     });
     
-    // Real-time validation
+    // Enhanced real-time validation
     document.getElementById('signupEmail')?.addEventListener('input', function() {
         const email = this.value;
-        if (email && !validateEmail(email)) {
+        if (!email) {
+            clearFieldError('signupEmail');
+        } else if (!validateEmail(email)) {
             showFieldError('signupEmail', '请输入有效的邮箱地址');
         } else {
-            clearFieldError('signupEmail');
+            showFieldSuccess('signupEmail');
         }
     });
     
     document.getElementById('signupPassword')?.addEventListener('input', function() {
         const password = this.value;
-        if (password && !validatePassword(password)) {
+        if (!password) {
+            clearFieldError('signupPassword');
+        } else if (!validatePassword(password)) {
             showFieldError('signupPassword', '密码长度至少为6位');
         } else {
-            clearFieldError('signupPassword');
+            showFieldSuccess('signupPassword');
         }
     });
     
     document.getElementById('signupConfirmPassword')?.addEventListener('input', function() {
         const confirmPassword = this.value;
         const password = document.getElementById('signupPassword').value;
-        if (confirmPassword && password !== confirmPassword) {
+        if (!confirmPassword) {
+            clearFieldError('signupConfirmPassword');
+        } else if (password !== confirmPassword) {
             showFieldError('signupConfirmPassword', '两次输入的密码不一致');
         } else {
-            clearFieldError('signupConfirmPassword');
+            showFieldSuccess('signupConfirmPassword');
+        }
+    });
+    
+    document.getElementById('signupName')?.addEventListener('input', function() {
+        const name = this.value;
+        if (!name) {
+            clearFieldError('signupName');
+        } else if (!validateName(name)) {
+            showFieldError('signupName', '姓名长度应在1-100个字符之间');
+        } else {
+            showFieldSuccess('signupName');
         }
     });
     
     document.getElementById('loginEmail')?.addEventListener('input', function() {
         const email = this.value;
-        if (email && !validateEmail(email)) {
+        if (!email) {
+            clearFieldError('loginEmail');
+        } else if (!validateEmail(email)) {
             showFieldError('loginEmail', '请输入有效的邮箱地址');
         } else {
-            clearFieldError('loginEmail');
+            showFieldSuccess('loginEmail');
         }
     });
     
     document.getElementById('loginPassword')?.addEventListener('input', function() {
-        clearFieldError('loginPassword');
+        const password = this.value;
+        if (!password) {
+            clearFieldError('loginPassword');
+        } else {
+            showFieldSuccess('loginPassword');
+        }
     });
     
     // Test functionality

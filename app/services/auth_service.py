@@ -17,8 +17,8 @@ class AuthService:
         existing_user = self.db.query(User).filter(User.email == user_data.email).first()
         if existing_user:
             raise HTTPException(
-                status_code=status.HTTP_400_BAD_REQUEST,
-                detail="Email already registered"
+                status_code=status.HTTP_409_CONFLICT,
+                detail="该邮箱已被注册，请使用其他邮箱或直接登录"
             )
         
         # Create new user
@@ -51,13 +51,13 @@ class AuthService:
         if not user:
             raise HTTPException(
                 status_code=status.HTTP_401_UNAUTHORIZED,
-                detail="Incorrect email or password"
+                detail="邮箱或密码错误，请检查后重试"
             )
         
         if not user.is_active:
             raise HTTPException(
                 status_code=status.HTTP_400_BAD_REQUEST,
-                detail="Inactive user account"
+                detail="账户已被停用，请联系管理员"
             )
         
         # Create access token (24 hours expiration)
@@ -81,25 +81,25 @@ class AuthService:
             if user_id is None:
                 raise HTTPException(
                     status_code=status.HTTP_401_UNAUTHORIZED,
-                    detail="Could not validate credentials"
+                    detail="无法验证用户凭据"
                 )
         except HTTPException:
             raise HTTPException(
                 status_code=status.HTTP_401_UNAUTHORIZED,
-                detail="Could not validate credentials"
+                detail="无法验证用户凭据"
             )
         
         user = self.db.query(User).filter(User.id == user_id).first()
         if user is None:
             raise HTTPException(
                 status_code=status.HTTP_401_UNAUTHORIZED,
-                detail="User not found"
+                detail="用户不存在"
             )
         
         if not user.is_active:
             raise HTTPException(
                 status_code=status.HTTP_400_BAD_REQUEST,
-                detail="Inactive user account"
+                detail="账户已被停用，请联系管理员"
             )
         
         return user
@@ -110,8 +110,8 @@ class AuthService:
         existing_user = self.db.query(User).filter(User.email == email).first()
         if existing_user:
             raise HTTPException(
-                status_code=status.HTTP_400_BAD_REQUEST,
-                detail="Email already registered"
+                status_code=status.HTTP_409_CONFLICT,
+                detail="该邮箱已被注册"
             )
         
         # Create system user
