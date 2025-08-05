@@ -1,0 +1,36 @@
+{
+  "celebrities": [
+    {
+      "name": "周杰伦",
+      "name_en": "Jay Chou",
+      "description": "台湾著名歌手、音乐人、演员、导演",
+      "image_url": "",
+      "mbti": "INTP",
+      "vote_reason": "周杰伦表现出INTP的特点：内向、理性、创新思维，在音乐创作中展现独特的逻辑性和创造力。",
+      "tags": ["歌手", "音乐人", "演员", "导演", "台湾"]
+    },
+    {
+      "name": "林俊杰",
+      "name_en": "JJ Lin",
+      "description": "新加坡华语流行歌手、音乐制作人",
+      "image_url": "",
+      "mbti": "INFJ",
+      "vote_reason": "林俊杰表现出INFJ的特点：内向、直觉、感性，在音乐创作中展现深刻的情感和人文关怀。",
+      "tags": ["歌手", "音乐人", "新加坡"]
+    },
+    {
+      "name": "邓紫棋",
+      "name_en": "G.E.M.",
+      "description": "香港歌手、词曲创作人",
+      "image_url": "",
+      "mbti": "ENFP",
+      "vote_reason": "邓紫棋表现出ENFP的特点：外向、直觉、感性、感知，充满活力和创造力，善于表达情感。",
+      "tags": ["歌手", "音乐人", "香港"]
+    }
+  ],
+  "metadata": {
+    "source": "MBTI分析社区",
+    "version": "1.0",
+    "upload_date": "2024-01-01"
+  }
+} 
