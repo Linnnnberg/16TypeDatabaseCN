@@ -5,12 +5,16 @@ A FastAPI-based web application for voting on celebrities' MBTI personality type
 ## Features
 
 - **User Authentication**: Registration and login with JWT tokens
+- **Enhanced Error Handling**: Detailed, actionable error messages for better UX
 - **Celebrity Management**: CRUD operations for celebrity profiles
 - **Voting System**: Vote on celebrities' MBTI personality types (16 types)
 - **Comment System**: Nested comments for discussions
 - **Tag System**: Categorize celebrities with tags
 - **Vote Limits**: Daily vote limits and reason requirements
-- **Admin Panel**: Manage users and content
+- **Admin Panel**: Manage users and content with role-based access control
+- **CI/CD Pipeline**: Automated testing, building, and deployment
+- **Docker Support**: Multi-stage builds for development and production
+- **Code Quality**: Automated linting, formatting, and security scanning
 
 ## Quick Start
 
@@ -135,27 +139,74 @@ Once running, visit:
 └── TODO.md          # Development tasks
 ```
 
+## CI/CD Pipeline
+
+This project includes a comprehensive CI/CD pipeline for automated testing, building, and deployment.
+
+### Pipeline Features
+- **Automated Testing**: Unit tests, integration tests, and code quality checks
+- **Security Scanning**: Bandit for code security, Safety for dependency vulnerabilities
+- **Code Quality**: Black formatting, Flake8 linting, MyPy type checking
+- **Docker Builds**: Multi-stage builds for development and production
+- **Automated Deployment**: Staging deployment on main branch, manual production deployment
+- **Documentation**: Automatic API documentation generation
+
+### Pipeline Jobs
+1. **Test & Quality Check**: Code formatting, linting, type checking, security scanning
+2. **Integration Tests**: End-to-end testing with running application
+3. **Build**: Docker image building and caching
+4. **Security Scan**: Trivy vulnerability scanning
+5. **Deploy Staging**: Automatic deployment to staging environment
+6. **Documentation**: Generate and upload API documentation
+
+### Local Development with Docker
+```bash
+# Start development environment
+docker-compose up -d
+
+# Run tests
+docker-compose --profile test up test
+
+# Performance testing
+docker-compose --profile performance up locust
+
+# Monitoring
+docker-compose --profile monitoring up -d
+```
+
+For detailed CI/CD documentation, see [CI_CD_GUIDE.md](CI_CD_GUIDE.md).
+
 ## Development
 
 ### Current Status
 - ✅ **Phase 1**: Project setup and foundation - **COMPLETED**
 - ✅ **Phase 2**: Authentication system - **COMPLETED**
-- 🔄 **Phase 3**: Celebrity management and voting system - **IN PROGRESS**
+- ✅ **Phase 3**: Celebrity management and voting system - **COMPLETED**
+- ✅ **CI/CD Pipeline**: Automated testing and deployment - **COMPLETED**
+- 🔄 **Phase 4**: User experience enhancement - **NEXT PRIORITY**
 
 ### Features Implemented
 - ✅ User authentication with JWT tokens
+- ✅ Enhanced error handling with detailed, actionable messages
 - ✅ Password hashing with bcrypt
 - ✅ User registration and login
 - ✅ Role-based access control (SYSTEM/CLIENT)
 - ✅ Database models and relationships
 - ✅ Pydantic schemas for validation
 - ✅ API documentation with Swagger UI
+- ✅ Celebrity management system (CRUD operations)
+- ✅ Voting system with daily limits
+- ✅ Comment system with nested replies
+- ✅ Tag system for categorization
+- ✅ Frontend interface (FastAPI + Jinja2 + Tailwind CSS)
+- ✅ CI/CD pipeline with automated testing and deployment
+- ✅ Docker containerization for development and production
 
 ### Next Steps
-- 🔄 Celebrity management endpoints
-- 🔄 Voting system implementation
-- 🔄 Comment system
-- 🔄 Frontend interface
+- 🔄 User experience enhancement (loading states, notifications)
+- 🔄 Search functionality re-implementation
+- 🔄 Advanced features (analytics, monitoring)
+- 🔄 Production deployment preparation
 
 See [TODO.md](TODO.md) for detailed development tasks and roadmap.
 
