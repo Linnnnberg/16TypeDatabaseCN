@@ -1,0 +1,169 @@
+{% extends "base.html" %}
+
+{% block title %}关于MBTI - 16型花名册{% endblock %}
+
+{% block content %}
+<div class="min-h-screen bg-gradient-to-br from-primary-50 to-primary-100 py-8">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Header -->
+        <div class="text-center mb-8">
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">关于MBTI</h1>
+            <p class="text-lg text-gray-600">了解MBTI人格类型理论</p>
+        </div>
+
+        <!-- What is MBTI -->
+        <div class="bg-white rounded-lg shadow-lg p-8 mb-8">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6">什么是MBTI？</h2>
+            <p class="text-gray-700 leading-relaxed mb-4">
+                MBTI（Myers-Briggs Type Indicator，迈尔斯-布里格斯类型指标）是一种人格类型理论，
+                基于瑞士心理学家荣格（Carl Jung）的心理类型理论发展而来。它通过四个维度来描述人格差异：
+            </p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+                <div class="p-6 bg-gray-50 rounded-lg">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-3">外向 (E) vs 内向 (I)</h3>
+                    <p class="text-gray-600 text-sm">
+                        描述你如何获取能量。外向者从外部世界获取能量，内向者从内心世界获取能量。
+                    </p>
+                </div>
+                
+                <div class="p-6 bg-gray-50 rounded-lg">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-3">感觉 (S) vs 直觉 (N)</h3>
+                    <p class="text-gray-600 text-sm">
+                        描述你如何收集信息。感觉者关注具体事实，直觉者关注可能性和模式。
+                    </p>
+                </div>
+                
+                <div class="p-6 bg-gray-50 rounded-lg">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-3">思考 (T) vs 情感 (F)</h3>
+                    <p class="text-gray-600 text-sm">
+                        描述你如何做决定。思考者基于逻辑分析，情感者基于价值观和感受。
+                    </p>
+                </div>
+                
+                <div class="p-6 bg-gray-50 rounded-lg">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-3">判断 (J) vs 感知 (P)</h3>
+                    <p class="text-gray-600 text-sm">
+                        描述你如何对待外部世界。判断者喜欢计划和结构，感知者喜欢灵活和开放。
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 16 Types Overview -->
+        <div class="bg-white rounded-lg shadow-lg p-8 mb-8">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6">16种人格类型</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div class="text-center p-4 bg-gray-50 rounded-lg">
+                    <div class="text-lg font-bold text-primary-600 mb-2">INTJ</div>
+                    <div class="text-sm text-gray-600">建筑师</div>
+                </div>
+                <div class="text-center p-4 bg-gray-50 rounded-lg">
+                    <div class="text-lg font-bold text-primary-600 mb-2">INTP</div>
+                    <div class="text-sm text-gray-600">逻辑学家</div>
+                </div>
+                <div class="text-center p-4 bg-gray-50 rounded-lg">
+                    <div class="text-lg font-bold text-primary-600 mb-2">ENTJ</div>
+                    <div class="text-sm text-gray-600">指挥官</div>
+                </div>
+                <div class="text-center p-4 bg-gray-50 rounded-lg">
+                    <div class="text-lg font-bold text-primary-600 mb-2">ENTP</div>
+                    <div class="text-sm text-gray-600">辩论家</div>
+                </div>
+                <div class="text-center p-4 bg-gray-50 rounded-lg">
+                    <div class="text-lg font-bold text-primary-600 mb-2">INFJ</div>
+                    <div class="text-sm text-gray-600">提倡者</div>
+                </div>
+                <div class="text-center p-4 bg-gray-50 rounded-lg">
+                    <div class="text-lg font-bold text-primary-600 mb-2">INFP</div>
+                    <div class="text-sm text-gray-600">调停者</div>
+                </div>
+                <div class="text-center p-4 bg-gray-50 rounded-lg">
+                    <div class="text-lg font-bold text-primary-600 mb-2">ENFJ</div>
+                    <div class="text-sm text-gray-600">主人公</div>
+                </div>
+                <div class="text-center p-4 bg-gray-50 rounded-lg">
+                    <div class="text-lg font-bold text-primary-600 mb-2">ENFP</div>
+                    <div class="text-sm text-gray-600">竞选者</div>
+                </div>
+                <div class="text-center p-4 bg-gray-50 rounded-lg">
+                    <div class="text-lg font-bold text-primary-600 mb-2">ISTJ</div>
+                    <div class="text-sm text-gray-600">物流师</div>
+                </div>
+                <div class="text-center p-4 bg-gray-50 rounded-lg">
+                    <div class="text-lg font-bold text-primary-600 mb-2">ISFJ</div>
+                    <div class="text-sm text-gray-600">守卫者</div>
+                </div>
+                <div class="text-center p-4 bg-gray-50 rounded-lg">
+                    <div class="text-lg font-bold text-primary-600 mb-2">ESTJ</div>
+                    <div class="text-sm text-gray-600">总经理</div>
+                </div>
+                <div class="text-center p-4 bg-gray-50 rounded-lg">
+                    <div class="text-lg font-bold text-primary-600 mb-2">ESFJ</div>
+                    <div class="text-sm text-gray-600">执政官</div>
+                </div>
+                <div class="text-center p-4 bg-gray-50 rounded-lg">
+                    <div class="text-lg font-bold text-primary-600 mb-2">ISTP</div>
+                    <div class="text-sm text-gray-600">鉴赏家</div>
+                </div>
+                <div class="text-center p-4 bg-gray-50 rounded-lg">
+                    <div class="text-lg font-bold text-primary-600 mb-2">ISFP</div>
+                    <div class="text-sm text-gray-600">探险家</div>
+                </div>
+                <div class="text-center p-4 bg-gray-50 rounded-lg">
+                    <div class="text-lg font-bold text-primary-600 mb-2">ESTP</div>
+                    <div class="text-sm text-gray-600">企业家</div>
+                </div>
+                <div class="text-center p-4 bg-gray-50 rounded-lg">
+                    <div class="text-lg font-bold text-primary-600 mb-2">ESFP</div>
+                    <div class="text-sm text-gray-600">表演者</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Benefits -->
+        <div class="bg-white rounded-lg shadow-lg p-8 mb-8">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6">了解MBTI的好处</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-900 mb-2">自我认知</h3>
+                    <p class="text-gray-600 text-sm">更好地了解自己的优势和挑战</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-900 mb-2">人际关系</h3>
+                    <p class="text-gray-600 text-sm">改善与他人的沟通和理解</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2-2v2m8 0V6a2 2 0 012 2v6a2 2 0 01-2 2H8a2 2 0 01-2-2V8a2 2 0 012-2V6"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-900 mb-2">职业发展</h3>
+                    <p class="text-gray-600 text-sm">找到更适合的职业方向</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Call to Action -->
+        <div class="text-center">
+            <a href="/test" 
+               class="bg-primary-600 hover:bg-primary-700 text-white font-semibold py-3 px-8 rounded-lg text-lg transition-colors shadow-lg">
+                开始MBTI测试
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %} 

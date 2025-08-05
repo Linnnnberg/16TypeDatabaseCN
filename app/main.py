@@ -1,7 +1,8 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
+from fastapi.responses import HTMLResponse
 import os
 
 # Import database
@@ -40,8 +41,34 @@ app.include_router(celebrities_router)
 app.include_router(votes_router)
 app.include_router(comments_router)
 
-# Root path
-@app.get("/")
+# Template routes
+@app.get("/", response_class=HTMLResponse)
+async def homepage(request: Request):
+    """Homepage with hero section and features"""
+    return templates.TemplateResponse("index.html", {"request": request})
+
+@app.get("/test", response_class=HTMLResponse)
+async def test_page(request: Request):
+    """MBTI test page"""
+    return templates.TemplateResponse("test.html", {"request": request})
+
+@app.get("/result", response_class=HTMLResponse)
+async def result_page(request: Request):
+    """Test result page"""
+    return templates.TemplateResponse("result.html", {"request": request})
+
+@app.get("/celebrities", response_class=HTMLResponse)
+async def celebrities_page(request: Request):
+    """Celebrities directory page"""
+    return templates.TemplateResponse("celebrities.html", {"request": request})
+
+@app.get("/about", response_class=HTMLResponse)
+async def about_page(request: Request):
+    """About MBTI page"""
+    return templates.TemplateResponse("about.html", {"request": request})
+
+# API root path
+@app.get("/api")
 def read_root():
     return {
         "message": "欢迎使用16型花名册API", 

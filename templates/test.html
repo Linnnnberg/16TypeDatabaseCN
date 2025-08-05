@@ -1,0 +1,265 @@
+{% extends "base.html" %}
+
+{% block title %}MBTI测试 - 16型花名册{% endblock %}
+
+{% block content %}
+<div class="min-h-screen bg-gradient-to-br from-primary-50 to-primary-100 py-8">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Header -->
+        <div class="text-center mb-8">
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">MBTI人格类型测试</h1>
+            <p class="text-lg text-gray-600">通过回答以下问题，发现你的MBTI人格类型</p>
+        </div>
+
+        <!-- Progress Bar -->
+        <div class="bg-white rounded-lg shadow-lg p-6 mb-8">
+            <div class="flex justify-between items-center mb-4">
+                <span class="text-sm font-medium text-gray-700">测试进度</span>
+                <span id="progressText" class="text-sm font-medium text-primary-600">1 / 20</span>
+            </div>
+            <div class="w-full bg-gray-200 rounded-full h-2">
+                <div id="progressBar" class="bg-primary-600 h-2 rounded-full transition-all duration-300" style="width: 5%"></div>
+            </div>
+        </div>
+
+        <!-- Test Form -->
+        <form id="mbtiTestForm" class="bg-white rounded-lg shadow-lg p-8">
+            <div id="questionContainer">
+                <!-- Questions will be loaded here -->
+            </div>
+
+            <!-- Navigation Buttons -->
+            <div class="flex justify-between mt-8">
+                <button type="button" id="prevBtn" 
+                        class="bg-gray-500 hover:bg-gray-600 text-white font-medium py-2 px-6 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
+                    上一题
+                </button>
+                <button type="button" id="nextBtn" 
+                        class="bg-primary-600 hover:bg-primary-700 text-white font-medium py-2 px-6 rounded-lg transition-colors">
+                    下一题
+                </button>
+                <button type="submit" id="submitBtn" 
+                        class="bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-6 rounded-lg transition-colors hidden">
+                    查看结果
+                </button>
+            </div>
+        </form>
+
+        <!-- Instructions -->
+        <div class="bg-white rounded-lg shadow-lg p-6 mt-8">
+            <h3 class="text-lg font-semibold text-gray-900 mb-4">测试说明</h3>
+            <ul class="space-y-2 text-gray-600">
+                <li class="flex items-start">
+                    <span class="text-primary-600 mr-2">•</span>
+                    请根据你的真实想法和感受来回答问题，不要考虑"应该"怎么回答
+                </li>
+                <li class="flex items-start">
+                    <span class="text-primary-600 mr-2">•</span>
+                    选择最符合你平时行为的选项，而不是你希望成为的样子
+                </li>
+                <li class="flex items-start">
+                    <span class="text-primary-600 mr-2">•</span>
+                    测试大约需要10-15分钟完成，请耐心作答
+                </li>
+                <li class="flex items-start">
+                    <span class="text-primary-600 mr-2">•</span>
+                    测试结果仅供参考，MBTI是了解自我的工具之一
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- Questions Data -->
+<script>
+const mbtiQuestions = [
+    // E vs I (Extraversion vs Introversion)
+    {
+        id: 1,
+        question: "在社交场合中，你通常：",
+        options: [
+            { value: "E", text: "喜欢与很多人交谈，感到精力充沛" },
+            { value: "I", text: "倾向于与少数人深入交谈，感到消耗精力" }
+        ],
+        dimension: "E-I"
+    },
+    {
+        id: 2,
+        question: "你更喜欢：",
+        options: [
+            { value: "E", text: "在团队中工作，通过讨论获得想法" },
+            { value: "I", text: "独自工作，通过思考获得想法" }
+        ],
+        dimension: "E-I"
+    },
+    {
+        id: 3,
+        question: "在休息时，你倾向于：",
+        options: [
+            { value: "E", text: "与朋友一起外出，参加活动" },
+            { value: "I", text: "独自待着，阅读或思考" }
+        ],
+        dimension: "E-I"
+    },
+    {
+        id: 4,
+        question: "你更享受：",
+        options: [
+            { value: "E", text: "与朋友一起度过周末" },
+            { value: "I", text: "独自度过安静的周末" }
+        ],
+        dimension: "E-I"
+    },
+    {
+        id: 5,
+        question: "在解决问题时，你通常：",
+        options: [
+            { value: "E", text: "通过与他人讨论来理清思路" },
+            { value: "I", text: "通过独自思考来理清思路" }
+        ],
+        dimension: "E-I"
+    },
+
+    // S vs N (Sensing vs Intuition)
+    {
+        id: 6,
+        question: "你更关注：",
+        options: [
+            { value: "S", text: "具体的事实和细节" },
+            { value: "N", text: "可能性和未来的发展" }
+        ],
+        dimension: "S-N"
+    },
+    {
+        id: 7,
+        question: "你更喜欢：",
+        options: [
+            { value: "S", text: "按照已知的方法做事" },
+            { value: "N", text: "尝试新的、创新的方法" }
+        ],
+        dimension: "S-N"
+    },
+    {
+        id: 8,
+        question: "你更相信：",
+        options: [
+            { value: "S", text: "实际的经验和具体的数据" },
+            { value: "N", text: "直觉和灵感" }
+        ],
+        dimension: "S-N"
+    },
+    {
+        id: 9,
+        question: "你更喜欢：",
+        options: [
+            { value: "S", text: "明确、具体的指示" },
+            { value: "N", text: "灵活、开放的选择" }
+        ],
+        dimension: "S-N"
+    },
+    {
+        id: 10,
+        question: "你更擅长：",
+        options: [
+            { value: "S", text: "处理现实中的具体问题" },
+            { value: "N", text: "想象未来的可能性" }
+        ],
+        dimension: "S-N"
+    },
+
+    // T vs F (Thinking vs Feeling)
+    {
+        id: 11,
+        question: "在做决定时，你更重视：",
+        options: [
+            { value: "T", text: "逻辑分析和客观事实" },
+            { value: "F", text: "个人价值观和他人感受" }
+        ],
+        dimension: "T-F"
+    },
+    {
+        id: 12,
+        question: "你更倾向于：",
+        options: [
+            { value: "T", text: "直接、坦率地表达意见" },
+            { value: "F", text: "温和、体贴地表达意见" }
+        ],
+        dimension: "T-F"
+    },
+    {
+        id: 13,
+        question: "在冲突中，你通常：",
+        options: [
+            { value: "T", text: "寻求公平和正义" },
+            { value: "F", text: "寻求和谐和共识" }
+        ],
+        dimension: "T-F"
+    },
+    {
+        id: 14,
+        question: "你更欣赏：",
+        options: [
+            { value: "T", text: "有能力的同事" },
+            { value: "F", text: "友善的同事" }
+        ],
+        dimension: "T-F"
+    },
+    {
+        id: 15,
+        question: "你更重视：",
+        options: [
+            { value: "T", text: "诚实和直接" },
+            { value: "F", text: "体贴和关心" }
+        ],
+        dimension: "T-F"
+    },
+
+    // J vs P (Judging vs Perceiving)
+    {
+        id: 16,
+        question: "你更喜欢：",
+        options: [
+            { value: "J", text: "制定计划并按计划执行" },
+            { value: "P", text: "保持灵活性，随机应变" }
+        ],
+        dimension: "J-P"
+    },
+    {
+        id: 17,
+        question: "你更倾向于：",
+        options: [
+            { value: "J", text: "提前完成任务" },
+            { value: "P", text: "在最后期限前完成任务" }
+        ],
+        dimension: "J-P"
+    },
+    {
+        id: 18,
+        question: "你更喜欢：",
+        options: [
+            { value: "J", text: "有明确的结构和规则" },
+            { value: "P", text: "有自由和灵活性" }
+        ],
+        dimension: "J-P"
+    },
+    {
+        id: 19,
+        question: "你更擅长：",
+        options: [
+            { value: "J", text: "组织和安排事务" },
+            { value: "P", text: "适应和应对变化" }
+        ],
+        dimension: "J-P"
+    },
+    {
+        id: 20,
+        question: "你更喜欢：",
+        options: [
+            { value: "J", text: "做出决定并坚持" },
+            { value: "P", text: "保持选择开放" }
+        ],
+        dimension: "J-P"
+    }
+];
+</script>
+{% endblock %} 

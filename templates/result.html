@@ -1,0 +1,216 @@
+{% extends "base.html" %}
+
+{% block title %}测试结果 - 16型花名册{% endblock %}
+
+{% block content %}
+<div class="min-h-screen bg-gradient-to-br from-primary-50 to-primary-100 py-8">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Header -->
+        <div class="text-center mb-8">
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">你的MBTI测试结果</h1>
+            <p class="text-lg text-gray-600">发现你的人格类型和相似的名人</p>
+        </div>
+
+        <!-- Result Card -->
+        <div class="bg-white rounded-lg shadow-lg p-8 mb-8">
+            <div class="text-center mb-8">
+                <div class="w-32 h-32 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <span id="mbtiType" class="text-white text-4xl font-bold">INTJ</span>
+                </div>
+                <h2 id="mbtiTitle" class="text-2xl font-bold text-gray-900 mb-2">建筑师</h2>
+                <p id="mbtiSubtitle" class="text-gray-600">富有想象力和战略性的思考者</p>
+            </div>
+
+            <!-- MBTI Breakdown -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+                <div class="text-center p-4 bg-gray-50 rounded-lg">
+                    <div class="text-lg font-semibold text-gray-900 mb-2">外向 (E)</div>
+                    <div class="text-3xl font-bold text-primary-600" id="eScore">0%</div>
+                    <div class="text-sm text-gray-600">vs 内向 (I)</div>
+                </div>
+                <div class="text-center p-4 bg-gray-50 rounded-lg">
+                    <div class="text-lg font-semibold text-gray-900 mb-2">直觉 (N)</div>
+                    <div class="text-3xl font-bold text-primary-600" id="nScore">0%</div>
+                    <div class="text-sm text-gray-600">vs 感觉 (S)</div>
+                </div>
+                <div class="text-center p-4 bg-gray-50 rounded-lg">
+                    <div class="text-lg font-semibold text-gray-900 mb-2">思考 (T)</div>
+                    <div class="text-3xl font-bold text-primary-600" id="tScore">0%</div>
+                    <div class="text-sm text-gray-600">vs 情感 (F)</div>
+                </div>
+                <div class="text-center p-4 bg-gray-50 rounded-lg">
+                    <div class="text-lg font-semibold text-gray-900 mb-2">判断 (J)</div>
+                    <div class="text-3xl font-bold text-primary-600" id="jScore">0%</div>
+                    <div class="text-sm text-gray-600">vs 感知 (P)</div>
+                </div>
+            </div>
+
+            <!-- Function Stack -->
+            <div class="mb-8">
+                <h3 class="text-xl font-semibold text-gray-900 mb-4">认知功能栈</h3>
+                <div class="space-y-3" id="functionStack">
+                    <!-- Function stack will be loaded here -->
+                </div>
+            </div>
+
+            <!-- Description -->
+            <div class="mb-8">
+                <h3 class="text-xl font-semibold text-gray-900 mb-4">类型描述</h3>
+                <p id="typeDescription" class="text-gray-700 leading-relaxed">
+                    <!-- Type description will be loaded here -->
+                </p>
+            </div>
+        </div>
+
+        <!-- Similar Celebrities -->
+        <div class="bg-white rounded-lg shadow-lg p-8 mb-8">
+            <h3 class="text-xl font-semibold text-gray-900 mb-6">与你相似的名人</h3>
+            <div id="similarCelebrities" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Similar celebrities will be loaded here -->
+            </div>
+        </div>
+
+        <!-- Strengths and Weaknesses -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+            <div class="bg-white rounded-lg shadow-lg p-6">
+                <h3 class="text-xl font-semibold text-gray-900 mb-4 flex items-center">
+                    <svg class="w-6 h-6 text-green-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    优势
+                </h3>
+                <ul id="strengths" class="space-y-2 text-gray-700">
+                    <!-- Strengths will be loaded here -->
+                </ul>
+            </div>
+            
+            <div class="bg-white rounded-lg shadow-lg p-6">
+                <h3 class="text-xl font-semibold text-gray-900 mb-4 flex items-center">
+                    <svg class="w-6 h-6 text-red-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"></path>
+                    </svg>
+                    挑战
+                </h3>
+                <ul id="weaknesses" class="space-y-2 text-gray-700">
+                    <!-- Weaknesses will be loaded here -->
+                </ul>
+            </div>
+        </div>
+
+        <!-- Career Suggestions -->
+        <div class="bg-white rounded-lg shadow-lg p-8 mb-8">
+            <h3 class="text-xl font-semibold text-gray-900 mb-6">职业建议</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="careerSuggestions">
+                <!-- Career suggestions will be loaded here -->
+            </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="text-center space-y-4">
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="/test" 
+                   class="bg-primary-600 hover:bg-primary-700 text-white font-semibold py-3 px-8 rounded-lg transition-colors">
+                    重新测试
+                </a>
+                <a href="/celebrities" 
+                   class="bg-white hover:bg-gray-50 text-primary-600 font-semibold py-3 px-8 rounded-lg border-2 border-primary-600 transition-colors">
+                    浏览名人库
+                </a>
+                <button id="shareResult" 
+                        class="bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-8 rounded-lg transition-colors">
+                    分享结果
+                </button>
+            </div>
+            
+            <div class="text-sm text-gray-600">
+                <p>想要更深入了解你的MBTI类型？</p>
+                <a href="/about" class="text-primary-600 hover:text-primary-700 font-medium">
+                    了解更多关于MBTI的信息 →
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Share Modal -->
+<div id="shareModal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50">
+    <div class="flex items-center justify-center min-h-screen p-4">
+        <div class="bg-white rounded-lg shadow-xl max-w-md w-full p-6">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-lg font-semibold">分享你的MBTI结果</h3>
+                <button id="closeShareModal" class="text-gray-400 hover:text-gray-600">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">复制链接</label>
+                    <div class="flex">
+                        <input type="text" id="shareLink" readonly 
+                               class="flex-1 px-3 py-2 border border-gray-300 rounded-l-md focus:outline-none focus:ring-2 focus:ring-primary-500">
+                        <button id="copyLink" 
+                                class="bg-primary-600 hover:bg-primary-700 text-white px-4 py-2 rounded-r-md transition-colors">
+                            复制
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="flex justify-center space-x-4">
+                    <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors">
+                        微信
+                    </button>
+                    <button class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg transition-colors">
+                        微博
+                    </button>
+                    <button class="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg transition-colors">
+                        QQ
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- MBTI Data -->
+<script>
+const mbtiData = {
+    "INTJ": {
+        title: "建筑师",
+        subtitle: "富有想象力和战略性的思考者",
+        description: "INTJ型人格的人是天生的战略家，他们拥有敏锐的洞察力和强大的分析能力。他们喜欢深入思考复杂的问题，并能够制定出创新的解决方案。INTJ型的人通常很独立，追求完美，并且对自己和他人都有很高的标准。",
+        strengths: [
+            "强大的分析能力和战略思维",
+            "独立自主，不依赖他人",
+            "追求完美，注重细节",
+            "诚实直接，不拐弯抹角",
+            "有远见，能够看到长期目标"
+        ],
+        weaknesses: [
+            "可能过于完美主义",
+            "有时显得冷漠和疏远",
+            "不善于处理情感问题",
+            "可能过于固执己见",
+            "对他人要求过高"
+        ],
+        careers: [
+            "科学家/研究员",
+            "工程师",
+            "投资银行家",
+            "管理顾问",
+            "建筑师",
+            "律师"
+        ],
+        functions: [
+            { name: "主导功能", type: "Ni", description: "内向直觉 - 洞察模式和可能性" },
+            { name: "辅助功能", type: "Te", description: "外向思考 - 组织和执行计划" },
+            { name: "第三功能", type: "Fi", description: "内向情感 - 个人价值观" },
+            { name: "劣势功能", type: "Se", description: "外向感觉 - 感知现实细节" }
+        ]
+    },
+    // Add more MBTI types here...
+};
+</script>
+{% endblock %} 
