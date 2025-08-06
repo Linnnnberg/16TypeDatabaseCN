@@ -283,38 +283,21 @@ function displayUserInfo(userName) {
     
     const loginBtn = document.getElementById('loginBtn');
     if (loginBtn) {
-        // Create user info container
-        const userInfoContainer = document.createElement('div');
-        userInfoContainer.className = 'flex items-center space-x-3';
-        userInfoContainer.id = 'userInfoContainer';
-        
         // Create user name display
         const userNameDisplay = document.createElement('span');
-        userNameDisplay.className = 'text-sm text-gray-700 font-medium';
+        userNameDisplay.className = 'text-sm text-gray-700 font-medium mr-3';
         userNameDisplay.textContent = `欢迎，${userName}`;
+        userNameDisplay.id = 'userNameDisplay';
         
-        // Add user info to container
-        userInfoContainer.appendChild(userNameDisplay);
-        userInfoContainer.appendChild(loginBtn);
-        
-        // Replace login button with container
-        loginBtn.parentNode.insertBefore(userInfoContainer, loginBtn);
-        loginBtn.parentNode.removeChild(loginBtn);
+        // Insert user name before the login button
+        loginBtn.parentNode.insertBefore(userNameDisplay, loginBtn);
     }
 }
 
 function removeUserInfoDisplay() {
-    const userInfoContainer = document.getElementById('userInfoContainer');
-    if (userInfoContainer) {
-        const loginBtn = userInfoContainer.querySelector('#loginBtn');
-        if (loginBtn) {
-            // Move login button back to original position
-            const originalContainer = document.querySelector('.flex.items-center.space-x-4');
-            if (originalContainer) {
-                originalContainer.appendChild(loginBtn);
-            }
-        }
-        userInfoContainer.remove();
+    const userNameDisplay = document.getElementById('userNameDisplay');
+    if (userNameDisplay) {
+        userNameDisplay.remove();
     }
 }
 
