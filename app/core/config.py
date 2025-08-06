@@ -1,9 +1,10 @@
 from pydantic_settings import BaseSettings
+import os
 
 
 class Settings(BaseSettings):
     database_url: str
-    secret_key: str
+    secret_key: str = "test_secret_key"  # Safe default for CI or docs
     redis_url: str = "redis://localhost:6379"
     email_from: str = "noreply@mbti-roster.com"
 
@@ -15,6 +16,12 @@ class Settings(BaseSettings):
 
     class Config:
         env_file = ".env"
+
+    def __init__(self, **kwargs):
+        # Override secret_key for CI environment if not provided
+        if "secret_key" not in kwargs and os.getenv("CI"):
+            kwargs["secret_key"] = "test-secret-key-for-ci-12345"
+        super().__init__(**kwargs)
 
 
 settings = Settings()
