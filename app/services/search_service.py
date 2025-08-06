@@ -295,7 +295,6 @@ class SearchService:
             return []
 
         query_lower = query.lower()
-        suggestions = []
 
         # Get celebrity name suggestions
         name_suggestions = (

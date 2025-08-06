@@ -153,7 +153,7 @@ def main():
     report_file = save_test_report()
 
     # Final summary
-    print(f"\nFINAL RESULTS:")
+    print("\nFINAL RESULTS:")
     print(f"Test Suites: {passed_suites}/{total_suites} passed")
     print(f"Total Duration: {total_duration:.2f}s")
     print(f"Detailed Report: {report_file}")

@@ -213,7 +213,7 @@ def get_json_schema():
                     "image_url": "https://example.com/image.jpg (optional)",
                     "mbti": "INTJ (required - one of 16 MBTI types)",
                     "vote_reason": "MBTI类型理由 (required)",
-                    "tags": ["标签1", "标签2"](optional),
+                    "tags": "[\"标签1\", \"标签2\"] (optional)",
                 }
             ],
             "metadata": {
