@@ -46,6 +46,18 @@ class Settings(BaseSettings):
         super().__init__(**kwargs)
 ```
 
+### 5. GitHub Actions Versions
+```yaml
+# .github/workflows/ci.yml
+# ✅ CORRECT - Use latest versions
+- name: Upload Trivy scan results to GitHub Security tab
+  uses: github/codeql-action/upload-sarif@v3
+
+# ❌ WRONG - Deprecated versions
+- name: Upload Trivy scan results to GitHub Security tab
+  uses: github/codeql-action/upload-sarif@v2  # DEPRECATED
+```
+
 ## 🔧 Implementation Rules
 
 ### Test Job Rules

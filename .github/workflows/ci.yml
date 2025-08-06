@@ -223,7 +223,7 @@ jobs:
         output: 'trivy-results.sarif'
         
     - name: Upload Trivy scan results to GitHub Security tab
-      uses: github/codeql-action/upload-sarif@v2
+      uses: github/codeql-action/upload-sarif@v3
       if: always()
       with:
         sarif_file: 'trivy-results.sarif'
@@ -308,6 +308,9 @@ jobs:
         
     - name: Generate API documentation
       run: |
+        # Clean up existing documentation
+        rm -rf docs/app/
+        # Generate fresh documentation
         pdoc --html --output-dir docs/ app/
         
     - name: Upload documentation

@@ -371,6 +371,49 @@ class CICDRulesValidator:
             self.add_success("Import order is correct")
             return True
     
+    def check_github_actions_versions(self) -> bool:
+        """Check for deprecated GitHub Actions versions"""
+        print("\n" + "="*60)
+        print("CHECKING GITHUB ACTIONS VERSIONS")
+        print("="*60)
+        
+        workflow_files = list(Path(".github/workflows").glob("*.yml")) + list(Path(".github/workflows").glob("*.yaml"))
+        deprecated_actions = []
+        
+        # Define deprecated actions and their recommended versions
+        deprecated_versions = {
+            "github/codeql-action/upload-sarif@v1": "v3",
+            "github/codeql-action/upload-sarif@v2": "v3",
+            "github/codeql-action/init@v1": "v3",
+            "github/codeql-action/init@v2": "v3",
+            "github/codeql-action/autobuild@v1": "v3",
+            "github/codeql-action/autobuild@v2": "v3",
+            "github/codeql-action/analyze@v1": "v3",
+            "github/codeql-action/analyze@v2": "v3"
+        }
+        
+        for workflow_file in workflow_files:
+            try:
+                with open(workflow_file, 'r', encoding='utf-8') as f:
+                    content = f.read()
+                    
+                for deprecated_action, recommended_version in deprecated_versions.items():
+                    if deprecated_action in content:
+                        deprecated_actions.append(f"{workflow_file}: {deprecated_action} -> {recommended_version}")
+                        
+            except Exception as e:
+                self.add_warning(f"Could not read {workflow_file}: {e}")
+        
+        if deprecated_actions:
+            print("ERROR: Found deprecated GitHub Actions versions:")
+            for action in deprecated_actions:
+                print(f"  - {action}")
+            self.add_error(f"Found {len(deprecated_actions)} deprecated GitHub Actions versions")
+            return False
+        else:
+            self.add_success("All GitHub Actions versions are up to date")
+            return True
+    
     def run_all_checks(self) -> bool:
         """Run all CI/CD rules validation checks"""
         print("STARTING: CI/CD Rules Validation")
@@ -386,6 +429,7 @@ class CICDRulesValidator:
             ("Fallback Tests", self.check_fallback_tests),
             ("Dependencies", self.check_dependencies),
             ("Import Order", self.check_import_order),
+            ("GitHub Actions Versions", self.check_github_actions_versions),
         ]
         
         passed_checks = 0
