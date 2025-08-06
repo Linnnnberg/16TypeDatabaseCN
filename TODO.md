@@ -5,20 +5,54 @@
 
 ## 🎯 Task ID System & Branching Strategy
 
-### Branch Naming Convention
-- **Feature branches**: `feature/TASK-XXX-description`
-- **Bug fixes**: `fix/TASK-XXX-description`
-- **Hotfixes**: `hotfix/TASK-XXX-description`
-- **Documentation**: `docs/TASK-XXX-description`
+### New Task ID Format (Updated)
+Based on task type, use the following prefixes:
 
-### Task ID Format
-- **TASK-001** to **TASK-999** for sequential task numbering
-- **TASK-1000+** for future tasks
+- **STORY-001** to **STORY-999**: New features and enhancements
+- **FIX-001** to **FIX-999**: Bug fixes and issue resolutions  
+- **TECH-001** to **TECH-999**: Technical improvements and infrastructure changes
+
+### Task Type Classification
+
+#### STORY- (Feature/Enhancement)
+- New user-facing features
+- UI/UX improvements
+- New functionality
+- Feature enhancements
+- User experience improvements
+
+#### FIX- (Bug Fix/Issue Resolution)
+- Bug fixes
+- Error corrections
+- Issue resolutions
+- Security patches
+- Performance fixes
+
+#### TECH- (Technical Enhancement)
+- Code refactoring
+- Infrastructure improvements
+- Dependency updates
+- CI/CD improvements
+- Documentation updates
+- Testing improvements
+
+### Branch Naming Convention
+- **Feature branches**: `feature/STORY-XXX-description`
+- **Bug fixes**: `fix/FIX-XXX-description`
+- **Technical improvements**: `tech/TECH-XXX-description`
+- **Hotfixes**: `hotfix/FIX-XXX-description`
+- **Documentation**: `docs/TECH-XXX-description`
 
 ### Example Branch Names
-- `feature/TASK-008-voting-endpoints`
-- `fix/TASK-012-auth-bug`
-- `docs/TASK-015-api-documentation`
+- `feature/STORY-001-user-profile-page`
+- `fix/FIX-002-database-timeout`
+- `tech/TECH-003-add-test-coverage`
+- `docs/TECH-005-api-documentation`
+
+### Legacy Task IDs
+- **TASK-001** to **TASK-999**: Legacy format (deprecated)
+- Existing completed tasks keep their original IDs
+- New tasks use the new prefix system
 
 ---
 
@@ -87,7 +121,7 @@
   - [x] Add admin-only access for create/update/delete operations
   - [x] Test all endpoints successfully
   - [x] Add sample celebrities data (10 celebrities with tags)
-- [x] **TASK-008: Create voting endpoints** ⭐ **COMPLETED** ✅
+- [x] **TASK-008: Create voting endpoints** ⭐ **COMPLETED** ✅ (Legacy format)
   - [x] Create vote service with full CRUD operations
   - [x] Implement vote creation with daily limits (10 votes/day)
   - [x] Add vote validation (one vote per celebrity per user)
@@ -98,6 +132,31 @@
   - [x] Fix routing conflicts (static routes before dynamic routes)
   - [x] Test all voting endpoints successfully
   - [x] Remove unnecessary popular celebrities endpoint
+
+## 📋 Recent Completed Tasks (New Format)
+
+### FIX-001: **Register/Login Button Fix** ⭐ **COMPLETED** ✅
+- [x] Fix register and login buttons not responding
+- [x] Add JavaScript event listeners for modal display
+- [x] Implement form submission and validation
+- [x] Add toast notification system
+- [x] Fix user name display after login
+- [x] Update signup endpoint to return access token
+- [x] Test authentication flow end-to-end
+
+### TECH-001: **GitHub Actions v4 Update** ⭐ **COMPLETED** ✅
+- [x] Update deprecated actions/upload-artifact from v3 to v4
+- [x] Update deprecated actions/cache from v3 to v4
+- [x] Fix CI/CD pipeline compatibility
+- [x] Test GitHub Actions workflow
+
+### TECH-002: **CI Test Fixes** ⭐ **COMPLETED** ✅
+- [x] Create proper pytest-compatible test files
+- [x] Add pytest configuration (pytest.ini)
+- [x] Create basic tests that run without server
+- [x] Test module imports and schema validation
+- [x] Add file structure validation tests
+- [x] Fix "Test & Quality Check" job failures
 - [x] **TASK-009: Create comment endpoints** ⭐ **COMPLETED** ✅
   - [x] Create comment service with full CRUD operations
   - [x] Implement comment creation with nested replies (up to 3 levels)
@@ -119,6 +178,37 @@
   - [x] Implement search result ranking and pagination
   - [x] Test all search functionality end-to-end
   - [x] Create comprehensive regression testing framework
+
+## 🎯 Upcoming Tasks (New Format)
+
+### STORY-001: **Add User Profile Page** 📋 **PENDING**
+- [ ] Create user profile page UI
+- [ ] Add profile data display
+- [ ] Implement profile editing functionality
+- [ ] Add avatar upload feature
+- [ ] Add user statistics display
+- [ ] Test profile page functionality
+
+### STORY-002: **Implement Dark Mode Theme** 📋 **PENDING**
+- [ ] Add dark mode CSS variables
+- [ ] Create theme toggle functionality
+- [ ] Update all components for dark mode
+- [ ] Add theme persistence
+- [ ] Test theme switching
+
+### FIX-002: **UI/UX Improvements** 📋 **PENDING**
+- [ ] Fix any remaining layout issues
+- [ ] Improve responsive design
+- [ ] Add loading states
+- [ ] Enhance error handling UI
+- [ ] Optimize mobile experience
+
+### TECH-003: **Improve Test Coverage** 📋 **PENDING**
+- [ ] Add unit tests for all services
+- [ ] Add integration tests for API endpoints
+- [ ] Add frontend component tests
+- [ ] Improve test coverage reporting
+- [ ] Add automated testing workflow
 
 ## 🎨 Phase 3 - Frontend & UI
 

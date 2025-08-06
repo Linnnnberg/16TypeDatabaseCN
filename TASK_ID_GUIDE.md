@@ -5,41 +5,104 @@ This project uses a systematic approach to task management with unique IDs and c
 
 ## Task ID System
 
-### Format
-- **TASK-001** to **TASK-999** for sequential task numbering
-- **TASK-1000+** for future tasks
-- All task IDs are padded with leading zeros (e.g., TASK-008, TASK-015)
+### New Task ID Format (Updated)
+Based on task type, use the following prefixes:
+
+- **STORY-001** to **STORY-999**: New features and enhancements
+- **FIX-001** to **FIX-999**: Bug fixes and issue resolutions  
+- **TECH-001** to **TECH-999**: Technical improvements and infrastructure changes
+
+### Task Type Classification
+
+#### STORY- (Feature/Enhancement)
+- New user-facing features
+- UI/UX improvements
+- New functionality
+- Feature enhancements
+- User experience improvements
+
+**Examples:**
+- STORY-001: Add user profile page
+- STORY-002: Implement dark mode theme
+- STORY-003: Add celebrity search filters
+
+#### FIX- (Bug Fix/Issue Resolution)
+- Bug fixes
+- Error corrections
+- Issue resolutions
+- Security patches
+- Performance fixes
+
+**Examples:**
+- FIX-001: Fix login button not responding
+- FIX-002: Resolve database connection timeout
+- FIX-003: Fix vote counting bug
+
+#### TECH- (Technical Enhancement)
+- Code refactoring
+- Infrastructure improvements
+- Dependency updates
+- CI/CD improvements
+- Documentation updates
+- Testing improvements
+
+**Examples:**
+- TECH-001: Update GitHub Actions to v4
+- TECH-002: Add comprehensive test coverage
+- TECH-003: Refactor authentication service
+
+### Legacy Task IDs
+- **TASK-001** to **TASK-999**: Legacy format (deprecated)
+- Existing completed tasks keep their original IDs
+- New tasks use the new prefix system
 
 ### Current Task Status
-- **TASK-001** to **TASK-007**: ✅ **COMPLETED**
-- **TASK-008**: 🔄 **NEXT PRIORITY** (Voting endpoints)
-- **TASK-009**: 📋 **PENDING** (Comment endpoints)
-- **TASK-010+**: 📋 **PENDING**
+- **TASK-001** to **TASK-007**: ✅ **COMPLETED** (Legacy format)
+- **TASK-008**: ✅ **COMPLETED** (Legacy format)
+- **FIX-001**: ✅ **COMPLETED** (Register/Login button fix)
+- **TECH-001**: ✅ **COMPLETED** (GitHub Actions v4 update)
+- **TECH-002**: ✅ **COMPLETED** (CI test fixes)
 
 ## Branch Naming Convention
 
-### Branch Types
-- **Feature branches**: `feature/TASK-XXX-description`
-- **Bug fixes**: `fix/TASK-XXX-description`
-- **Hotfixes**: `hotfix/TASK-XXX-description`
-- **Documentation**: `docs/TASK-XXX-description`
+### Updated Branch Types
+- **Feature branches**: `feature/STORY-XXX-description`
+- **Bug fixes**: `fix/FIX-XXX-description`
+- **Technical improvements**: `tech/TECH-XXX-description`
+- **Hotfixes**: `hotfix/FIX-XXX-description`
+- **Documentation**: `docs/TECH-XXX-description`
 
 ### Examples
-- `feature/TASK-008-voting-endpoints`
-- `fix/TASK-012-auth-bug`
-- `docs/TASK-015-api-documentation`
-- `hotfix/TASK-020-security-patch`
+- `feature/STORY-001-user-profile-page`
+- `fix/FIX-002-database-timeout`
+- `tech/TECH-003-add-test-coverage`
+- `hotfix/FIX-004-security-patch`
+- `docs/TECH-005-api-documentation`
 
 ## How to Create a New Task Branch
 
 ### Option 1: Using the Batch Script (Windows)
 ```cmd
-create_task_branch.bat 008 feature voting-endpoints
+# For new features
+create_task_branch.bat STORY-001 feature user-profile-page
+
+# For bug fixes
+create_task_branch.bat FIX-002 fix database-timeout
+
+# For technical improvements
+create_task_branch.bat TECH-003 tech add-test-coverage
 ```
 
 ### Option 2: Using the PowerShell Script
 ```powershell
-.\create_task_branch.ps1 -TaskId "008" -Type "feature" -Description "voting-endpoints"
+# For new features
+.\create_task_branch.ps1 -TaskId "STORY-001" -Type "feature" -Description "user-profile-page"
+
+# For bug fixes
+.\create_task_branch.ps1 -TaskId "FIX-002" -Type "fix" -Description "database-timeout"
+
+# For technical improvements
+.\create_task_branch.ps1 -TaskId "TECH-003" -Type "tech" -Description "add-test-coverage"
 ```
 
 ### Option 3: Manual Git Commands
@@ -48,26 +111,38 @@ create_task_branch.bat 008 feature voting-endpoints
 git checkout main
 git pull origin main
 
-# Create and switch to new branch
-git checkout -b feature/TASK-008-voting-endpoints
+# Create and switch to new branch (example for feature)
+git checkout -b feature/STORY-001-user-profile-page
+
+# Create and switch to new branch (example for bug fix)
+git checkout -b fix/FIX-002-database-timeout
+
+# Create and switch to new branch (example for technical improvement)
+git checkout -b tech/TECH-003-add-test-coverage
 
 # Start working on your task
 # ... make your changes ...
 
 # Commit your changes
 git add .
-git commit -m "TASK-008: Implement voting endpoints"
+git commit -m "STORY-001: Add user profile page"
+git commit -m "FIX-002: Fix database timeout issue"
+git commit -m "TECH-003: Add comprehensive test coverage"
 
 # Push the branch
-git push origin feature/TASK-008-voting-endpoints
+git push origin feature/STORY-001-user-profile-page
+git push origin fix/FIX-002-database-timeout
+git push origin tech/TECH-003-add-test-coverage
 ```
 
 ## Workflow for Each Task
 
 ### 1. Start a New Task
 ```bash
-# Create new branch from main
-create_task_branch.bat [TaskId] [Type] [Description]
+# Determine task type and create appropriate branch
+# For features: create_task_branch.bat STORY-XXX feature description
+# For fixes: create_task_branch.bat FIX-XXX fix description  
+# For tech: create_task_branch.bat TECH-XXX tech description
 ```
 
 ### 2. Work on the Task
@@ -78,7 +153,9 @@ create_task_branch.bat [TaskId] [Type] [Description]
 ### 3. Commit Your Changes
 ```bash
 git add .
-git commit -m "TASK-XXX: [Description of changes]"
+git commit -m "STORY-XXX: [Description of changes]"
+git commit -m "FIX-XXX: [Description of changes]"
+git commit -m "TECH-XXX: [Description of changes]"
 ```
 
 ### 4. Push and Create Pull Request
@@ -99,21 +176,41 @@ git branch -d [branch-name]
 
 ## Commit Message Format
 
-### Standard Format
+### Updated Standard Format
 ```
-TASK-XXX: Brief description of changes
+STORY-XXX: Brief description of changes
+FIX-XXX: Brief description of changes
+TECH-XXX: Brief description of changes
 
 Optional: More detailed explanation if needed
 ```
 
 ### Examples
 ```
-TASK-008: Implement voting endpoints
+STORY-001: Add user profile page
 
-- Add POST /votes endpoint
-- Add GET /votes endpoint
-- Add vote validation logic
-- Add daily vote limits
+- Add profile page UI components
+- Implement profile data display
+- Add profile editing functionality
+- Add avatar upload feature
+```
+
+```
+FIX-002: Fix database timeout issue
+
+- Increase connection timeout settings
+- Add connection pooling
+- Implement retry logic for failed connections
+- Add better error handling
+```
+
+```
+TECH-003: Add comprehensive test coverage
+
+- Add unit tests for all services
+- Add integration tests for API endpoints
+- Add pytest configuration
+- Add coverage reporting
 ```
 
 ## Task Status Tracking
@@ -128,6 +225,7 @@ TASK-008: Implement voting endpoints
 1. Update TODO.md with current progress
 2. Use appropriate status indicators
 3. Add completion dates when tasks are finished
+4. Use correct task ID prefix (STORY-, FIX-, TECH-)
 
 ## Best Practices
 
@@ -142,13 +240,14 @@ TASK-008: Implement voting endpoints
 
 ### 3. Regular Commits
 - Commit frequently with descriptive messages
-- Use the TASK-XXX format in commit messages
+- Use the correct prefix format in commit messages (STORY-, FIX-, TECH-)
 - Include the task ID in all related commits
 
 ### 4. Update Documentation
 - Update TODO.md as you progress
 - Mark tasks as completed when done
 - Add any new tasks that are discovered
+- Use the correct task ID prefix for new tasks
 
 ### 5. Clean Up After Merge
 - Delete feature branches after successful merge
@@ -157,18 +256,20 @@ TASK-008: Implement voting endpoints
 ## Current Priority Tasks
 
 ### Immediate Next Steps
-1. **TASK-008**: Implement voting system endpoints 🔄 **NEXT PRIORITY**
-2. **TASK-009**: Create comment system endpoints 📋 **PENDING**
-3. **TASK-010**: Add search functionality 📋 **PENDING**
+1. **STORY-001**: Add user profile page 📋 **PENDING**
+2. **FIX-002**: Fix any remaining UI issues 📋 **PENDING**
+3. **TECH-003**: Improve test coverage 📋 **PENDING**
 
-### How to Start TASK-008
+### How to Start a New Task
 ```bash
-# Create branch for voting endpoints
-create_task_branch.bat 008 feature voting-endpoints
+# For a new feature
+create_task_branch.bat STORY-001 feature user-profile-page
 
-# This will create: feature/TASK-008-voting-endpoints
-# You'll be automatically switched to this branch
-# Start implementing the voting system endpoints
+# For a bug fix
+create_task_branch.bat FIX-002 fix ui-issue
+
+# For a technical improvement
+create_task_branch.bat TECH-003 tech improve-tests
 ```
 
 ## Troubleshooting
@@ -177,6 +278,7 @@ create_task_branch.bat 008 feature voting-endpoints
 1. **Branch already exists**: Delete the old branch first
 2. **Not on main branch**: Switch to main before creating new branch
 3. **Merge conflicts**: Resolve conflicts before continuing
+4. **Wrong task ID prefix**: Use STORY-, FIX-, or TECH- based on task type
 
 ### Useful Commands
 ```bash
@@ -199,22 +301,27 @@ git push origin --delete [branch-name]
 ## Integration with GitHub
 
 ### Pull Request Naming
-- Use the same format: `TASK-XXX: [Description]`
-- Example: `TASK-008: Implement voting endpoints`
+- Use the same format: `STORY-XXX: [Description]`, `FIX-XXX: [Description]`, `TECH-XXX: [Description]`
+- Example: `STORY-001: Add user profile page`
+- Example: `FIX-002: Fix database timeout issue`
+- Example: `TECH-003: Add comprehensive test coverage`
 
 ### Pull Request Description
 ```
 ## Task ID
-TASK-008
+STORY-001
+
+## Task Type
+Feature/Enhancement
 
 ## Description
-Implement voting system endpoints for the MBTI roster application.
+Add user profile page to the MBTI roster application.
 
 ## Changes Made
-- Added POST /votes endpoint
-- Added GET /votes endpoint
-- Implemented vote validation
-- Added daily vote limits
+- Added profile page UI components
+- Implemented profile data display
+- Added profile editing functionality
+- Added avatar upload feature
 
 ## Testing
 - [ ] Unit tests added
@@ -225,4 +332,4 @@ Implement voting system endpoints for the MBTI roster application.
 Closes #[issue-number]
 ```
 
-This system ensures consistent task tracking, clear branch management, and professional development workflow. 
+This updated system ensures consistent task tracking, clear branch management, and professional development workflow with proper categorization of tasks by type. 
