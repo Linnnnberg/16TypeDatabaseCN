@@ -225,13 +225,14 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
       
-    - name: Run Trivy vulnerability scanner
+    - name: Run Trivy vulnerability scanner (Table format)
       uses: aquasecurity/trivy-action@master
       with:
         scan-type: 'fs'
         scan-ref: '.'
         format: 'table'
         output: 'trivy-results.txt'
+        severity: 'CRITICAL,HIGH,MEDIUM'
         
     - name: Run Trivy vulnerability scanner (SARIF format)
       uses: aquasecurity/trivy-action@master
@@ -242,22 +243,10 @@ jobs:
         output: 'trivy-results.sarif'
         severity: 'CRITICAL,HIGH,MEDIUM'
         
-    - name: Run Trivy dependency scanner
-      uses: aquasecurity/trivy-action@master
-      with:
-        scan-type: 'pkg'
-        scan-ref: '.'
-        format: 'table'
-        output: 'trivy-deps-results.txt'
-        severity: 'CRITICAL,HIGH,MEDIUM'
-        
     - name: Display Trivy results
       run: |
-        echo "=== Trivy File System Security Scan Results ==="
-        cat trivy-results.txt || echo "No file system vulnerabilities found"
-        echo ""
-        echo "=== Trivy Dependency Security Scan Results ==="
-        cat trivy-deps-results.txt || echo "No dependency vulnerabilities found"
+        echo "=== Trivy Security Scan Results ==="
+        cat trivy-results.txt || echo "No vulnerabilities found"
         
     - name: Upload Trivy scan results to GitHub Security tab
       uses: github/codeql-action/upload-sarif@v3
@@ -276,14 +265,11 @@ jobs:
           
           try {
             const trivyResults = fs.readFileSync('trivy-results.txt', 'utf8');
-            const depsResults = fs.readFileSync('trivy-deps-results.txt', 'utf8');
             
-            comment += '### File System Vulnerabilities\n';
+            comment += '### Security Vulnerabilities\n';
             comment += '```\n' + trivyResults + '\n```\n\n';
-            comment += '### Dependency Vulnerabilities\n';
-            comment += '```\n' + depsResults + '\n```\n\n';
             
-            if (trivyResults.includes('Total: 0') && depsResults.includes('Total: 0')) {
+            if (trivyResults.includes('Total: 0')) {
               comment += '✅ **No vulnerabilities found!**\n';
             } else {
               comment += '⚠️ **Vulnerabilities detected. Please review the results above.**\n';
@@ -308,7 +294,6 @@ jobs:
         path: |
           trivy-results.sarif
           trivy-results.txt
-          trivy-deps-results.txt
 
   # Deploy to Staging (on main branch)
   deploy-staging:
