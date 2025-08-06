@@ -27,7 +27,7 @@ DAILY_REGISTRATIONS_PER_IP=3
     with open('.env', 'w', encoding='utf-8') as f:
         f.write(env_content)
     
-    print("✅ .env file created successfully with UTF-8 encoding")
+    print(".env file created successfully with UTF-8 encoding")
 
 if __name__ == "__main__":
     create_env_file() 

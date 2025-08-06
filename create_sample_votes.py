@@ -25,17 +25,17 @@ def create_sample_votes():
         # Get admin user
         admin_user = db.query(User).filter(User.email == "admin@mbti-roster.com").first()
         if not admin_user:
-            print("❌ Admin user not found. Please run create_admin.py first.")
+            print("Admin user not found. Please run create_admin.py first.")
             return
         
         # Get all celebrities
         celebrities = celebrity_service.get_all_celebrities()
         if not celebrities:
-            print("❌ No celebrities found. Please run create_sample_celebrities.py first.")
+            print("No celebrities found. Please run create_sample_celebrities.py first.")
             return
         
-        print(f"🎭 Found {len(celebrities)} celebrities to vote for")
-        print(f"👤 Using admin user: {admin_user.name} ({admin_user.email})")
+        print(f"Found {len(celebrities)} celebrities to vote for")
+        print(f"Using admin user: {admin_user.name} ({admin_user.email})")
         
         # Sample MBTI types and reasons
         mbti_types = list(MBTIType)
@@ -69,17 +69,17 @@ def create_sample_votes():
                     )
                     
                     vote = vote_service.create_vote(admin_user.id, vote_data)
-                    print(f"✅ Created vote: {celebrity.name} -> {mbti_type.value}")
+                    print(f"Created vote: {celebrity.name} -> {mbti_type.value}")
                     created_count += 1
                     
             except Exception as e:
-                print(f"❌ Error creating vote for {celebrity.name}: {e}")
+                print(f"Error creating vote for {celebrity.name}: {e}")
         
-        print(f"\n🎉 Successfully created {created_count} votes!")
-        print(f"📊 Sample votes added to database")
+        print(f"\nSuccessfully created {created_count} votes!")
+        print(f"Sample votes added to database")
         
         # Show some statistics
-        print("\n📈 Sample Statistics:")
+        print("\nSample Statistics:")
         for celebrity in celebrities[:3]:  # Show stats for first 3 celebrities
             try:
                 stats = vote_service.get_celebrity_vote_statistics(celebrity.id)
@@ -88,18 +88,18 @@ def create_sample_votes():
                 print(f"  {celebrity.name}: Error getting stats - {e}")
         
     except Exception as e:
-        print(f"❌ Error: {e}")
+        print(f"Error: {e}")
     finally:
         db.close()
 
 if __name__ == "__main__":
-    print("🗳️ Creating Sample Votes for 16型花名册")
+    print("Creating Sample Votes for 16型花名册")
     print("=" * 50)
     
     create_sample_votes()
     
     print("\n" + "=" * 50)
-    print("📝 Next steps:")
+    print("Next steps:")
     print("1. Start the server: python run_local.py")
     print("2. Go to http://localhost:8000/docs")
     print("3. Test the vote endpoints:")

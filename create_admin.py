@@ -21,12 +21,12 @@ def create_admin_user(email: str, password: str, name: str):
         from app.database.models import User
         existing_user = db.query(User).filter(User.email == email).first()
         if existing_user:
-            print(f"❌ User with email {email} already exists")
+            print(f"User with email {email} already exists")
             return
         
         # Create system user
         user = auth_service.create_system_user(email, password, name)
-        print(f"✅ Admin user created successfully!")
+        print(f"Admin user created successfully!")
         print(f"   ID: {user.id}")
         print(f"   Email: {user.email}")
         print(f"   Name: {user.name}")
@@ -34,12 +34,12 @@ def create_admin_user(email: str, password: str, name: str):
         print(f"   Created: {user.created_at}")
         
     except Exception as e:
-        print(f"❌ Error creating admin user: {e}")
+        print(f"Error creating admin user: {e}")
     finally:
         db.close()
 
 if __name__ == "__main__":
-    print("🔧 Creating Admin User for 16型花名册")
+    print("Creating Admin User for 16型花名册")
     print("=" * 50)
     
     # Default admin credentials (you can change these)
@@ -56,7 +56,7 @@ if __name__ == "__main__":
     create_admin_user(admin_email, admin_password, admin_name)
     
     print("\n" + "=" * 50)
-    print("📝 Next steps:")
+    print("Next steps:")
     print("1. Start the server: python run_local.py")
     print("2. Go to http://localhost:8000/docs")
     print("3. Test the authentication endpoints:")

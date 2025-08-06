@@ -1,4 +1,4 @@
-# 🏠 Local Development Guide
+# Local Development Guide
 
 ## Quick Start (5 minutes)
 
@@ -27,9 +27,9 @@ uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
 - **Health Check**: http://localhost:8000/health
 - **Test Endpoint**: http://localhost:8000/test
 
-## 🎯 What's Working Now
+## What's Working Now
 
-### ✅ Available Features
+### Available Features
 - Basic FastAPI application running
 - CORS middleware configured
 - Static files and templates setup
@@ -37,13 +37,13 @@ uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
 - Test endpoint with MBTI types
 - Auto-reload on code changes
 
-### 🔄 Coming Soon
+### Coming Soon
 - User authentication
 - Database models
 - API endpoints
 - Frontend interface
 
-## 🛠️ Development Workflow
+## Development Workflow
 
 ### Making Changes
 1. Edit files in the `app/` directory
@@ -61,7 +61,7 @@ uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
 - Use the `/docs` endpoint to test API endpoints
 - Check `/health` for application status
 
-## 📁 Project Structure (Local Development)
+## Project Structure (Local Development)
 
 ```
 16TypeDatabaseCN/
@@ -76,7 +76,7 @@ uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
 └── LOCAL_DEVELOPMENT.md   # This file
 ```
 
-## 🚀 Next Steps
+## Next Steps
 
 Once the basic application is running locally, you can:
 
@@ -86,7 +86,7 @@ Once the basic application is running locally, you can:
 4. **Add Frontend**: Create web interface
 5. **Add Advanced Features**: Comments, tags, etc.
 
-## 🔧 Troubleshooting
+## Troubleshooting
 
 ### Port Already in Use
 ```bash
@@ -107,7 +107,7 @@ python run_local.py
 python -m uvicorn app.main:app --reload
 ```
 
-## 📞 Support
+## Support
 
 If you encounter issues:
 1. Check the terminal output for error messages

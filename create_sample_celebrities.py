@@ -86,7 +86,7 @@ def create_sample_celebrities():
         for celeb_data in sample_celebrities:
             try:
                 celebrity = celebrity_service.create_celebrity(CelebrityCreate(**celeb_data))
-                print(f"✅ Created celebrity: {celebrity.name} ({celebrity.name_en})")
+                print(f"Created celebrity: {celebrity.name} ({celebrity.name_en})")
                 created_count += 1
                 
                 # Add some tags to celebrities
@@ -104,24 +104,24 @@ def create_sample_celebrities():
                     celebrity_service.add_tag_to_celebrity(celebrity.id, "中国")
                     
             except Exception as e:
-                print(f"❌ Error creating {celeb_data['name']}: {e}")
+                print(f"Error creating {celeb_data['name']}: {e}")
         
-        print(f"\n🎉 Successfully created {created_count} celebrities!")
-        print(f"📝 Sample celebrities added to database")
+        print(f"\nSuccessfully created {created_count} celebrities!")
+        print(f"Sample celebrities added to database")
         
     except Exception as e:
-        print(f"❌ Error: {e}")
+        print(f"Error: {e}")
     finally:
         db.close()
 
 if __name__ == "__main__":
-    print("🎭 Creating Sample Celebrities for 16型花名册")
+    print("Creating Sample Celebrities for 16型花名册")
     print("=" * 50)
     
     create_sample_celebrities()
     
     print("\n" + "=" * 50)
-    print("📝 Next steps:")
+    print("Next steps:")
     print("1. Start the server: python run_local.py")
     print("2. Go to http://localhost:8000/docs")
     print("3. Test the celebrity endpoints:")

@@ -4,7 +4,7 @@
 
 This testing framework provides comprehensive regression testing for the MBTI Roster application. It's designed to ensure that all features continue to work correctly as new features are added or existing code is modified.
 
-## 🏗️ Architecture
+## Architecture
 
 ### Directory Structure
 ```
@@ -26,7 +26,7 @@ test_reports/
 └── regression_test_report_YYYYMMDD_HHMMSS.json
 ```
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 1. Ensure the server is running: `python run_local.py`
@@ -57,7 +57,7 @@ python -m tests.test_comments
 python -m tests.test_search
 ```
 
-## 📋 Test Suites
+## Test Suites
 
 ### 1. Authentication System (`test_auth.py`)
 - **Health Check**: Basic server connectivity
@@ -110,7 +110,7 @@ python -m tests.test_search
 - **Search Pagination**: Pagination support
 - **Empty Search Query**: Error handling
 
-## 🔧 Configuration
+## Configuration
 
 ### Test Configuration (`config.py`)
 The test configuration is centralized in `tests/config.py`:
@@ -136,7 +136,7 @@ You can modify the configuration by editing `tests/config.py`:
 - Modify timeout settings
 - Add custom test data
 
-## 📊 Test Reports
+## Test Reports
 
 ### Report Structure
 Each test run generates a detailed JSON report with:
@@ -176,7 +176,7 @@ test_reports/regression_test_report_20240805_143022.json
 }
 ```
 
-## 🛠️ Adding New Tests
+## Adding New Tests
 
 ### 1. Create New Test File
 Create a new file in the `tests/` directory:
@@ -202,7 +202,7 @@ def test_new_feature():
 
 def run_new_feature_tests():
     """Run all new feature tests"""
-    print("🆕 Running New Feature Tests...")
+    print("Running New Feature Tests...")
     
     tests = [test_new_feature]
     
@@ -213,7 +213,7 @@ def run_new_feature_tests():
         if test():
             passed += 1
     
-    print(f"✅ New Feature Tests: {passed}/{total} passed")
+    print(f"New Feature Tests: {passed}/{total} passed")
     return passed == total
 
 if __name__ == "__main__":
@@ -240,7 +240,7 @@ elif test_suite == "new-feature":
     run_new_feature_tests()
 ```
 
-## 🔍 Best Practices
+## Best Practices
 
 ### 1. Test Independence
 - Each test should be independent
@@ -262,26 +262,26 @@ elif test_suite == "new-feature":
 - Avoid unnecessary API calls
 - Use appropriate timeouts
 
-## 🚨 Troubleshooting
+## Troubleshooting
 
 ### Common Issues
 
 #### 1. Server Not Running
 ```
-❌ Cannot connect to server: Connection refused
-💡 Make sure the server is running with: python run_local.py
+Cannot connect to server: Connection refused
+Make sure the server is running with: python run_local.py
 ```
 
 #### 2. Authentication Failed
 ```
-❌ Admin login failed
-💡 Check admin credentials in tests/config.py
+Admin login failed
+Check admin credentials in tests/config.py
 ```
 
 #### 3. Test Dependencies
 ```
-❌ ImportError: No module named 'tests'
-💡 Run tests from project root directory
+ImportError: No module named 'tests'
+Run tests from project root directory
 ```
 
 ### Debug Mode
@@ -299,7 +299,7 @@ def test_debug_example():
         # ... error handling
 ```
 
-## 📈 Continuous Integration
+## Continuous Integration
 
 ### GitHub Actions Example
 ```yaml
@@ -324,7 +324,7 @@ jobs:
         run: python run_tests.py
 ```
 
-## 📝 Maintenance
+## Maintenance
 
 ### Regular Tasks
 1. **Update test data** when API changes
@@ -343,4 +343,4 @@ jobs:
 
 ---
 
-**🎯 Goal**: Ensure the MBTI Roster application remains stable and functional as it evolves. 
+**Goal**: Ensure the MBTI Roster application remains stable and functional as it evolves. 
