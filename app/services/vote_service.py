@@ -1,10 +1,10 @@
 from typing import Optional, List, Dict, Any
 from sqlalchemy.orm import Session
 from sqlalchemy import func, and_, desc
-from datetime import datetime, date
+from datetime import date
 from fastapi import HTTPException, status
 from app.database.models import Vote, User, Celebrity, DailyUserStats, MBTIType
-from app.schemas.vote import VoteCreate, VoteResponse
+from app.schemas.vote import VoteCreate
 
 
 class VoteService:

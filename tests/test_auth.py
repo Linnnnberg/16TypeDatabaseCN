@@ -40,7 +40,7 @@ def test_admin_login():
             test_config.add_test_result(
                 "Admin Login",
                 False,
-                f"Status: {response.status_code}, Response: {response.text}",
+                f"Status: {response.status_code}, " f"Response: {response.text}",
             )
         return success
     except Exception as e:
@@ -56,7 +56,8 @@ def test_get_current_user():
         test_config.add_test_result(
             "Get Current User",
             success,
-            f"Status: {response.status_code}, User: {response.json().get('email', 'N/A')}",
+            f"Status: {response.status_code}, "
+            f"User: {response.json().get('email', 'N/A')}",
         )
         return success
     except Exception as e:

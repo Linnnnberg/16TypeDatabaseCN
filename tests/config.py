@@ -6,7 +6,7 @@ import os
 import sys
 import json
 import requests
-from typing import Dict, Any, Optional
+from typing import Dict, Any
 from datetime import datetime
 
 # Add the app directory to the Python path

@@ -1,0 +1,2063 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<meta name="generator" content="pdoc3 0.11.6">
+<title>app.database.models API documentation</title>
+<meta name="description" content="">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/sanitize.min.css" integrity="sha512-y1dtMcuvtTMJc1yPgEqF0ZjQbhnc/bFhyvIyVNb9Zk5mIGtqVaAB1Ttl28su8AvFMOY0EwRbAe+HCLqj6W7/KA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/typography.min.css" integrity="sha512-Y1DYSb995BAfxobCkKepB1BqJJTPrOp3zPL74AWFugHHmmdcvO+C48WLrUOlhGMc0QG7AE3f7gmvvcrmX2fDoA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:1.5em;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:2em 0 .50em 0}h3{font-size:1.4em;margin:1.6em 0 .7em 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .2s ease-in-out}a:visited{color:#503}a:hover{color:#b62}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900;font-weight:bold}pre code{font-size:.8em;line-height:1.4em;padding:1em;display:block}code{background:#f3f3f3;font-family:"DejaVu Sans Mono",monospace;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source > summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible;min-width:max-content}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em 1em;margin:1em 0}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul ul{padding-left:1em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" integrity="sha512-D9gUyxqja7hBtkWpPWGt9wfbfaMGVt9gnyCvYa+jojwwPHLCzUm5i8rpk7vD7wNee9bA35eYIjobYPaQuKS1MQ==" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => {
+hljs.configure({languages: ['bash', 'css', 'diff', 'graphql', 'ini', 'javascript', 'json', 'plaintext', 'python', 'python-repl', 'rust', 'shell', 'sql', 'typescript', 'xml', 'yaml']});
+hljs.highlightAll();
+/* Collapse source docstrings */
+setTimeout(() => {
+[...document.querySelectorAll('.hljs.language-python > .hljs-string')]
+.filter(el => el.innerHTML.length > 200 && ['"""', "'''"].includes(el.innerHTML.substring(0, 3)))
+.forEach(el => {
+let d = document.createElement('details');
+d.classList.add('hljs-string');
+d.innerHTML = '<summary>"""</summary>' + el.innerHTML.substring(3);
+el.replaceWith(d);
+});
+}, 100);
+})</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>app.database.models</code></h1>
+</header>
+<section id="section-intro">
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="app.database.models.Celebrity"><code class="flex name class">
+<span>class <span class="ident">Celebrity</span></span>
+<span>(</span><span>**kwargs)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class Celebrity(Base):
+    __tablename__ = &#34;celebrities&#34;
+
+    id = Column(String, primary_key=True, default=lambda: str(uuid.uuid4()))
+    name = Column(String, nullable=False, index=True)
+    name_en = Column(String)
+    description = Column(Text)
+    image_url = Column(String)
+    created_at = Column(DateTime(timezone=True), server_default=func.now())
+    updated_at = Column(DateTime(timezone=True), onupdate=func.now())
+
+    # 关系
+    votes = relationship(&#34;Vote&#34;, back_populates=&#34;celebrity&#34;)
+    comments = relationship(&#34;Comment&#34;, back_populates=&#34;celebrity&#34;)
+    tags = relationship(&#34;CelebrityTag&#34;, back_populates=&#34;celebrity&#34;)</code></pre>
+</details>
+<div class="desc"><p>The base class of the class hierarchy.</p>
+<p>When called, it accepts no arguments and returns a new featureless
+instance that has no instance attributes and cannot be given any.</p>
+<p>A simple constructor that allows initialization from kwargs.</p>
+<p>Sets attributes on the constructed instance using the names and
+values in <code>kwargs</code>.</p>
+<p>Only keys that are present as
+attributes of the instance's class are allowed. These could be,
+for example, any mapped columns or relationships.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>sqlalchemy.orm.decl_api.Base</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="app.database.models.Celebrity.metadata"><code class="name">var <span class="ident">metadata</span> : MetaData</code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+<dt id="app.database.models.Celebrity.registry"><code class="name">var <span class="ident">registry</span> : RegistryType</code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+</dl>
+<h3>Instance variables</h3>
+<dl>
+<dt id="app.database.models.Celebrity.comments"><code class="name">var <span class="ident">comments</span> : Union[InstrumentedAttribute[_T_co], _T_co]</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def __get__(
+    self, instance: Optional[object], owner: Any
+) -&gt; Union[InstrumentedAttribute[_T_co], _T_co]:
+    if instance is None:
+        return self
+
+    dict_ = instance_dict(instance)
+    if self.impl.supports_population and self.key in dict_:
+        return dict_[self.key]  # type: ignore[no-any-return]
+    else:
+        try:
+            state = instance_state(instance)
+        except AttributeError as err:
+            raise orm_exc.UnmappedInstanceError(instance) from err
+        return self.impl.get(state, dict_)  # type: ignore[no-any-return]</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="app.database.models.Celebrity.created_at"><code class="name">var <span class="ident">created_at</span> : Union[InstrumentedAttribute[_T_co], _T_co]</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def __get__(
+    self, instance: Optional[object], owner: Any
+) -&gt; Union[InstrumentedAttribute[_T_co], _T_co]:
+    if instance is None:
+        return self
+
+    dict_ = instance_dict(instance)
+    if self.impl.supports_population and self.key in dict_:
+        return dict_[self.key]  # type: ignore[no-any-return]
+    else:
+        try:
+            state = instance_state(instance)
+        except AttributeError as err:
+            raise orm_exc.UnmappedInstanceError(instance) from err
+        return self.impl.get(state, dict_)  # type: ignore[no-any-return]</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="app.database.models.Celebrity.description"><code class="name">var <span class="ident">description</span> : Union[InstrumentedAttribute[_T_co], _T_co]</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def __get__(
+    self, instance: Optional[object], owner: Any
+) -&gt; Union[InstrumentedAttribute[_T_co], _T_co]:
+    if instance is None:
+        return self
+
+    dict_ = instance_dict(instance)
+    if self.impl.supports_population and self.key in dict_:
+        return dict_[self.key]  # type: ignore[no-any-return]
+    else:
+        try:
+            state = instance_state(instance)
+        except AttributeError as err:
+            raise orm_exc.UnmappedInstanceError(instance) from err
+        return self.impl.get(state, dict_)  # type: ignore[no-any-return]</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="app.database.models.Celebrity.id"><code class="name">var <span class="ident">id</span> : Union[InstrumentedAttribute[_T_co], _T_co]</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def __get__(
+    self, instance: Optional[object], owner: Any
+) -&gt; Union[InstrumentedAttribute[_T_co], _T_co]:
+    if instance is None:
+        return self
+
+    dict_ = instance_dict(instance)
+    if self.impl.supports_population and self.key in dict_:
+        return dict_[self.key]  # type: ignore[no-any-return]
+    else:
+        try:
+            state = instance_state(instance)
+        except AttributeError as err:
+            raise orm_exc.UnmappedInstanceError(instance) from err
+        return self.impl.get(state, dict_)  # type: ignore[no-any-return]</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="app.database.models.Celebrity.image_url"><code class="name">var <span class="ident">image_url</span> : Union[InstrumentedAttribute[_T_co], _T_co]</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def __get__(
+    self, instance: Optional[object], owner: Any
+) -&gt; Union[InstrumentedAttribute[_T_co], _T_co]:
+    if instance is None:
+        return self
+
+    dict_ = instance_dict(instance)
+    if self.impl.supports_population and self.key in dict_:
+        return dict_[self.key]  # type: ignore[no-any-return]
+    else:
+        try:
+            state = instance_state(instance)
+        except AttributeError as err:
+            raise orm_exc.UnmappedInstanceError(instance) from err
+        return self.impl.get(state, dict_)  # type: ignore[no-any-return]</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="app.database.models.Celebrity.name"><code class="name">var <span class="ident">name</span> : Union[InstrumentedAttribute[_T_co], _T_co]</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def __get__(
+    self, instance: Optional[object], owner: Any
+) -&gt; Union[InstrumentedAttribute[_T_co], _T_co]:
+    if instance is None:
+        return self
+
+    dict_ = instance_dict(instance)
+    if self.impl.supports_population and self.key in dict_:
+        return dict_[self.key]  # type: ignore[no-any-return]
+    else:
+        try:
+            state = instance_state(instance)
+        except AttributeError as err:
+            raise orm_exc.UnmappedInstanceError(instance) from err
+        return self.impl.get(state, dict_)  # type: ignore[no-any-return]</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="app.database.models.Celebrity.name_en"><code class="name">var <span class="ident">name_en</span> : Union[InstrumentedAttribute[_T_co], _T_co]</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def __get__(
+    self, instance: Optional[object], owner: Any
+) -&gt; Union[InstrumentedAttribute[_T_co], _T_co]:
+    if instance is None:
+        return self
+
+    dict_ = instance_dict(instance)
+    if self.impl.supports_population and self.key in dict_:
+        return dict_[self.key]  # type: ignore[no-any-return]
+    else:
+        try:
+            state = instance_state(instance)
+        except AttributeError as err:
+            raise orm_exc.UnmappedInstanceError(instance) from err
+        return self.impl.get(state, dict_)  # type: ignore[no-any-return]</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="app.database.models.Celebrity.tags"><code class="name">var <span class="ident">tags</span> : Union[InstrumentedAttribute[_T_co], _T_co]</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def __get__(
+    self, instance: Optional[object], owner: Any
+) -&gt; Union[InstrumentedAttribute[_T_co], _T_co]:
+    if instance is None:
+        return self
+
+    dict_ = instance_dict(instance)
+    if self.impl.supports_population and self.key in dict_:
+        return dict_[self.key]  # type: ignore[no-any-return]
+    else:
+        try:
+            state = instance_state(instance)
+        except AttributeError as err:
+            raise orm_exc.UnmappedInstanceError(instance) from err
+        return self.impl.get(state, dict_)  # type: ignore[no-any-return]</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="app.database.models.Celebrity.updated_at"><code class="name">var <span class="ident">updated_at</span> : Union[InstrumentedAttribute[_T_co], _T_co]</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def __get__(
+    self, instance: Optional[object], owner: Any
+) -&gt; Union[InstrumentedAttribute[_T_co], _T_co]:
+    if instance is None:
+        return self
+
+    dict_ = instance_dict(instance)
+    if self.impl.supports_population and self.key in dict_:
+        return dict_[self.key]  # type: ignore[no-any-return]
+    else:
+        try:
+            state = instance_state(instance)
+        except AttributeError as err:
+            raise orm_exc.UnmappedInstanceError(instance) from err
+        return self.impl.get(state, dict_)  # type: ignore[no-any-return]</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="app.database.models.Celebrity.votes"><code class="name">var <span class="ident">votes</span> : Union[InstrumentedAttribute[_T_co], _T_co]</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def __get__(
+    self, instance: Optional[object], owner: Any
+) -&gt; Union[InstrumentedAttribute[_T_co], _T_co]:
+    if instance is None:
+        return self
+
+    dict_ = instance_dict(instance)
+    if self.impl.supports_population and self.key in dict_:
+        return dict_[self.key]  # type: ignore[no-any-return]
+    else:
+        try:
+            state = instance_state(instance)
+        except AttributeError as err:
+            raise orm_exc.UnmappedInstanceError(instance) from err
+        return self.impl.get(state, dict_)  # type: ignore[no-any-return]</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="app.database.models.CelebrityTag"><code class="flex name class">
+<span>class <span class="ident">CelebrityTag</span></span>
+<span>(</span><span>**kwargs)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class CelebrityTag(Base):
+    __tablename__ = &#34;celebrity_tags&#34;
+
+    celebrity_id = Column(String, ForeignKey(&#34;celebrities.id&#34;), primary_key=True)
+    tag_id = Column(String, ForeignKey(&#34;tags.id&#34;), primary_key=True)
+
+    # 关系
+    celebrity = relationship(&#34;Celebrity&#34;, back_populates=&#34;tags&#34;)
+    tag = relationship(&#34;Tag&#34;, back_populates=&#34;celebrities&#34;)</code></pre>
+</details>
+<div class="desc"><p>The base class of the class hierarchy.</p>
+<p>When called, it accepts no arguments and returns a new featureless
+instance that has no instance attributes and cannot be given any.</p>
+<p>A simple constructor that allows initialization from kwargs.</p>
+<p>Sets attributes on the constructed instance using the names and
+values in <code>kwargs</code>.</p>
+<p>Only keys that are present as
+attributes of the instance's class are allowed. These could be,
+for example, any mapped columns or relationships.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>sqlalchemy.orm.decl_api.Base</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="app.database.models.CelebrityTag.metadata"><code class="name">var <span class="ident">metadata</span> : MetaData</code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+<dt id="app.database.models.CelebrityTag.registry"><code class="name">var <span class="ident">registry</span> : RegistryType</code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+</dl>
+<h3>Instance variables</h3>
+<dl>
+<dt id="app.database.models.CelebrityTag.celebrity"><code class="name">var <span class="ident">celebrity</span> : Union[InstrumentedAttribute[_T_co], _T_co]</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def __get__(
+    self, instance: Optional[object], owner: Any
+) -&gt; Union[InstrumentedAttribute[_T_co], _T_co]:
+    if instance is None:
+        return self
+
+    dict_ = instance_dict(instance)
+    if self.impl.supports_population and self.key in dict_:
+        return dict_[self.key]  # type: ignore[no-any-return]
+    else:
+        try:
+            state = instance_state(instance)
+        except AttributeError as err:
+            raise orm_exc.UnmappedInstanceError(instance) from err
+        return self.impl.get(state, dict_)  # type: ignore[no-any-return]</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="app.database.models.CelebrityTag.celebrity_id"><code class="name">var <span class="ident">celebrity_id</span> : Union[InstrumentedAttribute[_T_co], _T_co]</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def __get__(
+    self, instance: Optional[object], owner: Any
+) -&gt; Union[InstrumentedAttribute[_T_co], _T_co]:
+    if instance is None:
+        return self
+
+    dict_ = instance_dict(instance)
+    if self.impl.supports_population and self.key in dict_:
+        return dict_[self.key]  # type: ignore[no-any-return]
+    else:
+        try:
+            state = instance_state(instance)
+        except AttributeError as err:
+            raise orm_exc.UnmappedInstanceError(instance) from err
+        return self.impl.get(state, dict_)  # type: ignore[no-any-return]</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="app.database.models.CelebrityTag.tag"><code class="name">var <span class="ident">tag</span> : Union[InstrumentedAttribute[_T_co], _T_co]</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def __get__(
+    self, instance: Optional[object], owner: Any
+) -&gt; Union[InstrumentedAttribute[_T_co], _T_co]:
+    if instance is None:
+        return self
+
+    dict_ = instance_dict(instance)
+    if self.impl.supports_population and self.key in dict_:
+        return dict_[self.key]  # type: ignore[no-any-return]
+    else:
+        try:
+            state = instance_state(instance)
+        except AttributeError as err:
+            raise orm_exc.UnmappedInstanceError(instance) from err
+        return self.impl.get(state, dict_)  # type: ignore[no-any-return]</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="app.database.models.CelebrityTag.tag_id"><code class="name">var <span class="ident">tag_id</span> : Union[InstrumentedAttribute[_T_co], _T_co]</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def __get__(
+    self, instance: Optional[object], owner: Any
+) -&gt; Union[InstrumentedAttribute[_T_co], _T_co]:
+    if instance is None:
+        return self
+
+    dict_ = instance_dict(instance)
+    if self.impl.supports_population and self.key in dict_:
+        return dict_[self.key]  # type: ignore[no-any-return]
+    else:
+        try:
+            state = instance_state(instance)
+        except AttributeError as err:
+            raise orm_exc.UnmappedInstanceError(instance) from err
+        return self.impl.get(state, dict_)  # type: ignore[no-any-return]</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="app.database.models.Comment"><code class="flex name class">
+<span>class <span class="ident">Comment</span></span>
+<span>(</span><span>**kwargs)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class Comment(Base):
+    __tablename__ = &#34;comments&#34;
+
+    id = Column(String, primary_key=True, default=lambda: str(uuid.uuid4()))
+    user_id = Column(String, ForeignKey(&#34;users.id&#34;), nullable=False)
+    celebrity_id = Column(String, ForeignKey(&#34;celebrities.id&#34;), nullable=False)
+    content = Column(Text, nullable=False)
+    parent_id = Column(String, ForeignKey(&#34;comments.id&#34;))
+    level = Column(Integer, default=1)
+    created_at = Column(DateTime(timezone=True), server_default=func.now())
+    updated_at = Column(DateTime(timezone=True), onupdate=func.now())
+
+    # 关系
+    user = relationship(&#34;User&#34;, back_populates=&#34;comments&#34;)
+    celebrity = relationship(&#34;Celebrity&#34;, back_populates=&#34;comments&#34;)
+    parent = relationship(&#34;Comment&#34;, remote_side=[id])
+    replies = relationship(&#34;Comment&#34;, back_populates=&#34;parent&#34;)</code></pre>
+</details>
+<div class="desc"><p>The base class of the class hierarchy.</p>
+<p>When called, it accepts no arguments and returns a new featureless
+instance that has no instance attributes and cannot be given any.</p>
+<p>A simple constructor that allows initialization from kwargs.</p>
+<p>Sets attributes on the constructed instance using the names and
+values in <code>kwargs</code>.</p>
+<p>Only keys that are present as
+attributes of the instance's class are allowed. These could be,
+for example, any mapped columns or relationships.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>sqlalchemy.orm.decl_api.Base</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="app.database.models.Comment.metadata"><code class="name">var <span class="ident">metadata</span> : MetaData</code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+<dt id="app.database.models.Comment.registry"><code class="name">var <span class="ident">registry</span> : RegistryType</code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+</dl>
+<h3>Instance variables</h3>
+<dl>
+<dt id="app.database.models.Comment.celebrity"><code class="name">var <span class="ident">celebrity</span> : Union[InstrumentedAttribute[_T_co], _T_co]</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def __get__(
+    self, instance: Optional[object], owner: Any
+) -&gt; Union[InstrumentedAttribute[_T_co], _T_co]:
+    if instance is None:
+        return self
+
+    dict_ = instance_dict(instance)
+    if self.impl.supports_population and self.key in dict_:
+        return dict_[self.key]  # type: ignore[no-any-return]
+    else:
+        try:
+            state = instance_state(instance)
+        except AttributeError as err:
+            raise orm_exc.UnmappedInstanceError(instance) from err
+        return self.impl.get(state, dict_)  # type: ignore[no-any-return]</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="app.database.models.Comment.celebrity_id"><code class="name">var <span class="ident">celebrity_id</span> : Union[InstrumentedAttribute[_T_co], _T_co]</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def __get__(
+    self, instance: Optional[object], owner: Any
+) -&gt; Union[InstrumentedAttribute[_T_co], _T_co]:
+    if instance is None:
+        return self
+
+    dict_ = instance_dict(instance)
+    if self.impl.supports_population and self.key in dict_:
+        return dict_[self.key]  # type: ignore[no-any-return]
+    else:
+        try:
+            state = instance_state(instance)
+        except AttributeError as err:
+            raise orm_exc.UnmappedInstanceError(instance) from err
+        return self.impl.get(state, dict_)  # type: ignore[no-any-return]</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="app.database.models.Comment.content"><code class="name">var <span class="ident">content</span> : Union[InstrumentedAttribute[_T_co], _T_co]</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def __get__(
+    self, instance: Optional[object], owner: Any
+) -&gt; Union[InstrumentedAttribute[_T_co], _T_co]:
+    if instance is None:
+        return self
+
+    dict_ = instance_dict(instance)
+    if self.impl.supports_population and self.key in dict_:
+        return dict_[self.key]  # type: ignore[no-any-return]
+    else:
+        try:
+            state = instance_state(instance)
+        except AttributeError as err:
+            raise orm_exc.UnmappedInstanceError(instance) from err
+        return self.impl.get(state, dict_)  # type: ignore[no-any-return]</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="app.database.models.Comment.created_at"><code class="name">var <span class="ident">created_at</span> : Union[InstrumentedAttribute[_T_co], _T_co]</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def __get__(
+    self, instance: Optional[object], owner: Any
+) -&gt; Union[InstrumentedAttribute[_T_co], _T_co]:
+    if instance is None:
+        return self
+
+    dict_ = instance_dict(instance)
+    if self.impl.supports_population and self.key in dict_:
+        return dict_[self.key]  # type: ignore[no-any-return]
+    else:
+        try:
+            state = instance_state(instance)
+        except AttributeError as err:
+            raise orm_exc.UnmappedInstanceError(instance) from err
+        return self.impl.get(state, dict_)  # type: ignore[no-any-return]</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="app.database.models.Comment.id"><code class="name">var <span class="ident">id</span> : Union[InstrumentedAttribute[_T_co], _T_co]</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def __get__(
+    self, instance: Optional[object], owner: Any
+) -&gt; Union[InstrumentedAttribute[_T_co], _T_co]:
+    if instance is None:
+        return self
+
+    dict_ = instance_dict(instance)
+    if self.impl.supports_population and self.key in dict_:
+        return dict_[self.key]  # type: ignore[no-any-return]
+    else:
+        try:
+            state = instance_state(instance)
+        except AttributeError as err:
+            raise orm_exc.UnmappedInstanceError(instance) from err
+        return self.impl.get(state, dict_)  # type: ignore[no-any-return]</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="app.database.models.Comment.level"><code class="name">var <span class="ident">level</span> : Union[InstrumentedAttribute[_T_co], _T_co]</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def __get__(
+    self, instance: Optional[object], owner: Any
+) -&gt; Union[InstrumentedAttribute[_T_co], _T_co]:
+    if instance is None:
+        return self
+
+    dict_ = instance_dict(instance)
+    if self.impl.supports_population and self.key in dict_:
+        return dict_[self.key]  # type: ignore[no-any-return]
+    else:
+        try:
+            state = instance_state(instance)
+        except AttributeError as err:
+            raise orm_exc.UnmappedInstanceError(instance) from err
+        return self.impl.get(state, dict_)  # type: ignore[no-any-return]</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="app.database.models.Comment.parent"><code class="name">var <span class="ident">parent</span> : Union[InstrumentedAttribute[_T_co], _T_co]</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def __get__(
+    self, instance: Optional[object], owner: Any
+) -&gt; Union[InstrumentedAttribute[_T_co], _T_co]:
+    if instance is None:
+        return self
+
+    dict_ = instance_dict(instance)
+    if self.impl.supports_population and self.key in dict_:
+        return dict_[self.key]  # type: ignore[no-any-return]
+    else:
+        try:
+            state = instance_state(instance)
+        except AttributeError as err:
+            raise orm_exc.UnmappedInstanceError(instance) from err
+        return self.impl.get(state, dict_)  # type: ignore[no-any-return]</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="app.database.models.Comment.parent_id"><code class="name">var <span class="ident">parent_id</span> : Union[InstrumentedAttribute[_T_co], _T_co]</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def __get__(
+    self, instance: Optional[object], owner: Any
+) -&gt; Union[InstrumentedAttribute[_T_co], _T_co]:
+    if instance is None:
+        return self
+
+    dict_ = instance_dict(instance)
+    if self.impl.supports_population and self.key in dict_:
+        return dict_[self.key]  # type: ignore[no-any-return]
+    else:
+        try:
+            state = instance_state(instance)
+        except AttributeError as err:
+            raise orm_exc.UnmappedInstanceError(instance) from err
+        return self.impl.get(state, dict_)  # type: ignore[no-any-return]</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="app.database.models.Comment.replies"><code class="name">var <span class="ident">replies</span> : Union[InstrumentedAttribute[_T_co], _T_co]</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def __get__(
+    self, instance: Optional[object], owner: Any
+) -&gt; Union[InstrumentedAttribute[_T_co], _T_co]:
+    if instance is None:
+        return self
+
+    dict_ = instance_dict(instance)
+    if self.impl.supports_population and self.key in dict_:
+        return dict_[self.key]  # type: ignore[no-any-return]
+    else:
+        try:
+            state = instance_state(instance)
+        except AttributeError as err:
+            raise orm_exc.UnmappedInstanceError(instance) from err
+        return self.impl.get(state, dict_)  # type: ignore[no-any-return]</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="app.database.models.Comment.updated_at"><code class="name">var <span class="ident">updated_at</span> : Union[InstrumentedAttribute[_T_co], _T_co]</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def __get__(
+    self, instance: Optional[object], owner: Any
+) -&gt; Union[InstrumentedAttribute[_T_co], _T_co]:
+    if instance is None:
+        return self
+
+    dict_ = instance_dict(instance)
+    if self.impl.supports_population and self.key in dict_:
+        return dict_[self.key]  # type: ignore[no-any-return]
+    else:
+        try:
+            state = instance_state(instance)
+        except AttributeError as err:
+            raise orm_exc.UnmappedInstanceError(instance) from err
+        return self.impl.get(state, dict_)  # type: ignore[no-any-return]</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="app.database.models.Comment.user"><code class="name">var <span class="ident">user</span> : Union[InstrumentedAttribute[_T_co], _T_co]</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def __get__(
+    self, instance: Optional[object], owner: Any
+) -&gt; Union[InstrumentedAttribute[_T_co], _T_co]:
+    if instance is None:
+        return self
+
+    dict_ = instance_dict(instance)
+    if self.impl.supports_population and self.key in dict_:
+        return dict_[self.key]  # type: ignore[no-any-return]
+    else:
+        try:
+            state = instance_state(instance)
+        except AttributeError as err:
+            raise orm_exc.UnmappedInstanceError(instance) from err
+        return self.impl.get(state, dict_)  # type: ignore[no-any-return]</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="app.database.models.Comment.user_id"><code class="name">var <span class="ident">user_id</span> : Union[InstrumentedAttribute[_T_co], _T_co]</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def __get__(
+    self, instance: Optional[object], owner: Any
+) -&gt; Union[InstrumentedAttribute[_T_co], _T_co]:
+    if instance is None:
+        return self
+
+    dict_ = instance_dict(instance)
+    if self.impl.supports_population and self.key in dict_:
+        return dict_[self.key]  # type: ignore[no-any-return]
+    else:
+        try:
+            state = instance_state(instance)
+        except AttributeError as err:
+            raise orm_exc.UnmappedInstanceError(instance) from err
+        return self.impl.get(state, dict_)  # type: ignore[no-any-return]</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="app.database.models.DailyUserStats"><code class="flex name class">
+<span>class <span class="ident">DailyUserStats</span></span>
+<span>(</span><span>**kwargs)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class DailyUserStats(Base):
+    __tablename__ = &#34;daily_user_stats&#34;
+
+    id = Column(String, primary_key=True, default=lambda: str(uuid.uuid4()))
+    user_id = Column(String, ForeignKey(&#34;users.id&#34;), nullable=False)
+    date = Column(Date, nullable=False)
+    votes_count = Column(Integer, default=0)
+    votes_no_reason = Column(Integer, default=0)
+
+    # 关系
+    user = relationship(&#34;User&#34;, back_populates=&#34;daily_stats&#34;)
+
+    # 唯一约束
+    __table_args__ = (Index(&#34;ix_user_date_stats&#34;, &#34;user_id&#34;, &#34;date&#34;, unique=True),)</code></pre>
+</details>
+<div class="desc"><p>The base class of the class hierarchy.</p>
+<p>When called, it accepts no arguments and returns a new featureless
+instance that has no instance attributes and cannot be given any.</p>
+<p>A simple constructor that allows initialization from kwargs.</p>
+<p>Sets attributes on the constructed instance using the names and
+values in <code>kwargs</code>.</p>
+<p>Only keys that are present as
+attributes of the instance's class are allowed. These could be,
+for example, any mapped columns or relationships.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>sqlalchemy.orm.decl_api.Base</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="app.database.models.DailyUserStats.metadata"><code class="name">var <span class="ident">metadata</span> : MetaData</code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+<dt id="app.database.models.DailyUserStats.registry"><code class="name">var <span class="ident">registry</span> : RegistryType</code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+</dl>
+<h3>Instance variables</h3>
+<dl>
+<dt id="app.database.models.DailyUserStats.date"><code class="name">var <span class="ident">date</span> : Union[InstrumentedAttribute[_T_co], _T_co]</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def __get__(
+    self, instance: Optional[object], owner: Any
+) -&gt; Union[InstrumentedAttribute[_T_co], _T_co]:
+    if instance is None:
+        return self
+
+    dict_ = instance_dict(instance)
+    if self.impl.supports_population and self.key in dict_:
+        return dict_[self.key]  # type: ignore[no-any-return]
+    else:
+        try:
+            state = instance_state(instance)
+        except AttributeError as err:
+            raise orm_exc.UnmappedInstanceError(instance) from err
+        return self.impl.get(state, dict_)  # type: ignore[no-any-return]</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="app.database.models.DailyUserStats.id"><code class="name">var <span class="ident">id</span> : Union[InstrumentedAttribute[_T_co], _T_co]</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def __get__(
+    self, instance: Optional[object], owner: Any
+) -&gt; Union[InstrumentedAttribute[_T_co], _T_co]:
+    if instance is None:
+        return self
+
+    dict_ = instance_dict(instance)
+    if self.impl.supports_population and self.key in dict_:
+        return dict_[self.key]  # type: ignore[no-any-return]
+    else:
+        try:
+            state = instance_state(instance)
+        except AttributeError as err:
+            raise orm_exc.UnmappedInstanceError(instance) from err
+        return self.impl.get(state, dict_)  # type: ignore[no-any-return]</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="app.database.models.DailyUserStats.user"><code class="name">var <span class="ident">user</span> : Union[InstrumentedAttribute[_T_co], _T_co]</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def __get__(
+    self, instance: Optional[object], owner: Any
+) -&gt; Union[InstrumentedAttribute[_T_co], _T_co]:
+    if instance is None:
+        return self
+
+    dict_ = instance_dict(instance)
+    if self.impl.supports_population and self.key in dict_:
+        return dict_[self.key]  # type: ignore[no-any-return]
+    else:
+        try:
+            state = instance_state(instance)
+        except AttributeError as err:
+            raise orm_exc.UnmappedInstanceError(instance) from err
+        return self.impl.get(state, dict_)  # type: ignore[no-any-return]</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="app.database.models.DailyUserStats.user_id"><code class="name">var <span class="ident">user_id</span> : Union[InstrumentedAttribute[_T_co], _T_co]</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def __get__(
+    self, instance: Optional[object], owner: Any
+) -&gt; Union[InstrumentedAttribute[_T_co], _T_co]:
+    if instance is None:
+        return self
+
+    dict_ = instance_dict(instance)
+    if self.impl.supports_population and self.key in dict_:
+        return dict_[self.key]  # type: ignore[no-any-return]
+    else:
+        try:
+            state = instance_state(instance)
+        except AttributeError as err:
+            raise orm_exc.UnmappedInstanceError(instance) from err
+        return self.impl.get(state, dict_)  # type: ignore[no-any-return]</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="app.database.models.DailyUserStats.votes_count"><code class="name">var <span class="ident">votes_count</span> : Union[InstrumentedAttribute[_T_co], _T_co]</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def __get__(
+    self, instance: Optional[object], owner: Any
+) -&gt; Union[InstrumentedAttribute[_T_co], _T_co]:
+    if instance is None:
+        return self
+
+    dict_ = instance_dict(instance)
+    if self.impl.supports_population and self.key in dict_:
+        return dict_[self.key]  # type: ignore[no-any-return]
+    else:
+        try:
+            state = instance_state(instance)
+        except AttributeError as err:
+            raise orm_exc.UnmappedInstanceError(instance) from err
+        return self.impl.get(state, dict_)  # type: ignore[no-any-return]</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="app.database.models.DailyUserStats.votes_no_reason"><code class="name">var <span class="ident">votes_no_reason</span> : Union[InstrumentedAttribute[_T_co], _T_co]</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def __get__(
+    self, instance: Optional[object], owner: Any
+) -&gt; Union[InstrumentedAttribute[_T_co], _T_co]:
+    if instance is None:
+        return self
+
+    dict_ = instance_dict(instance)
+    if self.impl.supports_population and self.key in dict_:
+        return dict_[self.key]  # type: ignore[no-any-return]
+    else:
+        try:
+            state = instance_state(instance)
+        except AttributeError as err:
+            raise orm_exc.UnmappedInstanceError(instance) from err
+        return self.impl.get(state, dict_)  # type: ignore[no-any-return]</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="app.database.models.MBTIType"><code class="flex name class">
+<span>class <span class="ident">MBTIType</span></span>
+<span>(</span><span>*args, **kwds)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class MBTIType(str, Enum):
+    INTJ = &#34;INTJ&#34;
+    INTP = &#34;INTP&#34;
+    ENTJ = &#34;ENTJ&#34;
+    ENTP = &#34;ENTP&#34;
+    INFJ = &#34;INFJ&#34;
+    INFP = &#34;INFP&#34;
+    ENFJ = &#34;ENFJ&#34;
+    ENFP = &#34;ENFP&#34;
+    ISTJ = &#34;ISTJ&#34;
+    ISFJ = &#34;ISFJ&#34;
+    ESTJ = &#34;ESTJ&#34;
+    ESFJ = &#34;ESFJ&#34;
+    ISTP = &#34;ISTP&#34;
+    ISFP = &#34;ISFP&#34;
+    ESTP = &#34;ESTP&#34;
+    ESFP = &#34;ESFP&#34;</code></pre>
+</details>
+<div class="desc"><p>str(object='') -&gt; str
+str(bytes_or_buffer[, encoding[, errors]]) -&gt; str</p>
+<p>Create a new string object from the given object. If encoding or
+errors is specified, then the object must expose a data buffer
+that will be decoded using the given encoding and error handler.
+Otherwise, returns the result of object.<strong>str</strong>() (if defined)
+or repr(object).
+encoding defaults to 'utf-8'.
+errors defaults to 'strict'.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.str</li>
+<li>enum.Enum</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="app.database.models.MBTIType.ENFJ"><code class="name">var <span class="ident">ENFJ</span></code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+<dt id="app.database.models.MBTIType.ENFP"><code class="name">var <span class="ident">ENFP</span></code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+<dt id="app.database.models.MBTIType.ENTJ"><code class="name">var <span class="ident">ENTJ</span></code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+<dt id="app.database.models.MBTIType.ENTP"><code class="name">var <span class="ident">ENTP</span></code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+<dt id="app.database.models.MBTIType.ESFJ"><code class="name">var <span class="ident">ESFJ</span></code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+<dt id="app.database.models.MBTIType.ESFP"><code class="name">var <span class="ident">ESFP</span></code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+<dt id="app.database.models.MBTIType.ESTJ"><code class="name">var <span class="ident">ESTJ</span></code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+<dt id="app.database.models.MBTIType.ESTP"><code class="name">var <span class="ident">ESTP</span></code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+<dt id="app.database.models.MBTIType.INFJ"><code class="name">var <span class="ident">INFJ</span></code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+<dt id="app.database.models.MBTIType.INFP"><code class="name">var <span class="ident">INFP</span></code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+<dt id="app.database.models.MBTIType.INTJ"><code class="name">var <span class="ident">INTJ</span></code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+<dt id="app.database.models.MBTIType.INTP"><code class="name">var <span class="ident">INTP</span></code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+<dt id="app.database.models.MBTIType.ISFJ"><code class="name">var <span class="ident">ISFJ</span></code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+<dt id="app.database.models.MBTIType.ISFP"><code class="name">var <span class="ident">ISFP</span></code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+<dt id="app.database.models.MBTIType.ISTJ"><code class="name">var <span class="ident">ISTJ</span></code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+<dt id="app.database.models.MBTIType.ISTP"><code class="name">var <span class="ident">ISTP</span></code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+</dl>
+</dd>
+<dt id="app.database.models.Tag"><code class="flex name class">
+<span>class <span class="ident">Tag</span></span>
+<span>(</span><span>**kwargs)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class Tag(Base):
+    __tablename__ = &#34;tags&#34;
+
+    id = Column(String, primary_key=True, default=lambda: str(uuid.uuid4()))
+    name = Column(String, unique=True, nullable=False)
+    description = Column(Text)
+    created_at = Column(DateTime(timezone=True), server_default=func.now())
+
+    # 关系
+    celebrities = relationship(&#34;CelebrityTag&#34;, back_populates=&#34;tag&#34;)</code></pre>
+</details>
+<div class="desc"><p>The base class of the class hierarchy.</p>
+<p>When called, it accepts no arguments and returns a new featureless
+instance that has no instance attributes and cannot be given any.</p>
+<p>A simple constructor that allows initialization from kwargs.</p>
+<p>Sets attributes on the constructed instance using the names and
+values in <code>kwargs</code>.</p>
+<p>Only keys that are present as
+attributes of the instance's class are allowed. These could be,
+for example, any mapped columns or relationships.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>sqlalchemy.orm.decl_api.Base</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="app.database.models.Tag.metadata"><code class="name">var <span class="ident">metadata</span> : MetaData</code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+<dt id="app.database.models.Tag.registry"><code class="name">var <span class="ident">registry</span> : RegistryType</code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+</dl>
+<h3>Instance variables</h3>
+<dl>
+<dt id="app.database.models.Tag.celebrities"><code class="name">var <span class="ident">celebrities</span> : Union[InstrumentedAttribute[_T_co], _T_co]</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def __get__(
+    self, instance: Optional[object], owner: Any
+) -&gt; Union[InstrumentedAttribute[_T_co], _T_co]:
+    if instance is None:
+        return self
+
+    dict_ = instance_dict(instance)
+    if self.impl.supports_population and self.key in dict_:
+        return dict_[self.key]  # type: ignore[no-any-return]
+    else:
+        try:
+            state = instance_state(instance)
+        except AttributeError as err:
+            raise orm_exc.UnmappedInstanceError(instance) from err
+        return self.impl.get(state, dict_)  # type: ignore[no-any-return]</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="app.database.models.Tag.created_at"><code class="name">var <span class="ident">created_at</span> : Union[InstrumentedAttribute[_T_co], _T_co]</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def __get__(
+    self, instance: Optional[object], owner: Any
+) -&gt; Union[InstrumentedAttribute[_T_co], _T_co]:
+    if instance is None:
+        return self
+
+    dict_ = instance_dict(instance)
+    if self.impl.supports_population and self.key in dict_:
+        return dict_[self.key]  # type: ignore[no-any-return]
+    else:
+        try:
+            state = instance_state(instance)
+        except AttributeError as err:
+            raise orm_exc.UnmappedInstanceError(instance) from err
+        return self.impl.get(state, dict_)  # type: ignore[no-any-return]</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="app.database.models.Tag.description"><code class="name">var <span class="ident">description</span> : Union[InstrumentedAttribute[_T_co], _T_co]</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def __get__(
+    self, instance: Optional[object], owner: Any
+) -&gt; Union[InstrumentedAttribute[_T_co], _T_co]:
+    if instance is None:
+        return self
+
+    dict_ = instance_dict(instance)
+    if self.impl.supports_population and self.key in dict_:
+        return dict_[self.key]  # type: ignore[no-any-return]
+    else:
+        try:
+            state = instance_state(instance)
+        except AttributeError as err:
+            raise orm_exc.UnmappedInstanceError(instance) from err
+        return self.impl.get(state, dict_)  # type: ignore[no-any-return]</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="app.database.models.Tag.id"><code class="name">var <span class="ident">id</span> : Union[InstrumentedAttribute[_T_co], _T_co]</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def __get__(
+    self, instance: Optional[object], owner: Any
+) -&gt; Union[InstrumentedAttribute[_T_co], _T_co]:
+    if instance is None:
+        return self
+
+    dict_ = instance_dict(instance)
+    if self.impl.supports_population and self.key in dict_:
+        return dict_[self.key]  # type: ignore[no-any-return]
+    else:
+        try:
+            state = instance_state(instance)
+        except AttributeError as err:
+            raise orm_exc.UnmappedInstanceError(instance) from err
+        return self.impl.get(state, dict_)  # type: ignore[no-any-return]</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="app.database.models.Tag.name"><code class="name">var <span class="ident">name</span> : Union[InstrumentedAttribute[_T_co], _T_co]</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def __get__(
+    self, instance: Optional[object], owner: Any
+) -&gt; Union[InstrumentedAttribute[_T_co], _T_co]:
+    if instance is None:
+        return self
+
+    dict_ = instance_dict(instance)
+    if self.impl.supports_population and self.key in dict_:
+        return dict_[self.key]  # type: ignore[no-any-return]
+    else:
+        try:
+            state = instance_state(instance)
+        except AttributeError as err:
+            raise orm_exc.UnmappedInstanceError(instance) from err
+        return self.impl.get(state, dict_)  # type: ignore[no-any-return]</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="app.database.models.User"><code class="flex name class">
+<span>class <span class="ident">User</span></span>
+<span>(</span><span>**kwargs)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class User(Base):
+    __tablename__ = &#34;users&#34;
+
+    id = Column(String, primary_key=True, default=lambda: str(uuid.uuid4()))
+    email = Column(String, unique=True, index=True, nullable=False)
+    hashed_password = Column(String, nullable=False)
+    name = Column(String, nullable=False)
+    role = Column(SQLEnum(UserRole), default=UserRole.CLIENT)
+    is_active = Column(Boolean, default=True)
+    created_at = Column(DateTime(timezone=True), server_default=func.now())
+    updated_at = Column(DateTime(timezone=True), onupdate=func.now())
+
+    # 关系
+    votes = relationship(&#34;Vote&#34;, back_populates=&#34;user&#34;)
+    comments = relationship(&#34;Comment&#34;, back_populates=&#34;user&#34;)
+    daily_stats = relationship(&#34;DailyUserStats&#34;, back_populates=&#34;user&#34;)</code></pre>
+</details>
+<div class="desc"><p>The base class of the class hierarchy.</p>
+<p>When called, it accepts no arguments and returns a new featureless
+instance that has no instance attributes and cannot be given any.</p>
+<p>A simple constructor that allows initialization from kwargs.</p>
+<p>Sets attributes on the constructed instance using the names and
+values in <code>kwargs</code>.</p>
+<p>Only keys that are present as
+attributes of the instance's class are allowed. These could be,
+for example, any mapped columns or relationships.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>sqlalchemy.orm.decl_api.Base</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="app.database.models.User.metadata"><code class="name">var <span class="ident">metadata</span> : MetaData</code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+<dt id="app.database.models.User.registry"><code class="name">var <span class="ident">registry</span> : RegistryType</code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+</dl>
+<h3>Instance variables</h3>
+<dl>
+<dt id="app.database.models.User.comments"><code class="name">var <span class="ident">comments</span> : Union[InstrumentedAttribute[_T_co], _T_co]</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def __get__(
+    self, instance: Optional[object], owner: Any
+) -&gt; Union[InstrumentedAttribute[_T_co], _T_co]:
+    if instance is None:
+        return self
+
+    dict_ = instance_dict(instance)
+    if self.impl.supports_population and self.key in dict_:
+        return dict_[self.key]  # type: ignore[no-any-return]
+    else:
+        try:
+            state = instance_state(instance)
+        except AttributeError as err:
+            raise orm_exc.UnmappedInstanceError(instance) from err
+        return self.impl.get(state, dict_)  # type: ignore[no-any-return]</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="app.database.models.User.created_at"><code class="name">var <span class="ident">created_at</span> : Union[InstrumentedAttribute[_T_co], _T_co]</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def __get__(
+    self, instance: Optional[object], owner: Any
+) -&gt; Union[InstrumentedAttribute[_T_co], _T_co]:
+    if instance is None:
+        return self
+
+    dict_ = instance_dict(instance)
+    if self.impl.supports_population and self.key in dict_:
+        return dict_[self.key]  # type: ignore[no-any-return]
+    else:
+        try:
+            state = instance_state(instance)
+        except AttributeError as err:
+            raise orm_exc.UnmappedInstanceError(instance) from err
+        return self.impl.get(state, dict_)  # type: ignore[no-any-return]</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="app.database.models.User.daily_stats"><code class="name">var <span class="ident">daily_stats</span> : Union[InstrumentedAttribute[_T_co], _T_co]</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def __get__(
+    self, instance: Optional[object], owner: Any
+) -&gt; Union[InstrumentedAttribute[_T_co], _T_co]:
+    if instance is None:
+        return self
+
+    dict_ = instance_dict(instance)
+    if self.impl.supports_population and self.key in dict_:
+        return dict_[self.key]  # type: ignore[no-any-return]
+    else:
+        try:
+            state = instance_state(instance)
+        except AttributeError as err:
+            raise orm_exc.UnmappedInstanceError(instance) from err
+        return self.impl.get(state, dict_)  # type: ignore[no-any-return]</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="app.database.models.User.email"><code class="name">var <span class="ident">email</span> : Union[InstrumentedAttribute[_T_co], _T_co]</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def __get__(
+    self, instance: Optional[object], owner: Any
+) -&gt; Union[InstrumentedAttribute[_T_co], _T_co]:
+    if instance is None:
+        return self
+
+    dict_ = instance_dict(instance)
+    if self.impl.supports_population and self.key in dict_:
+        return dict_[self.key]  # type: ignore[no-any-return]
+    else:
+        try:
+            state = instance_state(instance)
+        except AttributeError as err:
+            raise orm_exc.UnmappedInstanceError(instance) from err
+        return self.impl.get(state, dict_)  # type: ignore[no-any-return]</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="app.database.models.User.hashed_password"><code class="name">var <span class="ident">hashed_password</span> : Union[InstrumentedAttribute[_T_co], _T_co]</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def __get__(
+    self, instance: Optional[object], owner: Any
+) -&gt; Union[InstrumentedAttribute[_T_co], _T_co]:
+    if instance is None:
+        return self
+
+    dict_ = instance_dict(instance)
+    if self.impl.supports_population and self.key in dict_:
+        return dict_[self.key]  # type: ignore[no-any-return]
+    else:
+        try:
+            state = instance_state(instance)
+        except AttributeError as err:
+            raise orm_exc.UnmappedInstanceError(instance) from err
+        return self.impl.get(state, dict_)  # type: ignore[no-any-return]</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="app.database.models.User.id"><code class="name">var <span class="ident">id</span> : Union[InstrumentedAttribute[_T_co], _T_co]</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def __get__(
+    self, instance: Optional[object], owner: Any
+) -&gt; Union[InstrumentedAttribute[_T_co], _T_co]:
+    if instance is None:
+        return self
+
+    dict_ = instance_dict(instance)
+    if self.impl.supports_population and self.key in dict_:
+        return dict_[self.key]  # type: ignore[no-any-return]
+    else:
+        try:
+            state = instance_state(instance)
+        except AttributeError as err:
+            raise orm_exc.UnmappedInstanceError(instance) from err
+        return self.impl.get(state, dict_)  # type: ignore[no-any-return]</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="app.database.models.User.is_active"><code class="name">var <span class="ident">is_active</span> : Union[InstrumentedAttribute[_T_co], _T_co]</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def __get__(
+    self, instance: Optional[object], owner: Any
+) -&gt; Union[InstrumentedAttribute[_T_co], _T_co]:
+    if instance is None:
+        return self
+
+    dict_ = instance_dict(instance)
+    if self.impl.supports_population and self.key in dict_:
+        return dict_[self.key]  # type: ignore[no-any-return]
+    else:
+        try:
+            state = instance_state(instance)
+        except AttributeError as err:
+            raise orm_exc.UnmappedInstanceError(instance) from err
+        return self.impl.get(state, dict_)  # type: ignore[no-any-return]</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="app.database.models.User.name"><code class="name">var <span class="ident">name</span> : Union[InstrumentedAttribute[_T_co], _T_co]</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def __get__(
+    self, instance: Optional[object], owner: Any
+) -&gt; Union[InstrumentedAttribute[_T_co], _T_co]:
+    if instance is None:
+        return self
+
+    dict_ = instance_dict(instance)
+    if self.impl.supports_population and self.key in dict_:
+        return dict_[self.key]  # type: ignore[no-any-return]
+    else:
+        try:
+            state = instance_state(instance)
+        except AttributeError as err:
+            raise orm_exc.UnmappedInstanceError(instance) from err
+        return self.impl.get(state, dict_)  # type: ignore[no-any-return]</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="app.database.models.User.role"><code class="name">var <span class="ident">role</span> : Union[InstrumentedAttribute[_T_co], _T_co]</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def __get__(
+    self, instance: Optional[object], owner: Any
+) -&gt; Union[InstrumentedAttribute[_T_co], _T_co]:
+    if instance is None:
+        return self
+
+    dict_ = instance_dict(instance)
+    if self.impl.supports_population and self.key in dict_:
+        return dict_[self.key]  # type: ignore[no-any-return]
+    else:
+        try:
+            state = instance_state(instance)
+        except AttributeError as err:
+            raise orm_exc.UnmappedInstanceError(instance) from err
+        return self.impl.get(state, dict_)  # type: ignore[no-any-return]</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="app.database.models.User.updated_at"><code class="name">var <span class="ident">updated_at</span> : Union[InstrumentedAttribute[_T_co], _T_co]</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def __get__(
+    self, instance: Optional[object], owner: Any
+) -&gt; Union[InstrumentedAttribute[_T_co], _T_co]:
+    if instance is None:
+        return self
+
+    dict_ = instance_dict(instance)
+    if self.impl.supports_population and self.key in dict_:
+        return dict_[self.key]  # type: ignore[no-any-return]
+    else:
+        try:
+            state = instance_state(instance)
+        except AttributeError as err:
+            raise orm_exc.UnmappedInstanceError(instance) from err
+        return self.impl.get(state, dict_)  # type: ignore[no-any-return]</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="app.database.models.User.votes"><code class="name">var <span class="ident">votes</span> : Union[InstrumentedAttribute[_T_co], _T_co]</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def __get__(
+    self, instance: Optional[object], owner: Any
+) -&gt; Union[InstrumentedAttribute[_T_co], _T_co]:
+    if instance is None:
+        return self
+
+    dict_ = instance_dict(instance)
+    if self.impl.supports_population and self.key in dict_:
+        return dict_[self.key]  # type: ignore[no-any-return]
+    else:
+        try:
+            state = instance_state(instance)
+        except AttributeError as err:
+            raise orm_exc.UnmappedInstanceError(instance) from err
+        return self.impl.get(state, dict_)  # type: ignore[no-any-return]</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="app.database.models.UserRole"><code class="flex name class">
+<span>class <span class="ident">UserRole</span></span>
+<span>(</span><span>*args, **kwds)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class UserRole(str, Enum):
+    SYSTEM = &#34;SYSTEM&#34;
+    CLIENT = &#34;CLIENT&#34;</code></pre>
+</details>
+<div class="desc"><p>str(object='') -&gt; str
+str(bytes_or_buffer[, encoding[, errors]]) -&gt; str</p>
+<p>Create a new string object from the given object. If encoding or
+errors is specified, then the object must expose a data buffer
+that will be decoded using the given encoding and error handler.
+Otherwise, returns the result of object.<strong>str</strong>() (if defined)
+or repr(object).
+encoding defaults to 'utf-8'.
+errors defaults to 'strict'.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.str</li>
+<li>enum.Enum</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="app.database.models.UserRole.CLIENT"><code class="name">var <span class="ident">CLIENT</span></code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+<dt id="app.database.models.UserRole.SYSTEM"><code class="name">var <span class="ident">SYSTEM</span></code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+</dl>
+</dd>
+<dt id="app.database.models.Vote"><code class="flex name class">
+<span>class <span class="ident">Vote</span></span>
+<span>(</span><span>**kwargs)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class Vote(Base):
+    __tablename__ = &#34;votes&#34;
+
+    id = Column(String, primary_key=True, default=lambda: str(uuid.uuid4()))
+    user_id = Column(String, ForeignKey(&#34;users.id&#34;), nullable=False)
+    celebrity_id = Column(String, ForeignKey(&#34;celebrities.id&#34;), nullable=False)
+    mbti_type = Column(SQLEnum(MBTIType), nullable=False)
+    reason = Column(Text)
+    created_at = Column(DateTime(timezone=True), server_default=func.now())
+
+    # 关系
+    user = relationship(&#34;User&#34;, back_populates=&#34;votes&#34;)
+    celebrity = relationship(&#34;Celebrity&#34;, back_populates=&#34;votes&#34;)
+
+    # 唯一约束
+    __table_args__ = (
+        Index(&#34;ix_user_celebrity_vote&#34;, &#34;user_id&#34;, &#34;celebrity_id&#34;, unique=True),
+    )</code></pre>
+</details>
+<div class="desc"><p>The base class of the class hierarchy.</p>
+<p>When called, it accepts no arguments and returns a new featureless
+instance that has no instance attributes and cannot be given any.</p>
+<p>A simple constructor that allows initialization from kwargs.</p>
+<p>Sets attributes on the constructed instance using the names and
+values in <code>kwargs</code>.</p>
+<p>Only keys that are present as
+attributes of the instance's class are allowed. These could be,
+for example, any mapped columns or relationships.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>sqlalchemy.orm.decl_api.Base</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="app.database.models.Vote.metadata"><code class="name">var <span class="ident">metadata</span> : MetaData</code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+<dt id="app.database.models.Vote.registry"><code class="name">var <span class="ident">registry</span> : RegistryType</code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+</dl>
+<h3>Instance variables</h3>
+<dl>
+<dt id="app.database.models.Vote.celebrity"><code class="name">var <span class="ident">celebrity</span> : Union[InstrumentedAttribute[_T_co], _T_co]</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def __get__(
+    self, instance: Optional[object], owner: Any
+) -&gt; Union[InstrumentedAttribute[_T_co], _T_co]:
+    if instance is None:
+        return self
+
+    dict_ = instance_dict(instance)
+    if self.impl.supports_population and self.key in dict_:
+        return dict_[self.key]  # type: ignore[no-any-return]
+    else:
+        try:
+            state = instance_state(instance)
+        except AttributeError as err:
+            raise orm_exc.UnmappedInstanceError(instance) from err
+        return self.impl.get(state, dict_)  # type: ignore[no-any-return]</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="app.database.models.Vote.celebrity_id"><code class="name">var <span class="ident">celebrity_id</span> : Union[InstrumentedAttribute[_T_co], _T_co]</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def __get__(
+    self, instance: Optional[object], owner: Any
+) -&gt; Union[InstrumentedAttribute[_T_co], _T_co]:
+    if instance is None:
+        return self
+
+    dict_ = instance_dict(instance)
+    if self.impl.supports_population and self.key in dict_:
+        return dict_[self.key]  # type: ignore[no-any-return]
+    else:
+        try:
+            state = instance_state(instance)
+        except AttributeError as err:
+            raise orm_exc.UnmappedInstanceError(instance) from err
+        return self.impl.get(state, dict_)  # type: ignore[no-any-return]</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="app.database.models.Vote.created_at"><code class="name">var <span class="ident">created_at</span> : Union[InstrumentedAttribute[_T_co], _T_co]</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def __get__(
+    self, instance: Optional[object], owner: Any
+) -&gt; Union[InstrumentedAttribute[_T_co], _T_co]:
+    if instance is None:
+        return self
+
+    dict_ = instance_dict(instance)
+    if self.impl.supports_population and self.key in dict_:
+        return dict_[self.key]  # type: ignore[no-any-return]
+    else:
+        try:
+            state = instance_state(instance)
+        except AttributeError as err:
+            raise orm_exc.UnmappedInstanceError(instance) from err
+        return self.impl.get(state, dict_)  # type: ignore[no-any-return]</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="app.database.models.Vote.id"><code class="name">var <span class="ident">id</span> : Union[InstrumentedAttribute[_T_co], _T_co]</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def __get__(
+    self, instance: Optional[object], owner: Any
+) -&gt; Union[InstrumentedAttribute[_T_co], _T_co]:
+    if instance is None:
+        return self
+
+    dict_ = instance_dict(instance)
+    if self.impl.supports_population and self.key in dict_:
+        return dict_[self.key]  # type: ignore[no-any-return]
+    else:
+        try:
+            state = instance_state(instance)
+        except AttributeError as err:
+            raise orm_exc.UnmappedInstanceError(instance) from err
+        return self.impl.get(state, dict_)  # type: ignore[no-any-return]</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="app.database.models.Vote.mbti_type"><code class="name">var <span class="ident">mbti_type</span> : Union[InstrumentedAttribute[_T_co], _T_co]</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def __get__(
+    self, instance: Optional[object], owner: Any
+) -&gt; Union[InstrumentedAttribute[_T_co], _T_co]:
+    if instance is None:
+        return self
+
+    dict_ = instance_dict(instance)
+    if self.impl.supports_population and self.key in dict_:
+        return dict_[self.key]  # type: ignore[no-any-return]
+    else:
+        try:
+            state = instance_state(instance)
+        except AttributeError as err:
+            raise orm_exc.UnmappedInstanceError(instance) from err
+        return self.impl.get(state, dict_)  # type: ignore[no-any-return]</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="app.database.models.Vote.reason"><code class="name">var <span class="ident">reason</span> : Union[InstrumentedAttribute[_T_co], _T_co]</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def __get__(
+    self, instance: Optional[object], owner: Any
+) -&gt; Union[InstrumentedAttribute[_T_co], _T_co]:
+    if instance is None:
+        return self
+
+    dict_ = instance_dict(instance)
+    if self.impl.supports_population and self.key in dict_:
+        return dict_[self.key]  # type: ignore[no-any-return]
+    else:
+        try:
+            state = instance_state(instance)
+        except AttributeError as err:
+            raise orm_exc.UnmappedInstanceError(instance) from err
+        return self.impl.get(state, dict_)  # type: ignore[no-any-return]</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="app.database.models.Vote.user"><code class="name">var <span class="ident">user</span> : Union[InstrumentedAttribute[_T_co], _T_co]</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def __get__(
+    self, instance: Optional[object], owner: Any
+) -&gt; Union[InstrumentedAttribute[_T_co], _T_co]:
+    if instance is None:
+        return self
+
+    dict_ = instance_dict(instance)
+    if self.impl.supports_population and self.key in dict_:
+        return dict_[self.key]  # type: ignore[no-any-return]
+    else:
+        try:
+            state = instance_state(instance)
+        except AttributeError as err:
+            raise orm_exc.UnmappedInstanceError(instance) from err
+        return self.impl.get(state, dict_)  # type: ignore[no-any-return]</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="app.database.models.Vote.user_id"><code class="name">var <span class="ident">user_id</span> : Union[InstrumentedAttribute[_T_co], _T_co]</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def __get__(
+    self, instance: Optional[object], owner: Any
+) -&gt; Union[InstrumentedAttribute[_T_co], _T_co]:
+    if instance is None:
+        return self
+
+    dict_ = instance_dict(instance)
+    if self.impl.supports_population and self.key in dict_:
+        return dict_[self.key]  # type: ignore[no-any-return]
+    else:
+        try:
+            state = instance_state(instance)
+        except AttributeError as err:
+            raise orm_exc.UnmappedInstanceError(instance) from err
+        return self.impl.get(state, dict_)  # type: ignore[no-any-return]</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="app.database" href="index.html">app.database</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="app.database.models.Celebrity" href="#app.database.models.Celebrity">Celebrity</a></code></h4>
+<ul class="two-column">
+<li><code><a title="app.database.models.Celebrity.comments" href="#app.database.models.Celebrity.comments">comments</a></code></li>
+<li><code><a title="app.database.models.Celebrity.created_at" href="#app.database.models.Celebrity.created_at">created_at</a></code></li>
+<li><code><a title="app.database.models.Celebrity.description" href="#app.database.models.Celebrity.description">description</a></code></li>
+<li><code><a title="app.database.models.Celebrity.id" href="#app.database.models.Celebrity.id">id</a></code></li>
+<li><code><a title="app.database.models.Celebrity.image_url" href="#app.database.models.Celebrity.image_url">image_url</a></code></li>
+<li><code><a title="app.database.models.Celebrity.metadata" href="#app.database.models.Celebrity.metadata">metadata</a></code></li>
+<li><code><a title="app.database.models.Celebrity.name" href="#app.database.models.Celebrity.name">name</a></code></li>
+<li><code><a title="app.database.models.Celebrity.name_en" href="#app.database.models.Celebrity.name_en">name_en</a></code></li>
+<li><code><a title="app.database.models.Celebrity.registry" href="#app.database.models.Celebrity.registry">registry</a></code></li>
+<li><code><a title="app.database.models.Celebrity.tags" href="#app.database.models.Celebrity.tags">tags</a></code></li>
+<li><code><a title="app.database.models.Celebrity.updated_at" href="#app.database.models.Celebrity.updated_at">updated_at</a></code></li>
+<li><code><a title="app.database.models.Celebrity.votes" href="#app.database.models.Celebrity.votes">votes</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="app.database.models.CelebrityTag" href="#app.database.models.CelebrityTag">CelebrityTag</a></code></h4>
+<ul class="two-column">
+<li><code><a title="app.database.models.CelebrityTag.celebrity" href="#app.database.models.CelebrityTag.celebrity">celebrity</a></code></li>
+<li><code><a title="app.database.models.CelebrityTag.celebrity_id" href="#app.database.models.CelebrityTag.celebrity_id">celebrity_id</a></code></li>
+<li><code><a title="app.database.models.CelebrityTag.metadata" href="#app.database.models.CelebrityTag.metadata">metadata</a></code></li>
+<li><code><a title="app.database.models.CelebrityTag.registry" href="#app.database.models.CelebrityTag.registry">registry</a></code></li>
+<li><code><a title="app.database.models.CelebrityTag.tag" href="#app.database.models.CelebrityTag.tag">tag</a></code></li>
+<li><code><a title="app.database.models.CelebrityTag.tag_id" href="#app.database.models.CelebrityTag.tag_id">tag_id</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="app.database.models.Comment" href="#app.database.models.Comment">Comment</a></code></h4>
+<ul class="two-column">
+<li><code><a title="app.database.models.Comment.celebrity" href="#app.database.models.Comment.celebrity">celebrity</a></code></li>
+<li><code><a title="app.database.models.Comment.celebrity_id" href="#app.database.models.Comment.celebrity_id">celebrity_id</a></code></li>
+<li><code><a title="app.database.models.Comment.content" href="#app.database.models.Comment.content">content</a></code></li>
+<li><code><a title="app.database.models.Comment.created_at" href="#app.database.models.Comment.created_at">created_at</a></code></li>
+<li><code><a title="app.database.models.Comment.id" href="#app.database.models.Comment.id">id</a></code></li>
+<li><code><a title="app.database.models.Comment.level" href="#app.database.models.Comment.level">level</a></code></li>
+<li><code><a title="app.database.models.Comment.metadata" href="#app.database.models.Comment.metadata">metadata</a></code></li>
+<li><code><a title="app.database.models.Comment.parent" href="#app.database.models.Comment.parent">parent</a></code></li>
+<li><code><a title="app.database.models.Comment.parent_id" href="#app.database.models.Comment.parent_id">parent_id</a></code></li>
+<li><code><a title="app.database.models.Comment.registry" href="#app.database.models.Comment.registry">registry</a></code></li>
+<li><code><a title="app.database.models.Comment.replies" href="#app.database.models.Comment.replies">replies</a></code></li>
+<li><code><a title="app.database.models.Comment.updated_at" href="#app.database.models.Comment.updated_at">updated_at</a></code></li>
+<li><code><a title="app.database.models.Comment.user" href="#app.database.models.Comment.user">user</a></code></li>
+<li><code><a title="app.database.models.Comment.user_id" href="#app.database.models.Comment.user_id">user_id</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="app.database.models.DailyUserStats" href="#app.database.models.DailyUserStats">DailyUserStats</a></code></h4>
+<ul class="two-column">
+<li><code><a title="app.database.models.DailyUserStats.date" href="#app.database.models.DailyUserStats.date">date</a></code></li>
+<li><code><a title="app.database.models.DailyUserStats.id" href="#app.database.models.DailyUserStats.id">id</a></code></li>
+<li><code><a title="app.database.models.DailyUserStats.metadata" href="#app.database.models.DailyUserStats.metadata">metadata</a></code></li>
+<li><code><a title="app.database.models.DailyUserStats.registry" href="#app.database.models.DailyUserStats.registry">registry</a></code></li>
+<li><code><a title="app.database.models.DailyUserStats.user" href="#app.database.models.DailyUserStats.user">user</a></code></li>
+<li><code><a title="app.database.models.DailyUserStats.user_id" href="#app.database.models.DailyUserStats.user_id">user_id</a></code></li>
+<li><code><a title="app.database.models.DailyUserStats.votes_count" href="#app.database.models.DailyUserStats.votes_count">votes_count</a></code></li>
+<li><code><a title="app.database.models.DailyUserStats.votes_no_reason" href="#app.database.models.DailyUserStats.votes_no_reason">votes_no_reason</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="app.database.models.MBTIType" href="#app.database.models.MBTIType">MBTIType</a></code></h4>
+<ul class="two-column">
+<li><code><a title="app.database.models.MBTIType.ENFJ" href="#app.database.models.MBTIType.ENFJ">ENFJ</a></code></li>
+<li><code><a title="app.database.models.MBTIType.ENFP" href="#app.database.models.MBTIType.ENFP">ENFP</a></code></li>
+<li><code><a title="app.database.models.MBTIType.ENTJ" href="#app.database.models.MBTIType.ENTJ">ENTJ</a></code></li>
+<li><code><a title="app.database.models.MBTIType.ENTP" href="#app.database.models.MBTIType.ENTP">ENTP</a></code></li>
+<li><code><a title="app.database.models.MBTIType.ESFJ" href="#app.database.models.MBTIType.ESFJ">ESFJ</a></code></li>
+<li><code><a title="app.database.models.MBTIType.ESFP" href="#app.database.models.MBTIType.ESFP">ESFP</a></code></li>
+<li><code><a title="app.database.models.MBTIType.ESTJ" href="#app.database.models.MBTIType.ESTJ">ESTJ</a></code></li>
+<li><code><a title="app.database.models.MBTIType.ESTP" href="#app.database.models.MBTIType.ESTP">ESTP</a></code></li>
+<li><code><a title="app.database.models.MBTIType.INFJ" href="#app.database.models.MBTIType.INFJ">INFJ</a></code></li>
+<li><code><a title="app.database.models.MBTIType.INFP" href="#app.database.models.MBTIType.INFP">INFP</a></code></li>
+<li><code><a title="app.database.models.MBTIType.INTJ" href="#app.database.models.MBTIType.INTJ">INTJ</a></code></li>
+<li><code><a title="app.database.models.MBTIType.INTP" href="#app.database.models.MBTIType.INTP">INTP</a></code></li>
+<li><code><a title="app.database.models.MBTIType.ISFJ" href="#app.database.models.MBTIType.ISFJ">ISFJ</a></code></li>
+<li><code><a title="app.database.models.MBTIType.ISFP" href="#app.database.models.MBTIType.ISFP">ISFP</a></code></li>
+<li><code><a title="app.database.models.MBTIType.ISTJ" href="#app.database.models.MBTIType.ISTJ">ISTJ</a></code></li>
+<li><code><a title="app.database.models.MBTIType.ISTP" href="#app.database.models.MBTIType.ISTP">ISTP</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="app.database.models.Tag" href="#app.database.models.Tag">Tag</a></code></h4>
+<ul class="two-column">
+<li><code><a title="app.database.models.Tag.celebrities" href="#app.database.models.Tag.celebrities">celebrities</a></code></li>
+<li><code><a title="app.database.models.Tag.created_at" href="#app.database.models.Tag.created_at">created_at</a></code></li>
+<li><code><a title="app.database.models.Tag.description" href="#app.database.models.Tag.description">description</a></code></li>
+<li><code><a title="app.database.models.Tag.id" href="#app.database.models.Tag.id">id</a></code></li>
+<li><code><a title="app.database.models.Tag.metadata" href="#app.database.models.Tag.metadata">metadata</a></code></li>
+<li><code><a title="app.database.models.Tag.name" href="#app.database.models.Tag.name">name</a></code></li>
+<li><code><a title="app.database.models.Tag.registry" href="#app.database.models.Tag.registry">registry</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="app.database.models.User" href="#app.database.models.User">User</a></code></h4>
+<ul class="two-column">
+<li><code><a title="app.database.models.User.comments" href="#app.database.models.User.comments">comments</a></code></li>
+<li><code><a title="app.database.models.User.created_at" href="#app.database.models.User.created_at">created_at</a></code></li>
+<li><code><a title="app.database.models.User.daily_stats" href="#app.database.models.User.daily_stats">daily_stats</a></code></li>
+<li><code><a title="app.database.models.User.email" href="#app.database.models.User.email">email</a></code></li>
+<li><code><a title="app.database.models.User.hashed_password" href="#app.database.models.User.hashed_password">hashed_password</a></code></li>
+<li><code><a title="app.database.models.User.id" href="#app.database.models.User.id">id</a></code></li>
+<li><code><a title="app.database.models.User.is_active" href="#app.database.models.User.is_active">is_active</a></code></li>
+<li><code><a title="app.database.models.User.metadata" href="#app.database.models.User.metadata">metadata</a></code></li>
+<li><code><a title="app.database.models.User.name" href="#app.database.models.User.name">name</a></code></li>
+<li><code><a title="app.database.models.User.registry" href="#app.database.models.User.registry">registry</a></code></li>
+<li><code><a title="app.database.models.User.role" href="#app.database.models.User.role">role</a></code></li>
+<li><code><a title="app.database.models.User.updated_at" href="#app.database.models.User.updated_at">updated_at</a></code></li>
+<li><code><a title="app.database.models.User.votes" href="#app.database.models.User.votes">votes</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="app.database.models.UserRole" href="#app.database.models.UserRole">UserRole</a></code></h4>
+<ul class="">
+<li><code><a title="app.database.models.UserRole.CLIENT" href="#app.database.models.UserRole.CLIENT">CLIENT</a></code></li>
+<li><code><a title="app.database.models.UserRole.SYSTEM" href="#app.database.models.UserRole.SYSTEM">SYSTEM</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="app.database.models.Vote" href="#app.database.models.Vote">Vote</a></code></h4>
+<ul class="two-column">
+<li><code><a title="app.database.models.Vote.celebrity" href="#app.database.models.Vote.celebrity">celebrity</a></code></li>
+<li><code><a title="app.database.models.Vote.celebrity_id" href="#app.database.models.Vote.celebrity_id">celebrity_id</a></code></li>
+<li><code><a title="app.database.models.Vote.created_at" href="#app.database.models.Vote.created_at">created_at</a></code></li>
+<li><code><a title="app.database.models.Vote.id" href="#app.database.models.Vote.id">id</a></code></li>
+<li><code><a title="app.database.models.Vote.mbti_type" href="#app.database.models.Vote.mbti_type">mbti_type</a></code></li>
+<li><code><a title="app.database.models.Vote.metadata" href="#app.database.models.Vote.metadata">metadata</a></code></li>
+<li><code><a title="app.database.models.Vote.reason" href="#app.database.models.Vote.reason">reason</a></code></li>
+<li><code><a title="app.database.models.Vote.registry" href="#app.database.models.Vote.registry">registry</a></code></li>
+<li><code><a title="app.database.models.Vote.user" href="#app.database.models.Vote.user">user</a></code></li>
+<li><code><a title="app.database.models.Vote.user_id" href="#app.database.models.Vote.user_id">user_id</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.11.6</a>.</p>
+</footer>
+</body>
+</html>

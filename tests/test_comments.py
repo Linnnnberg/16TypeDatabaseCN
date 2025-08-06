@@ -3,7 +3,6 @@ Comment system regression tests
 Tests comment creation, retrieval, and nested replies
 """
 
-import requests
 from tests.config import test_config
 
 

@@ -7,7 +7,6 @@ from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from sqlalchemy.orm import Session
 from .config import settings
 from app.database.database import get_db
-from app.database.models import User
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
@@ -45,10 +44,10 @@ def verify_token(token: str) -> dict:
 def get_current_admin_user(
     credentials: HTTPAuthorizationCredentials = Depends(HTTPBearer()),
     db: Session = Depends(get_db),
-) -> User:
+):
     """Dependency to get current authenticated admin user"""
     from app.services.auth_service import AuthService
-    from app.database.models import User, UserRole
+    from app.database.models import UserRole
 
     auth_service = AuthService(db)
     user = auth_service.get_current_user(credentials.credentials)

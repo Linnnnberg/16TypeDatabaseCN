@@ -1,4 +1,4 @@
-from typing import List, Optional, Dict, Any
+from typing import Optional
 from fastapi import APIRouter, Depends, HTTPException, status, Query
 from sqlalchemy.orm import Session
 from app.database.database import get_db
@@ -263,5 +263,8 @@ def get_popular_searches(
     return {
         "popular_searches": popular_searches,
         "total_searches": len(popular_searches),
-        "note": "Based on tag usage and MBTI vote counts. Future versions will track actual search queries.",
+        "note": (
+            "Based on tag usage and MBTI vote counts. "
+            "Future versions will track actual search queries."
+        ),
     }

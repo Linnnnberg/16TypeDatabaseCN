@@ -1,0 +1,446 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<meta name="generator" content="pdoc3 0.11.6">
+<title>app.services.auth_service API documentation</title>
+<meta name="description" content="">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/sanitize.min.css" integrity="sha512-y1dtMcuvtTMJc1yPgEqF0ZjQbhnc/bFhyvIyVNb9Zk5mIGtqVaAB1Ttl28su8AvFMOY0EwRbAe+HCLqj6W7/KA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/typography.min.css" integrity="sha512-Y1DYSb995BAfxobCkKepB1BqJJTPrOp3zPL74AWFugHHmmdcvO+C48WLrUOlhGMc0QG7AE3f7gmvvcrmX2fDoA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:1.5em;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:2em 0 .50em 0}h3{font-size:1.4em;margin:1.6em 0 .7em 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .2s ease-in-out}a:visited{color:#503}a:hover{color:#b62}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900;font-weight:bold}pre code{font-size:.8em;line-height:1.4em;padding:1em;display:block}code{background:#f3f3f3;font-family:"DejaVu Sans Mono",monospace;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source > summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible;min-width:max-content}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em 1em;margin:1em 0}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul ul{padding-left:1em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" integrity="sha512-D9gUyxqja7hBtkWpPWGt9wfbfaMGVt9gnyCvYa+jojwwPHLCzUm5i8rpk7vD7wNee9bA35eYIjobYPaQuKS1MQ==" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => {
+hljs.configure({languages: ['bash', 'css', 'diff', 'graphql', 'ini', 'javascript', 'json', 'plaintext', 'python', 'python-repl', 'rust', 'shell', 'sql', 'typescript', 'xml', 'yaml']});
+hljs.highlightAll();
+/* Collapse source docstrings */
+setTimeout(() => {
+[...document.querySelectorAll('.hljs.language-python > .hljs-string')]
+.filter(el => el.innerHTML.length > 200 && ['"""', "'''"].includes(el.innerHTML.substring(0, 3)))
+.forEach(el => {
+let d = document.createElement('details');
+d.classList.add('hljs-string');
+d.innerHTML = '<summary>"""</summary>' + el.innerHTML.substring(3);
+el.replaceWith(d);
+});
+}, 100);
+})</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>app.services.auth_service</code></h1>
+</header>
+<section id="section-intro">
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="app.services.auth_service.AuthService"><code class="flex name class">
+<span>class <span class="ident">AuthService</span></span>
+<span>(</span><span>db: sqlalchemy.orm.session.Session)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class AuthService:
+    def __init__(self, db: Session):
+        self.db = db
+
+    def register_user(self, user_data: UserCreate) -&gt; User:
+        &#34;&#34;&#34;Register a new user&#34;&#34;&#34;
+        # Check if user already exists
+        existing_user = (
+            self.db.query(User).filter(User.email == user_data.email).first()
+        )
+        if existing_user:
+            raise HTTPException(
+                status_code=status.HTTP_409_CONFLICT,
+                detail=&#34;该邮箱已被注册，请使用其他邮箱或直接登录。如果您忘记密码，请联系管理员重置&#34;,
+            )
+
+        # Create new user
+        hashed_password = get_password_hash(user_data.password)
+        user = User(
+            email=user_data.email,
+            hashed_password=hashed_password,
+            name=user_data.name,
+            role=UserRole.CLIENT,
+        )
+
+        self.db.add(user)
+        self.db.commit()
+        self.db.refresh(user)
+
+        return user
+
+    def authenticate_user(self, email: str, password: str) -&gt; Optional[User]:
+        &#34;&#34;&#34;Authenticate user with email and password&#34;&#34;&#34;
+        user = self.db.query(User).filter(User.email == email).first()
+        if not user:
+            return None
+        if not verify_password(password, user.hashed_password):
+            return None
+        return user
+
+    def get_login_error_details(self, email: str, password: str) -&gt; tuple[str, str]:
+        &#34;&#34;&#34;Get specific error details for login failures&#34;&#34;&#34;
+        user = self.db.query(User).filter(User.email == email).first()
+
+        if not user:
+            return (
+                &#34;EMAIL_NOT_FOUND&#34;,
+                &#34;该邮箱地址未注册，请先注册账户或检查邮箱地址是否正确&#34;,
+            )
+
+        if not verify_password(password, user.hashed_password):
+            return (
+                &#34;INVALID_PASSWORD&#34;,
+                &#34;密码错误，请重新输入密码。如果忘记密码，请联系管理员重置&#34;,
+            )
+
+        if not user.is_active:
+            return &#34;ACCOUNT_DISABLED&#34;, &#34;账户已被停用，请联系管理员激活账户&#34;
+
+        return &#34;UNKNOWN_ERROR&#34;, &#34;登录失败，请稍后重试&#34;
+
+    def login_user(self, user_data: UserLogin) -&gt; Token:
+        &#34;&#34;&#34;Login user and return access token&#34;&#34;&#34;
+        user = self.authenticate_user(user_data.email, user_data.password)
+        if not user:
+            error_code, error_message = self.get_login_error_details(
+                user_data.email, user_data.password
+            )
+            raise HTTPException(
+                status_code=status.HTTP_401_UNAUTHORIZED, detail=error_message
+            )
+
+        if not user.is_active:
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail=&#34;账户已被停用，请联系管理员激活账户&#34;,
+            )
+
+        # Create access token (24 hours expiration)
+        access_token_expires = timedelta(hours=24)
+        access_token = create_access_token(
+            data={&#34;sub&#34;: user.id, &#34;email&#34;: user.email},
+            expires_delta=access_token_expires,
+        )
+
+        return Token(
+            access_token=access_token,
+            token_type=&#34;bearer&#34;,
+            expires_in=24 * 60 * 60,  # 24 hours in seconds
+        )
+
+    def get_current_user(self, token: str) -&gt; User:
+        &#34;&#34;&#34;Get current user from token&#34;&#34;&#34;
+        try:
+            payload = verify_token(token)
+            user_id: str = payload.get(&#34;sub&#34;) or &#34;&#34;
+            if user_id is None:
+                raise HTTPException(
+                    status_code=status.HTTP_401_UNAUTHORIZED,
+                    detail=&#34;登录令牌无效，请重新登录&#34;,
+                )
+        except HTTPException:
+            raise HTTPException(
+                status_code=status.HTTP_401_UNAUTHORIZED,
+                detail=&#34;登录令牌已过期或无效，请重新登录&#34;,
+            )
+
+        user = self.db.query(User).filter(User.id == user_id).first()
+        if user is None:
+            raise HTTPException(
+                status_code=status.HTTP_401_UNAUTHORIZED,
+                detail=&#34;用户账户不存在或已被删除，请重新登录&#34;,
+            )
+
+        if not user.is_active:
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail=&#34;账户已被停用，请联系管理员&#34;,
+            )
+
+        return user
+
+    def create_system_user(self, email: str, password: str, name: str) -&gt; User:
+        &#34;&#34;&#34;Create a system user (admin)&#34;&#34;&#34;
+        # Check if user already exists
+        existing_user = self.db.query(User).filter(User.email == email).first()
+        if existing_user:
+            raise HTTPException(
+                status_code=status.HTTP_409_CONFLICT, detail=&#34;该邮箱已被注册&#34;
+            )
+
+        # Create system user
+        hashed_password = get_password_hash(password)
+        user = User(
+            email=email,
+            hashed_password=hashed_password,
+            name=name,
+            role=UserRole.SYSTEM,
+        )
+
+        self.db.add(user)
+        self.db.commit()
+        self.db.refresh(user)
+
+        return user</code></pre>
+</details>
+<div class="desc"></div>
+<h3>Methods</h3>
+<dl>
+<dt id="app.services.auth_service.AuthService.authenticate_user"><code class="name flex">
+<span>def <span class="ident">authenticate_user</span></span>(<span>self, email: str, password: str) ‑> <a title="app.database.models.User" href="../database/models.html#app.database.models.User">User</a> | None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def authenticate_user(self, email: str, password: str) -&gt; Optional[User]:
+    &#34;&#34;&#34;Authenticate user with email and password&#34;&#34;&#34;
+    user = self.db.query(User).filter(User.email == email).first()
+    if not user:
+        return None
+    if not verify_password(password, user.hashed_password):
+        return None
+    return user</code></pre>
+</details>
+<div class="desc"><p>Authenticate user with email and password</p></div>
+</dd>
+<dt id="app.services.auth_service.AuthService.create_system_user"><code class="name flex">
+<span>def <span class="ident">create_system_user</span></span>(<span>self, email: str, password: str, name: str) ‑> <a title="app.database.models.User" href="../database/models.html#app.database.models.User">User</a></span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def create_system_user(self, email: str, password: str, name: str) -&gt; User:
+    &#34;&#34;&#34;Create a system user (admin)&#34;&#34;&#34;
+    # Check if user already exists
+    existing_user = self.db.query(User).filter(User.email == email).first()
+    if existing_user:
+        raise HTTPException(
+            status_code=status.HTTP_409_CONFLICT, detail=&#34;该邮箱已被注册&#34;
+        )
+
+    # Create system user
+    hashed_password = get_password_hash(password)
+    user = User(
+        email=email,
+        hashed_password=hashed_password,
+        name=name,
+        role=UserRole.SYSTEM,
+    )
+
+    self.db.add(user)
+    self.db.commit()
+    self.db.refresh(user)
+
+    return user</code></pre>
+</details>
+<div class="desc"><p>Create a system user (admin)</p></div>
+</dd>
+<dt id="app.services.auth_service.AuthService.get_current_user"><code class="name flex">
+<span>def <span class="ident">get_current_user</span></span>(<span>self, token: str) ‑> <a title="app.database.models.User" href="../database/models.html#app.database.models.User">User</a></span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_current_user(self, token: str) -&gt; User:
+    &#34;&#34;&#34;Get current user from token&#34;&#34;&#34;
+    try:
+        payload = verify_token(token)
+        user_id: str = payload.get(&#34;sub&#34;) or &#34;&#34;
+        if user_id is None:
+            raise HTTPException(
+                status_code=status.HTTP_401_UNAUTHORIZED,
+                detail=&#34;登录令牌无效，请重新登录&#34;,
+            )
+    except HTTPException:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail=&#34;登录令牌已过期或无效，请重新登录&#34;,
+        )
+
+    user = self.db.query(User).filter(User.id == user_id).first()
+    if user is None:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail=&#34;用户账户不存在或已被删除，请重新登录&#34;,
+        )
+
+    if not user.is_active:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail=&#34;账户已被停用，请联系管理员&#34;,
+        )
+
+    return user</code></pre>
+</details>
+<div class="desc"><p>Get current user from token</p></div>
+</dd>
+<dt id="app.services.auth_service.AuthService.get_login_error_details"><code class="name flex">
+<span>def <span class="ident">get_login_error_details</span></span>(<span>self, email: str, password: str) ‑> tuple[str, str]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_login_error_details(self, email: str, password: str) -&gt; tuple[str, str]:
+    &#34;&#34;&#34;Get specific error details for login failures&#34;&#34;&#34;
+    user = self.db.query(User).filter(User.email == email).first()
+
+    if not user:
+        return (
+            &#34;EMAIL_NOT_FOUND&#34;,
+            &#34;该邮箱地址未注册，请先注册账户或检查邮箱地址是否正确&#34;,
+        )
+
+    if not verify_password(password, user.hashed_password):
+        return (
+            &#34;INVALID_PASSWORD&#34;,
+            &#34;密码错误，请重新输入密码。如果忘记密码，请联系管理员重置&#34;,
+        )
+
+    if not user.is_active:
+        return &#34;ACCOUNT_DISABLED&#34;, &#34;账户已被停用，请联系管理员激活账户&#34;
+
+    return &#34;UNKNOWN_ERROR&#34;, &#34;登录失败，请稍后重试&#34;</code></pre>
+</details>
+<div class="desc"><p>Get specific error details for login failures</p></div>
+</dd>
+<dt id="app.services.auth_service.AuthService.login_user"><code class="name flex">
+<span>def <span class="ident">login_user</span></span>(<span>self,<br>user_data: <a title="app.schemas.auth.UserLogin" href="../schemas/auth.html#app.schemas.auth.UserLogin">UserLogin</a>) ‑> <a title="app.schemas.auth.Token" href="../schemas/auth.html#app.schemas.auth.Token">Token</a></span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def login_user(self, user_data: UserLogin) -&gt; Token:
+    &#34;&#34;&#34;Login user and return access token&#34;&#34;&#34;
+    user = self.authenticate_user(user_data.email, user_data.password)
+    if not user:
+        error_code, error_message = self.get_login_error_details(
+            user_data.email, user_data.password
+        )
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED, detail=error_message
+        )
+
+    if not user.is_active:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail=&#34;账户已被停用，请联系管理员激活账户&#34;,
+        )
+
+    # Create access token (24 hours expiration)
+    access_token_expires = timedelta(hours=24)
+    access_token = create_access_token(
+        data={&#34;sub&#34;: user.id, &#34;email&#34;: user.email},
+        expires_delta=access_token_expires,
+    )
+
+    return Token(
+        access_token=access_token,
+        token_type=&#34;bearer&#34;,
+        expires_in=24 * 60 * 60,  # 24 hours in seconds
+    )</code></pre>
+</details>
+<div class="desc"><p>Login user and return access token</p></div>
+</dd>
+<dt id="app.services.auth_service.AuthService.register_user"><code class="name flex">
+<span>def <span class="ident">register_user</span></span>(<span>self,<br>user_data: <a title="app.schemas.auth.UserCreate" href="../schemas/auth.html#app.schemas.auth.UserCreate">UserCreate</a>) ‑> <a title="app.database.models.User" href="../database/models.html#app.database.models.User">User</a></span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def register_user(self, user_data: UserCreate) -&gt; User:
+    &#34;&#34;&#34;Register a new user&#34;&#34;&#34;
+    # Check if user already exists
+    existing_user = (
+        self.db.query(User).filter(User.email == user_data.email).first()
+    )
+    if existing_user:
+        raise HTTPException(
+            status_code=status.HTTP_409_CONFLICT,
+            detail=&#34;该邮箱已被注册，请使用其他邮箱或直接登录。如果您忘记密码，请联系管理员重置&#34;,
+        )
+
+    # Create new user
+    hashed_password = get_password_hash(user_data.password)
+    user = User(
+        email=user_data.email,
+        hashed_password=hashed_password,
+        name=user_data.name,
+        role=UserRole.CLIENT,
+    )
+
+    self.db.add(user)
+    self.db.commit()
+    self.db.refresh(user)
+
+    return user</code></pre>
+</details>
+<div class="desc"><p>Register a new user</p></div>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="app.services" href="index.html">app.services</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="app.services.auth_service.AuthService" href="#app.services.auth_service.AuthService">AuthService</a></code></h4>
+<ul class="">
+<li><code><a title="app.services.auth_service.AuthService.authenticate_user" href="#app.services.auth_service.AuthService.authenticate_user">authenticate_user</a></code></li>
+<li><code><a title="app.services.auth_service.AuthService.create_system_user" href="#app.services.auth_service.AuthService.create_system_user">create_system_user</a></code></li>
+<li><code><a title="app.services.auth_service.AuthService.get_current_user" href="#app.services.auth_service.AuthService.get_current_user">get_current_user</a></code></li>
+<li><code><a title="app.services.auth_service.AuthService.get_login_error_details" href="#app.services.auth_service.AuthService.get_login_error_details">get_login_error_details</a></code></li>
+<li><code><a title="app.services.auth_service.AuthService.login_user" href="#app.services.auth_service.AuthService.login_user">login_user</a></code></li>
+<li><code><a title="app.services.auth_service.AuthService.register_user" href="#app.services.auth_service.AuthService.register_user">register_user</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.11.6</a>.</p>
+</footer>
+</body>
+</html>

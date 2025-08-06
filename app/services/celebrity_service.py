@@ -3,7 +3,7 @@ from sqlalchemy.orm import Session
 from sqlalchemy import or_
 from fastapi import HTTPException, status
 from app.database.models import Celebrity, Tag, CelebrityTag
-from app.schemas.celebrity import CelebrityCreate, CelebrityUpdate, CelebrityResponse
+from app.schemas.celebrity import CelebrityCreate, CelebrityUpdate
 
 
 class CelebrityService:

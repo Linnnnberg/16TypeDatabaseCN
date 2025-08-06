@@ -1,0 +1,418 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<meta name="generator" content="pdoc3 0.11.6">
+<title>app.api.search API documentation</title>
+<meta name="description" content="">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/sanitize.min.css" integrity="sha512-y1dtMcuvtTMJc1yPgEqF0ZjQbhnc/bFhyvIyVNb9Zk5mIGtqVaAB1Ttl28su8AvFMOY0EwRbAe+HCLqj6W7/KA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/typography.min.css" integrity="sha512-Y1DYSb995BAfxobCkKepB1BqJJTPrOp3zPL74AWFugHHmmdcvO+C48WLrUOlhGMc0QG7AE3f7gmvvcrmX2fDoA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:1.5em;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:2em 0 .50em 0}h3{font-size:1.4em;margin:1.6em 0 .7em 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .2s ease-in-out}a:visited{color:#503}a:hover{color:#b62}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900;font-weight:bold}pre code{font-size:.8em;line-height:1.4em;padding:1em;display:block}code{background:#f3f3f3;font-family:"DejaVu Sans Mono",monospace;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source > summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible;min-width:max-content}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em 1em;margin:1em 0}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul ul{padding-left:1em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" integrity="sha512-D9gUyxqja7hBtkWpPWGt9wfbfaMGVt9gnyCvYa+jojwwPHLCzUm5i8rpk7vD7wNee9bA35eYIjobYPaQuKS1MQ==" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => {
+hljs.configure({languages: ['bash', 'css', 'diff', 'graphql', 'ini', 'javascript', 'json', 'plaintext', 'python', 'python-repl', 'rust', 'shell', 'sql', 'typescript', 'xml', 'yaml']});
+hljs.highlightAll();
+/* Collapse source docstrings */
+setTimeout(() => {
+[...document.querySelectorAll('.hljs.language-python > .hljs-string')]
+.filter(el => el.innerHTML.length > 200 && ['"""', "'''"].includes(el.innerHTML.substring(0, 3)))
+.forEach(el => {
+let d = document.createElement('details');
+d.classList.add('hljs-string');
+d.innerHTML = '<summary>"""</summary>' + el.innerHTML.substring(3);
+el.replaceWith(d);
+});
+}, 100);
+})</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>app.api.search</code></h1>
+</header>
+<section id="section-intro">
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="app.api.search.get_mbti_types"><code class="name flex">
+<span>def <span class="ident">get_mbti_types</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@router.get(&#34;/mbti-types&#34;)
+def get_mbti_types():
+    &#34;&#34;&#34;
+    Get all available MBTI types for search filtering
+    &#34;&#34;&#34;
+    mbti_types = [
+        &#34;INTJ&#34;,
+        &#34;INTP&#34;,
+        &#34;ENTJ&#34;,
+        &#34;ENTP&#34;,
+        &#34;INFJ&#34;,
+        &#34;INFP&#34;,
+        &#34;ENFJ&#34;,
+        &#34;ENFP&#34;,
+        &#34;ISTJ&#34;,
+        &#34;ISFJ&#34;,
+        &#34;ESTJ&#34;,
+        &#34;ESFJ&#34;,
+        &#34;ISTP&#34;,
+        &#34;ISFP&#34;,
+        &#34;ESTP&#34;,
+        &#34;ESFP&#34;,
+    ]
+
+    return {
+        &#34;mbti_types&#34;: mbti_types,
+        &#34;total_types&#34;: len(mbti_types),
+        &#34;description&#34;: &#34;All 16 MBTI personality types available for search filtering&#34;,
+    }</code></pre>
+</details>
+<div class="desc"><p>Get all available MBTI types for search filtering</p></div>
+</dd>
+<dt id="app.api.search.get_popular_searches"><code class="name flex">
+<span>def <span class="ident">get_popular_searches</span></span>(<span>limit: int = Query(10), db: sqlalchemy.orm.session.Session = Depends(get_db))</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@router.get(&#34;/popular-searches&#34;)
+def get_popular_searches(
+    limit: int = Query(
+        10, ge=1, le=50, description=&#34;Number of popular searches to return&#34;
+    ),
+    db: Session = Depends(get_db),
+):
+    &#34;&#34;&#34;
+    Get popular search terms and trends
+
+    - **limit**: Number of popular searches to return (max 50)
+
+    Note: This endpoint can be enhanced in the future to track actual search queries
+    &#34;&#34;&#34;
+    # For now, return sample popular searches based on existing data
+    # In the future, this could be enhanced with actual search query tracking
+
+    search_service = SearchService(db)
+    analytics = search_service.get_search_analytics()
+
+    # Generate popular searches based on popular tags and MBTI types
+    popular_searches = []
+
+    # Add popular tags as search suggestions
+    for tag_data in analytics[&#34;popular_tags&#34;][: limit // 2]:
+        popular_searches.append(
+            {&#34;term&#34;: tag_data[&#34;tag&#34;], &#34;type&#34;: &#34;tag&#34;, &#34;count&#34;: tag_data[&#34;count&#34;]}
+        )
+
+    # Add popular MBTI types as search suggestions
+    for mbti_data in analytics[&#34;popular_mbti_types&#34;][: limit // 2]:
+        popular_searches.append(
+            {&#34;term&#34;: mbti_data[&#34;type&#34;], &#34;type&#34;: &#34;mbti&#34;, &#34;count&#34;: mbti_data[&#34;count&#34;]}
+        )
+
+    # Sort by count and limit
+    popular_searches.sort(key=lambda x: x[&#34;count&#34;], reverse=True)
+    popular_searches = popular_searches[:limit]
+
+    return {
+        &#34;popular_searches&#34;: popular_searches,
+        &#34;total_searches&#34;: len(popular_searches),
+        &#34;note&#34;: &#34;Based on tag usage and MBTI vote counts. Future versions will track actual search queries.&#34;,
+    }</code></pre>
+</details>
+<div class="desc"><p>Get popular search terms and trends</p>
+<ul>
+<li><strong>limit</strong>: Number of popular searches to return (max 50)</li>
+</ul>
+<p>Note: This endpoint can be enhanced in the future to track actual search queries</p></div>
+</dd>
+<dt id="app.api.search.get_search_analytics"><code class="name flex">
+<span>def <span class="ident">get_search_analytics</span></span>(<span>db: sqlalchemy.orm.session.Session = Depends(get_db))</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@router.get(&#34;/analytics&#34;)
+def get_search_analytics(db: Session = Depends(get_db)):
+    &#34;&#34;&#34;
+    Get search analytics and statistics
+
+    Returns:
+    - Total celebrities, tags, and votes
+    - Popular tags with usage counts
+    - Popular MBTI types with vote counts
+    &#34;&#34;&#34;
+    search_service = SearchService(db)
+
+    try:
+        analytics = search_service.get_search_analytics()
+
+        return {
+            &#34;statistics&#34;: analytics,
+            &#34;search_capabilities&#34;: {
+                &#34;search_types&#34;: [&#34;all&#34;, &#34;name&#34;, &#34;description&#34;, &#34;tag&#34;, &#34;mbti&#34;],
+                &#34;filters&#34;: [&#34;mbti_type&#34;, &#34;tag_filter&#34;, &#34;popularity_filter&#34;],
+                &#34;relevance_scoring&#34;: True,
+                &#34;autocomplete&#34;: True,
+                &#34;analytics&#34;: True,
+            },
+        }
+
+    except Exception as e:
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail=f&#34;Error getting analytics: {str(e)}&#34;,
+        )</code></pre>
+</details>
+<div class="desc"><p>Get search analytics and statistics</p>
+<p>Returns:
+- Total celebrities, tags, and votes
+- Popular tags with usage counts
+- Popular MBTI types with vote counts</p></div>
+</dd>
+<dt id="app.api.search.get_search_suggestions"><code class="name flex">
+<span>def <span class="ident">get_search_suggestions</span></span>(<span>q: str = Query(PydanticUndefined),<br>limit: int = Query(10),<br>db: sqlalchemy.orm.session.Session = Depends(get_db))</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@router.get(&#34;/suggestions&#34;)
+def get_search_suggestions(
+    q: str = Query(
+        ..., min_length=2, description=&#34;Partial search query (minimum 2 characters)&#34;
+    ),
+    limit: int = Query(10, ge=1, le=20, description=&#34;Number of suggestions to return&#34;),
+    db: Session = Depends(get_db),
+):
+    &#34;&#34;&#34;
+    Get search suggestions for autocomplete
+
+    - **q**: Partial search query (minimum 2 characters)
+    - **limit**: Number of suggestions to return (max 20)
+
+    Returns suggestions from:
+    - Celebrity names (Chinese and English)
+    - Tag names
+    &#34;&#34;&#34;
+    search_service = SearchService(db)
+
+    try:
+        suggestions = search_service.get_search_suggestions(q, limit)
+
+        return {
+            &#34;query&#34;: q,
+            &#34;suggestions&#34;: suggestions,
+            &#34;total_suggestions&#34;: len(suggestions),
+        }
+
+    except Exception as e:
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail=f&#34;Error getting suggestions: {str(e)}&#34;,
+        )</code></pre>
+</details>
+<div class="desc"><p>Get search suggestions for autocomplete</p>
+<ul>
+<li><strong>q</strong>: Partial search query (minimum 2 characters)</li>
+<li><strong>limit</strong>: Number of suggestions to return (max 20)</li>
+</ul>
+<p>Returns suggestions from:
+- Celebrity names (Chinese and English)
+- Tag names</p></div>
+</dd>
+<dt id="app.api.search.search_celebrities"><code class="name flex">
+<span>def <span class="ident">search_celebrities</span></span>(<span>q: str = Query(PydanticUndefined),<br>search_type: str = Query(all),<br>mbti_type: str | None = Query(None),<br>tag_filter: str | None = Query(None),<br>popularity_filter: str | None = Query(None),<br>skip: int = Query(0),<br>limit: int = Query(50),<br>db: sqlalchemy.orm.session.Session = Depends(get_db))</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@router.get(&#34;/&#34;)
+def search_celebrities(
+    q: str = Query(..., description=&#34;Search query&#34;),
+    search_type: str = Query(
+        &#34;all&#34;, description=&#34;Search type: all, name, description, tag, mbti&#34;
+    ),
+    mbti_type: Optional[str] = Query(None, description=&#34;Filter by MBTI type&#34;),
+    tag_filter: Optional[str] = Query(None, description=&#34;Filter by tag&#34;),
+    popularity_filter: Optional[str] = Query(
+        None, description=&#34;Filter by popularity: popular, recent, all&#34;
+    ),
+    skip: int = Query(0, ge=0, description=&#34;Number of records to skip&#34;),
+    limit: int = Query(50, ge=1, le=100, description=&#34;Number of records to return&#34;),
+    db: Session = Depends(get_db),
+):
+    &#34;&#34;&#34;
+    Unified search endpoint with hybrid search and relevance scoring
+
+    - **q**: Search query (required)
+    - **search_type**: Type of search (all, name, description, tag, mbti)
+    - **mbti_type**: Filter by MBTI type (optional)
+    - **tag_filter**: Filter by tag (optional)
+    - **popularity_filter**: Filter by popularity (popular, recent, all)
+    - **skip**: Number of records to skip (for pagination)
+    - **limit**: Number of records to return (max 100)
+
+    **Search Types:**
+    - `all`: Hybrid search across all fields with relevance scoring
+    - `name`: Search by celebrity name only
+    - `description`: Search by description only
+    - `tag`: Search by tags only
+    - `mbti`: Search by MBTI type votes
+
+    **Relevance Scoring:**
+    - Exact name match: 100 points
+    - Name contains: 80 points
+    - Description contains: 60 points
+    - Tag matches: 40 points
+    &#34;&#34;&#34;
+    search_service = SearchService(db)
+
+    # Validate search type
+    valid_search_types = [&#34;all&#34;, &#34;name&#34;, &#34;description&#34;, &#34;tag&#34;, &#34;mbti&#34;]
+    if search_type not in valid_search_types:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail=f&#34;Invalid search_type. Must be one of: {valid_search_types}&#34;,
+        )
+
+    # Validate popularity filter
+    if popularity_filter and popularity_filter not in [&#34;popular&#34;, &#34;recent&#34;, &#34;all&#34;]:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail=&#34;Invalid popularity_filter. Must be one of: popular, recent, all&#34;,
+        )
+
+    # Validate MBTI type if provided
+    if mbti_type:
+        valid_mbti_types = [
+            &#34;INTJ&#34;,
+            &#34;INTP&#34;,
+            &#34;ENTJ&#34;,
+            &#34;ENTP&#34;,
+            &#34;INFJ&#34;,
+            &#34;INFP&#34;,
+            &#34;ENFJ&#34;,
+            &#34;ENFP&#34;,
+            &#34;ISTJ&#34;,
+            &#34;ISFJ&#34;,
+            &#34;ESTJ&#34;,
+            &#34;ESFJ&#34;,
+            &#34;ISTP&#34;,
+            &#34;ISFP&#34;,
+            &#34;ESTP&#34;,
+            &#34;ESFP&#34;,
+        ]
+        if mbti_type.upper() not in valid_mbti_types:
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail=f&#34;Invalid MBTI type. Must be one of: {valid_mbti_types}&#34;,
+            )
+
+    try:
+        results = search_service.search_celebrities(
+            query=q,
+            search_type=search_type,
+            mbti_type=mbti_type,
+            tag_filter=tag_filter,
+            popularity_filter=popularity_filter,
+            skip=skip,
+            limit=limit,
+        )
+
+        return {
+            &#34;query&#34;: q,
+            &#34;search_type&#34;: search_type,
+            &#34;total_results&#34;: len(results),
+            &#34;results&#34;: results,
+            &#34;pagination&#34;: {
+                &#34;skip&#34;: skip,
+                &#34;limit&#34;: limit,
+                &#34;has_more&#34;: len(results) == limit,
+            },
+        }
+
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail=f&#34;Search error: {str(e)}&#34;,
+        )</code></pre>
+</details>
+<div class="desc"><p>Unified search endpoint with hybrid search and relevance scoring</p>
+<ul>
+<li><strong>q</strong>: Search query (required)</li>
+<li><strong>search_type</strong>: Type of search (all, name, description, tag, mbti)</li>
+<li><strong>mbti_type</strong>: Filter by MBTI type (optional)</li>
+<li><strong>tag_filter</strong>: Filter by tag (optional)</li>
+<li><strong>popularity_filter</strong>: Filter by popularity (popular, recent, all)</li>
+<li><strong>skip</strong>: Number of records to skip (for pagination)</li>
+<li><strong>limit</strong>: Number of records to return (max 100)</li>
+</ul>
+<p><strong>Search Types:</strong>
+- <code>all</code>: Hybrid search across all fields with relevance scoring
+- <code>name</code>: Search by celebrity name only
+- <code>description</code>: Search by description only
+- <code>tag</code>: Search by tags only
+- <code>mbti</code>: Search by MBTI type votes</p>
+<p><strong>Relevance Scoring:</strong>
+- Exact name match: 100 points
+- Name contains: 80 points
+- Description contains: 60 points
+- Tag matches: 40 points</p></div>
+</dd>
+</dl>
+</section>
+<section>
+</section>
+</article>
+<nav id="sidebar">
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="app.api" href="index.html">app.api</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="app.api.search.get_mbti_types" href="#app.api.search.get_mbti_types">get_mbti_types</a></code></li>
+<li><code><a title="app.api.search.get_popular_searches" href="#app.api.search.get_popular_searches">get_popular_searches</a></code></li>
+<li><code><a title="app.api.search.get_search_analytics" href="#app.api.search.get_search_analytics">get_search_analytics</a></code></li>
+<li><code><a title="app.api.search.get_search_suggestions" href="#app.api.search.get_search_suggestions">get_search_suggestions</a></code></li>
+<li><code><a title="app.api.search.search_celebrities" href="#app.api.search.search_celebrities">search_celebrities</a></code></li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.11.6</a>.</p>
+</footer>
+</body>
+</html>

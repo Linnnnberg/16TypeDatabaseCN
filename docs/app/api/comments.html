@@ -1,0 +1,536 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<meta name="generator" content="pdoc3 0.11.6">
+<title>app.api.comments API documentation</title>
+<meta name="description" content="">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/sanitize.min.css" integrity="sha512-y1dtMcuvtTMJc1yPgEqF0ZjQbhnc/bFhyvIyVNb9Zk5mIGtqVaAB1Ttl28su8AvFMOY0EwRbAe+HCLqj6W7/KA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/typography.min.css" integrity="sha512-Y1DYSb995BAfxobCkKepB1BqJJTPrOp3zPL74AWFugHHmmdcvO+C48WLrUOlhGMc0QG7AE3f7gmvvcrmX2fDoA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:1.5em;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:2em 0 .50em 0}h3{font-size:1.4em;margin:1.6em 0 .7em 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .2s ease-in-out}a:visited{color:#503}a:hover{color:#b62}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900;font-weight:bold}pre code{font-size:.8em;line-height:1.4em;padding:1em;display:block}code{background:#f3f3f3;font-family:"DejaVu Sans Mono",monospace;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source > summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible;min-width:max-content}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em 1em;margin:1em 0}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul ul{padding-left:1em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" integrity="sha512-D9gUyxqja7hBtkWpPWGt9wfbfaMGVt9gnyCvYa+jojwwPHLCzUm5i8rpk7vD7wNee9bA35eYIjobYPaQuKS1MQ==" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => {
+hljs.configure({languages: ['bash', 'css', 'diff', 'graphql', 'ini', 'javascript', 'json', 'plaintext', 'python', 'python-repl', 'rust', 'shell', 'sql', 'typescript', 'xml', 'yaml']});
+hljs.highlightAll();
+/* Collapse source docstrings */
+setTimeout(() => {
+[...document.querySelectorAll('.hljs.language-python > .hljs-string')]
+.filter(el => el.innerHTML.length > 200 && ['"""', "'''"].includes(el.innerHTML.substring(0, 3)))
+.forEach(el => {
+let d = document.createElement('details');
+d.classList.add('hljs-string');
+d.innerHTML = '<summary>"""</summary>' + el.innerHTML.substring(3);
+el.replaceWith(d);
+});
+}, 100);
+})</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>app.api.comments</code></h1>
+</header>
+<section id="section-intro">
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="app.api.comments.create_comment"><code class="name flex">
+<span>def <span class="ident">create_comment</span></span>(<span>comment_data: <a title="app.schemas.comment.CommentCreate" href="../schemas/comment.html#app.schemas.comment.CommentCreate">CommentCreate</a>,<br>current_user: <a title="app.database.models.User" href="../database/models.html#app.database.models.User">User</a> = Depends(get_current_user),<br>db: sqlalchemy.orm.session.Session = Depends(get_db))</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@router.post(&#34;/&#34;, response_model=CommentResponse, status_code=status.HTTP_201_CREATED)
+def create_comment(
+    comment_data: CommentCreate,
+    current_user: User = Depends(get_current_user),
+    db: Session = Depends(get_db),
+):
+    &#34;&#34;&#34;
+    Create a new comment for a celebrity
+
+    - **celebrity_id**: ID of the celebrity to comment on (required)
+    - **content**: Comment content (required, 1-1000 characters)
+    - **parent_id**: ID of parent comment for replies (optional)
+
+    Note:
+    - Comments can be up to 3 levels deep (replies to replies)
+    - Parent comment must belong to the same celebrity
+    &#34;&#34;&#34;
+    comment_service = CommentService(db)
+    comment = comment_service.create_comment(current_user.id, comment_data)
+    return CommentResponse.model_validate(comment)</code></pre>
+</details>
+<div class="desc"><p>Create a new comment for a celebrity</p>
+<ul>
+<li><strong>celebrity_id</strong>: ID of the celebrity to comment on (required)</li>
+<li><strong>content</strong>: Comment content (required, 1-1000 characters)</li>
+<li><strong>parent_id</strong>: ID of parent comment for replies (optional)</li>
+</ul>
+<p>Note:
+- Comments can be up to 3 levels deep (replies to replies)
+- Parent comment must belong to the same celebrity</p></div>
+</dd>
+<dt id="app.api.comments.delete_comment"><code class="name flex">
+<span>def <span class="ident">delete_comment</span></span>(<span>comment_id: str,<br>current_user: <a title="app.database.models.User" href="../database/models.html#app.database.models.User">User</a> = Depends(get_current_user),<br>db: sqlalchemy.orm.session.Session = Depends(get_db))</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@router.delete(&#34;/{comment_id}&#34;, status_code=status.HTTP_204_NO_CONTENT)
+def delete_comment(
+    comment_id: str,
+    current_user: User = Depends(get_current_user),
+    db: Session = Depends(get_db),
+):
+    &#34;&#34;&#34;
+    Delete a comment (only by the user who created it)
+
+    - **comment_id**: Unique identifier of the comment to delete
+
+    Note: Cannot delete comments that have replies
+    &#34;&#34;&#34;
+    comment_service = CommentService(db)
+    comment_service.delete_comment(comment_id, current_user.id)
+    return None</code></pre>
+</details>
+<div class="desc"><p>Delete a comment (only by the user who created it)</p>
+<ul>
+<li><strong>comment_id</strong>: Unique identifier of the comment to delete</li>
+</ul>
+<p>Note: Cannot delete comments that have replies</p></div>
+</dd>
+<dt id="app.api.comments.get_celebrity_comment_statistics"><code class="name flex">
+<span>def <span class="ident">get_celebrity_comment_statistics</span></span>(<span>celebrity_id: str, db: sqlalchemy.orm.session.Session = Depends(get_db))</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@router.get(&#34;/statistics/celebrity/{celebrity_id}&#34;)
+def get_celebrity_comment_statistics(celebrity_id: str, db: Session = Depends(get_db)):
+    &#34;&#34;&#34;
+    Get comment statistics for a celebrity
+
+    - **celebrity_id**: ID of the celebrity
+
+    Returns:
+    - Total comments count
+    - Top-level comments count
+    - Reply comments count
+    - Most active commenters
+    &#34;&#34;&#34;
+    comment_service = CommentService(db)
+    return comment_service.get_comment_statistics(celebrity_id)</code></pre>
+</details>
+<div class="desc"><p>Get comment statistics for a celebrity</p>
+<ul>
+<li><strong>celebrity_id</strong>: ID of the celebrity</li>
+</ul>
+<p>Returns:
+- Total comments count
+- Top-level comments count
+- Reply comments count
+- Most active commenters</p></div>
+</dd>
+<dt id="app.api.comments.get_celebrity_comments"><code class="name flex">
+<span>def <span class="ident">get_celebrity_comments</span></span>(<span>celebrity_id: str,<br>skip: int = Query(0),<br>limit: int = Query(100),<br>include_replies: bool = Query(True),<br>db: sqlalchemy.orm.session.Session = Depends(get_db))</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@router.get(&#34;/celebrity/{celebrity_id}&#34;, response_model=List[CommentResponse])
+def get_celebrity_comments(
+    celebrity_id: str,
+    skip: int = Query(0, ge=0, description=&#34;Number of records to skip&#34;),
+    limit: int = Query(100, ge=1, le=1000, description=&#34;Number of records to return&#34;),
+    include_replies: bool = Query(
+        True, description=&#34;Whether to include reply comments&#34;
+    ),
+    db: Session = Depends(get_db),
+):
+    &#34;&#34;&#34;
+    Get all comments for a specific celebrity
+
+    - **celebrity_id**: ID of the celebrity
+    - **skip**: Number of records to skip (for pagination)
+    - **limit**: Number of records to return (max 1000)
+    - **include_replies**: Whether to include reply comments
+    &#34;&#34;&#34;
+    comment_service = CommentService(db)
+    comments = comment_service.get_celebrity_comments(
+        celebrity_id, skip=skip, limit=limit, include_replies=include_replies
+    )
+    return [CommentResponse.model_validate(comment) for comment in comments]</code></pre>
+</details>
+<div class="desc"><p>Get all comments for a specific celebrity</p>
+<ul>
+<li><strong>celebrity_id</strong>: ID of the celebrity</li>
+<li><strong>skip</strong>: Number of records to skip (for pagination)</li>
+<li><strong>limit</strong>: Number of records to return (max 1000)</li>
+<li><strong>include_replies</strong>: Whether to include reply comments</li>
+</ul></div>
+</dd>
+<dt id="app.api.comments.get_comment"><code class="name flex">
+<span>def <span class="ident">get_comment</span></span>(<span>comment_id: str, db: sqlalchemy.orm.session.Session = Depends(get_db))</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@router.get(&#34;/{comment_id}&#34;, response_model=CommentResponse)
+def get_comment(comment_id: str, db: Session = Depends(get_db)):
+    &#34;&#34;&#34;
+    Get a specific comment by ID
+
+    - **comment_id**: Unique identifier of the comment
+    &#34;&#34;&#34;
+    comment_service = CommentService(db)
+    comment = comment_service.get_comment_by_id(comment_id)
+    if not comment:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND, detail=&#34;Comment not found&#34;
+        )
+    return CommentResponse.model_validate(comment)</code></pre>
+</details>
+<div class="desc"><p>Get a specific comment by ID</p>
+<ul>
+<li><strong>comment_id</strong>: Unique identifier of the comment</li>
+</ul></div>
+</dd>
+<dt id="app.api.comments.get_comment_replies"><code class="name flex">
+<span>def <span class="ident">get_comment_replies</span></span>(<span>comment_id: str,<br>skip: int = Query(0),<br>limit: int = Query(50),<br>db: sqlalchemy.orm.session.Session = Depends(get_db))</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@router.get(&#34;/{comment_id}/replies&#34;, response_model=List[CommentResponse])
+def get_comment_replies(
+    comment_id: str,
+    skip: int = Query(0, ge=0, description=&#34;Number of records to skip&#34;),
+    limit: int = Query(50, ge=1, le=200, description=&#34;Number of records to return&#34;),
+    db: Session = Depends(get_db),
+):
+    &#34;&#34;&#34;
+    Get all replies to a specific comment
+
+    - **comment_id**: ID of the parent comment
+    - **skip**: Number of records to skip (for pagination)
+    - **limit**: Number of records to return (max 200)
+    &#34;&#34;&#34;
+    comment_service = CommentService(db)
+    replies = comment_service.get_comment_replies(comment_id, skip=skip, limit=limit)
+    return [CommentResponse.model_validate(reply) for reply in replies]</code></pre>
+</details>
+<div class="desc"><p>Get all replies to a specific comment</p>
+<ul>
+<li><strong>comment_id</strong>: ID of the parent comment</li>
+<li><strong>skip</strong>: Number of records to skip (for pagination)</li>
+<li><strong>limit</strong>: Number of records to return (max 200)</li>
+</ul></div>
+</dd>
+<dt id="app.api.comments.get_comments"><code class="name flex">
+<span>def <span class="ident">get_comments</span></span>(<span>skip: int = Query(0),<br>limit: int = Query(100),<br>celebrity_id: str | None = Query(None),<br>user_id: str | None = Query(None),<br>include_replies: bool = Query(True),<br>db: sqlalchemy.orm.session.Session = Depends(get_db))</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@router.get(&#34;/&#34;, response_model=List[CommentResponse])
+def get_comments(
+    skip: int = Query(0, ge=0, description=&#34;Number of records to skip&#34;),
+    limit: int = Query(100, ge=1, le=1000, description=&#34;Number of records to return&#34;),
+    celebrity_id: Optional[str] = Query(None, description=&#34;Filter by celebrity ID&#34;),
+    user_id: Optional[str] = Query(None, description=&#34;Filter by user ID&#34;),
+    include_replies: bool = Query(
+        True, description=&#34;Whether to include reply comments&#34;
+    ),
+    db: Session = Depends(get_db),
+):
+    &#34;&#34;&#34;
+    Get all comments with optional filters
+
+    - **skip**: Number of records to skip (for pagination)
+    - **limit**: Number of records to return (max 1000)
+    - **celebrity_id**: Filter comments by celebrity ID
+    - **user_id**: Filter comments by user ID
+    - **include_replies**: Whether to include reply comments
+    &#34;&#34;&#34;
+    comment_service = CommentService(db)
+
+    if celebrity_id:
+        comments = comment_service.get_celebrity_comments(
+            celebrity_id, skip=skip, limit=limit, include_replies=include_replies
+        )
+    elif user_id:
+        comments = comment_service.get_user_comments(user_id, skip=skip, limit=limit)
+    else:
+        # Get all comments (you might want to limit this in production)
+        comments = comment_service.get_celebrity_comments(
+            &#34;&#34;, skip=skip, limit=limit, include_replies=include_replies
+        )
+
+    return [CommentResponse.model_validate(comment) for comment in comments]</code></pre>
+</details>
+<div class="desc"><p>Get all comments with optional filters</p>
+<ul>
+<li><strong>skip</strong>: Number of records to skip (for pagination)</li>
+<li><strong>limit</strong>: Number of records to return (max 1000)</li>
+<li><strong>celebrity_id</strong>: Filter comments by celebrity ID</li>
+<li><strong>user_id</strong>: Filter comments by user ID</li>
+<li><strong>include_replies</strong>: Whether to include reply comments</li>
+</ul></div>
+</dd>
+<dt id="app.api.comments.get_current_user"><code class="name flex">
+<span>def <span class="ident">get_current_user</span></span>(<span>credentials: fastapi.security.http.HTTPAuthorizationCredentials = Depends(HTTPBearer),<br>db: sqlalchemy.orm.session.Session = Depends(get_db)) ‑> <a title="app.database.models.User" href="../database/models.html#app.database.models.User">User</a></span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_current_user(
+    credentials: HTTPAuthorizationCredentials = Depends(security),
+    db: Session = Depends(get_db),
+) -&gt; User:
+    &#34;&#34;&#34;Dependency to get current authenticated user&#34;&#34;&#34;
+    auth_service = AuthService(db)
+    return auth_service.get_current_user(credentials.credentials)</code></pre>
+</details>
+<div class="desc"><p>Dependency to get current authenticated user</p></div>
+</dd>
+<dt id="app.api.comments.get_my_comment_statistics"><code class="name flex">
+<span>def <span class="ident">get_my_comment_statistics</span></span>(<span>current_user: <a title="app.database.models.User" href="../database/models.html#app.database.models.User">User</a> = Depends(get_current_user),<br>db: sqlalchemy.orm.session.Session = Depends(get_db))</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@router.get(&#34;/statistics/my-stats&#34;)
+def get_my_comment_statistics(
+    current_user: User = Depends(get_current_user), db: Session = Depends(get_db)
+):
+    &#34;&#34;&#34;
+    Get current user&#39;s comment statistics
+
+    Returns:
+    - Total comments count
+    - Top-level comments count
+    - Reply comments count
+    - Recent comments count (last 7 days)
+    &#34;&#34;&#34;
+    comment_service = CommentService(db)
+    return comment_service.get_user_comment_statistics(current_user.id)</code></pre>
+</details>
+<div class="desc"><p>Get current user's comment statistics</p>
+<p>Returns:
+- Total comments count
+- Top-level comments count
+- Reply comments count
+- Recent comments count (last 7 days)</p></div>
+</dd>
+<dt id="app.api.comments.get_my_comments"><code class="name flex">
+<span>def <span class="ident">get_my_comments</span></span>(<span>skip: int = Query(0),<br>limit: int = Query(100),<br>current_user: <a title="app.database.models.User" href="../database/models.html#app.database.models.User">User</a> = Depends(get_current_user),<br>db: sqlalchemy.orm.session.Session = Depends(get_db))</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@router.get(&#34;/my-comments&#34;, response_model=List[CommentResponse])
+def get_my_comments(
+    skip: int = Query(0, ge=0, description=&#34;Number of records to skip&#34;),
+    limit: int = Query(100, ge=1, le=1000, description=&#34;Number of records to return&#34;),
+    current_user: User = Depends(get_current_user),
+    db: Session = Depends(get_db),
+):
+    &#34;&#34;&#34;
+    Get current user&#39;s comments
+
+    - **skip**: Number of records to skip (for pagination)
+    - **limit**: Number of records to return (max 1000)
+    &#34;&#34;&#34;
+    comment_service = CommentService(db)
+    comments = comment_service.get_user_comments(
+        current_user.id, skip=skip, limit=limit
+    )
+    return [CommentResponse.model_validate(comment) for comment in comments]</code></pre>
+</details>
+<div class="desc"><p>Get current user's comments</p>
+<ul>
+<li><strong>skip</strong>: Number of records to skip (for pagination)</li>
+<li><strong>limit</strong>: Number of records to return (max 1000)</li>
+</ul></div>
+</dd>
+<dt id="app.api.comments.get_user_comment_statistics"><code class="name flex">
+<span>def <span class="ident">get_user_comment_statistics</span></span>(<span>user_id: str, db: sqlalchemy.orm.session.Session = Depends(get_db))</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@router.get(&#34;/statistics/user/{user_id}&#34;)
+def get_user_comment_statistics(user_id: str, db: Session = Depends(get_db)):
+    &#34;&#34;&#34;
+    Get comment statistics for a specific user
+
+    - **user_id**: ID of the user
+
+    Returns:
+    - Total comments count
+    - Top-level comments count
+    - Reply comments count
+    - Recent comments count (last 7 days)
+    &#34;&#34;&#34;
+    comment_service = CommentService(db)
+    return comment_service.get_user_comment_statistics(user_id)</code></pre>
+</details>
+<div class="desc"><p>Get comment statistics for a specific user</p>
+<ul>
+<li><strong>user_id</strong>: ID of the user</li>
+</ul>
+<p>Returns:
+- Total comments count
+- Top-level comments count
+- Reply comments count
+- Recent comments count (last 7 days)</p></div>
+</dd>
+<dt id="app.api.comments.get_user_comments"><code class="name flex">
+<span>def <span class="ident">get_user_comments</span></span>(<span>user_id: str,<br>skip: int = Query(0),<br>limit: int = Query(100),<br>db: sqlalchemy.orm.session.Session = Depends(get_db))</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@router.get(&#34;/user/{user_id}&#34;, response_model=List[CommentResponse])
+def get_user_comments(
+    user_id: str,
+    skip: int = Query(0, ge=0, description=&#34;Number of records to skip&#34;),
+    limit: int = Query(100, ge=1, le=1000, description=&#34;Number of records to return&#34;),
+    db: Session = Depends(get_db),
+):
+    &#34;&#34;&#34;
+    Get comments by a specific user
+
+    - **user_id**: ID of the user
+    - **skip**: Number of records to skip (for pagination)
+    - **limit**: Number of records to return (max 1000)
+    &#34;&#34;&#34;
+    comment_service = CommentService(db)
+    comments = comment_service.get_user_comments(user_id, skip=skip, limit=limit)
+    return [CommentResponse.model_validate(comment) for comment in comments]</code></pre>
+</details>
+<div class="desc"><p>Get comments by a specific user</p>
+<ul>
+<li><strong>user_id</strong>: ID of the user</li>
+<li><strong>skip</strong>: Number of records to skip (for pagination)</li>
+<li><strong>limit</strong>: Number of records to return (max 1000)</li>
+</ul></div>
+</dd>
+<dt id="app.api.comments.update_comment"><code class="name flex">
+<span>def <span class="ident">update_comment</span></span>(<span>comment_id: str,<br>content: str,<br>current_user: <a title="app.database.models.User" href="../database/models.html#app.database.models.User">User</a> = Depends(get_current_user),<br>db: sqlalchemy.orm.session.Session = Depends(get_db))</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@router.put(&#34;/{comment_id}&#34;, response_model=CommentResponse)
+def update_comment(
+    comment_id: str,
+    content: str,
+    current_user: User = Depends(get_current_user),
+    db: Session = Depends(get_db),
+):
+    &#34;&#34;&#34;
+    Update a comment (only by the user who created it)
+
+    - **comment_id**: Unique identifier of the comment to update
+    - **content**: New comment content (1-1000 characters)
+    &#34;&#34;&#34;
+    if not content or len(content.strip()) == 0:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail=&#34;Comment content cannot be empty&#34;,
+        )
+
+    if len(content) &gt; 1000:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail=&#34;Comment content cannot exceed 1000 characters&#34;,
+        )
+
+    comment_service = CommentService(db)
+    comment = comment_service.update_comment(comment_id, current_user.id, content)
+    return CommentResponse.model_validate(comment)</code></pre>
+</details>
+<div class="desc"><p>Update a comment (only by the user who created it)</p>
+<ul>
+<li><strong>comment_id</strong>: Unique identifier of the comment to update</li>
+<li><strong>content</strong>: New comment content (1-1000 characters)</li>
+</ul></div>
+</dd>
+</dl>
+</section>
+<section>
+</section>
+</article>
+<nav id="sidebar">
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="app.api" href="index.html">app.api</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="app.api.comments.create_comment" href="#app.api.comments.create_comment">create_comment</a></code></li>
+<li><code><a title="app.api.comments.delete_comment" href="#app.api.comments.delete_comment">delete_comment</a></code></li>
+<li><code><a title="app.api.comments.get_celebrity_comment_statistics" href="#app.api.comments.get_celebrity_comment_statistics">get_celebrity_comment_statistics</a></code></li>
+<li><code><a title="app.api.comments.get_celebrity_comments" href="#app.api.comments.get_celebrity_comments">get_celebrity_comments</a></code></li>
+<li><code><a title="app.api.comments.get_comment" href="#app.api.comments.get_comment">get_comment</a></code></li>
+<li><code><a title="app.api.comments.get_comment_replies" href="#app.api.comments.get_comment_replies">get_comment_replies</a></code></li>
+<li><code><a title="app.api.comments.get_comments" href="#app.api.comments.get_comments">get_comments</a></code></li>
+<li><code><a title="app.api.comments.get_current_user" href="#app.api.comments.get_current_user">get_current_user</a></code></li>
+<li><code><a title="app.api.comments.get_my_comment_statistics" href="#app.api.comments.get_my_comment_statistics">get_my_comment_statistics</a></code></li>
+<li><code><a title="app.api.comments.get_my_comments" href="#app.api.comments.get_my_comments">get_my_comments</a></code></li>
+<li><code><a title="app.api.comments.get_user_comment_statistics" href="#app.api.comments.get_user_comment_statistics">get_user_comment_statistics</a></code></li>
+<li><code><a title="app.api.comments.get_user_comments" href="#app.api.comments.get_user_comments">get_user_comments</a></code></li>
+<li><code><a title="app.api.comments.update_comment" href="#app.api.comments.update_comment">update_comment</a></code></li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.11.6</a>.</p>
+</footer>
+</body>
+</html>

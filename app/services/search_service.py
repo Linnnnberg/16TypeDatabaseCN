@@ -1,8 +1,8 @@
 from typing import List, Optional, Dict, Any
 from sqlalchemy.orm import Session
-from sqlalchemy import or_, and_, func, desc, case, text
+from sqlalchemy import or_, func, desc, case
 from fastapi import HTTPException, status
-from app.database.models import Celebrity, Tag, CelebrityTag, Vote, MBTIType
+from app.database.models import Celebrity, Tag, CelebrityTag, Vote
 from app.schemas.celebrity import CelebrityResponse
 
 

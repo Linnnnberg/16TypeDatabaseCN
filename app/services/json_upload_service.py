@@ -4,7 +4,7 @@ JSON Upload Service for automated celebrity data import
 """
 
 import json
-import os
+
 import shutil
 from datetime import datetime
 from typing import List, Dict, Any, Optional
@@ -90,7 +90,8 @@ class JSONUploadService:
             for i, celeb in enumerate(upload_data.celebrities):
                 if celeb.mbti not in valid_mbti_types:
                     validation_errors.append(
-                        f"Celebrity {i+1} ({celeb.name}): Invalid MBTI type '{celeb.mbti}'"
+                        f"Celebrity {i+1} ({celeb.name}): "
+                        f"Invalid MBTI type '{celeb.mbti}'"
                     )
 
                 # Check for duplicate names
@@ -263,7 +264,8 @@ class JSONUploadService:
                         f.write(f"File: {file_path.name}\n")
                         f.write(f"Timestamp: {datetime.now().isoformat()}\n")
                         f.write(
-                            f"Imported: {process_result['imported_count']} celebrities\n"
+                            f"Imported: {process_result['imported_count']} "
+                            f"celebrities\n"
                         )
 
                     results["successful_imports"] += 1

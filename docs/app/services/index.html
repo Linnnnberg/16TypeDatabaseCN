@@ -1,0 +1,3454 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<meta name="generator" content="pdoc3 0.11.6">
+<title>app.services API documentation</title>
+<meta name="description" content="">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/sanitize.min.css" integrity="sha512-y1dtMcuvtTMJc1yPgEqF0ZjQbhnc/bFhyvIyVNb9Zk5mIGtqVaAB1Ttl28su8AvFMOY0EwRbAe+HCLqj6W7/KA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/typography.min.css" integrity="sha512-Y1DYSb995BAfxobCkKepB1BqJJTPrOp3zPL74AWFugHHmmdcvO+C48WLrUOlhGMc0QG7AE3f7gmvvcrmX2fDoA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:1.5em;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:2em 0 .50em 0}h3{font-size:1.4em;margin:1.6em 0 .7em 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .2s ease-in-out}a:visited{color:#503}a:hover{color:#b62}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900;font-weight:bold}pre code{font-size:.8em;line-height:1.4em;padding:1em;display:block}code{background:#f3f3f3;font-family:"DejaVu Sans Mono",monospace;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source > summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible;min-width:max-content}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em 1em;margin:1em 0}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul ul{padding-left:1em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" integrity="sha512-D9gUyxqja7hBtkWpPWGt9wfbfaMGVt9gnyCvYa+jojwwPHLCzUm5i8rpk7vD7wNee9bA35eYIjobYPaQuKS1MQ==" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => {
+hljs.configure({languages: ['bash', 'css', 'diff', 'graphql', 'ini', 'javascript', 'json', 'plaintext', 'python', 'python-repl', 'rust', 'shell', 'sql', 'typescript', 'xml', 'yaml']});
+hljs.highlightAll();
+/* Collapse source docstrings */
+setTimeout(() => {
+[...document.querySelectorAll('.hljs.language-python > .hljs-string')]
+.filter(el => el.innerHTML.length > 200 && ['"""', "'''"].includes(el.innerHTML.substring(0, 3)))
+.forEach(el => {
+let d = document.createElement('details');
+d.classList.add('hljs-string');
+d.innerHTML = '<summary>"""</summary>' + el.innerHTML.substring(3);
+el.replaceWith(d);
+});
+}, 100);
+})</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>app.services</code></h1>
+</header>
+<section id="section-intro">
+</section>
+<section>
+<h2 class="section-title" id="header-submodules">Sub-modules</h2>
+<dl>
+<dt><code class="name"><a title="app.services.auth_service" href="auth_service.html">app.services.auth_service</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt><code class="name"><a title="app.services.celebrity_service" href="celebrity_service.html">app.services.celebrity_service</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt><code class="name"><a title="app.services.comment_service" href="comment_service.html">app.services.comment_service</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt><code class="name"><a title="app.services.json_upload_service" href="json_upload_service.html">app.services.json_upload_service</a></code></dt>
+<dd>
+<div class="desc"><p>JSON Upload Service for automated celebrity data import</p></div>
+</dd>
+<dt><code class="name"><a title="app.services.search_service" href="search_service.html">app.services.search_service</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt><code class="name"><a title="app.services.user_service" href="user_service.html">app.services.user_service</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt><code class="name"><a title="app.services.vote_service" href="vote_service.html">app.services.vote_service</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="app.services.AuthService"><code class="flex name class">
+<span>class <span class="ident">AuthService</span></span>
+<span>(</span><span>db: sqlalchemy.orm.session.Session)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class AuthService:
+    def __init__(self, db: Session):
+        self.db = db
+
+    def register_user(self, user_data: UserCreate) -&gt; User:
+        &#34;&#34;&#34;Register a new user&#34;&#34;&#34;
+        # Check if user already exists
+        existing_user = (
+            self.db.query(User).filter(User.email == user_data.email).first()
+        )
+        if existing_user:
+            raise HTTPException(
+                status_code=status.HTTP_409_CONFLICT,
+                detail=&#34;该邮箱已被注册，请使用其他邮箱或直接登录。如果您忘记密码，请联系管理员重置&#34;,
+            )
+
+        # Create new user
+        hashed_password = get_password_hash(user_data.password)
+        user = User(
+            email=user_data.email,
+            hashed_password=hashed_password,
+            name=user_data.name,
+            role=UserRole.CLIENT,
+        )
+
+        self.db.add(user)
+        self.db.commit()
+        self.db.refresh(user)
+
+        return user
+
+    def authenticate_user(self, email: str, password: str) -&gt; Optional[User]:
+        &#34;&#34;&#34;Authenticate user with email and password&#34;&#34;&#34;
+        user = self.db.query(User).filter(User.email == email).first()
+        if not user:
+            return None
+        if not verify_password(password, user.hashed_password):
+            return None
+        return user
+
+    def get_login_error_details(self, email: str, password: str) -&gt; tuple[str, str]:
+        &#34;&#34;&#34;Get specific error details for login failures&#34;&#34;&#34;
+        user = self.db.query(User).filter(User.email == email).first()
+
+        if not user:
+            return (
+                &#34;EMAIL_NOT_FOUND&#34;,
+                &#34;该邮箱地址未注册，请先注册账户或检查邮箱地址是否正确&#34;,
+            )
+
+        if not verify_password(password, user.hashed_password):
+            return (
+                &#34;INVALID_PASSWORD&#34;,
+                &#34;密码错误，请重新输入密码。如果忘记密码，请联系管理员重置&#34;,
+            )
+
+        if not user.is_active:
+            return &#34;ACCOUNT_DISABLED&#34;, &#34;账户已被停用，请联系管理员激活账户&#34;
+
+        return &#34;UNKNOWN_ERROR&#34;, &#34;登录失败，请稍后重试&#34;
+
+    def login_user(self, user_data: UserLogin) -&gt; Token:
+        &#34;&#34;&#34;Login user and return access token&#34;&#34;&#34;
+        user = self.authenticate_user(user_data.email, user_data.password)
+        if not user:
+            error_code, error_message = self.get_login_error_details(
+                user_data.email, user_data.password
+            )
+            raise HTTPException(
+                status_code=status.HTTP_401_UNAUTHORIZED, detail=error_message
+            )
+
+        if not user.is_active:
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail=&#34;账户已被停用，请联系管理员激活账户&#34;,
+            )
+
+        # Create access token (24 hours expiration)
+        access_token_expires = timedelta(hours=24)
+        access_token = create_access_token(
+            data={&#34;sub&#34;: user.id, &#34;email&#34;: user.email},
+            expires_delta=access_token_expires,
+        )
+
+        return Token(
+            access_token=access_token,
+            token_type=&#34;bearer&#34;,
+            expires_in=24 * 60 * 60,  # 24 hours in seconds
+        )
+
+    def get_current_user(self, token: str) -&gt; User:
+        &#34;&#34;&#34;Get current user from token&#34;&#34;&#34;
+        try:
+            payload = verify_token(token)
+            user_id: str = payload.get(&#34;sub&#34;) or &#34;&#34;
+            if user_id is None:
+                raise HTTPException(
+                    status_code=status.HTTP_401_UNAUTHORIZED,
+                    detail=&#34;登录令牌无效，请重新登录&#34;,
+                )
+        except HTTPException:
+            raise HTTPException(
+                status_code=status.HTTP_401_UNAUTHORIZED,
+                detail=&#34;登录令牌已过期或无效，请重新登录&#34;,
+            )
+
+        user = self.db.query(User).filter(User.id == user_id).first()
+        if user is None:
+            raise HTTPException(
+                status_code=status.HTTP_401_UNAUTHORIZED,
+                detail=&#34;用户账户不存在或已被删除，请重新登录&#34;,
+            )
+
+        if not user.is_active:
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail=&#34;账户已被停用，请联系管理员&#34;,
+            )
+
+        return user
+
+    def create_system_user(self, email: str, password: str, name: str) -&gt; User:
+        &#34;&#34;&#34;Create a system user (admin)&#34;&#34;&#34;
+        # Check if user already exists
+        existing_user = self.db.query(User).filter(User.email == email).first()
+        if existing_user:
+            raise HTTPException(
+                status_code=status.HTTP_409_CONFLICT, detail=&#34;该邮箱已被注册&#34;
+            )
+
+        # Create system user
+        hashed_password = get_password_hash(password)
+        user = User(
+            email=email,
+            hashed_password=hashed_password,
+            name=name,
+            role=UserRole.SYSTEM,
+        )
+
+        self.db.add(user)
+        self.db.commit()
+        self.db.refresh(user)
+
+        return user</code></pre>
+</details>
+<div class="desc"></div>
+<h3>Methods</h3>
+<dl>
+<dt id="app.services.AuthService.authenticate_user"><code class="name flex">
+<span>def <span class="ident">authenticate_user</span></span>(<span>self, email: str, password: str) ‑> <a title="app.database.models.User" href="../database/models.html#app.database.models.User">User</a> | None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def authenticate_user(self, email: str, password: str) -&gt; Optional[User]:
+    &#34;&#34;&#34;Authenticate user with email and password&#34;&#34;&#34;
+    user = self.db.query(User).filter(User.email == email).first()
+    if not user:
+        return None
+    if not verify_password(password, user.hashed_password):
+        return None
+    return user</code></pre>
+</details>
+<div class="desc"><p>Authenticate user with email and password</p></div>
+</dd>
+<dt id="app.services.AuthService.create_system_user"><code class="name flex">
+<span>def <span class="ident">create_system_user</span></span>(<span>self, email: str, password: str, name: str) ‑> <a title="app.database.models.User" href="../database/models.html#app.database.models.User">User</a></span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def create_system_user(self, email: str, password: str, name: str) -&gt; User:
+    &#34;&#34;&#34;Create a system user (admin)&#34;&#34;&#34;
+    # Check if user already exists
+    existing_user = self.db.query(User).filter(User.email == email).first()
+    if existing_user:
+        raise HTTPException(
+            status_code=status.HTTP_409_CONFLICT, detail=&#34;该邮箱已被注册&#34;
+        )
+
+    # Create system user
+    hashed_password = get_password_hash(password)
+    user = User(
+        email=email,
+        hashed_password=hashed_password,
+        name=name,
+        role=UserRole.SYSTEM,
+    )
+
+    self.db.add(user)
+    self.db.commit()
+    self.db.refresh(user)
+
+    return user</code></pre>
+</details>
+<div class="desc"><p>Create a system user (admin)</p></div>
+</dd>
+<dt id="app.services.AuthService.get_current_user"><code class="name flex">
+<span>def <span class="ident">get_current_user</span></span>(<span>self, token: str) ‑> <a title="app.database.models.User" href="../database/models.html#app.database.models.User">User</a></span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_current_user(self, token: str) -&gt; User:
+    &#34;&#34;&#34;Get current user from token&#34;&#34;&#34;
+    try:
+        payload = verify_token(token)
+        user_id: str = payload.get(&#34;sub&#34;) or &#34;&#34;
+        if user_id is None:
+            raise HTTPException(
+                status_code=status.HTTP_401_UNAUTHORIZED,
+                detail=&#34;登录令牌无效，请重新登录&#34;,
+            )
+    except HTTPException:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail=&#34;登录令牌已过期或无效，请重新登录&#34;,
+        )
+
+    user = self.db.query(User).filter(User.id == user_id).first()
+    if user is None:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail=&#34;用户账户不存在或已被删除，请重新登录&#34;,
+        )
+
+    if not user.is_active:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail=&#34;账户已被停用，请联系管理员&#34;,
+        )
+
+    return user</code></pre>
+</details>
+<div class="desc"><p>Get current user from token</p></div>
+</dd>
+<dt id="app.services.AuthService.get_login_error_details"><code class="name flex">
+<span>def <span class="ident">get_login_error_details</span></span>(<span>self, email: str, password: str) ‑> tuple[str, str]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_login_error_details(self, email: str, password: str) -&gt; tuple[str, str]:
+    &#34;&#34;&#34;Get specific error details for login failures&#34;&#34;&#34;
+    user = self.db.query(User).filter(User.email == email).first()
+
+    if not user:
+        return (
+            &#34;EMAIL_NOT_FOUND&#34;,
+            &#34;该邮箱地址未注册，请先注册账户或检查邮箱地址是否正确&#34;,
+        )
+
+    if not verify_password(password, user.hashed_password):
+        return (
+            &#34;INVALID_PASSWORD&#34;,
+            &#34;密码错误，请重新输入密码。如果忘记密码，请联系管理员重置&#34;,
+        )
+
+    if not user.is_active:
+        return &#34;ACCOUNT_DISABLED&#34;, &#34;账户已被停用，请联系管理员激活账户&#34;
+
+    return &#34;UNKNOWN_ERROR&#34;, &#34;登录失败，请稍后重试&#34;</code></pre>
+</details>
+<div class="desc"><p>Get specific error details for login failures</p></div>
+</dd>
+<dt id="app.services.AuthService.login_user"><code class="name flex">
+<span>def <span class="ident">login_user</span></span>(<span>self,<br>user_data: <a title="app.schemas.auth.UserLogin" href="../schemas/auth.html#app.schemas.auth.UserLogin">UserLogin</a>) ‑> <a title="app.schemas.auth.Token" href="../schemas/auth.html#app.schemas.auth.Token">Token</a></span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def login_user(self, user_data: UserLogin) -&gt; Token:
+    &#34;&#34;&#34;Login user and return access token&#34;&#34;&#34;
+    user = self.authenticate_user(user_data.email, user_data.password)
+    if not user:
+        error_code, error_message = self.get_login_error_details(
+            user_data.email, user_data.password
+        )
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED, detail=error_message
+        )
+
+    if not user.is_active:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail=&#34;账户已被停用，请联系管理员激活账户&#34;,
+        )
+
+    # Create access token (24 hours expiration)
+    access_token_expires = timedelta(hours=24)
+    access_token = create_access_token(
+        data={&#34;sub&#34;: user.id, &#34;email&#34;: user.email},
+        expires_delta=access_token_expires,
+    )
+
+    return Token(
+        access_token=access_token,
+        token_type=&#34;bearer&#34;,
+        expires_in=24 * 60 * 60,  # 24 hours in seconds
+    )</code></pre>
+</details>
+<div class="desc"><p>Login user and return access token</p></div>
+</dd>
+<dt id="app.services.AuthService.register_user"><code class="name flex">
+<span>def <span class="ident">register_user</span></span>(<span>self,<br>user_data: <a title="app.schemas.auth.UserCreate" href="../schemas/auth.html#app.schemas.auth.UserCreate">UserCreate</a>) ‑> <a title="app.database.models.User" href="../database/models.html#app.database.models.User">User</a></span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def register_user(self, user_data: UserCreate) -&gt; User:
+    &#34;&#34;&#34;Register a new user&#34;&#34;&#34;
+    # Check if user already exists
+    existing_user = (
+        self.db.query(User).filter(User.email == user_data.email).first()
+    )
+    if existing_user:
+        raise HTTPException(
+            status_code=status.HTTP_409_CONFLICT,
+            detail=&#34;该邮箱已被注册，请使用其他邮箱或直接登录。如果您忘记密码，请联系管理员重置&#34;,
+        )
+
+    # Create new user
+    hashed_password = get_password_hash(user_data.password)
+    user = User(
+        email=user_data.email,
+        hashed_password=hashed_password,
+        name=user_data.name,
+        role=UserRole.CLIENT,
+    )
+
+    self.db.add(user)
+    self.db.commit()
+    self.db.refresh(user)
+
+    return user</code></pre>
+</details>
+<div class="desc"><p>Register a new user</p></div>
+</dd>
+</dl>
+</dd>
+<dt id="app.services.CelebrityService"><code class="flex name class">
+<span>class <span class="ident">CelebrityService</span></span>
+<span>(</span><span>db: sqlalchemy.orm.session.Session)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class CelebrityService:
+    def __init__(self, db: Session):
+        self.db = db
+
+    def create_celebrity(self, celebrity_data: CelebrityCreate) -&gt; Celebrity:
+        &#34;&#34;&#34;Create a new celebrity&#34;&#34;&#34;
+        # Check if celebrity with same name already exists
+        existing_celebrity = (
+            self.db.query(Celebrity)
+            .filter(
+                or_(
+                    Celebrity.name == celebrity_data.name,
+                    Celebrity.name_en == celebrity_data.name_en,
+                )
+            )
+            .first()
+        )
+
+        if existing_celebrity:
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail=&#34;Celebrity with this name already exists&#34;,
+            )
+
+        # Create new celebrity
+        celebrity = Celebrity(
+            name=celebrity_data.name,
+            name_en=celebrity_data.name_en,
+            description=celebrity_data.description,
+            image_url=celebrity_data.image_url,
+        )
+
+        self.db.add(celebrity)
+        self.db.commit()
+        self.db.refresh(celebrity)
+
+        return celebrity
+
+    def get_celebrity_by_id(self, celebrity_id: str) -&gt; Optional[Celebrity]:
+        &#34;&#34;&#34;Get celebrity by ID&#34;&#34;&#34;
+        return self.db.query(Celebrity).filter(Celebrity.id == celebrity_id).first()
+
+    def get_celebrity_by_name(self, name: str) -&gt; Optional[Celebrity]:
+        &#34;&#34;&#34;Get celebrity by name (Chinese or English)&#34;&#34;&#34;
+        return (
+            self.db.query(Celebrity)
+            .filter(or_(Celebrity.name == name, Celebrity.name_en == name))
+            .first()
+        )
+
+    def get_all_celebrities(
+        self, skip: int = 0, limit: int = 100, search: Optional[str] = None
+    ) -&gt; List[Celebrity]:
+        &#34;&#34;&#34;Get all celebrities with optional search and pagination&#34;&#34;&#34;
+        query = self.db.query(Celebrity)
+
+        if search:
+            query = query.filter(
+                or_(
+                    Celebrity.name.contains(search),
+                    Celebrity.name_en.contains(search),
+                    Celebrity.description.contains(search),
+                )
+            )
+
+        return query.offset(skip).limit(limit).all()
+
+    def update_celebrity(
+        self, celebrity_id: str, celebrity_data: CelebrityUpdate
+    ) -&gt; Celebrity:
+        &#34;&#34;&#34;Update celebrity information&#34;&#34;&#34;
+        celebrity = self.get_celebrity_by_id(celebrity_id)
+        if not celebrity:
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND, detail=&#34;Celebrity not found&#34;
+            )
+
+        # Check for name conflicts if name is being updated
+        if celebrity_data.name and celebrity_data.name != celebrity.name:
+            existing = self.get_celebrity_by_name(celebrity_data.name)
+            if existing and existing.id != celebrity_id:
+                raise HTTPException(
+                    status_code=status.HTTP_400_BAD_REQUEST,
+                    detail=&#34;Celebrity with this name already exists&#34;,
+                )
+
+        # Update fields if provided
+        if celebrity_data.name is not None:
+            celebrity.name = celebrity_data.name
+        if celebrity_data.name_en is not None:
+            celebrity.name_en = celebrity_data.name_en
+        if celebrity_data.description is not None:
+            celebrity.description = celebrity_data.description
+        if celebrity_data.image_url is not None:
+            celebrity.image_url = celebrity_data.image_url
+
+        self.db.commit()
+        self.db.refresh(celebrity)
+
+        return celebrity
+
+    def delete_celebrity(self, celebrity_id: str) -&gt; bool:
+        &#34;&#34;&#34;Delete a celebrity&#34;&#34;&#34;
+        celebrity = self.get_celebrity_by_id(celebrity_id)
+        if not celebrity:
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND, detail=&#34;Celebrity not found&#34;
+            )
+
+        # Check if celebrity has votes or comments
+        if celebrity.votes or celebrity.comments:
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail=&#34;Cannot delete celebrity with existing votes or comments&#34;,
+            )
+
+        self.db.delete(celebrity)
+        self.db.commit()
+
+        return True
+
+    def add_tag_to_celebrity(self, celebrity_id: str, tag_name: str) -&gt; CelebrityTag:
+        &#34;&#34;&#34;Add a tag to a celebrity&#34;&#34;&#34;
+        celebrity = self.get_celebrity_by_id(celebrity_id)
+        if not celebrity:
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND, detail=&#34;Celebrity not found&#34;
+            )
+
+        # Get or create tag
+        tag = self.db.query(Tag).filter(Tag.name == tag_name).first()
+        if not tag:
+            tag = Tag(name=tag_name)
+            self.db.add(tag)
+            self.db.commit()
+            self.db.refresh(tag)
+
+        # Check if tag is already assigned
+        existing_tag = (
+            self.db.query(CelebrityTag)
+            .filter(
+                CelebrityTag.celebrity_id == celebrity_id, CelebrityTag.tag_id == tag.id
+            )
+            .first()
+        )
+
+        if existing_tag:
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail=&#34;Tag already assigned to this celebrity&#34;,
+            )
+
+        # Create celebrity tag relationship
+        celebrity_tag = CelebrityTag(celebrity_id=celebrity_id, tag_id=tag.id)
+
+        self.db.add(celebrity_tag)
+        self.db.commit()
+        self.db.refresh(celebrity_tag)
+
+        return celebrity_tag
+
+    def remove_tag_from_celebrity(self, celebrity_id: str, tag_name: str) -&gt; bool:
+        &#34;&#34;&#34;Remove a tag from a celebrity&#34;&#34;&#34;
+        celebrity = self.get_celebrity_by_id(celebrity_id)
+        if not celebrity:
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND, detail=&#34;Celebrity not found&#34;
+            )
+
+        tag = self.db.query(Tag).filter(Tag.name == tag_name).first()
+        if not tag:
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND, detail=&#34;Tag not found&#34;
+            )
+
+        celebrity_tag = (
+            self.db.query(CelebrityTag)
+            .filter(
+                CelebrityTag.celebrity_id == celebrity_id, CelebrityTag.tag_id == tag.id
+            )
+            .first()
+        )
+
+        if not celebrity_tag:
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail=&#34;Tag not assigned to this celebrity&#34;,
+            )
+
+        self.db.delete(celebrity_tag)
+        self.db.commit()
+
+        return True
+
+    def get_celebrities_by_tag(
+        self, tag_name: str, skip: int = 0, limit: int = 100
+    ) -&gt; List[Celebrity]:
+        &#34;&#34;&#34;Get celebrities by tag&#34;&#34;&#34;
+        tag = self.db.query(Tag).filter(Tag.name == tag_name).first()
+        if not tag:
+            return []
+
+        celebrities = (
+            self.db.query(Celebrity)
+            .join(CelebrityTag)
+            .filter(CelebrityTag.tag_id == tag.id)
+            .offset(skip)
+            .limit(limit)
+            .all()
+        )
+
+        return celebrities
+
+    def get_popular_celebrities(self, limit: int = 10) -&gt; List[Celebrity]:
+        &#34;&#34;&#34;Get celebrities with most votes&#34;&#34;&#34;
+        from sqlalchemy import func
+
+        celebrities = (
+            self.db.query(Celebrity, func.count(Celebrity.votes).label(&#34;vote_count&#34;))
+            .outerjoin(Celebrity.votes)
+            .group_by(Celebrity.id)
+            .order_by(func.count(Celebrity.votes).desc())
+            .limit(limit)
+            .all()
+        )
+
+        # Extract just the celebrity objects from the result
+        return [celebrity for celebrity, _ in celebrities]</code></pre>
+</details>
+<div class="desc"></div>
+<h3>Methods</h3>
+<dl>
+<dt id="app.services.CelebrityService.add_tag_to_celebrity"><code class="name flex">
+<span>def <span class="ident">add_tag_to_celebrity</span></span>(<span>self, celebrity_id: str, tag_name: str) ‑> <a title="app.database.models.CelebrityTag" href="../database/models.html#app.database.models.CelebrityTag">CelebrityTag</a></span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def add_tag_to_celebrity(self, celebrity_id: str, tag_name: str) -&gt; CelebrityTag:
+    &#34;&#34;&#34;Add a tag to a celebrity&#34;&#34;&#34;
+    celebrity = self.get_celebrity_by_id(celebrity_id)
+    if not celebrity:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND, detail=&#34;Celebrity not found&#34;
+        )
+
+    # Get or create tag
+    tag = self.db.query(Tag).filter(Tag.name == tag_name).first()
+    if not tag:
+        tag = Tag(name=tag_name)
+        self.db.add(tag)
+        self.db.commit()
+        self.db.refresh(tag)
+
+    # Check if tag is already assigned
+    existing_tag = (
+        self.db.query(CelebrityTag)
+        .filter(
+            CelebrityTag.celebrity_id == celebrity_id, CelebrityTag.tag_id == tag.id
+        )
+        .first()
+    )
+
+    if existing_tag:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail=&#34;Tag already assigned to this celebrity&#34;,
+        )
+
+    # Create celebrity tag relationship
+    celebrity_tag = CelebrityTag(celebrity_id=celebrity_id, tag_id=tag.id)
+
+    self.db.add(celebrity_tag)
+    self.db.commit()
+    self.db.refresh(celebrity_tag)
+
+    return celebrity_tag</code></pre>
+</details>
+<div class="desc"><p>Add a tag to a celebrity</p></div>
+</dd>
+<dt id="app.services.CelebrityService.create_celebrity"><code class="name flex">
+<span>def <span class="ident">create_celebrity</span></span>(<span>self,<br>celebrity_data: <a title="app.schemas.celebrity.CelebrityCreate" href="../schemas/celebrity.html#app.schemas.celebrity.CelebrityCreate">CelebrityCreate</a>) ‑> <a title="app.database.models.Celebrity" href="../database/models.html#app.database.models.Celebrity">Celebrity</a></span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def create_celebrity(self, celebrity_data: CelebrityCreate) -&gt; Celebrity:
+    &#34;&#34;&#34;Create a new celebrity&#34;&#34;&#34;
+    # Check if celebrity with same name already exists
+    existing_celebrity = (
+        self.db.query(Celebrity)
+        .filter(
+            or_(
+                Celebrity.name == celebrity_data.name,
+                Celebrity.name_en == celebrity_data.name_en,
+            )
+        )
+        .first()
+    )
+
+    if existing_celebrity:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail=&#34;Celebrity with this name already exists&#34;,
+        )
+
+    # Create new celebrity
+    celebrity = Celebrity(
+        name=celebrity_data.name,
+        name_en=celebrity_data.name_en,
+        description=celebrity_data.description,
+        image_url=celebrity_data.image_url,
+    )
+
+    self.db.add(celebrity)
+    self.db.commit()
+    self.db.refresh(celebrity)
+
+    return celebrity</code></pre>
+</details>
+<div class="desc"><p>Create a new celebrity</p></div>
+</dd>
+<dt id="app.services.CelebrityService.delete_celebrity"><code class="name flex">
+<span>def <span class="ident">delete_celebrity</span></span>(<span>self, celebrity_id: str) ‑> bool</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def delete_celebrity(self, celebrity_id: str) -&gt; bool:
+    &#34;&#34;&#34;Delete a celebrity&#34;&#34;&#34;
+    celebrity = self.get_celebrity_by_id(celebrity_id)
+    if not celebrity:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND, detail=&#34;Celebrity not found&#34;
+        )
+
+    # Check if celebrity has votes or comments
+    if celebrity.votes or celebrity.comments:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail=&#34;Cannot delete celebrity with existing votes or comments&#34;,
+        )
+
+    self.db.delete(celebrity)
+    self.db.commit()
+
+    return True</code></pre>
+</details>
+<div class="desc"><p>Delete a celebrity</p></div>
+</dd>
+<dt id="app.services.CelebrityService.get_all_celebrities"><code class="name flex">
+<span>def <span class="ident">get_all_celebrities</span></span>(<span>self, skip: int = 0, limit: int = 100, search: str | None = None) ‑> List[<a title="app.database.models.Celebrity" href="../database/models.html#app.database.models.Celebrity">Celebrity</a>]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_all_celebrities(
+    self, skip: int = 0, limit: int = 100, search: Optional[str] = None
+) -&gt; List[Celebrity]:
+    &#34;&#34;&#34;Get all celebrities with optional search and pagination&#34;&#34;&#34;
+    query = self.db.query(Celebrity)
+
+    if search:
+        query = query.filter(
+            or_(
+                Celebrity.name.contains(search),
+                Celebrity.name_en.contains(search),
+                Celebrity.description.contains(search),
+            )
+        )
+
+    return query.offset(skip).limit(limit).all()</code></pre>
+</details>
+<div class="desc"><p>Get all celebrities with optional search and pagination</p></div>
+</dd>
+<dt id="app.services.CelebrityService.get_celebrities_by_tag"><code class="name flex">
+<span>def <span class="ident">get_celebrities_by_tag</span></span>(<span>self, tag_name: str, skip: int = 0, limit: int = 100) ‑> List[<a title="app.database.models.Celebrity" href="../database/models.html#app.database.models.Celebrity">Celebrity</a>]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_celebrities_by_tag(
+    self, tag_name: str, skip: int = 0, limit: int = 100
+) -&gt; List[Celebrity]:
+    &#34;&#34;&#34;Get celebrities by tag&#34;&#34;&#34;
+    tag = self.db.query(Tag).filter(Tag.name == tag_name).first()
+    if not tag:
+        return []
+
+    celebrities = (
+        self.db.query(Celebrity)
+        .join(CelebrityTag)
+        .filter(CelebrityTag.tag_id == tag.id)
+        .offset(skip)
+        .limit(limit)
+        .all()
+    )
+
+    return celebrities</code></pre>
+</details>
+<div class="desc"><p>Get celebrities by tag</p></div>
+</dd>
+<dt id="app.services.CelebrityService.get_celebrity_by_id"><code class="name flex">
+<span>def <span class="ident">get_celebrity_by_id</span></span>(<span>self, celebrity_id: str) ‑> <a title="app.database.models.Celebrity" href="../database/models.html#app.database.models.Celebrity">Celebrity</a> | None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_celebrity_by_id(self, celebrity_id: str) -&gt; Optional[Celebrity]:
+    &#34;&#34;&#34;Get celebrity by ID&#34;&#34;&#34;
+    return self.db.query(Celebrity).filter(Celebrity.id == celebrity_id).first()</code></pre>
+</details>
+<div class="desc"><p>Get celebrity by ID</p></div>
+</dd>
+<dt id="app.services.CelebrityService.get_celebrity_by_name"><code class="name flex">
+<span>def <span class="ident">get_celebrity_by_name</span></span>(<span>self, name: str) ‑> <a title="app.database.models.Celebrity" href="../database/models.html#app.database.models.Celebrity">Celebrity</a> | None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_celebrity_by_name(self, name: str) -&gt; Optional[Celebrity]:
+    &#34;&#34;&#34;Get celebrity by name (Chinese or English)&#34;&#34;&#34;
+    return (
+        self.db.query(Celebrity)
+        .filter(or_(Celebrity.name == name, Celebrity.name_en == name))
+        .first()
+    )</code></pre>
+</details>
+<div class="desc"><p>Get celebrity by name (Chinese or English)</p></div>
+</dd>
+<dt id="app.services.CelebrityService.get_popular_celebrities"><code class="name flex">
+<span>def <span class="ident">get_popular_celebrities</span></span>(<span>self, limit: int = 10) ‑> List[<a title="app.database.models.Celebrity" href="../database/models.html#app.database.models.Celebrity">Celebrity</a>]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_popular_celebrities(self, limit: int = 10) -&gt; List[Celebrity]:
+    &#34;&#34;&#34;Get celebrities with most votes&#34;&#34;&#34;
+    from sqlalchemy import func
+
+    celebrities = (
+        self.db.query(Celebrity, func.count(Celebrity.votes).label(&#34;vote_count&#34;))
+        .outerjoin(Celebrity.votes)
+        .group_by(Celebrity.id)
+        .order_by(func.count(Celebrity.votes).desc())
+        .limit(limit)
+        .all()
+    )
+
+    # Extract just the celebrity objects from the result
+    return [celebrity for celebrity, _ in celebrities]</code></pre>
+</details>
+<div class="desc"><p>Get celebrities with most votes</p></div>
+</dd>
+<dt id="app.services.CelebrityService.remove_tag_from_celebrity"><code class="name flex">
+<span>def <span class="ident">remove_tag_from_celebrity</span></span>(<span>self, celebrity_id: str, tag_name: str) ‑> bool</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def remove_tag_from_celebrity(self, celebrity_id: str, tag_name: str) -&gt; bool:
+    &#34;&#34;&#34;Remove a tag from a celebrity&#34;&#34;&#34;
+    celebrity = self.get_celebrity_by_id(celebrity_id)
+    if not celebrity:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND, detail=&#34;Celebrity not found&#34;
+        )
+
+    tag = self.db.query(Tag).filter(Tag.name == tag_name).first()
+    if not tag:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND, detail=&#34;Tag not found&#34;
+        )
+
+    celebrity_tag = (
+        self.db.query(CelebrityTag)
+        .filter(
+            CelebrityTag.celebrity_id == celebrity_id, CelebrityTag.tag_id == tag.id
+        )
+        .first()
+    )
+
+    if not celebrity_tag:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail=&#34;Tag not assigned to this celebrity&#34;,
+        )
+
+    self.db.delete(celebrity_tag)
+    self.db.commit()
+
+    return True</code></pre>
+</details>
+<div class="desc"><p>Remove a tag from a celebrity</p></div>
+</dd>
+<dt id="app.services.CelebrityService.update_celebrity"><code class="name flex">
+<span>def <span class="ident">update_celebrity</span></span>(<span>self,<br>celebrity_id: str,<br>celebrity_data: <a title="app.schemas.celebrity.CelebrityUpdate" href="../schemas/celebrity.html#app.schemas.celebrity.CelebrityUpdate">CelebrityUpdate</a>) ‑> <a title="app.database.models.Celebrity" href="../database/models.html#app.database.models.Celebrity">Celebrity</a></span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def update_celebrity(
+    self, celebrity_id: str, celebrity_data: CelebrityUpdate
+) -&gt; Celebrity:
+    &#34;&#34;&#34;Update celebrity information&#34;&#34;&#34;
+    celebrity = self.get_celebrity_by_id(celebrity_id)
+    if not celebrity:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND, detail=&#34;Celebrity not found&#34;
+        )
+
+    # Check for name conflicts if name is being updated
+    if celebrity_data.name and celebrity_data.name != celebrity.name:
+        existing = self.get_celebrity_by_name(celebrity_data.name)
+        if existing and existing.id != celebrity_id:
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail=&#34;Celebrity with this name already exists&#34;,
+            )
+
+    # Update fields if provided
+    if celebrity_data.name is not None:
+        celebrity.name = celebrity_data.name
+    if celebrity_data.name_en is not None:
+        celebrity.name_en = celebrity_data.name_en
+    if celebrity_data.description is not None:
+        celebrity.description = celebrity_data.description
+    if celebrity_data.image_url is not None:
+        celebrity.image_url = celebrity_data.image_url
+
+    self.db.commit()
+    self.db.refresh(celebrity)
+
+    return celebrity</code></pre>
+</details>
+<div class="desc"><p>Update celebrity information</p></div>
+</dd>
+</dl>
+</dd>
+<dt id="app.services.CommentService"><code class="flex name class">
+<span>class <span class="ident">CommentService</span></span>
+<span>(</span><span>db: sqlalchemy.orm.session.Session)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class CommentService:
+    def __init__(self, db: Session):
+        self.db = db
+
+    def create_comment(self, user_id: str, comment_data: CommentCreate) -&gt; Comment:
+        &#34;&#34;&#34;
+        Create a new comment for a celebrity
+
+        Args:
+            user_id: ID of the user creating the comment
+            comment_data: Comment data including celebrity_id, content, and optional parent_id
+
+        Returns:
+            Created comment object
+
+        Raises:
+            HTTPException: If celebrity doesn&#39;t exist or parent comment doesn&#39;t exist
+        &#34;&#34;&#34;
+        # Verify celebrity exists
+        celebrity = (
+            self.db.query(Celebrity)
+            .filter(Celebrity.id == comment_data.celebrity_id)
+            .first()
+        )
+        if not celebrity:
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND, detail=&#34;Celebrity not found&#34;
+            )
+
+        # If this is a reply, verify parent comment exists and belongs to same celebrity
+        level = 1
+        if comment_data.parent_id:
+            parent_comment = (
+                self.db.query(Comment)
+                .filter(
+                    and_(
+                        Comment.id == comment_data.parent_id,
+                        Comment.celebrity_id == comment_data.celebrity_id,
+                    )
+                )
+                .first()
+            )
+
+            if not parent_comment:
+                raise HTTPException(
+                    status_code=status.HTTP_404_NOT_FOUND,
+                    detail=&#34;Parent comment not found or doesn&#39;t belong to this celebrity&#34;,
+                )
+
+            # Set level based on parent (max 3 levels deep)
+            level = min(parent_comment.level + 1, 3)
+
+        # Create the comment
+        comment = Comment(
+            id=str(uuid.uuid4()),
+            user_id=user_id,
+            celebrity_id=comment_data.celebrity_id,
+            content=comment_data.content,
+            parent_id=comment_data.parent_id,
+            level=level,
+        )
+
+        self.db.add(comment)
+        self.db.commit()
+        self.db.refresh(comment)
+
+        return comment
+
+    def get_comment_by_id(self, comment_id: str) -&gt; Optional[Comment]:
+        &#34;&#34;&#34;
+        Get a specific comment by ID
+
+        Args:
+            comment_id: ID of the comment
+
+        Returns:
+            Comment object or None if not found
+        &#34;&#34;&#34;
+        return self.db.query(Comment).filter(Comment.id == comment_id).first()
+
+    def get_celebrity_comments(
+        self,
+        celebrity_id: str,
+        skip: int = 0,
+        limit: int = 100,
+        include_replies: bool = True,
+    ) -&gt; List[Comment]:
+        &#34;&#34;&#34;
+        Get all comments for a celebrity
+
+        Args:
+            celebrity_id: ID of the celebrity
+            skip: Number of records to skip
+            limit: Number of records to return
+            include_replies: Whether to include reply comments
+
+        Returns:
+            List of comments
+        &#34;&#34;&#34;
+        query = self.db.query(Comment).filter(Comment.celebrity_id == celebrity_id)
+
+        if not include_replies:
+            # Only top-level comments (no parent_id)
+            query = query.filter(Comment.parent_id.is_(None))
+
+        return query.order_by(desc(Comment.created_at)).offset(skip).limit(limit).all()
+
+    def get_user_comments(
+        self, user_id: str, skip: int = 0, limit: int = 100
+    ) -&gt; List[Comment]:
+        &#34;&#34;&#34;
+        Get all comments by a specific user
+
+        Args:
+            user_id: ID of the user
+            skip: Number of records to skip
+            limit: Number of records to return
+
+        Returns:
+            List of comments
+        &#34;&#34;&#34;
+        return (
+            self.db.query(Comment)
+            .filter(Comment.user_id == user_id)
+            .order_by(desc(Comment.created_at))
+            .offset(skip)
+            .limit(limit)
+            .all()
+        )
+
+    def get_comment_replies(
+        self, comment_id: str, skip: int = 0, limit: int = 50
+    ) -&gt; List[Comment]:
+        &#34;&#34;&#34;
+        Get all replies to a specific comment
+
+        Args:
+            comment_id: ID of the parent comment
+            skip: Number of records to skip
+            limit: Number of records to return
+
+        Returns:
+            List of reply comments
+        &#34;&#34;&#34;
+        return (
+            self.db.query(Comment)
+            .filter(Comment.parent_id == comment_id)
+            .order_by(Comment.created_at)
+            .offset(skip)
+            .limit(limit)
+            .all()
+        )
+
+    def update_comment(self, comment_id: str, user_id: str, content: str) -&gt; Comment:
+        &#34;&#34;&#34;
+        Update a comment (only by the user who created it)
+
+        Args:
+            comment_id: ID of the comment to update
+            user_id: ID of the user making the update
+            content: New comment content
+
+        Returns:
+            Updated comment object
+
+        Raises:
+            HTTPException: If comment doesn&#39;t exist or user doesn&#39;t own it
+        &#34;&#34;&#34;
+        comment = (
+            self.db.query(Comment)
+            .filter(and_(Comment.id == comment_id, Comment.user_id == user_id))
+            .first()
+        )
+
+        if not comment:
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND,
+                detail=&#34;Comment not found or you don&#39;t have permission to edit it&#34;,
+            )
+
+        comment.content = content
+        comment.updated_at = datetime.utcnow()
+
+        self.db.commit()
+        self.db.refresh(comment)
+
+        return comment
+
+    def delete_comment(self, comment_id: str, user_id: str) -&gt; None:
+        &#34;&#34;&#34;
+        Delete a comment (only by the user who created it)
+
+        Args:
+            comment_id: ID of the comment to delete
+            user_id: ID of the user making the deletion
+
+        Raises:
+            HTTPException: If comment doesn&#39;t exist or user doesn&#39;t own it
+        &#34;&#34;&#34;
+        comment = (
+            self.db.query(Comment)
+            .filter(and_(Comment.id == comment_id, Comment.user_id == user_id))
+            .first()
+        )
+
+        if not comment:
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND,
+                detail=&#34;Comment not found or you don&#39;t have permission to delete it&#34;,
+            )
+
+        # Check if comment has replies
+        replies_count = (
+            self.db.query(Comment).filter(Comment.parent_id == comment_id).count()
+        )
+        if replies_count &gt; 0:
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail=&#34;Cannot delete comment with replies. Please delete replies first.&#34;,
+            )
+
+        self.db.delete(comment)
+        self.db.commit()
+
+    def get_comment_statistics(self, celebrity_id: str) -&gt; Dict[str, Any]:
+        &#34;&#34;&#34;
+        Get comment statistics for a celebrity
+
+        Args:
+            celebrity_id: ID of the celebrity
+
+        Returns:
+            Dictionary with comment statistics
+        &#34;&#34;&#34;
+        # Total comments
+        total_comments = (
+            self.db.query(Comment).filter(Comment.celebrity_id == celebrity_id).count()
+        )
+
+        # Top-level comments
+        top_level_comments = (
+            self.db.query(Comment)
+            .filter(
+                and_(Comment.celebrity_id == celebrity_id, Comment.parent_id.is_(None))
+            )
+            .count()
+        )
+
+        # Reply comments
+        reply_comments = (
+            self.db.query(Comment)
+            .filter(
+                and_(
+                    Comment.celebrity_id == celebrity_id, Comment.parent_id.is_not(None)
+                )
+            )
+            .count()
+        )
+
+        # Most active commenters
+        active_commenters = (
+            self.db.query(
+                Comment.user_id, func.count(Comment.id).label(&#34;comment_count&#34;)
+            )
+            .filter(Comment.celebrity_id == celebrity_id)
+            .group_by(Comment.user_id)
+            .order_by(desc(&#34;comment_count&#34;))
+            .limit(5)
+            .all()
+        )
+
+        return {
+            &#34;total_comments&#34;: total_comments,
+            &#34;top_level_comments&#34;: top_level_comments,
+            &#34;reply_comments&#34;: reply_comments,
+            &#34;active_commenters&#34;: [
+                {&#34;user_id&#34;: user_id, &#34;comment_count&#34;: count}
+                for user_id, count in active_commenters
+            ],
+        }
+
+    def get_user_comment_statistics(self, user_id: str) -&gt; Dict[str, Any]:
+        &#34;&#34;&#34;
+        Get comment statistics for a user
+
+        Args:
+            user_id: ID of the user
+
+        Returns:
+            Dictionary with user comment statistics
+        &#34;&#34;&#34;
+        # Total comments by user
+        total_comments = (
+            self.db.query(Comment).filter(Comment.user_id == user_id).count()
+        )
+
+        # Top-level comments
+        top_level_comments = (
+            self.db.query(Comment)
+            .filter(and_(Comment.user_id == user_id, Comment.parent_id.is_(None)))
+            .count()
+        )
+
+        # Reply comments
+        reply_comments = (
+            self.db.query(Comment)
+            .filter(and_(Comment.user_id == user_id, Comment.parent_id.is_not(None)))
+            .count()
+        )
+
+        # Recent comments (last 7 days)
+        recent_comments = (
+            self.db.query(Comment)
+            .filter(
+                and_(
+                    Comment.user_id == user_id,
+                    Comment.created_at
+                    &gt;= datetime.utcnow().replace(
+                        hour=0, minute=0, second=0, microsecond=0
+                    ),
+                )
+            )
+            .count()
+        )
+
+        return {
+            &#34;total_comments&#34;: total_comments,
+            &#34;top_level_comments&#34;: top_level_comments,
+            &#34;reply_comments&#34;: reply_comments,
+            &#34;recent_comments&#34;: recent_comments,
+        }</code></pre>
+</details>
+<div class="desc"></div>
+<h3>Methods</h3>
+<dl>
+<dt id="app.services.CommentService.create_comment"><code class="name flex">
+<span>def <span class="ident">create_comment</span></span>(<span>self,<br>user_id: str,<br>comment_data: <a title="app.schemas.comment.CommentCreate" href="../schemas/comment.html#app.schemas.comment.CommentCreate">CommentCreate</a>) ‑> <a title="app.database.models.Comment" href="../database/models.html#app.database.models.Comment">Comment</a></span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def create_comment(self, user_id: str, comment_data: CommentCreate) -&gt; Comment:
+    &#34;&#34;&#34;
+    Create a new comment for a celebrity
+
+    Args:
+        user_id: ID of the user creating the comment
+        comment_data: Comment data including celebrity_id, content, and optional parent_id
+
+    Returns:
+        Created comment object
+
+    Raises:
+        HTTPException: If celebrity doesn&#39;t exist or parent comment doesn&#39;t exist
+    &#34;&#34;&#34;
+    # Verify celebrity exists
+    celebrity = (
+        self.db.query(Celebrity)
+        .filter(Celebrity.id == comment_data.celebrity_id)
+        .first()
+    )
+    if not celebrity:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND, detail=&#34;Celebrity not found&#34;
+        )
+
+    # If this is a reply, verify parent comment exists and belongs to same celebrity
+    level = 1
+    if comment_data.parent_id:
+        parent_comment = (
+            self.db.query(Comment)
+            .filter(
+                and_(
+                    Comment.id == comment_data.parent_id,
+                    Comment.celebrity_id == comment_data.celebrity_id,
+                )
+            )
+            .first()
+        )
+
+        if not parent_comment:
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND,
+                detail=&#34;Parent comment not found or doesn&#39;t belong to this celebrity&#34;,
+            )
+
+        # Set level based on parent (max 3 levels deep)
+        level = min(parent_comment.level + 1, 3)
+
+    # Create the comment
+    comment = Comment(
+        id=str(uuid.uuid4()),
+        user_id=user_id,
+        celebrity_id=comment_data.celebrity_id,
+        content=comment_data.content,
+        parent_id=comment_data.parent_id,
+        level=level,
+    )
+
+    self.db.add(comment)
+    self.db.commit()
+    self.db.refresh(comment)
+
+    return comment</code></pre>
+</details>
+<div class="desc"><p>Create a new comment for a celebrity</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>user_id</code></strong></dt>
+<dd>ID of the user creating the comment</dd>
+<dt><strong><code>comment_data</code></strong></dt>
+<dd>Comment data including celebrity_id, content, and optional parent_id</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>Created comment object</p>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>HTTPException</code></dt>
+<dd>If celebrity doesn't exist or parent comment doesn't exist</dd>
+</dl></div>
+</dd>
+<dt id="app.services.CommentService.delete_comment"><code class="name flex">
+<span>def <span class="ident">delete_comment</span></span>(<span>self, comment_id: str, user_id: str) ‑> None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def delete_comment(self, comment_id: str, user_id: str) -&gt; None:
+    &#34;&#34;&#34;
+    Delete a comment (only by the user who created it)
+
+    Args:
+        comment_id: ID of the comment to delete
+        user_id: ID of the user making the deletion
+
+    Raises:
+        HTTPException: If comment doesn&#39;t exist or user doesn&#39;t own it
+    &#34;&#34;&#34;
+    comment = (
+        self.db.query(Comment)
+        .filter(and_(Comment.id == comment_id, Comment.user_id == user_id))
+        .first()
+    )
+
+    if not comment:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=&#34;Comment not found or you don&#39;t have permission to delete it&#34;,
+        )
+
+    # Check if comment has replies
+    replies_count = (
+        self.db.query(Comment).filter(Comment.parent_id == comment_id).count()
+    )
+    if replies_count &gt; 0:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail=&#34;Cannot delete comment with replies. Please delete replies first.&#34;,
+        )
+
+    self.db.delete(comment)
+    self.db.commit()</code></pre>
+</details>
+<div class="desc"><p>Delete a comment (only by the user who created it)</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>comment_id</code></strong></dt>
+<dd>ID of the comment to delete</dd>
+<dt><strong><code>user_id</code></strong></dt>
+<dd>ID of the user making the deletion</dd>
+</dl>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>HTTPException</code></dt>
+<dd>If comment doesn't exist or user doesn't own it</dd>
+</dl></div>
+</dd>
+<dt id="app.services.CommentService.get_celebrity_comments"><code class="name flex">
+<span>def <span class="ident">get_celebrity_comments</span></span>(<span>self,<br>celebrity_id: str,<br>skip: int = 0,<br>limit: int = 100,<br>include_replies: bool = True) ‑> List[<a title="app.database.models.Comment" href="../database/models.html#app.database.models.Comment">Comment</a>]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_celebrity_comments(
+    self,
+    celebrity_id: str,
+    skip: int = 0,
+    limit: int = 100,
+    include_replies: bool = True,
+) -&gt; List[Comment]:
+    &#34;&#34;&#34;
+    Get all comments for a celebrity
+
+    Args:
+        celebrity_id: ID of the celebrity
+        skip: Number of records to skip
+        limit: Number of records to return
+        include_replies: Whether to include reply comments
+
+    Returns:
+        List of comments
+    &#34;&#34;&#34;
+    query = self.db.query(Comment).filter(Comment.celebrity_id == celebrity_id)
+
+    if not include_replies:
+        # Only top-level comments (no parent_id)
+        query = query.filter(Comment.parent_id.is_(None))
+
+    return query.order_by(desc(Comment.created_at)).offset(skip).limit(limit).all()</code></pre>
+</details>
+<div class="desc"><p>Get all comments for a celebrity</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>celebrity_id</code></strong></dt>
+<dd>ID of the celebrity</dd>
+<dt><strong><code>skip</code></strong></dt>
+<dd>Number of records to skip</dd>
+<dt><strong><code>limit</code></strong></dt>
+<dd>Number of records to return</dd>
+<dt><strong><code>include_replies</code></strong></dt>
+<dd>Whether to include reply comments</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>List of comments</p></div>
+</dd>
+<dt id="app.services.CommentService.get_comment_by_id"><code class="name flex">
+<span>def <span class="ident">get_comment_by_id</span></span>(<span>self, comment_id: str) ‑> <a title="app.database.models.Comment" href="../database/models.html#app.database.models.Comment">Comment</a> | None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_comment_by_id(self, comment_id: str) -&gt; Optional[Comment]:
+    &#34;&#34;&#34;
+    Get a specific comment by ID
+
+    Args:
+        comment_id: ID of the comment
+
+    Returns:
+        Comment object or None if not found
+    &#34;&#34;&#34;
+    return self.db.query(Comment).filter(Comment.id == comment_id).first()</code></pre>
+</details>
+<div class="desc"><p>Get a specific comment by ID</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>comment_id</code></strong></dt>
+<dd>ID of the comment</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>Comment object or None if not found</p></div>
+</dd>
+<dt id="app.services.CommentService.get_comment_replies"><code class="name flex">
+<span>def <span class="ident">get_comment_replies</span></span>(<span>self, comment_id: str, skip: int = 0, limit: int = 50) ‑> List[<a title="app.database.models.Comment" href="../database/models.html#app.database.models.Comment">Comment</a>]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_comment_replies(
+    self, comment_id: str, skip: int = 0, limit: int = 50
+) -&gt; List[Comment]:
+    &#34;&#34;&#34;
+    Get all replies to a specific comment
+
+    Args:
+        comment_id: ID of the parent comment
+        skip: Number of records to skip
+        limit: Number of records to return
+
+    Returns:
+        List of reply comments
+    &#34;&#34;&#34;
+    return (
+        self.db.query(Comment)
+        .filter(Comment.parent_id == comment_id)
+        .order_by(Comment.created_at)
+        .offset(skip)
+        .limit(limit)
+        .all()
+    )</code></pre>
+</details>
+<div class="desc"><p>Get all replies to a specific comment</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>comment_id</code></strong></dt>
+<dd>ID of the parent comment</dd>
+<dt><strong><code>skip</code></strong></dt>
+<dd>Number of records to skip</dd>
+<dt><strong><code>limit</code></strong></dt>
+<dd>Number of records to return</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>List of reply comments</p></div>
+</dd>
+<dt id="app.services.CommentService.get_comment_statistics"><code class="name flex">
+<span>def <span class="ident">get_comment_statistics</span></span>(<span>self, celebrity_id: str) ‑> Dict[str, Any]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_comment_statistics(self, celebrity_id: str) -&gt; Dict[str, Any]:
+    &#34;&#34;&#34;
+    Get comment statistics for a celebrity
+
+    Args:
+        celebrity_id: ID of the celebrity
+
+    Returns:
+        Dictionary with comment statistics
+    &#34;&#34;&#34;
+    # Total comments
+    total_comments = (
+        self.db.query(Comment).filter(Comment.celebrity_id == celebrity_id).count()
+    )
+
+    # Top-level comments
+    top_level_comments = (
+        self.db.query(Comment)
+        .filter(
+            and_(Comment.celebrity_id == celebrity_id, Comment.parent_id.is_(None))
+        )
+        .count()
+    )
+
+    # Reply comments
+    reply_comments = (
+        self.db.query(Comment)
+        .filter(
+            and_(
+                Comment.celebrity_id == celebrity_id, Comment.parent_id.is_not(None)
+            )
+        )
+        .count()
+    )
+
+    # Most active commenters
+    active_commenters = (
+        self.db.query(
+            Comment.user_id, func.count(Comment.id).label(&#34;comment_count&#34;)
+        )
+        .filter(Comment.celebrity_id == celebrity_id)
+        .group_by(Comment.user_id)
+        .order_by(desc(&#34;comment_count&#34;))
+        .limit(5)
+        .all()
+    )
+
+    return {
+        &#34;total_comments&#34;: total_comments,
+        &#34;top_level_comments&#34;: top_level_comments,
+        &#34;reply_comments&#34;: reply_comments,
+        &#34;active_commenters&#34;: [
+            {&#34;user_id&#34;: user_id, &#34;comment_count&#34;: count}
+            for user_id, count in active_commenters
+        ],
+    }</code></pre>
+</details>
+<div class="desc"><p>Get comment statistics for a celebrity</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>celebrity_id</code></strong></dt>
+<dd>ID of the celebrity</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>Dictionary with comment statistics</p></div>
+</dd>
+<dt id="app.services.CommentService.get_user_comment_statistics"><code class="name flex">
+<span>def <span class="ident">get_user_comment_statistics</span></span>(<span>self, user_id: str) ‑> Dict[str, Any]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_user_comment_statistics(self, user_id: str) -&gt; Dict[str, Any]:
+    &#34;&#34;&#34;
+    Get comment statistics for a user
+
+    Args:
+        user_id: ID of the user
+
+    Returns:
+        Dictionary with user comment statistics
+    &#34;&#34;&#34;
+    # Total comments by user
+    total_comments = (
+        self.db.query(Comment).filter(Comment.user_id == user_id).count()
+    )
+
+    # Top-level comments
+    top_level_comments = (
+        self.db.query(Comment)
+        .filter(and_(Comment.user_id == user_id, Comment.parent_id.is_(None)))
+        .count()
+    )
+
+    # Reply comments
+    reply_comments = (
+        self.db.query(Comment)
+        .filter(and_(Comment.user_id == user_id, Comment.parent_id.is_not(None)))
+        .count()
+    )
+
+    # Recent comments (last 7 days)
+    recent_comments = (
+        self.db.query(Comment)
+        .filter(
+            and_(
+                Comment.user_id == user_id,
+                Comment.created_at
+                &gt;= datetime.utcnow().replace(
+                    hour=0, minute=0, second=0, microsecond=0
+                ),
+            )
+        )
+        .count()
+    )
+
+    return {
+        &#34;total_comments&#34;: total_comments,
+        &#34;top_level_comments&#34;: top_level_comments,
+        &#34;reply_comments&#34;: reply_comments,
+        &#34;recent_comments&#34;: recent_comments,
+    }</code></pre>
+</details>
+<div class="desc"><p>Get comment statistics for a user</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>user_id</code></strong></dt>
+<dd>ID of the user</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>Dictionary with user comment statistics</p></div>
+</dd>
+<dt id="app.services.CommentService.get_user_comments"><code class="name flex">
+<span>def <span class="ident">get_user_comments</span></span>(<span>self, user_id: str, skip: int = 0, limit: int = 100) ‑> List[<a title="app.database.models.Comment" href="../database/models.html#app.database.models.Comment">Comment</a>]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_user_comments(
+    self, user_id: str, skip: int = 0, limit: int = 100
+) -&gt; List[Comment]:
+    &#34;&#34;&#34;
+    Get all comments by a specific user
+
+    Args:
+        user_id: ID of the user
+        skip: Number of records to skip
+        limit: Number of records to return
+
+    Returns:
+        List of comments
+    &#34;&#34;&#34;
+    return (
+        self.db.query(Comment)
+        .filter(Comment.user_id == user_id)
+        .order_by(desc(Comment.created_at))
+        .offset(skip)
+        .limit(limit)
+        .all()
+    )</code></pre>
+</details>
+<div class="desc"><p>Get all comments by a specific user</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>user_id</code></strong></dt>
+<dd>ID of the user</dd>
+<dt><strong><code>skip</code></strong></dt>
+<dd>Number of records to skip</dd>
+<dt><strong><code>limit</code></strong></dt>
+<dd>Number of records to return</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>List of comments</p></div>
+</dd>
+<dt id="app.services.CommentService.update_comment"><code class="name flex">
+<span>def <span class="ident">update_comment</span></span>(<span>self, comment_id: str, user_id: str, content: str) ‑> <a title="app.database.models.Comment" href="../database/models.html#app.database.models.Comment">Comment</a></span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def update_comment(self, comment_id: str, user_id: str, content: str) -&gt; Comment:
+    &#34;&#34;&#34;
+    Update a comment (only by the user who created it)
+
+    Args:
+        comment_id: ID of the comment to update
+        user_id: ID of the user making the update
+        content: New comment content
+
+    Returns:
+        Updated comment object
+
+    Raises:
+        HTTPException: If comment doesn&#39;t exist or user doesn&#39;t own it
+    &#34;&#34;&#34;
+    comment = (
+        self.db.query(Comment)
+        .filter(and_(Comment.id == comment_id, Comment.user_id == user_id))
+        .first()
+    )
+
+    if not comment:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=&#34;Comment not found or you don&#39;t have permission to edit it&#34;,
+        )
+
+    comment.content = content
+    comment.updated_at = datetime.utcnow()
+
+    self.db.commit()
+    self.db.refresh(comment)
+
+    return comment</code></pre>
+</details>
+<div class="desc"><p>Update a comment (only by the user who created it)</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>comment_id</code></strong></dt>
+<dd>ID of the comment to update</dd>
+<dt><strong><code>user_id</code></strong></dt>
+<dd>ID of the user making the update</dd>
+<dt><strong><code>content</code></strong></dt>
+<dd>New comment content</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>Updated comment object</p>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>HTTPException</code></dt>
+<dd>If comment doesn't exist or user doesn't own it</dd>
+</dl></div>
+</dd>
+</dl>
+</dd>
+<dt id="app.services.SearchService"><code class="flex name class">
+<span>class <span class="ident">SearchService</span></span>
+<span>(</span><span>db: sqlalchemy.orm.session.Session)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class SearchService:
+    def __init__(self, db: Session):
+        self.db = db
+
+    def search_celebrities(
+        self,
+        query: str,
+        search_type: str = &#34;all&#34;,
+        mbti_type: Optional[str] = None,
+        tag_filter: Optional[str] = None,
+        popularity_filter: Optional[str] = None,
+        skip: int = 0,
+        limit: int = 50,
+    ) -&gt; List[Dict[str, Any]]:
+        &#34;&#34;&#34;
+        Hybrid search with relevance scoring
+
+        Args:
+            query: Search query string
+            search_type: Type of search (all, name, description, tag, mbti)
+            mbti_type: Filter by MBTI type
+            tag_filter: Filter by tag
+            popularity_filter: Filter by popularity (popular, recent, all)
+            skip: Number of records to skip
+            limit: Number of records to return
+        &#34;&#34;&#34;
+        if not query.strip():
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail=&#34;Search query cannot be empty&#34;,
+            )
+
+        # Build base query
+        base_query = self.db.query(Celebrity)
+
+        # Apply filters
+        if mbti_type:
+            base_query = self._apply_mbti_filter(base_query, mbti_type)
+
+        if tag_filter:
+            base_query = self._apply_tag_filter(base_query, tag_filter)
+
+        if popularity_filter:
+            base_query = self._apply_popularity_filter(base_query, popularity_filter)
+
+        # Apply search based on type
+        if search_type == &#34;name&#34;:
+            results = self._search_by_name(base_query, query, skip, limit)
+        elif search_type == &#34;description&#34;:
+            results = self._search_by_description(base_query, query, skip, limit)
+        elif search_type == &#34;tag&#34;:
+            results = self._search_by_tag(base_query, query, skip, limit)
+        elif search_type == &#34;mbti&#34;:
+            results = self._search_by_mbti(base_query, query, skip, limit)
+        else:  # &#34;all&#34;
+            results = self._hybrid_search(base_query, query, skip, limit)
+
+        return results
+
+    def _hybrid_search(
+        self, base_query, query: str, skip: int, limit: int
+    ) -&gt; List[Dict[str, Any]]:
+        &#34;&#34;&#34;Hybrid search with relevance scoring&#34;&#34;&#34;
+        query_lower = query.lower()
+
+        # Build complex query with relevance scoring
+        search_query = (
+            base_query.add_columns(
+                # Relevance scoring
+                case(
+                    # Exact name match (highest priority)
+                    (func.lower(Celebrity.name) == query_lower, 100),
+                    (func.lower(Celebrity.name_en) == query_lower, 100),
+                    # Name contains (high priority)
+                    (func.lower(Celebrity.name).contains(query_lower), 80),
+                    (func.lower(Celebrity.name_en).contains(query_lower), 80),
+                    # Description contains (medium priority)
+                    (func.lower(Celebrity.description).contains(query_lower), 60),
+                    # Tag matches (lower priority)
+                    (
+                        func.lower(Celebrity.tags.any(Tag.name.contains(query_lower))),
+                        40,
+                    ),
+                    # Default score
+                    else_=0,
+                ).label(&#34;relevance_score&#34;)
+            )
+            .filter(
+                or_(
+                    func.lower(Celebrity.name).contains(query_lower),
+                    func.lower(Celebrity.name_en).contains(query_lower),
+                    func.lower(Celebrity.description).contains(query_lower),
+                    Celebrity.tags.any(Tag.name.contains(query_lower)),
+                )
+            )
+            .order_by(desc(&#34;relevance_score&#34;), desc(Celebrity.created_at))
+        )
+
+        # Execute query with pagination
+        results = search_query.offset(skip).limit(limit).all()
+
+        # Format results
+        formatted_results = []
+        for celebrity, relevance_score in results:
+            result = CelebrityResponse.model_validate(celebrity).model_dump()
+            result[&#34;relevance_score&#34;] = relevance_score or 0
+            result[&#34;match_type&#34;] = self._determine_match_type(
+                query_lower, celebrity, relevance_score
+            )
+            formatted_results.append(result)
+
+        return formatted_results
+
+    def _search_by_name(
+        self, base_query, query: str, skip: int, limit: int
+    ) -&gt; List[Dict[str, Any]]:
+        &#34;&#34;&#34;Search by celebrity name only&#34;&#34;&#34;
+        query_lower = query.lower()
+
+        search_query = (
+            base_query.add_columns(
+                case(
+                    (func.lower(Celebrity.name) == query_lower, 100),
+                    (func.lower(Celebrity.name_en) == query_lower, 100),
+                    (func.lower(Celebrity.name).contains(query_lower), 80),
+                    (func.lower(Celebrity.name_en).contains(query_lower), 80),
+                    else_=0,
+                ).label(&#34;relevance_score&#34;)
+            )
+            .filter(
+                or_(
+                    func.lower(Celebrity.name).contains(query_lower),
+                    func.lower(Celebrity.name_en).contains(query_lower),
+                )
+            )
+            .order_by(desc(&#34;relevance_score&#34;), desc(Celebrity.created_at))
+        )
+
+        results = search_query.offset(skip).limit(limit).all()
+
+        formatted_results = []
+        for celebrity, relevance_score in results:
+            result = CelebrityResponse.model_validate(celebrity).model_dump()
+            result[&#34;relevance_score&#34;] = relevance_score or 0
+            result[&#34;match_type&#34;] = &#34;name_match&#34;
+            formatted_results.append(result)
+
+        return formatted_results
+
+    def _search_by_description(
+        self, base_query, query: str, skip: int, limit: int
+    ) -&gt; List[Dict[str, Any]]:
+        &#34;&#34;&#34;Search by description only&#34;&#34;&#34;
+        query_lower = query.lower()
+
+        search_query = (
+            base_query.add_columns(
+                case(
+                    (func.lower(Celebrity.description).contains(query_lower), 60),
+                    else_=0,
+                ).label(&#34;relevance_score&#34;)
+            )
+            .filter(func.lower(Celebrity.description).contains(query_lower))
+            .order_by(desc(&#34;relevance_score&#34;), desc(Celebrity.created_at))
+        )
+
+        results = search_query.offset(skip).limit(limit).all()
+
+        formatted_results = []
+        for celebrity, relevance_score in results:
+            result = CelebrityResponse.model_validate(celebrity).model_dump()
+            result[&#34;relevance_score&#34;] = relevance_score or 0
+            result[&#34;match_type&#34;] = &#34;description_match&#34;
+            formatted_results.append(result)
+
+        return formatted_results
+
+    def _search_by_tag(
+        self, base_query, query: str, skip: int, limit: int
+    ) -&gt; List[Dict[str, Any]]:
+        &#34;&#34;&#34;Search by tag only&#34;&#34;&#34;
+        query_lower = query.lower()
+
+        search_query = (
+            base_query.add_columns(
+                case(
+                    (
+                        func.lower(Celebrity.tags.any(Tag.name.contains(query_lower))),
+                        40,
+                    ),
+                    else_=0,
+                ).label(&#34;relevance_score&#34;)
+            )
+            .filter(Celebrity.tags.any(Tag.name.contains(query_lower)))
+            .order_by(desc(&#34;relevance_score&#34;), desc(Celebrity.created_at))
+        )
+
+        results = search_query.offset(skip).limit(limit).all()
+
+        formatted_results = []
+        for celebrity, relevance_score in results:
+            result = CelebrityResponse.model_validate(celebrity).model_dump()
+            result[&#34;relevance_score&#34;] = relevance_score or 0
+            result[&#34;match_type&#34;] = &#34;tag_match&#34;
+            formatted_results.append(result)
+
+        return formatted_results
+
+    def _search_by_mbti(
+        self, base_query, query: str, skip: int, limit: int
+    ) -&gt; List[Dict[str, Any]]:
+        &#34;&#34;&#34;Search by MBTI type votes&#34;&#34;&#34;
+        query_upper = query.upper()
+
+        # Get celebrities with votes for the specified MBTI type
+        search_query = (
+            base_query.add_columns(func.count(Vote.id).label(&#34;vote_count_for_type&#34;))
+            .join(Vote, Celebrity.id == Vote.celebrity_id)
+            .filter(Vote.mbti_type == query_upper)
+            .group_by(Celebrity.id)
+            .order_by(desc(&#34;vote_count_for_type&#34;))
+        )
+
+        results = search_query.offset(skip).limit(limit).all()
+
+        formatted_results = []
+        for celebrity, vote_count in results:
+            result = CelebrityResponse.model_validate(celebrity).model_dump()
+            result[&#34;relevance_score&#34;] = vote_count or 0
+            result[&#34;match_type&#34;] = &#34;mbti_match&#34;
+            formatted_results.append(result)
+
+        return formatted_results
+
+    def _apply_mbti_filter(self, query, mbti_type: str):
+        &#34;&#34;&#34;Apply MBTI type filter&#34;&#34;&#34;
+        return (
+            query.join(Vote, Celebrity.id == Vote.celebrity_id)
+            .filter(Vote.mbti_type == mbti_type.upper())
+            .group_by(Celebrity.id)
+        )
+
+    def _apply_tag_filter(self, query, tag_name: str):
+        &#34;&#34;&#34;Apply tag filter&#34;&#34;&#34;
+        return query.filter(Celebrity.tags.any(Tag.name.contains(tag_name)))
+
+    def _apply_popularity_filter(self, query, popularity_filter: str):
+        &#34;&#34;&#34;Apply popularity filter&#34;&#34;&#34;
+        if popularity_filter == &#34;popular&#34;:
+            # Order by vote count using subquery
+            return (
+                query.add_columns(func.count(Vote.id).label(&#34;vote_count&#34;))
+                .outerjoin(Vote, Celebrity.id == Vote.celebrity_id)
+                .group_by(Celebrity.id)
+                .order_by(desc(&#34;vote_count&#34;))
+            )
+        elif popularity_filter == &#34;recent&#34;:
+            return query.order_by(desc(Celebrity.created_at))
+        else:  # &#34;all&#34;
+            return query
+
+    def _determine_match_type(
+        self, query_lower: str, celebrity: Celebrity, relevance_score: float
+    ) -&gt; str:
+        &#34;&#34;&#34;Determine the type of match for the celebrity&#34;&#34;&#34;
+        if relevance_score &gt;= 100:
+            return &#34;exact_match&#34;
+        elif relevance_score &gt;= 80:
+            return &#34;name_contains&#34;
+        elif relevance_score &gt;= 60:
+            return &#34;description_match&#34;
+        elif relevance_score &gt;= 40:
+            return &#34;tag_match&#34;
+        else:
+            return &#34;partial_match&#34;
+
+    def get_search_suggestions(self, query: str, limit: int = 10) -&gt; List[str]:
+        &#34;&#34;&#34;Get search suggestions based on partial query&#34;&#34;&#34;
+        if len(query.strip()) &lt; 2:
+            return []
+
+        query_lower = query.lower()
+
+        # Get celebrity name suggestions
+        name_suggestions = (
+            self.db.query(Celebrity.name)
+            .filter(func.lower(Celebrity.name).contains(query_lower))
+            .limit(limit // 2)
+            .all()
+        )
+
+        # Get English name suggestions
+        name_en_suggestions = (
+            self.db.query(Celebrity.name_en)
+            .filter(func.lower(Celebrity.name_en).contains(query_lower))
+            .limit(limit // 2)
+            .all()
+        )
+
+        # Get tag suggestions
+        tag_suggestions = (
+            self.db.query(Tag.name)
+            .filter(func.lower(Tag.name).contains(query_lower))
+            .limit(limit // 4)
+            .all()
+        )
+
+        # Combine and deduplicate suggestions
+        all_suggestions: List[str] = []
+        for suggestion in name_suggestions + name_en_suggestions + tag_suggestions:
+            if suggestion[0] and suggestion[0].lower() not in [
+                s.lower() for s in all_suggestions
+            ]:
+                all_suggestions.append(suggestion[0])
+
+        return all_suggestions[:limit]
+
+    def get_search_analytics(self) -&gt; Dict[str, Any]:
+        &#34;&#34;&#34;Get search analytics and statistics&#34;&#34;&#34;
+        total_celebrities = self.db.query(Celebrity).count()
+        total_tags = self.db.query(Tag).count()
+        total_votes = self.db.query(Vote).count()
+
+        # Get popular tags
+        popular_tags = (
+            self.db.query(
+                Tag.name, func.count(CelebrityTag.celebrity_id).label(&#34;usage_count&#34;)
+            )
+            .join(CelebrityTag, Tag.id == CelebrityTag.tag_id)
+            .group_by(Tag.id)
+            .order_by(desc(&#34;usage_count&#34;))
+            .limit(10)
+            .all()
+        )
+
+        # Get popular MBTI types
+        popular_mbti = (
+            self.db.query(Vote.mbti_type, func.count(Vote.id).label(&#34;vote_count&#34;))
+            .group_by(Vote.mbti_type)
+            .order_by(desc(&#34;vote_count&#34;))
+            .all()
+        )
+
+        return {
+            &#34;total_celebrities&#34;: total_celebrities,
+            &#34;total_tags&#34;: total_tags,
+            &#34;total_votes&#34;: total_votes,
+            &#34;popular_tags&#34;: [
+                {&#34;tag&#34;: tag, &#34;count&#34;: count} for tag, count in popular_tags
+            ],
+            &#34;popular_mbti_types&#34;: [
+                {&#34;type&#34;: mbti_type, &#34;count&#34;: count} for mbti_type, count in popular_mbti
+            ],
+        }</code></pre>
+</details>
+<div class="desc"></div>
+<h3>Methods</h3>
+<dl>
+<dt id="app.services.SearchService.get_search_analytics"><code class="name flex">
+<span>def <span class="ident">get_search_analytics</span></span>(<span>self) ‑> Dict[str, Any]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_search_analytics(self) -&gt; Dict[str, Any]:
+    &#34;&#34;&#34;Get search analytics and statistics&#34;&#34;&#34;
+    total_celebrities = self.db.query(Celebrity).count()
+    total_tags = self.db.query(Tag).count()
+    total_votes = self.db.query(Vote).count()
+
+    # Get popular tags
+    popular_tags = (
+        self.db.query(
+            Tag.name, func.count(CelebrityTag.celebrity_id).label(&#34;usage_count&#34;)
+        )
+        .join(CelebrityTag, Tag.id == CelebrityTag.tag_id)
+        .group_by(Tag.id)
+        .order_by(desc(&#34;usage_count&#34;))
+        .limit(10)
+        .all()
+    )
+
+    # Get popular MBTI types
+    popular_mbti = (
+        self.db.query(Vote.mbti_type, func.count(Vote.id).label(&#34;vote_count&#34;))
+        .group_by(Vote.mbti_type)
+        .order_by(desc(&#34;vote_count&#34;))
+        .all()
+    )
+
+    return {
+        &#34;total_celebrities&#34;: total_celebrities,
+        &#34;total_tags&#34;: total_tags,
+        &#34;total_votes&#34;: total_votes,
+        &#34;popular_tags&#34;: [
+            {&#34;tag&#34;: tag, &#34;count&#34;: count} for tag, count in popular_tags
+        ],
+        &#34;popular_mbti_types&#34;: [
+            {&#34;type&#34;: mbti_type, &#34;count&#34;: count} for mbti_type, count in popular_mbti
+        ],
+    }</code></pre>
+</details>
+<div class="desc"><p>Get search analytics and statistics</p></div>
+</dd>
+<dt id="app.services.SearchService.get_search_suggestions"><code class="name flex">
+<span>def <span class="ident">get_search_suggestions</span></span>(<span>self, query: str, limit: int = 10) ‑> List[str]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_search_suggestions(self, query: str, limit: int = 10) -&gt; List[str]:
+    &#34;&#34;&#34;Get search suggestions based on partial query&#34;&#34;&#34;
+    if len(query.strip()) &lt; 2:
+        return []
+
+    query_lower = query.lower()
+
+    # Get celebrity name suggestions
+    name_suggestions = (
+        self.db.query(Celebrity.name)
+        .filter(func.lower(Celebrity.name).contains(query_lower))
+        .limit(limit // 2)
+        .all()
+    )
+
+    # Get English name suggestions
+    name_en_suggestions = (
+        self.db.query(Celebrity.name_en)
+        .filter(func.lower(Celebrity.name_en).contains(query_lower))
+        .limit(limit // 2)
+        .all()
+    )
+
+    # Get tag suggestions
+    tag_suggestions = (
+        self.db.query(Tag.name)
+        .filter(func.lower(Tag.name).contains(query_lower))
+        .limit(limit // 4)
+        .all()
+    )
+
+    # Combine and deduplicate suggestions
+    all_suggestions: List[str] = []
+    for suggestion in name_suggestions + name_en_suggestions + tag_suggestions:
+        if suggestion[0] and suggestion[0].lower() not in [
+            s.lower() for s in all_suggestions
+        ]:
+            all_suggestions.append(suggestion[0])
+
+    return all_suggestions[:limit]</code></pre>
+</details>
+<div class="desc"><p>Get search suggestions based on partial query</p></div>
+</dd>
+<dt id="app.services.SearchService.search_celebrities"><code class="name flex">
+<span>def <span class="ident">search_celebrities</span></span>(<span>self,<br>query: str,<br>search_type: str = 'all',<br>mbti_type: str | None = None,<br>tag_filter: str | None = None,<br>popularity_filter: str | None = None,<br>skip: int = 0,<br>limit: int = 50) ‑> List[Dict[str, Any]]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def search_celebrities(
+    self,
+    query: str,
+    search_type: str = &#34;all&#34;,
+    mbti_type: Optional[str] = None,
+    tag_filter: Optional[str] = None,
+    popularity_filter: Optional[str] = None,
+    skip: int = 0,
+    limit: int = 50,
+) -&gt; List[Dict[str, Any]]:
+    &#34;&#34;&#34;
+    Hybrid search with relevance scoring
+
+    Args:
+        query: Search query string
+        search_type: Type of search (all, name, description, tag, mbti)
+        mbti_type: Filter by MBTI type
+        tag_filter: Filter by tag
+        popularity_filter: Filter by popularity (popular, recent, all)
+        skip: Number of records to skip
+        limit: Number of records to return
+    &#34;&#34;&#34;
+    if not query.strip():
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail=&#34;Search query cannot be empty&#34;,
+        )
+
+    # Build base query
+    base_query = self.db.query(Celebrity)
+
+    # Apply filters
+    if mbti_type:
+        base_query = self._apply_mbti_filter(base_query, mbti_type)
+
+    if tag_filter:
+        base_query = self._apply_tag_filter(base_query, tag_filter)
+
+    if popularity_filter:
+        base_query = self._apply_popularity_filter(base_query, popularity_filter)
+
+    # Apply search based on type
+    if search_type == &#34;name&#34;:
+        results = self._search_by_name(base_query, query, skip, limit)
+    elif search_type == &#34;description&#34;:
+        results = self._search_by_description(base_query, query, skip, limit)
+    elif search_type == &#34;tag&#34;:
+        results = self._search_by_tag(base_query, query, skip, limit)
+    elif search_type == &#34;mbti&#34;:
+        results = self._search_by_mbti(base_query, query, skip, limit)
+    else:  # &#34;all&#34;
+        results = self._hybrid_search(base_query, query, skip, limit)
+
+    return results</code></pre>
+</details>
+<div class="desc"><p>Hybrid search with relevance scoring</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>query</code></strong></dt>
+<dd>Search query string</dd>
+<dt><strong><code>search_type</code></strong></dt>
+<dd>Type of search (all, name, description, tag, mbti)</dd>
+<dt><strong><code>mbti_type</code></strong></dt>
+<dd>Filter by MBTI type</dd>
+<dt><strong><code>tag_filter</code></strong></dt>
+<dd>Filter by tag</dd>
+<dt><strong><code>popularity_filter</code></strong></dt>
+<dd>Filter by popularity (popular, recent, all)</dd>
+<dt><strong><code>skip</code></strong></dt>
+<dd>Number of records to skip</dd>
+<dt><strong><code>limit</code></strong></dt>
+<dd>Number of records to return</dd>
+</dl></div>
+</dd>
+</dl>
+</dd>
+<dt id="app.services.UserService"><code class="flex name class">
+<span>class <span class="ident">UserService</span></span>
+<span>(</span><span>db: sqlalchemy.orm.session.Session)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class UserService:
+    def __init__(self, db: Session):
+        self.db = db
+
+    def get_user_by_id(self, user_id: str) -&gt; Optional[User]:
+        &#34;&#34;&#34;Get user by ID&#34;&#34;&#34;
+        return self.db.query(User).filter(User.id == user_id).first()
+
+    def get_user_by_email(self, email: str) -&gt; Optional[User]:
+        &#34;&#34;&#34;Get user by email&#34;&#34;&#34;
+        return self.db.query(User).filter(User.email == email).first()
+
+    def get_user_profile(self, user_id: str) -&gt; UserProfile:
+        &#34;&#34;&#34;Get user profile&#34;&#34;&#34;
+        user = self.get_user_by_id(user_id)
+        if not user:
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND, detail=&#34;User not found&#34;
+            )
+        return UserProfile.model_validate(user)
+
+    def update_user(self, user_id: str, user_data: UserUpdate) -&gt; UserProfile:
+        &#34;&#34;&#34;Update user information&#34;&#34;&#34;
+        user = self.get_user_by_id(user_id)
+        if not user:
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND, detail=&#34;User not found&#34;
+            )
+
+        # Update fields if provided
+        if user_data.name is not None:
+            user.name = user_data.name
+        if user_data.is_active is not None:
+            user.is_active = user_data.is_active
+
+        self.db.commit()
+        self.db.refresh(user)
+
+        return UserProfile.model_validate(user)
+
+    def deactivate_user(self, user_id: str) -&gt; UserProfile:
+        &#34;&#34;&#34;Deactivate user account&#34;&#34;&#34;
+        user = self.get_user_by_id(user_id)
+        if not user:
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND, detail=&#34;User not found&#34;
+            )
+
+        user.is_active = False
+        self.db.commit()
+        self.db.refresh(user)
+
+        return UserProfile.model_validate(user)
+
+    def get_all_users(self, skip: int = 0, limit: int = 100) -&gt; List[User]:
+        &#34;&#34;&#34;Get all users with pagination&#34;&#34;&#34;
+        return self.db.query(User).offset(skip).limit(limit).all()</code></pre>
+</details>
+<div class="desc"></div>
+<h3>Methods</h3>
+<dl>
+<dt id="app.services.UserService.deactivate_user"><code class="name flex">
+<span>def <span class="ident">deactivate_user</span></span>(<span>self, user_id: str) ‑> <a title="app.schemas.user.UserProfile" href="../schemas/user.html#app.schemas.user.UserProfile">UserProfile</a></span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def deactivate_user(self, user_id: str) -&gt; UserProfile:
+    &#34;&#34;&#34;Deactivate user account&#34;&#34;&#34;
+    user = self.get_user_by_id(user_id)
+    if not user:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND, detail=&#34;User not found&#34;
+        )
+
+    user.is_active = False
+    self.db.commit()
+    self.db.refresh(user)
+
+    return UserProfile.model_validate(user)</code></pre>
+</details>
+<div class="desc"><p>Deactivate user account</p></div>
+</dd>
+<dt id="app.services.UserService.get_all_users"><code class="name flex">
+<span>def <span class="ident">get_all_users</span></span>(<span>self, skip: int = 0, limit: int = 100) ‑> List[<a title="app.database.models.User" href="../database/models.html#app.database.models.User">User</a>]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_all_users(self, skip: int = 0, limit: int = 100) -&gt; List[User]:
+    &#34;&#34;&#34;Get all users with pagination&#34;&#34;&#34;
+    return self.db.query(User).offset(skip).limit(limit).all()</code></pre>
+</details>
+<div class="desc"><p>Get all users with pagination</p></div>
+</dd>
+<dt id="app.services.UserService.get_user_by_email"><code class="name flex">
+<span>def <span class="ident">get_user_by_email</span></span>(<span>self, email: str) ‑> <a title="app.database.models.User" href="../database/models.html#app.database.models.User">User</a> | None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_user_by_email(self, email: str) -&gt; Optional[User]:
+    &#34;&#34;&#34;Get user by email&#34;&#34;&#34;
+    return self.db.query(User).filter(User.email == email).first()</code></pre>
+</details>
+<div class="desc"><p>Get user by email</p></div>
+</dd>
+<dt id="app.services.UserService.get_user_by_id"><code class="name flex">
+<span>def <span class="ident">get_user_by_id</span></span>(<span>self, user_id: str) ‑> <a title="app.database.models.User" href="../database/models.html#app.database.models.User">User</a> | None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_user_by_id(self, user_id: str) -&gt; Optional[User]:
+    &#34;&#34;&#34;Get user by ID&#34;&#34;&#34;
+    return self.db.query(User).filter(User.id == user_id).first()</code></pre>
+</details>
+<div class="desc"><p>Get user by ID</p></div>
+</dd>
+<dt id="app.services.UserService.get_user_profile"><code class="name flex">
+<span>def <span class="ident">get_user_profile</span></span>(<span>self, user_id: str) ‑> <a title="app.schemas.user.UserProfile" href="../schemas/user.html#app.schemas.user.UserProfile">UserProfile</a></span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_user_profile(self, user_id: str) -&gt; UserProfile:
+    &#34;&#34;&#34;Get user profile&#34;&#34;&#34;
+    user = self.get_user_by_id(user_id)
+    if not user:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND, detail=&#34;User not found&#34;
+        )
+    return UserProfile.model_validate(user)</code></pre>
+</details>
+<div class="desc"><p>Get user profile</p></div>
+</dd>
+<dt id="app.services.UserService.update_user"><code class="name flex">
+<span>def <span class="ident">update_user</span></span>(<span>self,<br>user_id: str,<br>user_data: <a title="app.schemas.user.UserUpdate" href="../schemas/user.html#app.schemas.user.UserUpdate">UserUpdate</a>) ‑> <a title="app.schemas.user.UserProfile" href="../schemas/user.html#app.schemas.user.UserProfile">UserProfile</a></span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def update_user(self, user_id: str, user_data: UserUpdate) -&gt; UserProfile:
+    &#34;&#34;&#34;Update user information&#34;&#34;&#34;
+    user = self.get_user_by_id(user_id)
+    if not user:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND, detail=&#34;User not found&#34;
+        )
+
+    # Update fields if provided
+    if user_data.name is not None:
+        user.name = user_data.name
+    if user_data.is_active is not None:
+        user.is_active = user_data.is_active
+
+    self.db.commit()
+    self.db.refresh(user)
+
+    return UserProfile.model_validate(user)</code></pre>
+</details>
+<div class="desc"><p>Update user information</p></div>
+</dd>
+</dl>
+</dd>
+<dt id="app.services.VoteService"><code class="flex name class">
+<span>class <span class="ident">VoteService</span></span>
+<span>(</span><span>db: sqlalchemy.orm.session.Session)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class VoteService:
+    def __init__(self, db: Session):
+        self.db = db
+
+    def create_vote(self, user_id: str, vote_data: VoteCreate) -&gt; Vote:
+        &#34;&#34;&#34;Create a new vote for a celebrity&#34;&#34;&#34;
+        # Check if celebrity exists
+        celebrity = (
+            self.db.query(Celebrity)
+            .filter(Celebrity.id == vote_data.celebrity_id)
+            .first()
+        )
+        if not celebrity:
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND, detail=&#34;Celebrity not found&#34;
+            )
+
+        # Check if user has already voted for this celebrity
+        existing_vote = (
+            self.db.query(Vote)
+            .filter(
+                and_(
+                    Vote.user_id == user_id, Vote.celebrity_id == vote_data.celebrity_id
+                )
+            )
+            .first()
+        )
+
+        if existing_vote:
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail=&#34;You have already voted for this celebrity&#34;,
+            )
+
+        # Check daily vote limit (max 10 votes per day)
+        today = date.today()
+        daily_stats = (
+            self.db.query(DailyUserStats)
+            .filter(
+                and_(DailyUserStats.user_id == user_id, DailyUserStats.date == today)
+            )
+            .first()
+        )
+
+        if daily_stats and daily_stats.votes_count &gt;= 10:
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail=&#34;Daily vote limit reached (10 votes per day)&#34;,
+            )
+
+        # Create the vote
+        vote = Vote(
+            user_id=user_id,
+            celebrity_id=vote_data.celebrity_id,
+            mbti_type=vote_data.mbti_type,
+            reason=vote_data.reason,
+        )
+
+        self.db.add(vote)
+
+        # Update or create daily stats
+        if daily_stats:
+            daily_stats.votes_count += 1
+            if not vote_data.reason:
+                daily_stats.votes_no_reason += 1
+        else:
+            daily_stats = DailyUserStats(
+                user_id=user_id,
+                date=today,
+                votes_count=1,
+                votes_no_reason=1 if not vote_data.reason else 0,
+            )
+            self.db.add(daily_stats)
+
+        self.db.commit()
+        self.db.refresh(vote)
+
+        return vote
+
+    def get_vote_by_id(self, vote_id: str) -&gt; Optional[Vote]:
+        &#34;&#34;&#34;Get vote by ID&#34;&#34;&#34;
+        return self.db.query(Vote).filter(Vote.id == vote_id).first()
+
+    def get_user_votes(
+        self, user_id: str, skip: int = 0, limit: int = 100
+    ) -&gt; List[Vote]:
+        &#34;&#34;&#34;Get all votes by a user&#34;&#34;&#34;
+        return (
+            self.db.query(Vote)
+            .filter(Vote.user_id == user_id)
+            .order_by(Vote.created_at.desc())
+            .offset(skip)
+            .limit(limit)
+            .all()
+        )
+
+    def get_celebrity_votes(
+        self, celebrity_id: str, skip: int = 0, limit: int = 100
+    ) -&gt; List[Vote]:
+        &#34;&#34;&#34;Get all votes for a celebrity&#34;&#34;&#34;
+        return (
+            self.db.query(Vote)
+            .filter(Vote.celebrity_id == celebrity_id)
+            .order_by(Vote.created_at.desc())
+            .offset(skip)
+            .limit(limit)
+            .all()
+        )
+
+    def get_all_votes(
+        self,
+        skip: int = 0,
+        limit: int = 100,
+        celebrity_id: Optional[str] = None,
+        user_id: Optional[str] = None,
+        mbti_type: Optional[MBTIType] = None,
+    ) -&gt; List[Vote]:
+        &#34;&#34;&#34;Get all votes with optional filters&#34;&#34;&#34;
+        query = self.db.query(Vote)
+
+        if celebrity_id:
+            query = query.filter(Vote.celebrity_id == celebrity_id)
+        if user_id:
+            query = query.filter(Vote.user_id == user_id)
+        if mbti_type:
+            query = query.filter(Vote.mbti_type == mbti_type)
+
+        return query.order_by(Vote.created_at.desc()).offset(skip).limit(limit).all()
+
+    def delete_vote(self, vote_id: str, user_id: str) -&gt; bool:
+        &#34;&#34;&#34;Delete a vote (only by the user who created it)&#34;&#34;&#34;
+        vote = self.get_vote_by_id(vote_id)
+        if not vote:
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND, detail=&#34;Vote not found&#34;
+            )
+
+        if vote.user_id != user_id:
+            raise HTTPException(
+                status_code=status.HTTP_403_FORBIDDEN,
+                detail=&#34;You can only delete your own votes&#34;,
+            )
+
+        # Update daily stats
+        vote_date = vote.created_at.date()
+        daily_stats = (
+            self.db.query(DailyUserStats)
+            .filter(
+                and_(
+                    DailyUserStats.user_id == user_id, DailyUserStats.date == vote_date
+                )
+            )
+            .first()
+        )
+
+        if daily_stats:
+            daily_stats.votes_count -= 1
+            if not vote.reason:
+                daily_stats.votes_no_reason -= 1
+
+            # Remove daily stats if no votes left
+            if daily_stats.votes_count &lt;= 0:
+                self.db.delete(daily_stats)
+
+        self.db.delete(vote)
+        self.db.commit()
+
+        return True
+
+    def get_celebrity_vote_statistics(self, celebrity_id: str) -&gt; Dict[str, Any]:
+        &#34;&#34;&#34;Get vote statistics for a celebrity&#34;&#34;&#34;
+        # Check if celebrity exists
+        celebrity = (
+            self.db.query(Celebrity).filter(Celebrity.id == celebrity_id).first()
+        )
+        if not celebrity:
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND, detail=&#34;Celebrity not found&#34;
+            )
+
+        # Get total votes count
+        total_votes = (
+            self.db.query(func.count(Vote.id))
+            .filter(Vote.celebrity_id == celebrity_id)
+            .scalar()
+        )
+
+        # Get votes by MBTI type
+        mbti_counts = (
+            self.db.query(Vote.mbti_type, func.count(Vote.id).label(&#34;count&#34;))
+            .filter(Vote.celebrity_id == celebrity_id)
+            .group_by(Vote.mbti_type)
+            .order_by(desc(&#34;count&#34;))
+            .all()
+        )
+
+        # Get votes with reasons vs without reasons
+        votes_with_reason = (
+            self.db.query(func.count(Vote.id))
+            .filter(and_(Vote.celebrity_id == celebrity_id, Vote.reason.isnot(None)))
+            .scalar()
+        )
+
+        votes_without_reason = total_votes - votes_with_reason
+
+        return {
+            &#34;celebrity_id&#34;: celebrity_id,
+            &#34;celebrity_name&#34;: celebrity.name,
+            &#34;total_votes&#34;: total_votes,
+            &#34;votes_with_reason&#34;: votes_with_reason,
+            &#34;votes_without_reason&#34;: votes_without_reason,
+            &#34;mbti_distribution&#34;: [
+                {
+                    &#34;mbti_type&#34;: mbti_type.value,
+                    &#34;count&#34;: count,
+                    &#34;percentage&#34;: (
+                        round((count / total_votes * 100), 2) if total_votes &gt; 0 else 0
+                    ),
+                }
+                for mbti_type, count in mbti_counts
+            ],
+            &#34;top_mbti_type&#34;: mbti_counts[0][0].value if mbti_counts else None,
+            &#34;top_mbti_count&#34;: mbti_counts[0][1] if mbti_counts else 0,
+        }
+
+    def get_user_vote_statistics(self, user_id: str) -&gt; Dict[str, Any]:
+        &#34;&#34;&#34;Get vote statistics for a user&#34;&#34;&#34;
+        # Check if user exists
+        user = self.db.query(User).filter(User.id == user_id).first()
+        if not user:
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND, detail=&#34;User not found&#34;
+            )
+
+        # Get total votes count
+        total_votes = (
+            self.db.query(func.count(Vote.id)).filter(Vote.user_id == user_id).scalar()
+        )
+
+        # Get votes by MBTI type
+        mbti_counts = (
+            self.db.query(Vote.mbti_type, func.count(Vote.id).label(&#34;count&#34;))
+            .filter(Vote.user_id == user_id)
+            .group_by(Vote.mbti_type)
+            .order_by(desc(&#34;count&#34;))
+            .all()
+        )
+
+        # Get today&#39;s votes
+        today = date.today()
+        today_votes = (
+            self.db.query(func.count(Vote.id))
+            .filter(and_(Vote.user_id == user_id, func.date(Vote.created_at) == today))
+            .scalar()
+        )
+
+        # Get daily stats
+        daily_stats = (
+            self.db.query(DailyUserStats)
+            .filter(DailyUserStats.user_id == user_id)
+            .order_by(DailyUserStats.date.desc())
+            .limit(7)
+            .all()
+        )  # Last 7 days
+
+        return {
+            &#34;user_id&#34;: user_id,
+            &#34;user_name&#34;: user.name,
+            &#34;total_votes&#34;: total_votes,
+            &#34;today_votes&#34;: today_votes,
+            &#34;votes_remaining_today&#34;: max(0, 10 - today_votes),
+            &#34;mbti_distribution&#34;: [
+                {
+                    &#34;mbti_type&#34;: mbti_type.value,
+                    &#34;count&#34;: count,
+                    &#34;percentage&#34;: (
+                        round((count / total_votes * 100), 2) if total_votes &gt; 0 else 0
+                    ),
+                }
+                for mbti_type, count in mbti_counts
+            ],
+            &#34;favorite_mbti_type&#34;: mbti_counts[0][0].value if mbti_counts else None,
+            &#34;favorite_mbti_count&#34;: mbti_counts[0][1] if mbti_counts else 0,
+            &#34;recent_daily_stats&#34;: [
+                {
+                    &#34;date&#34;: stats.date.isoformat(),
+                    &#34;votes_count&#34;: stats.votes_count,
+                    &#34;votes_no_reason&#34;: stats.votes_no_reason,
+                }
+                for stats in daily_stats
+            ],
+        }
+
+    def get_popular_celebrities_by_votes(self, limit: int = 10) -&gt; List[Dict[str, Any]]:
+        &#34;&#34;&#34;Get celebrities ordered by number of votes&#34;&#34;&#34;
+        celebrities = (
+            self.db.query(Celebrity, func.count(Vote.id).label(&#34;vote_count&#34;))
+            .outerjoin(Vote)
+            .group_by(Celebrity.id)
+            .order_by(desc(&#34;vote_count&#34;))
+            .limit(limit)
+            .all()
+        )
+
+        return [
+            {
+                &#34;celebrity&#34;: celebrity,
+                &#34;vote_count&#34;: vote_count,
+                &#34;top_mbti&#34;: self._get_celebrity_top_mbti(celebrity.id),
+            }
+            for celebrity, vote_count in celebrities
+        ]
+
+    def _get_celebrity_top_mbti(self, celebrity_id: str) -&gt; Optional[str]:
+        &#34;&#34;&#34;Get the most voted MBTI type for a celebrity&#34;&#34;&#34;
+        result = (
+            self.db.query(Vote.mbti_type, func.count(Vote.id).label(&#34;count&#34;))
+            .filter(Vote.celebrity_id == celebrity_id)
+            .group_by(Vote.mbti_type)
+            .order_by(desc(&#34;count&#34;))
+            .first()
+        )
+
+        return result[0].value if result else None</code></pre>
+</details>
+<div class="desc"></div>
+<h3>Methods</h3>
+<dl>
+<dt id="app.services.VoteService.create_vote"><code class="name flex">
+<span>def <span class="ident">create_vote</span></span>(<span>self,<br>user_id: str,<br>vote_data: <a title="app.schemas.vote.VoteCreate" href="../schemas/vote.html#app.schemas.vote.VoteCreate">VoteCreate</a>) ‑> <a title="app.database.models.Vote" href="../database/models.html#app.database.models.Vote">Vote</a></span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def create_vote(self, user_id: str, vote_data: VoteCreate) -&gt; Vote:
+    &#34;&#34;&#34;Create a new vote for a celebrity&#34;&#34;&#34;
+    # Check if celebrity exists
+    celebrity = (
+        self.db.query(Celebrity)
+        .filter(Celebrity.id == vote_data.celebrity_id)
+        .first()
+    )
+    if not celebrity:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND, detail=&#34;Celebrity not found&#34;
+        )
+
+    # Check if user has already voted for this celebrity
+    existing_vote = (
+        self.db.query(Vote)
+        .filter(
+            and_(
+                Vote.user_id == user_id, Vote.celebrity_id == vote_data.celebrity_id
+            )
+        )
+        .first()
+    )
+
+    if existing_vote:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail=&#34;You have already voted for this celebrity&#34;,
+        )
+
+    # Check daily vote limit (max 10 votes per day)
+    today = date.today()
+    daily_stats = (
+        self.db.query(DailyUserStats)
+        .filter(
+            and_(DailyUserStats.user_id == user_id, DailyUserStats.date == today)
+        )
+        .first()
+    )
+
+    if daily_stats and daily_stats.votes_count &gt;= 10:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail=&#34;Daily vote limit reached (10 votes per day)&#34;,
+        )
+
+    # Create the vote
+    vote = Vote(
+        user_id=user_id,
+        celebrity_id=vote_data.celebrity_id,
+        mbti_type=vote_data.mbti_type,
+        reason=vote_data.reason,
+    )
+
+    self.db.add(vote)
+
+    # Update or create daily stats
+    if daily_stats:
+        daily_stats.votes_count += 1
+        if not vote_data.reason:
+            daily_stats.votes_no_reason += 1
+    else:
+        daily_stats = DailyUserStats(
+            user_id=user_id,
+            date=today,
+            votes_count=1,
+            votes_no_reason=1 if not vote_data.reason else 0,
+        )
+        self.db.add(daily_stats)
+
+    self.db.commit()
+    self.db.refresh(vote)
+
+    return vote</code></pre>
+</details>
+<div class="desc"><p>Create a new vote for a celebrity</p></div>
+</dd>
+<dt id="app.services.VoteService.delete_vote"><code class="name flex">
+<span>def <span class="ident">delete_vote</span></span>(<span>self, vote_id: str, user_id: str) ‑> bool</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def delete_vote(self, vote_id: str, user_id: str) -&gt; bool:
+    &#34;&#34;&#34;Delete a vote (only by the user who created it)&#34;&#34;&#34;
+    vote = self.get_vote_by_id(vote_id)
+    if not vote:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND, detail=&#34;Vote not found&#34;
+        )
+
+    if vote.user_id != user_id:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail=&#34;You can only delete your own votes&#34;,
+        )
+
+    # Update daily stats
+    vote_date = vote.created_at.date()
+    daily_stats = (
+        self.db.query(DailyUserStats)
+        .filter(
+            and_(
+                DailyUserStats.user_id == user_id, DailyUserStats.date == vote_date
+            )
+        )
+        .first()
+    )
+
+    if daily_stats:
+        daily_stats.votes_count -= 1
+        if not vote.reason:
+            daily_stats.votes_no_reason -= 1
+
+        # Remove daily stats if no votes left
+        if daily_stats.votes_count &lt;= 0:
+            self.db.delete(daily_stats)
+
+    self.db.delete(vote)
+    self.db.commit()
+
+    return True</code></pre>
+</details>
+<div class="desc"><p>Delete a vote (only by the user who created it)</p></div>
+</dd>
+<dt id="app.services.VoteService.get_all_votes"><code class="name flex">
+<span>def <span class="ident">get_all_votes</span></span>(<span>self,<br>skip: int = 0,<br>limit: int = 100,<br>celebrity_id: str | None = None,<br>user_id: str | None = None,<br>mbti_type: <a title="app.database.models.MBTIType" href="../database/models.html#app.database.models.MBTIType">MBTIType</a> | None = None) ‑> List[<a title="app.database.models.Vote" href="../database/models.html#app.database.models.Vote">Vote</a>]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_all_votes(
+    self,
+    skip: int = 0,
+    limit: int = 100,
+    celebrity_id: Optional[str] = None,
+    user_id: Optional[str] = None,
+    mbti_type: Optional[MBTIType] = None,
+) -&gt; List[Vote]:
+    &#34;&#34;&#34;Get all votes with optional filters&#34;&#34;&#34;
+    query = self.db.query(Vote)
+
+    if celebrity_id:
+        query = query.filter(Vote.celebrity_id == celebrity_id)
+    if user_id:
+        query = query.filter(Vote.user_id == user_id)
+    if mbti_type:
+        query = query.filter(Vote.mbti_type == mbti_type)
+
+    return query.order_by(Vote.created_at.desc()).offset(skip).limit(limit).all()</code></pre>
+</details>
+<div class="desc"><p>Get all votes with optional filters</p></div>
+</dd>
+<dt id="app.services.VoteService.get_celebrity_vote_statistics"><code class="name flex">
+<span>def <span class="ident">get_celebrity_vote_statistics</span></span>(<span>self, celebrity_id: str) ‑> Dict[str, Any]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_celebrity_vote_statistics(self, celebrity_id: str) -&gt; Dict[str, Any]:
+    &#34;&#34;&#34;Get vote statistics for a celebrity&#34;&#34;&#34;
+    # Check if celebrity exists
+    celebrity = (
+        self.db.query(Celebrity).filter(Celebrity.id == celebrity_id).first()
+    )
+    if not celebrity:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND, detail=&#34;Celebrity not found&#34;
+        )
+
+    # Get total votes count
+    total_votes = (
+        self.db.query(func.count(Vote.id))
+        .filter(Vote.celebrity_id == celebrity_id)
+        .scalar()
+    )
+
+    # Get votes by MBTI type
+    mbti_counts = (
+        self.db.query(Vote.mbti_type, func.count(Vote.id).label(&#34;count&#34;))
+        .filter(Vote.celebrity_id == celebrity_id)
+        .group_by(Vote.mbti_type)
+        .order_by(desc(&#34;count&#34;))
+        .all()
+    )
+
+    # Get votes with reasons vs without reasons
+    votes_with_reason = (
+        self.db.query(func.count(Vote.id))
+        .filter(and_(Vote.celebrity_id == celebrity_id, Vote.reason.isnot(None)))
+        .scalar()
+    )
+
+    votes_without_reason = total_votes - votes_with_reason
+
+    return {
+        &#34;celebrity_id&#34;: celebrity_id,
+        &#34;celebrity_name&#34;: celebrity.name,
+        &#34;total_votes&#34;: total_votes,
+        &#34;votes_with_reason&#34;: votes_with_reason,
+        &#34;votes_without_reason&#34;: votes_without_reason,
+        &#34;mbti_distribution&#34;: [
+            {
+                &#34;mbti_type&#34;: mbti_type.value,
+                &#34;count&#34;: count,
+                &#34;percentage&#34;: (
+                    round((count / total_votes * 100), 2) if total_votes &gt; 0 else 0
+                ),
+            }
+            for mbti_type, count in mbti_counts
+        ],
+        &#34;top_mbti_type&#34;: mbti_counts[0][0].value if mbti_counts else None,
+        &#34;top_mbti_count&#34;: mbti_counts[0][1] if mbti_counts else 0,
+    }</code></pre>
+</details>
+<div class="desc"><p>Get vote statistics for a celebrity</p></div>
+</dd>
+<dt id="app.services.VoteService.get_celebrity_votes"><code class="name flex">
+<span>def <span class="ident">get_celebrity_votes</span></span>(<span>self, celebrity_id: str, skip: int = 0, limit: int = 100) ‑> List[<a title="app.database.models.Vote" href="../database/models.html#app.database.models.Vote">Vote</a>]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_celebrity_votes(
+    self, celebrity_id: str, skip: int = 0, limit: int = 100
+) -&gt; List[Vote]:
+    &#34;&#34;&#34;Get all votes for a celebrity&#34;&#34;&#34;
+    return (
+        self.db.query(Vote)
+        .filter(Vote.celebrity_id == celebrity_id)
+        .order_by(Vote.created_at.desc())
+        .offset(skip)
+        .limit(limit)
+        .all()
+    )</code></pre>
+</details>
+<div class="desc"><p>Get all votes for a celebrity</p></div>
+</dd>
+<dt id="app.services.VoteService.get_popular_celebrities_by_votes"><code class="name flex">
+<span>def <span class="ident">get_popular_celebrities_by_votes</span></span>(<span>self, limit: int = 10) ‑> List[Dict[str, Any]]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_popular_celebrities_by_votes(self, limit: int = 10) -&gt; List[Dict[str, Any]]:
+    &#34;&#34;&#34;Get celebrities ordered by number of votes&#34;&#34;&#34;
+    celebrities = (
+        self.db.query(Celebrity, func.count(Vote.id).label(&#34;vote_count&#34;))
+        .outerjoin(Vote)
+        .group_by(Celebrity.id)
+        .order_by(desc(&#34;vote_count&#34;))
+        .limit(limit)
+        .all()
+    )
+
+    return [
+        {
+            &#34;celebrity&#34;: celebrity,
+            &#34;vote_count&#34;: vote_count,
+            &#34;top_mbti&#34;: self._get_celebrity_top_mbti(celebrity.id),
+        }
+        for celebrity, vote_count in celebrities
+    ]</code></pre>
+</details>
+<div class="desc"><p>Get celebrities ordered by number of votes</p></div>
+</dd>
+<dt id="app.services.VoteService.get_user_vote_statistics"><code class="name flex">
+<span>def <span class="ident">get_user_vote_statistics</span></span>(<span>self, user_id: str) ‑> Dict[str, Any]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_user_vote_statistics(self, user_id: str) -&gt; Dict[str, Any]:
+    &#34;&#34;&#34;Get vote statistics for a user&#34;&#34;&#34;
+    # Check if user exists
+    user = self.db.query(User).filter(User.id == user_id).first()
+    if not user:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND, detail=&#34;User not found&#34;
+        )
+
+    # Get total votes count
+    total_votes = (
+        self.db.query(func.count(Vote.id)).filter(Vote.user_id == user_id).scalar()
+    )
+
+    # Get votes by MBTI type
+    mbti_counts = (
+        self.db.query(Vote.mbti_type, func.count(Vote.id).label(&#34;count&#34;))
+        .filter(Vote.user_id == user_id)
+        .group_by(Vote.mbti_type)
+        .order_by(desc(&#34;count&#34;))
+        .all()
+    )
+
+    # Get today&#39;s votes
+    today = date.today()
+    today_votes = (
+        self.db.query(func.count(Vote.id))
+        .filter(and_(Vote.user_id == user_id, func.date(Vote.created_at) == today))
+        .scalar()
+    )
+
+    # Get daily stats
+    daily_stats = (
+        self.db.query(DailyUserStats)
+        .filter(DailyUserStats.user_id == user_id)
+        .order_by(DailyUserStats.date.desc())
+        .limit(7)
+        .all()
+    )  # Last 7 days
+
+    return {
+        &#34;user_id&#34;: user_id,
+        &#34;user_name&#34;: user.name,
+        &#34;total_votes&#34;: total_votes,
+        &#34;today_votes&#34;: today_votes,
+        &#34;votes_remaining_today&#34;: max(0, 10 - today_votes),
+        &#34;mbti_distribution&#34;: [
+            {
+                &#34;mbti_type&#34;: mbti_type.value,
+                &#34;count&#34;: count,
+                &#34;percentage&#34;: (
+                    round((count / total_votes * 100), 2) if total_votes &gt; 0 else 0
+                ),
+            }
+            for mbti_type, count in mbti_counts
+        ],
+        &#34;favorite_mbti_type&#34;: mbti_counts[0][0].value if mbti_counts else None,
+        &#34;favorite_mbti_count&#34;: mbti_counts[0][1] if mbti_counts else 0,
+        &#34;recent_daily_stats&#34;: [
+            {
+                &#34;date&#34;: stats.date.isoformat(),
+                &#34;votes_count&#34;: stats.votes_count,
+                &#34;votes_no_reason&#34;: stats.votes_no_reason,
+            }
+            for stats in daily_stats
+        ],
+    }</code></pre>
+</details>
+<div class="desc"><p>Get vote statistics for a user</p></div>
+</dd>
+<dt id="app.services.VoteService.get_user_votes"><code class="name flex">
+<span>def <span class="ident">get_user_votes</span></span>(<span>self, user_id: str, skip: int = 0, limit: int = 100) ‑> List[<a title="app.database.models.Vote" href="../database/models.html#app.database.models.Vote">Vote</a>]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_user_votes(
+    self, user_id: str, skip: int = 0, limit: int = 100
+) -&gt; List[Vote]:
+    &#34;&#34;&#34;Get all votes by a user&#34;&#34;&#34;
+    return (
+        self.db.query(Vote)
+        .filter(Vote.user_id == user_id)
+        .order_by(Vote.created_at.desc())
+        .offset(skip)
+        .limit(limit)
+        .all()
+    )</code></pre>
+</details>
+<div class="desc"><p>Get all votes by a user</p></div>
+</dd>
+<dt id="app.services.VoteService.get_vote_by_id"><code class="name flex">
+<span>def <span class="ident">get_vote_by_id</span></span>(<span>self, vote_id: str) ‑> <a title="app.database.models.Vote" href="../database/models.html#app.database.models.Vote">Vote</a> | None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_vote_by_id(self, vote_id: str) -&gt; Optional[Vote]:
+    &#34;&#34;&#34;Get vote by ID&#34;&#34;&#34;
+    return self.db.query(Vote).filter(Vote.id == vote_id).first()</code></pre>
+</details>
+<div class="desc"><p>Get vote by ID</p></div>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="app" href="../index.html">app</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-submodules">Sub-modules</a></h3>
+<ul>
+<li><code><a title="app.services.auth_service" href="auth_service.html">app.services.auth_service</a></code></li>
+<li><code><a title="app.services.celebrity_service" href="celebrity_service.html">app.services.celebrity_service</a></code></li>
+<li><code><a title="app.services.comment_service" href="comment_service.html">app.services.comment_service</a></code></li>
+<li><code><a title="app.services.json_upload_service" href="json_upload_service.html">app.services.json_upload_service</a></code></li>
+<li><code><a title="app.services.search_service" href="search_service.html">app.services.search_service</a></code></li>
+<li><code><a title="app.services.user_service" href="user_service.html">app.services.user_service</a></code></li>
+<li><code><a title="app.services.vote_service" href="vote_service.html">app.services.vote_service</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="app.services.AuthService" href="#app.services.AuthService">AuthService</a></code></h4>
+<ul class="">
+<li><code><a title="app.services.AuthService.authenticate_user" href="#app.services.AuthService.authenticate_user">authenticate_user</a></code></li>
+<li><code><a title="app.services.AuthService.create_system_user" href="#app.services.AuthService.create_system_user">create_system_user</a></code></li>
+<li><code><a title="app.services.AuthService.get_current_user" href="#app.services.AuthService.get_current_user">get_current_user</a></code></li>
+<li><code><a title="app.services.AuthService.get_login_error_details" href="#app.services.AuthService.get_login_error_details">get_login_error_details</a></code></li>
+<li><code><a title="app.services.AuthService.login_user" href="#app.services.AuthService.login_user">login_user</a></code></li>
+<li><code><a title="app.services.AuthService.register_user" href="#app.services.AuthService.register_user">register_user</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="app.services.CelebrityService" href="#app.services.CelebrityService">CelebrityService</a></code></h4>
+<ul class="">
+<li><code><a title="app.services.CelebrityService.add_tag_to_celebrity" href="#app.services.CelebrityService.add_tag_to_celebrity">add_tag_to_celebrity</a></code></li>
+<li><code><a title="app.services.CelebrityService.create_celebrity" href="#app.services.CelebrityService.create_celebrity">create_celebrity</a></code></li>
+<li><code><a title="app.services.CelebrityService.delete_celebrity" href="#app.services.CelebrityService.delete_celebrity">delete_celebrity</a></code></li>
+<li><code><a title="app.services.CelebrityService.get_all_celebrities" href="#app.services.CelebrityService.get_all_celebrities">get_all_celebrities</a></code></li>
+<li><code><a title="app.services.CelebrityService.get_celebrities_by_tag" href="#app.services.CelebrityService.get_celebrities_by_tag">get_celebrities_by_tag</a></code></li>
+<li><code><a title="app.services.CelebrityService.get_celebrity_by_id" href="#app.services.CelebrityService.get_celebrity_by_id">get_celebrity_by_id</a></code></li>
+<li><code><a title="app.services.CelebrityService.get_celebrity_by_name" href="#app.services.CelebrityService.get_celebrity_by_name">get_celebrity_by_name</a></code></li>
+<li><code><a title="app.services.CelebrityService.get_popular_celebrities" href="#app.services.CelebrityService.get_popular_celebrities">get_popular_celebrities</a></code></li>
+<li><code><a title="app.services.CelebrityService.remove_tag_from_celebrity" href="#app.services.CelebrityService.remove_tag_from_celebrity">remove_tag_from_celebrity</a></code></li>
+<li><code><a title="app.services.CelebrityService.update_celebrity" href="#app.services.CelebrityService.update_celebrity">update_celebrity</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="app.services.CommentService" href="#app.services.CommentService">CommentService</a></code></h4>
+<ul class="">
+<li><code><a title="app.services.CommentService.create_comment" href="#app.services.CommentService.create_comment">create_comment</a></code></li>
+<li><code><a title="app.services.CommentService.delete_comment" href="#app.services.CommentService.delete_comment">delete_comment</a></code></li>
+<li><code><a title="app.services.CommentService.get_celebrity_comments" href="#app.services.CommentService.get_celebrity_comments">get_celebrity_comments</a></code></li>
+<li><code><a title="app.services.CommentService.get_comment_by_id" href="#app.services.CommentService.get_comment_by_id">get_comment_by_id</a></code></li>
+<li><code><a title="app.services.CommentService.get_comment_replies" href="#app.services.CommentService.get_comment_replies">get_comment_replies</a></code></li>
+<li><code><a title="app.services.CommentService.get_comment_statistics" href="#app.services.CommentService.get_comment_statistics">get_comment_statistics</a></code></li>
+<li><code><a title="app.services.CommentService.get_user_comment_statistics" href="#app.services.CommentService.get_user_comment_statistics">get_user_comment_statistics</a></code></li>
+<li><code><a title="app.services.CommentService.get_user_comments" href="#app.services.CommentService.get_user_comments">get_user_comments</a></code></li>
+<li><code><a title="app.services.CommentService.update_comment" href="#app.services.CommentService.update_comment">update_comment</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="app.services.SearchService" href="#app.services.SearchService">SearchService</a></code></h4>
+<ul class="">
+<li><code><a title="app.services.SearchService.get_search_analytics" href="#app.services.SearchService.get_search_analytics">get_search_analytics</a></code></li>
+<li><code><a title="app.services.SearchService.get_search_suggestions" href="#app.services.SearchService.get_search_suggestions">get_search_suggestions</a></code></li>
+<li><code><a title="app.services.SearchService.search_celebrities" href="#app.services.SearchService.search_celebrities">search_celebrities</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="app.services.UserService" href="#app.services.UserService">UserService</a></code></h4>
+<ul class="two-column">
+<li><code><a title="app.services.UserService.deactivate_user" href="#app.services.UserService.deactivate_user">deactivate_user</a></code></li>
+<li><code><a title="app.services.UserService.get_all_users" href="#app.services.UserService.get_all_users">get_all_users</a></code></li>
+<li><code><a title="app.services.UserService.get_user_by_email" href="#app.services.UserService.get_user_by_email">get_user_by_email</a></code></li>
+<li><code><a title="app.services.UserService.get_user_by_id" href="#app.services.UserService.get_user_by_id">get_user_by_id</a></code></li>
+<li><code><a title="app.services.UserService.get_user_profile" href="#app.services.UserService.get_user_profile">get_user_profile</a></code></li>
+<li><code><a title="app.services.UserService.update_user" href="#app.services.UserService.update_user">update_user</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="app.services.VoteService" href="#app.services.VoteService">VoteService</a></code></h4>
+<ul class="">
+<li><code><a title="app.services.VoteService.create_vote" href="#app.services.VoteService.create_vote">create_vote</a></code></li>
+<li><code><a title="app.services.VoteService.delete_vote" href="#app.services.VoteService.delete_vote">delete_vote</a></code></li>
+<li><code><a title="app.services.VoteService.get_all_votes" href="#app.services.VoteService.get_all_votes">get_all_votes</a></code></li>
+<li><code><a title="app.services.VoteService.get_celebrity_vote_statistics" href="#app.services.VoteService.get_celebrity_vote_statistics">get_celebrity_vote_statistics</a></code></li>
+<li><code><a title="app.services.VoteService.get_celebrity_votes" href="#app.services.VoteService.get_celebrity_votes">get_celebrity_votes</a></code></li>
+<li><code><a title="app.services.VoteService.get_popular_celebrities_by_votes" href="#app.services.VoteService.get_popular_celebrities_by_votes">get_popular_celebrities_by_votes</a></code></li>
+<li><code><a title="app.services.VoteService.get_user_vote_statistics" href="#app.services.VoteService.get_user_vote_statistics">get_user_vote_statistics</a></code></li>
+<li><code><a title="app.services.VoteService.get_user_votes" href="#app.services.VoteService.get_user_votes">get_user_votes</a></code></li>
+<li><code><a title="app.services.VoteService.get_vote_by_id" href="#app.services.VoteService.get_vote_by_id">get_vote_by_id</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.11.6</a>.</p>
+</footer>
+</body>
+</html>

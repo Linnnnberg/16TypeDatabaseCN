@@ -1,0 +1,392 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<meta name="generator" content="pdoc3 0.11.6">
+<title>app.api.uploads API documentation</title>
+<meta name="description" content="API endpoints for JSON upload system">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/sanitize.min.css" integrity="sha512-y1dtMcuvtTMJc1yPgEqF0ZjQbhnc/bFhyvIyVNb9Zk5mIGtqVaAB1Ttl28su8AvFMOY0EwRbAe+HCLqj6W7/KA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/typography.min.css" integrity="sha512-Y1DYSb995BAfxobCkKepB1BqJJTPrOp3zPL74AWFugHHmmdcvO+C48WLrUOlhGMc0QG7AE3f7gmvvcrmX2fDoA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:1.5em;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:2em 0 .50em 0}h3{font-size:1.4em;margin:1.6em 0 .7em 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .2s ease-in-out}a:visited{color:#503}a:hover{color:#b62}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900;font-weight:bold}pre code{font-size:.8em;line-height:1.4em;padding:1em;display:block}code{background:#f3f3f3;font-family:"DejaVu Sans Mono",monospace;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source > summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible;min-width:max-content}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em 1em;margin:1em 0}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul ul{padding-left:1em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" integrity="sha512-D9gUyxqja7hBtkWpPWGt9wfbfaMGVt9gnyCvYa+jojwwPHLCzUm5i8rpk7vD7wNee9bA35eYIjobYPaQuKS1MQ==" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => {
+hljs.configure({languages: ['bash', 'css', 'diff', 'graphql', 'ini', 'javascript', 'json', 'plaintext', 'python', 'python-repl', 'rust', 'shell', 'sql', 'typescript', 'xml', 'yaml']});
+hljs.highlightAll();
+/* Collapse source docstrings */
+setTimeout(() => {
+[...document.querySelectorAll('.hljs.language-python > .hljs-string')]
+.filter(el => el.innerHTML.length > 200 && ['"""', "'''"].includes(el.innerHTML.substring(0, 3)))
+.forEach(el => {
+let d = document.createElement('details');
+d.classList.add('hljs-string');
+d.innerHTML = '<summary>"""</summary>' + el.innerHTML.substring(3);
+el.replaceWith(d);
+});
+}, 100);
+})</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>app.api.uploads</code></h1>
+</header>
+<section id="section-intro">
+<p>API endpoints for JSON upload system</p>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="app.api.uploads.get_json_schema"><code class="name flex">
+<span>def <span class="ident">get_json_schema</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@router.get(&#34;/schema&#34;)
+def get_json_schema():
+    &#34;&#34;&#34;
+    Get the JSON schema for upload files
+
+    - **Public**: No authentication required
+    - **Schema**: Returns the expected JSON structure
+    &#34;&#34;&#34;
+    return {
+        &#34;schema&#34;: {
+            &#34;celebrities&#34;: [
+                {
+                    &#34;name&#34;: &#34;名人姓名 (required)&#34;,
+                    &#34;name_en&#34;: &#34;English Name (optional)&#34;,
+                    &#34;description&#34;: &#34;简短描述 (optional)&#34;,
+                    &#34;image_url&#34;: &#34;https://example.com/image.jpg (optional)&#34;,
+                    &#34;mbti&#34;: &#34;INTJ (required - one of 16 MBTI types)&#34;,
+                    &#34;vote_reason&#34;: &#34;MBTI类型理由 (required)&#34;,
+                    &#34;tags&#34;: &#39;[&#34;标签1&#34;, &#34;标签2&#34;] (optional)&#39;,
+                }
+            ],
+            &#34;metadata&#34;: {
+                &#34;source&#34;: &#34;数据来源 (optional)&#34;,
+                &#34;version&#34;: &#34;1.0 (optional)&#34;,
+                &#34;upload_date&#34;: &#34;2024-01-01 (optional)&#34;,
+            },
+        },
+        &#34;mbti_types&#34;: [
+            &#34;INTJ&#34;,
+            &#34;INTP&#34;,
+            &#34;ENTJ&#34;,
+            &#34;ENTP&#34;,
+            &#34;INFJ&#34;,
+            &#34;INFP&#34;,
+            &#34;ENFJ&#34;,
+            &#34;ENFP&#34;,
+            &#34;ISTJ&#34;,
+            &#34;ISFJ&#34;,
+            &#34;ESTJ&#34;,
+            &#34;ESFJ&#34;,
+            &#34;ISTP&#34;,
+            &#34;ISFP&#34;,
+            &#34;ESTP&#34;,
+            &#34;ESFP&#34;,
+        ],
+        &#34;example&#34;: {
+            &#34;celebrities&#34;: [
+                {
+                    &#34;name&#34;: &#34;周杰伦&#34;,
+                    &#34;name_en&#34;: &#34;Jay Chou&#34;,
+                    &#34;description&#34;: &#34;台湾著名歌手、音乐人、演员、导演&#34;,
+                    &#34;image_url&#34;: &#34;&#34;,
+                    &#34;mbti&#34;: &#34;INTP&#34;,
+                    &#34;vote_reason&#34;: &#34;周杰伦表现出INTP的特点：内向、理性、创新思维，在音乐创作中展现独特的逻辑性和创造力。&#34;,
+                    &#34;tags&#34;: [&#34;歌手&#34;, &#34;音乐人&#34;, &#34;演员&#34;, &#34;导演&#34;, &#34;台湾&#34;],
+                }
+            ],
+            &#34;metadata&#34;: {
+                &#34;source&#34;: &#34;MBTI分析社区&#34;,
+                &#34;version&#34;: &#34;1.0&#34;,
+                &#34;upload_date&#34;: &#34;2024-01-01&#34;,
+            },
+        },
+    }</code></pre>
+</details>
+<div class="desc"><p>Get the JSON schema for upload files</p>
+<ul>
+<li><strong>Public</strong>: No authentication required</li>
+<li><strong>Schema</strong>: Returns the expected JSON structure</li>
+</ul></div>
+</dd>
+<dt id="app.api.uploads.get_upload_status"><code class="name flex">
+<span>def <span class="ident">get_upload_status</span></span>(<span>current_user: <a title="app.database.models.User" href="../database/models.html#app.database.models.User">User</a> = Depends(get_current_admin_user),<br>db: sqlalchemy.orm.session.Session = Depends(get_db))</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@router.get(&#34;/status&#34;)
+def get_upload_status(
+    current_user: User = Depends(get_current_admin_user), db: Session = Depends(get_db)
+):
+    &#34;&#34;&#34;
+    Get status of upload directories
+
+    - **Admin only**: Requires admin authentication
+    - **Returns**: Count and list of files in each directory
+    &#34;&#34;&#34;
+    try:
+        upload_service = JSONUploadService(db)
+        status_info = upload_service.get_upload_status()
+
+        return {&#34;status&#34;: status_info, &#34;timestamp&#34;: datetime.now().isoformat()}
+    except Exception as e:
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail=f&#34;Error getting status: {str(e)}&#34;,
+        )</code></pre>
+</details>
+<div class="desc"><p>Get status of upload directories</p>
+<ul>
+<li><strong>Admin only</strong>: Requires admin authentication</li>
+<li><strong>Returns</strong>: Count and list of files in each directory</li>
+</ul></div>
+</dd>
+<dt id="app.api.uploads.process_pending_files"><code class="name flex">
+<span>def <span class="ident">process_pending_files</span></span>(<span>current_user: <a title="app.database.models.User" href="../database/models.html#app.database.models.User">User</a> = Depends(get_current_admin_user),<br>db: sqlalchemy.orm.session.Session = Depends(get_db))</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@router.post(&#34;/process-pending&#34;)
+def process_pending_files(
+    current_user: User = Depends(get_current_admin_user), db: Session = Depends(get_db)
+):
+    &#34;&#34;&#34;
+    Process all pending JSON files in the upload directory
+
+    - **Admin only**: Requires admin authentication
+    - **Automated**: Processes all .json files in data_uploads/pending/
+    - **Validation**: Validates each file before processing
+    - **Logging**: Creates detailed logs for success/failure
+    &#34;&#34;&#34;
+    try:
+        upload_service = JSONUploadService(db)
+        results = upload_service.process_pending_files()
+
+        return {
+            &#34;message&#34;: &#34;Processing completed&#34;,
+            &#34;results&#34;: results,
+            &#34;timestamp&#34;: datetime.now().isoformat(),
+        }
+    except Exception as e:
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail=f&#34;Error processing files: {str(e)}&#34;,
+        )</code></pre>
+</details>
+<div class="desc"><p>Process all pending JSON files in the upload directory</p>
+<ul>
+<li><strong>Admin only</strong>: Requires admin authentication</li>
+<li><strong>Automated</strong>: Processes all .json files in data_uploads/pending/</li>
+<li><strong>Validation</strong>: Validates each file before processing</li>
+<li><strong>Logging</strong>: Creates detailed logs for success/failure</li>
+</ul></div>
+</dd>
+<dt id="app.api.uploads.upload_json_file"><code class="name flex">
+<span>def <span class="ident">upload_json_file</span></span>(<span>file: fastapi.datastructures.UploadFile = File(PydanticUndefined),<br>current_user: <a title="app.database.models.User" href="../database/models.html#app.database.models.User">User</a> = Depends(get_current_admin_user),<br>db: sqlalchemy.orm.session.Session = Depends(get_db))</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@router.post(&#34;/upload-file&#34;)
+def upload_json_file(
+    file: UploadFile = File(...),
+    current_user: User = Depends(get_current_admin_user),
+    db: Session = Depends(get_db),
+):
+    &#34;&#34;&#34;
+    Upload a JSON file for processing
+
+    - **Admin only**: Requires admin authentication
+    - **File**: Must be a valid JSON file
+    - **Validation**: Validates file content before saving
+    - **Processing**: File is saved to pending directory for processing
+    &#34;&#34;&#34;
+    try:
+        # Validate file type
+        if not file.filename or not file.filename.endswith(&#34;.json&#34;):
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail=&#34;File must be a JSON file&#34;,
+            )
+
+        # Read and validate JSON content
+        content = file.file.read()
+        try:
+            json_data = json.loads(content.decode(&#34;utf-8&#34;))
+        except json.JSONDecodeError as e:
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail=f&#34;Invalid JSON format: {str(e)}&#34;,
+            )
+
+        # Validate data structure
+        upload_service = JSONUploadService(db)
+
+        # Create a temporary file for validation
+        temp_path = Path(&#34;temp_validation.json&#34;)
+        try:
+            with open(temp_path, &#34;w&#34;, encoding=&#34;utf-8&#34;) as f:
+                json.dump(json_data, f, ensure_ascii=False, indent=2)
+
+            validation_result = upload_service.validate_json_file(temp_path)
+
+            if not validation_result[&#34;valid&#34;]:
+                raise HTTPException(
+                    status_code=status.HTTP_400_BAD_REQUEST,
+                    detail=f&#34;Data validation failed: {&#39;; &#39;.join(validation_result[&#39;errors&#39;])}&#34;,
+                )
+        finally:
+            # Clean up temp file
+            if temp_path.exists():
+                temp_path.unlink()
+
+        # Save file to pending directory
+        upload_service.pending_dir.mkdir(parents=True, exist_ok=True)
+        file_path = upload_service.pending_dir / (file.filename or &#34;unknown.json&#34;)
+
+        with open(file_path, &#34;wb&#34;) as f:
+            f.write(content)
+
+        return {
+            &#34;message&#34;: &#34;File uploaded successfully&#34;,
+            &#34;filename&#34;: file.filename,
+            &#34;status&#34;: &#34;pending&#34;,
+            &#34;timestamp&#34;: datetime.now().isoformat(),
+        }
+
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail=f&#34;Error uploading file: {str(e)}&#34;,
+        )</code></pre>
+</details>
+<div class="desc"><p>Upload a JSON file for processing</p>
+<ul>
+<li><strong>Admin only</strong>: Requires admin authentication</li>
+<li><strong>File</strong>: Must be a valid JSON file</li>
+<li><strong>Validation</strong>: Validates file content before saving</li>
+<li><strong>Processing</strong>: File is saved to pending directory for processing</li>
+</ul></div>
+</dd>
+<dt id="app.api.uploads.validate_json_file"><code class="name flex">
+<span>def <span class="ident">validate_json_file</span></span>(<span>file: fastapi.datastructures.UploadFile = File(PydanticUndefined),<br>current_user: <a title="app.database.models.User" href="../database/models.html#app.database.models.User">User</a> = Depends(get_current_admin_user),<br>db: sqlalchemy.orm.session.Session = Depends(get_db))</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@router.post(&#34;/validate-file&#34;)
+def validate_json_file(
+    file: UploadFile = File(...),
+    current_user: User = Depends(get_current_admin_user),
+    db: Session = Depends(get_db),
+):
+    &#34;&#34;&#34;
+    Validate a JSON file without processing it
+
+    - **Admin only**: Requires admin authentication
+    - **Validation**: Checks JSON format and data structure
+    - **No Processing**: File is not saved or processed
+    &#34;&#34;&#34;
+    try:
+        # Read file content
+        content = file.file.read()
+        try:
+            json_data = json.loads(content.decode(&#34;utf-8&#34;))
+        except json.JSONDecodeError as e:
+            return {
+                &#34;valid&#34;: False,
+                &#34;errors&#34;: [f&#34;Invalid JSON format: {str(e)}&#34;],
+                &#34;filename&#34;: file.filename,
+            }
+
+        # Create temporary file for validation
+        upload_service = JSONUploadService(db)
+        temp_path = Path(&#34;temp_validation.json&#34;)
+
+        try:
+            with open(temp_path, &#34;w&#34;, encoding=&#34;utf-8&#34;) as f:
+                json.dump(json_data, f, ensure_ascii=False, indent=2)
+
+            validation_result = upload_service.validate_json_file(temp_path)
+            validation_result[&#34;filename&#34;] = file.filename
+
+            return validation_result
+
+        finally:
+            # Clean up temp file
+            if temp_path.exists():
+                temp_path.unlink()
+
+    except Exception as e:
+        return {
+            &#34;valid&#34;: False,
+            &#34;errors&#34;: [f&#34;Validation error: {str(e)}&#34;],
+            &#34;filename&#34;: file.filename,
+        }</code></pre>
+</details>
+<div class="desc"><p>Validate a JSON file without processing it</p>
+<ul>
+<li><strong>Admin only</strong>: Requires admin authentication</li>
+<li><strong>Validation</strong>: Checks JSON format and data structure</li>
+<li><strong>No Processing</strong>: File is not saved or processed</li>
+</ul></div>
+</dd>
+</dl>
+</section>
+<section>
+</section>
+</article>
+<nav id="sidebar">
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="app.api" href="index.html">app.api</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="app.api.uploads.get_json_schema" href="#app.api.uploads.get_json_schema">get_json_schema</a></code></li>
+<li><code><a title="app.api.uploads.get_upload_status" href="#app.api.uploads.get_upload_status">get_upload_status</a></code></li>
+<li><code><a title="app.api.uploads.process_pending_files" href="#app.api.uploads.process_pending_files">process_pending_files</a></code></li>
+<li><code><a title="app.api.uploads.upload_json_file" href="#app.api.uploads.upload_json_file">upload_json_file</a></code></li>
+<li><code><a title="app.api.uploads.validate_json_file" href="#app.api.uploads.validate_json_file">validate_json_file</a></code></li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.11.6</a>.</p>
+</footer>
+</body>
+</html>

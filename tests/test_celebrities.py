@@ -3,7 +3,6 @@ Celebrity management system regression tests
 Tests CRUD operations, search, and tag management
 """
 
-import requests
 from tests.config import test_config
 
 

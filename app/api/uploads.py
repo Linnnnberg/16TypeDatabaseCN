@@ -5,7 +5,7 @@ API endpoints for JSON upload system
 
 from fastapi import APIRouter, Depends, HTTPException, UploadFile, File, status
 from sqlalchemy.orm import Session
-from typing import Dict, Any
+
 import json
 from pathlib import Path
 from datetime import datetime
@@ -114,7 +114,10 @@ def upload_json_file(
             if not validation_result["valid"]:
                 raise HTTPException(
                     status_code=status.HTTP_400_BAD_REQUEST,
-                    detail=f"Data validation failed: {'; '.join(validation_result['errors'])}",
+                    detail=(
+                        f"Data validation failed: "
+                        f"{'; '.join(validation_result['errors'])}"
+                    ),
                 )
         finally:
             # Clean up temp file

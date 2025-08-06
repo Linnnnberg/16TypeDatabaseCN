@@ -3,7 +3,6 @@ Search functionality regression tests
 Tests hybrid search, suggestions, and analytics
 """
 
-import requests
 from tests.config import test_config
 
 
@@ -122,7 +121,8 @@ def test_search_suggestions():
         test_config.add_test_result(
             "Search Suggestions",
             success,
-            f"Status: {response.status_code}, Suggestions: {len(data.get('suggestions', []))}",
+            f"Status: {response.status_code}, "
+            f"Suggestions: {len(data.get('suggestions', []))}",
         )
         return success
     except Exception as e:
@@ -173,7 +173,8 @@ def test_popular_searches():
         test_config.add_test_result(
             "Popular Searches",
             success,
-            f"Status: {response.status_code}, Searches: {len(data.get('popular_searches', []))}",
+            f"Status: {response.status_code}, "
+            f"Searches: {len(data.get('popular_searches', []))}",
         )
         return success
     except Exception as e:

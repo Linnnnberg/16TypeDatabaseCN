@@ -3,7 +3,6 @@ Voting system regression tests
 Tests vote creation, retrieval, and MBTI type management
 """
 
-import requests
 from tests.config import test_config
 
 
@@ -202,7 +201,8 @@ def test_duplicate_vote_validation():
                     test_config.add_test_result(
                         "Duplicate Vote Validation",
                         success,
-                        f"First vote: {response1.status_code}, Second vote: {response2.status_code}",
+                        f"First vote: {response1.status_code}, "
+                        f"Second vote: {response2.status_code}",
                     )
                     return success
                 else:

@@ -10,7 +10,6 @@ from app.core.security import (
     verify_token,
 )
 from app.schemas.auth import UserCreate, UserLogin, Token
-from app.core.config import settings
 
 
 class AuthService:

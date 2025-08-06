@@ -7,7 +7,6 @@ import os
 
 # Import database
 from app.database.database import create_tables
-from app.database.models import User, Celebrity, Vote, Comment, Tag, MBTIType
 
 # Import API routers
 from app.api.auth import router as auth_router
