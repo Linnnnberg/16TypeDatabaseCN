@@ -90,7 +90,7 @@ class LocalCI:
         # First, try to format the code
         if self.run_command("python -m black app/ tests/", "Formatting code with Black", check_output=False):
             self.success_count += 1
-            print("✅ Black formatting completed")
+            print("SUCCESS: Black formatting completed")
         else:
             self.errors.append("Black formatting failed")
             return False
@@ -98,7 +98,7 @@ class LocalCI:
         # Then check if formatting is correct
         if self.run_command("python -m black --check app/ tests/", "Checking Black formatting"):
             self.success_count += 1
-            print("✅ Black formatting check passed")
+            print("SUCCESS: Black formatting check passed")
             return True
         else:
             self.errors.append("Black formatting check failed")
@@ -115,7 +115,7 @@ class LocalCI:
             "Running Flake8 linting"
         ):
             self.success_count += 1
-            print("✅ Flake8 linting passed")
+            print("SUCCESS: Flake8 linting passed")
             return True
         else:
             self.errors.append("Flake8 linting failed")
@@ -132,7 +132,7 @@ class LocalCI:
             "Running MyPy type checking"
         ):
             self.success_count += 1
-            print("✅ MyPy type checking passed")
+            print("SUCCESS: MyPy type checking passed")
             return True
         else:
             self.errors.append("MyPy type checking failed")
@@ -151,7 +151,7 @@ class LocalCI:
             check_output=False
         ):
             self.success_count += 1
-            print("✅ Bandit security scan completed")
+            print("SUCCESS: Bandit security scan completed")
         else:
             self.warnings.append("Bandit security scan failed or found issues")
             
@@ -162,7 +162,7 @@ class LocalCI:
             check_output=False
         ):
             self.success_count += 1
-            print("✅ Safety dependency scan completed")
+            print("SUCCESS: Safety dependency scan completed")
         else:
             self.warnings.append("Safety dependency scan failed or found issues")
             
@@ -180,7 +180,7 @@ class LocalCI:
             check_output=False
         ):
             self.success_count += 1
-            print("✅ Tests completed")
+            print("SUCCESS: Tests completed")
             return True
         else:
             self.errors.append("Tests failed")
@@ -200,7 +200,7 @@ class LocalCI:
             check_output=False
         ):
             self.success_count += 1
-            print("✅ Integration tests completed")
+            print("SUCCESS: Integration tests completed")
             return True
         else:
             self.warnings.append("Integration tests failed")
@@ -222,7 +222,7 @@ class LocalCI:
             check_output=False
         ):
             self.success_count += 1
-            print("✅ Documentation generated")
+            print("SUCCESS: Documentation generated")
             return True
         else:
             self.warnings.append("Documentation generation failed")
@@ -235,7 +235,7 @@ class LocalCI:
         print("="*60)
         
         if not Path("Dockerfile").exists():
-            print("⚠️  No Dockerfile found, skipping Docker build check")
+            print("WARNING: No Dockerfile found, skipping Docker build check")
             return True
             
         if self.run_command(
@@ -244,7 +244,7 @@ class LocalCI:
             check_output=False
         ):
             self.success_count += 1
-            print("✅ Docker build successful")
+            print("SUCCESS: Docker build successful")
             
             # Clean up
             self.run_command("docker rmi mbti-roster:test", "Cleaning up Docker image", check_output=False)
@@ -265,26 +265,26 @@ class LocalCI:
         print(f"Warnings: {len(self.warnings)}")
         
         if self.errors:
-            print(f"\n❌ ERRORS ({len(self.errors)}):")
+            print(f"\nERROR: ERRORS ({len(self.errors)}):")
             for error in self.errors:
                 print(f"  - {error}")
                 
         if self.warnings:
-            print(f"\n⚠️  WARNINGS ({len(self.warnings)}):")
+            print(f"\nWARNING: WARNINGS ({len(self.warnings)}):")
             for warning in self.warnings:
                 print(f"  - {warning}")
                 
         if not self.errors:
-            print(f"\n✅ ALL CHECKS PASSED! Ready to push to GitHub.")
+            print(f"\nSUCCESS: ALL CHECKS PASSED! Ready to push to GitHub.")
             print("You can now run: git add . && git commit -m 'your message' && git push")
         else:
-            print(f"\n❌ {len(self.errors)} CHECKS FAILED. Please fix the issues before pushing.")
+            print(f"\nERROR: {len(self.errors)} CHECKS FAILED. Please fix the issues before pushing.")
             
         print(f"\nTimestamp: {datetime.now().isoformat()}")
     
     def run_all_checks(self):
         """Run all CI/CD checks"""
-        print("🚀 Starting Local CI/CD Pipeline")
+        print("STARTING: Local CI/CD Pipeline")
         print(f"Timestamp: {datetime.now().isoformat()}")
         
         # Install dependencies
@@ -321,10 +321,10 @@ def main():
         success = ci.run_all_checks()
         sys.exit(0 if success else 1)
     except KeyboardInterrupt:
-        print("\n\n❌ CI/CD pipeline interrupted by user")
+        print("\n\nERROR: CI/CD pipeline interrupted by user")
         sys.exit(1)
     except Exception as e:
-        print(f"\n\n❌ Unexpected error: {e}")
+        print(f"\n\nERROR: Unexpected error: {e}")
         sys.exit(1)
 
 if __name__ == "__main__":
