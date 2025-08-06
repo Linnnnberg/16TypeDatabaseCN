@@ -124,7 +124,7 @@ def test_server_startup_time():
         response = requests.get("http://localhost:8000/health", timeout=5)
         end_time = time.time()
         response_time = end_time - start_time
-        
+
         assert response.status_code == 200
         assert response_time < 2.0  # Should respond within 2 seconds
     except requests.exceptions.RequestException as e:
@@ -132,4 +132,4 @@ def test_server_startup_time():
 
 
 if __name__ == "__main__":
-    pytest.main([__file__, "-v"]) 
+    pytest.main([__file__, "-v"])

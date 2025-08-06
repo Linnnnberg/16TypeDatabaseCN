@@ -81,6 +81,42 @@ class LocalCI:
         if self.run_command("pip install httpx pdoc3", "Installing additional tools"):
             self.success_count += 1
     
+    def check_for_emojis(self):
+        """Check for emoji usage in code files"""
+        print("\n" + "="*60)
+        print("CHECKING FOR EMOJI USAGE")
+        print("="*60)
+        
+        emoji_patterns = [
+            "✅", "❌", "🚀", "⚠️", "🔧", "📝", "🎉", "🔥", "💯", "✨", "🍰",
+            "💥", "💔", "🎯", "⚡", "🌟", "💡", "🔍", "📊", "🎨", "🚀", "⚙️"
+        ]
+        
+        python_files = list(Path("app").rglob("*.py")) + list(Path("tests").rglob("*.py"))
+        emoji_violations = []
+        
+        for file_path in python_files:
+            try:
+                with open(file_path, 'r', encoding='utf-8') as f:
+                    content = f.read()
+                    for i, line in enumerate(content.split('\n'), 1):
+                        for emoji in emoji_patterns:
+                            if emoji in line:
+                                emoji_violations.append(f"{file_path}:{i}: {emoji}")
+            except Exception as e:
+                print(f"WARNING: Could not read {file_path}: {e}")
+        
+        if emoji_violations:
+            print("ERROR: Found emoji usage in code files:")
+            for violation in emoji_violations:
+                print(f"  - {violation}")
+            self.errors.append(f"Found {len(emoji_violations)} emoji violations")
+            return False
+        else:
+            print("SUCCESS: No emoji usage found in code files")
+            self.success_count += 1
+            return True
+
     def run_black_check(self):
         """Run Black code formatting check"""
         print("\n" + "="*60)
@@ -291,6 +327,7 @@ class LocalCI:
         self.install_dependencies()
         
         # Run code quality checks
+        self.check_for_emojis()
         self.run_black_check()
         self.run_flake8_check()
         self.run_mypy_check()
