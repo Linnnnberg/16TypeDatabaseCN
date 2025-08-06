@@ -140,40 +140,74 @@ function hideFieldError(fieldId) {
 // Authentication functions
 async function loginUser(email, password) {
     try {
+        console.log('Attempting to login user:', { email });
         const response = await apiCall('/auth/login', {
             method: 'POST',
             body: JSON.stringify({ email, password })
         });
         
+        console.log('Login response:', response);
+        
         if (response.access_token) {
             setToken(response.access_token);
-            showMessage('登录成功！', 'success');
+            showMessage('登录成功！欢迎回来！', 'success');
             hideModal('loginModal');
             updateAuthUI();
             return true;
+        } else {
+            showMessage('登录失败：服务器响应格式错误', 'error');
+            return false;
         }
     } catch (error) {
-        showMessage('登录失败: ' + error.message, 'error');
+        console.error('Login error:', error);
+        let errorMessage = '登录失败，请稍后重试';
+        
+        if (error.message.includes('401')) {
+            errorMessage = '邮箱或密码错误，请检查后重试';
+        } else if (error.message.includes('422')) {
+            errorMessage = '请检查输入信息是否正确';
+        } else if (error.message.includes('400')) {
+            errorMessage = '请求参数错误，请检查输入';
+        }
+        
+        showMessage(errorMessage, 'error');
         return false;
     }
 }
 
 async function signupUser(name, email, password) {
     try {
+        console.log('Attempting to signup user:', { name, email });
         const response = await apiCall('/auth/signup', {
             method: 'POST',
             body: JSON.stringify({ name, email, password })
         });
         
+        console.log('Signup response:', response);
+        
         if (response.access_token) {
             setToken(response.access_token);
-            showMessage('注册成功！', 'success');
+            showMessage('注册成功！欢迎加入16型花名册！', 'success');
             hideModal('signupModal');
             updateAuthUI();
             return true;
+        } else {
+            showMessage('注册失败：服务器响应格式错误', 'error');
+            return false;
         }
     } catch (error) {
-        showMessage('注册失败: ' + error.message, 'error');
+        console.error('Signup error:', error);
+        let errorMessage = '注册失败，请稍后重试';
+        
+        if (error.message.includes('409')) {
+            errorMessage = '该邮箱已被注册，请使用其他邮箱或直接登录';
+        } else if (error.message.includes('422')) {
+            errorMessage = '请检查输入信息是否正确';
+        } else if (error.message.includes('400')) {
+            errorMessage = '请求参数错误，请检查输入';
+        }
+        
+        showMessage(errorMessage, 'error');
         return false;
     }
 }

@@ -7,6 +7,8 @@ from app.services.user_service import UserService
 from app.schemas.auth import UserCreate, UserLogin, Token, UserResponse
 from app.schemas.user import UserProfile, UserUpdate
 from app.database.models import User
+from datetime import timedelta
+from app.core.security import create_access_token
 
 router = APIRouter(prefix="/auth", tags=["authentication"])
 security = HTTPBearer()
@@ -19,7 +21,7 @@ def get_current_user(
     auth_service = AuthService(db)
     return auth_service.get_current_user(credentials.credentials)
 
-@router.post("/signup", response_model=UserResponse, status_code=status.HTTP_201_CREATED)
+@router.post("/signup", response_model=Token, status_code=status.HTTP_201_CREATED)
 def register_user(user_data: UserCreate, db: Session = Depends(get_db)):
     """
     Register a new user account
@@ -30,7 +32,19 @@ def register_user(user_data: UserCreate, db: Session = Depends(get_db)):
     """
     auth_service = AuthService(db)
     user = auth_service.register_user(user_data)
-    return UserResponse.model_validate(user)
+    
+    # Create access token for the newly registered user
+    access_token_expires = timedelta(hours=24)
+    access_token = create_access_token(
+        data={"sub": user.id, "email": user.email},
+        expires_delta=access_token_expires
+    )
+    
+    return Token(
+        access_token=access_token,
+        token_type="bearer",
+        expires_in=24 * 60 * 60  # 24 hours in seconds
+    )
 
 @router.post("/login", response_model=Token)
 def login_user(user_data: UserLogin, db: Session = Depends(get_db)):
