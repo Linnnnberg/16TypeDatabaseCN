@@ -1,7 +1,7 @@
 from typing import List, Optional, Dict, Any
 from sqlalchemy.orm import Session
-from sqlalchemy import and_, or_, desc, func
-from app.database.models import Comment, User, Celebrity
+from sqlalchemy import and_, desc, func
+from app.database.models import Comment, Celebrity
 from app.schemas.comment import CommentCreate
 from fastapi import HTTPException, status
 import uuid
@@ -18,7 +18,8 @@ class CommentService:
 
         Args:
             user_id: ID of the user creating the comment
-            comment_data: Comment data including celebrity_id, content, and optional parent_id
+            comment_data: Comment data including celebrity_id, content, and optional
+                parent_id
 
         Returns:
             Created comment object
@@ -54,7 +55,9 @@ class CommentService:
             if not parent_comment:
                 raise HTTPException(
                     status_code=status.HTTP_404_NOT_FOUND,
-                    detail="Parent comment not found or doesn't belong to this celebrity",
+                    detail=(
+                        "Parent comment not found or doesn't belong to this celebrity"
+                    ),
                 )
 
             # Set level based on parent (max 3 levels deep)
@@ -226,7 +229,9 @@ class CommentService:
         if replies_count > 0:
             raise HTTPException(
                 status_code=status.HTTP_400_BAD_REQUEST,
-                detail="Cannot delete comment with replies. Please delete replies first.",
+                detail=(
+                    "Cannot delete comment with replies. Please delete replies first."
+                ),
             )
 
         self.db.delete(comment)
