@@ -159,7 +159,7 @@ jobs:
         echo "Setting up test data..."
         # Create admin user if needed (this would require a setup script)
         # For now, we'll skip this and let tests handle missing users gracefully
-        echo "Test data setup complete""
+        echo "Test data setup complete"
         
     - name: Run integration tests
       run: |
