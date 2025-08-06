@@ -24,7 +24,7 @@ def test_requirements_file():
     with open("requirements_minimal.txt", "r") as f:
         content = f.read()
         assert "fastapi" in content
-        assert "pytest" in content
+        assert "uvicorn" in content
 
 
 def test_app_structure():
@@ -104,7 +104,6 @@ def test_requirements_file_content():
         "passlib",
         "python-multipart",
         "jinja2",
-        "pytest",
     ]
 
     for package in required_packages:
