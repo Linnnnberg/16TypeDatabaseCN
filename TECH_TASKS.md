@@ -8,8 +8,8 @@
 
 ## Current TECH Tasks
 
-### TECH-001: Automated JSON Upload System ⭐ **IN PROGRESS**
-**Status**: 🔄 In Development  
+### TECH-001: Automated JSON Upload System **IN PROGRESS**
+**Status**: In Development  
 **Branch**: `TECH-001-automated-json-upload-system`
 
 #### Objective
@@ -118,8 +118,8 @@ Create an automated system that allows users to upload JSON files containing cel
 7. Merge to main
 
 ### Task Status Labels
-- 🔄 **In Progress**: Currently being worked on
-- ✅ **Completed**: Finished and merged
-- ⏸️ **Paused**: Temporarily stopped
-- 🚫 **Cancelled**: No longer needed
-- 🔍 **Review**: Ready for review/testing 
+- **In Progress**: Currently being worked on
+- **Completed**: Finished and merged
+- **Paused**: Temporarily stopped
+- **Cancelled**: No longer needed
+- **Review**: Ready for review/testing 

@@ -30,7 +30,7 @@ def main():
             from tests.test_search import run_search_tests
             run_search_tests()
         else:
-            print(f"❌ Unknown test suite: {test_suite}")
+            print(f"Unknown test suite: {test_suite}")
             print("Available test suites: auth, celebrities, voting, comments, search")
             sys.exit(1)
     else:

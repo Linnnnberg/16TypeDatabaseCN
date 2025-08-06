@@ -21,7 +21,7 @@ class DevSetup:
         
     def run_command(self, command, description="", check=True):
         """Run a command and handle output"""
-        print(f"\n🔄 {description}")
+        print(f"\n{description}")
         print(f"   Running: {command}")
         
         try:
@@ -34,11 +34,11 @@ class DevSetup:
             )
             
             if result.returncode == 0:
-                print(f"   ✅ Success")
+                print(f"   Success")
                 if result.stdout.strip():
                     print(f"   Output: {result.stdout.strip()}")
             else:
-                print(f"   ❌ Failed")
+                print(f"   Failed")
                 if result.stderr.strip():
                     print(f"   Error: {result.stderr.strip()}")
                 if check:
@@ -46,7 +46,7 @@ class DevSetup:
             
             return result
         except Exception as e:
-            print(f"   ❌ Exception: {e}")
+            print(f"   Exception: {e}")
             if check:
                 raise
             return None
@@ -54,14 +54,14 @@ class DevSetup:
     def check_venv(self):
         """Check if virtual environment exists"""
         if not self.venv_python.exists():
-            print("❌ Virtual environment not found!")
+            print("Virtual environment not found!")
             print("   Please run: python -m venv venv")
             return False
         return True
     
     def setup_environment(self):
         """Setup environment variables"""
-        print("\n🔧 Setting up environment...")
+        print("\nSetting up environment...")
         
         env_file = self.project_root / ".env"
         if not env_file.exists():
@@ -73,18 +73,18 @@ EMAIL_FROM=noreply@mbti-roster.com"""
             
             with open(env_file, 'w', encoding='utf-8') as f:
                 f.write(env_content)
-            print("   ✅ .env file created")
+            print("   .env file created")
         else:
-            print("   ✅ .env file already exists")
+            print("   .env file already exists")
     
     def install_dependencies(self):
         """Install Python dependencies"""
-        print("\n📦 Installing dependencies...")
+        print("\nInstalling dependencies...")
         
         # Check if requirements file exists
         requirements_file = self.project_root / "requirements_minimal.txt"
         if not requirements_file.exists():
-            print("   ❌ requirements_minimal.txt not found!")
+            print("   requirements_minimal.txt not found!")
             return False
         
         # Install dependencies
@@ -96,7 +96,7 @@ EMAIL_FROM=noreply@mbti-roster.com"""
     
     def create_admin_user(self):
         """Create admin user if not exists"""
-        print("\n👤 Setting up admin user...")
+        print("\nSetting up admin user...")
         
         admin_script = self.project_root / "create_admin.py"
         if admin_script.exists():
@@ -106,11 +106,11 @@ EMAIL_FROM=noreply@mbti-roster.com"""
                 check=False
             )
         else:
-            print("   ⚠️  create_admin.py not found, skipping admin creation")
+            print("   create_admin.py not found, skipping admin creation")
     
     def create_sample_data(self):
         """Create sample celebrities and votes"""
-        print("\n🎭 Creating sample data...")
+        print("\nCreating sample data...")
         
         # Create celebrities
         celeb_script = self.project_root / "create_sample_celebrities.py"
@@ -121,7 +121,7 @@ EMAIL_FROM=noreply@mbti-roster.com"""
                 check=False
             )
         else:
-            print("   ⚠️  create_sample_celebrities.py not found")
+            print("   create_sample_celebrities.py not found")
         
         # Create votes
         vote_script = self.project_root / "create_sample_votes.py"
@@ -132,11 +132,11 @@ EMAIL_FROM=noreply@mbti-roster.com"""
                 check=False
             )
         else:
-            print("   ⚠️  create_sample_votes.py not found")
+            print("   create_sample_votes.py not found")
     
     def start_server(self, background=True):
         """Start the FastAPI server"""
-        print("\n🚀 Starting FastAPI server...")
+        print("\nStarting FastAPI server...")
         
         if background:
             # Start server in background
@@ -153,14 +153,14 @@ EMAIL_FROM=noreply@mbti-roster.com"""
                 
                 # Check if server is running
                 if self.check_server():
-                    print("   ✅ Server started successfully")
+                    print("   Server started successfully")
                     return process
                 else:
-                    print("   ❌ Server failed to start")
+                    print("   Server failed to start")
                     return None
                     
             except Exception as e:
-                print(f"   ❌ Failed to start server: {e}")
+                print(f"   Failed to start server: {e}")
                 return None
         else:
             # Start server in foreground (blocking)
@@ -180,10 +180,10 @@ EMAIL_FROM=noreply@mbti-roster.com"""
     
     def test_endpoints(self):
         """Test basic endpoints"""
-        print("\n🧪 Testing endpoints...")
+        print("\nTesting endpoints...")
         
         if not self.check_server():
-            print("   ❌ Server not running, skipping tests")
+            print("   Server not running, skipping tests")
             return
         
         endpoints = [
@@ -197,23 +197,23 @@ EMAIL_FROM=noreply@mbti-roster.com"""
         for endpoint, description in endpoints:
             try:
                 response = requests.get(f"{self.server_url}{endpoint}", timeout=5)
-                status = "✅" if response.status_code == 200 else "❌"
+                status = "OK" if response.status_code == 200 else "FAIL"
                 print(f"   {status} {description}: {response.status_code}")
             except Exception as e:
-                print(f"   ❌ {description}: Error - {e}")
+                print(f"   FAIL {description}: Error - {e}")
     
     def show_info(self):
         """Show development information"""
-        print("\n📋 Development Information")
+        print("\nDevelopment Information")
         print("=" * 50)
-        print(f"🌐 Server URL: {self.server_url}")
-        print(f"📚 API Docs: {self.server_url}/docs")
-        print(f"🔍 Health Check: {self.server_url}/health")
-        print(f"🧪 Test Endpoint: {self.server_url}/test")
-        print("\n🔑 Admin Credentials:")
+        print(f"Server URL: {self.server_url}")
+        print(f"API Docs: {self.server_url}/docs")
+        print(f"Health Check: {self.server_url}/health")
+        print(f"Test Endpoint: {self.server_url}/test")
+        print("\nAdmin Credentials:")
         print("   Email: admin@mbti-roster.com")
         print("   Password: admin123")
-        print("\n📝 Available Endpoints:")
+        print("\nAvailable Endpoints:")
         print("   Authentication:")
         print("     POST /auth/signup - Register user")
         print("     POST /auth/login - Login user")
@@ -228,7 +228,7 @@ EMAIL_FROM=noreply@mbti-roster.com"""
         print("     GET /votes/my-votes - My votes")
         print("     GET /votes/statistics/celebrity/{id} - Celebrity stats")
         print("     GET /votes/statistics/my-stats - My stats")
-        print("\n🛠️  Development Commands:")
+        print("\nDevelopment Commands:")
         print("   python dev_setup.py --full - Full setup")
         print("   python dev_setup.py --server - Start server only")
         print("   python dev_setup.py --test - Test endpoints only")
@@ -236,7 +236,7 @@ EMAIL_FROM=noreply@mbti-roster.com"""
     
     def full_setup(self):
         """Run full development setup"""
-        print("🎯 16型花名册 (MBTI Roster) - Development Setup")
+        print("16型花名册 (MBTI Roster) - Development Setup")
         print("=" * 60)
         
         # Check virtual environment
@@ -265,7 +265,7 @@ EMAIL_FROM=noreply@mbti-roster.com"""
         # Show information
         self.show_info()
         
-        print("\n🎉 Development setup complete!")
+        print("\nDevelopment setup complete!")
         print("   Press Ctrl+C to stop the server")
         
         # Keep server running
@@ -273,7 +273,7 @@ EMAIL_FROM=noreply@mbti-roster.com"""
             if server_process:
                 server_process.wait()
         except KeyboardInterrupt:
-            print("\n🛑 Stopping server...")
+            print("\nStopping server...")
             if server_process:
                 server_process.terminate()
         
@@ -297,7 +297,7 @@ def main():
         elif command == "--info":
             setup.show_info()
         else:
-            print(f"❌ Unknown command: {command}")
+            print(f"Unknown command: {command}")
             print("Available commands: --full, --server, --test, --data, --info")
     else:
         # Default: full setup

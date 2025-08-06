@@ -11,30 +11,30 @@ import sys
 def test_with_timeout(url, timeout=30):
     """Test with longer timeout"""
     try:
-        print(f"🔍 Testing: {url}")
+        print(f"Testing: {url}")
         response = requests.get(url, timeout=timeout)
-        print(f"✅ Status: {response.status_code}")
+        print(f"Status: {response.status_code}")
         return response
     except requests.exceptions.Timeout:
         print(f"⏰ Timeout after {timeout} seconds")
         return None
     except requests.exceptions.ConnectionError:
-        print("❌ Connection error")
+        print("Connection error")
         return None
     except Exception as e:
-        print(f"❌ Error: {e}")
+        print(f"Error: {e}")
         return None
 
 def test_registration_flow():
     """Test the complete registration flow with delays"""
-    print("🚀 Simple Registration Test")
+    print("Simple Registration Test")
     print("=" * 40)
     
     # Test 1: Server Health
-    print("\n1️⃣ Testing Server Health...")
+    print("\n1. Testing Server Health...")
     health_response = test_with_timeout("http://localhost:8000/health", timeout=10)
     if not health_response:
-        print("❌ Server not responding. Please start the server with: python run_local.py")
+        print("Server not responding. Please start the server with: python run_local.py")
         return False
     
     # Wait a bit for server to be fully ready
@@ -42,23 +42,23 @@ def test_registration_flow():
     time.sleep(3)
     
     # Test 2: Homepage
-    print("\n2️⃣ Testing Homepage...")
+    print("\n2. Testing Homepage...")
     homepage_response = test_with_timeout("http://localhost:8000/", timeout=15)
     if homepage_response and homepage_response.status_code == 200:
-        print("✅ Homepage loads successfully")
+        print("Homepage loads successfully")
     else:
-        print("❌ Homepage failed to load")
+        print("Homepage failed to load")
     
     # Test 3: API Documentation
-    print("\n3️⃣ Testing API Documentation...")
+    print("\n3. Testing API Documentation...")
     docs_response = test_with_timeout("http://localhost:8000/docs", timeout=15)
     if docs_response and docs_response.status_code == 200:
-        print("✅ API documentation loads successfully")
+        print("API documentation loads successfully")
     else:
-        print("❌ API documentation failed to load")
+        print("API documentation failed to load")
     
     # Test 4: Registration API
-    print("\n4️⃣ Testing Registration API...")
+    print("\n4. Testing Registration API...")
     test_email = f"test_{int(time.time())}@example.com"
     test_data = {
         "email": test_email,
@@ -67,7 +67,7 @@ def test_registration_flow():
     }
     
     try:
-        print(f"📝 Registering user: {test_email}")
+        print(f"Registering user: {test_email}")
         response = requests.post(
             "http://localhost:8000/auth/signup",
             json=test_data,
@@ -76,20 +76,20 @@ def test_registration_flow():
         )
         
         if response.status_code == 201:
-            print("✅ Registration successful!")
+            print("Registration successful!")
             user_data = response.json()
             print(f"   User ID: {user_data['id']}")
             print(f"   User Name: {user_data['name']}")
         else:
-            print(f"❌ Registration failed: {response.status_code}")
+            print(f"Registration failed: {response.status_code}")
             print(f"   Response: {response.text}")
             return False
     except Exception as e:
-        print(f"❌ Registration error: {e}")
+        print(f"Registration error: {e}")
         return False
     
     # Test 5: Login API
-    print("\n5️⃣ Testing Login API...")
+    print("\n5. Testing Login API...")
     try:
         login_data = {
             "email": test_email,
@@ -104,22 +104,22 @@ def test_registration_flow():
         )
         
         if response.status_code == 200:
-            print("✅ Login successful!")
+            print("Login successful!")
             token_data = response.json()
             print(f"   Token Type: {token_data['token_type']}")
             print(f"   Expires In: {token_data['expires_in']} seconds")
             return token_data['access_token']
         else:
-            print(f"❌ Login failed: {response.status_code}")
+            print(f"Login failed: {response.status_code}")
             print(f"   Response: {response.text}")
             return None
     except Exception as e:
-        print(f"❌ Login error: {e}")
+        print(f"Login error: {e}")
         return None
 
 def main():
     """Main test function"""
-    print("🎯 Starting Simple Registration Test")
+    print("Starting Simple Registration Test")
     print("This test will give the browser and server more time to respond...")
     
     # Wait for user to be ready
@@ -130,14 +130,14 @@ def main():
     
     if token:
         print("\n" + "=" * 40)
-        print("🎉 All tests passed!")
-        print("\n📋 What was tested:")
-        print("   ✅ Server health check")
-        print("   ✅ Homepage loading")
-        print("   ✅ API documentation")
-        print("   ✅ User registration")
-        print("   ✅ User login")
-        print("\n🎯 Next steps for browser automation:")
+            print("All tests passed!")
+    print("\nWhat was tested:")
+    print("   - Server health check")
+    print("   - Homepage loading")
+    print("   - API documentation")
+    print("   - User registration")
+    print("   - User login")
+    print("\nNext steps for browser automation:")
         print("   1. Install Firefox browser")
         print("   2. Download geckodriver from: https://github.com/mozilla/geckodriver/releases")
         print("   3. Add geckodriver to your PATH")
@@ -145,7 +145,7 @@ def main():
         return True
     else:
         print("\n" + "=" * 40)
-        print("💥 Some tests failed!")
+        print("Some tests failed!")
         print("Please check that the server is running properly.")
         return False
 

@@ -57,11 +57,11 @@ Based on task type, use the following prefixes:
 - New tasks use the new prefix system
 
 ### Current Task Status
-- **TASK-001** to **TASK-007**: ✅ **COMPLETED** (Legacy format)
-- **TASK-008**: ✅ **COMPLETED** (Legacy format)
-- **FIX-001**: ✅ **COMPLETED** (Register/Login button fix)
-- **TECH-001**: ✅ **COMPLETED** (GitHub Actions v4 update)
-- **TECH-002**: ✅ **COMPLETED** (CI test fixes)
+- **TASK-001** to **TASK-007**: **COMPLETED** (Legacy format)
+- **TASK-008**: **COMPLETED** (Legacy format)
+- **FIX-001**: **COMPLETED** (Register/Login button fix)
+- **TECH-001**: **COMPLETED** (GitHub Actions v4 update)
+- **TECH-002**: **COMPLETED** (CI test fixes)
 
 ## Branch Naming Convention
 
@@ -216,10 +216,10 @@ TECH-003: Add comprehensive test coverage
 ## Task Status Tracking
 
 ### Status Indicators
-- ✅ **COMPLETED** - Task is finished and merged
-- 🔄 **IN PROGRESS** - Currently being worked on
-- 📋 **PENDING** - Planned but not started
-- ⭐ **PRIORITY** - High priority task
+- **COMPLETED** - Task is finished and merged
+- **IN PROGRESS** - Currently being worked on
+- **PENDING** - Planned but not started
+- **PRIORITY** - High priority task
 
 ### Updating Task Status
 1. Update TODO.md with current progress
@@ -256,9 +256,9 @@ TECH-003: Add comprehensive test coverage
 ## Current Priority Tasks
 
 ### Immediate Next Steps
-1. **STORY-001**: Add user profile page 📋 **PENDING**
-2. **FIX-002**: Fix any remaining UI issues 📋 **PENDING**
-3. **TECH-003**: Improve test coverage 📋 **PENDING**
+1. **STORY-001**: Add user profile page **PENDING**
+2. **FIX-002**: Fix any remaining UI issues **PENDING**
+3. **TECH-003**: Improve test coverage **PENDING**
 
 ### How to Start a New Task
 ```bash
