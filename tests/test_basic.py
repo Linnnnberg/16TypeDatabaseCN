@@ -2,6 +2,7 @@
 Basic pytest tests for MBTI Roster
 These tests can run in CI environment without requiring a running server
 """
+
 import pytest
 import sys
 import os
@@ -107,8 +108,10 @@ def test_requirements_file_content():
     ]
 
     for package in required_packages:
-        assert package in requirements, f"Required package {package} not found in requirements"
+        assert (
+            package in requirements
+        ), f"Required package {package} not found in requirements"
 
 
 if __name__ == "__main__":
-    pytest.main([__file__]) 
+    pytest.main([__file__])

@@ -12,27 +12,28 @@ import json
 import requests
 from pathlib import Path
 
+
 class DevSetup:
     def __init__(self):
         self.project_root = Path(__file__).parent
         self.venv_python = self.project_root / "venv" / "Scripts" / "python.exe"
         self.venv_uvicorn = self.project_root / "venv" / "Scripts" / "uvicorn.exe"
         self.server_url = "http://localhost:8000"
-        
+
     def run_command(self, command, description="", check=True):
         """Run a command and handle output"""
         print(f"\n{description}")
         print(f"   Running: {command}")
-        
+
         try:
             result = subprocess.run(
-                command, 
-                shell=True, 
-                capture_output=True, 
-                text=True, 
-                cwd=self.project_root
+                command,
+                shell=True,
+                capture_output=True,
+                text=True,
+                cwd=self.project_root,
             )
-            
+
             if result.returncode == 0:
                 print(f"   Success")
                 if result.stdout.strip():
@@ -43,14 +44,14 @@ class DevSetup:
                     print(f"   Error: {result.stderr.strip()}")
                 if check:
                     raise Exception(f"Command failed: {command}")
-            
+
             return result
         except Exception as e:
             print(f"   Exception: {e}")
             if check:
                 raise
             return None
-    
+
     def check_venv(self):
         """Check if virtual environment exists"""
         if not self.venv_python.exists():
@@ -58,11 +59,11 @@ class DevSetup:
             print("   Please run: python -m venv venv")
             return False
         return True
-    
+
     def setup_environment(self):
         """Setup environment variables"""
         print("\nSetting up environment...")
-        
+
         env_file = self.project_root / ".env"
         if not env_file.exists():
             print("   Creating .env file...")
@@ -70,87 +71,95 @@ class DevSetup:
 SECRET_KEY=your-super-secret-key-here-change-in-production
 REDIS_URL=redis://localhost:6379
 EMAIL_FROM=noreply@mbti-roster.com"""
-            
-            with open(env_file, 'w', encoding='utf-8') as f:
+
+            with open(env_file, "w", encoding="utf-8") as f:
                 f.write(env_content)
             print("   .env file created")
         else:
             print("   .env file already exists")
-    
+
     def install_dependencies(self):
         """Install Python dependencies"""
         print("\nInstalling dependencies...")
-        
+
         # Check if requirements file exists
         requirements_file = self.project_root / "requirements_minimal.txt"
         if not requirements_file.exists():
             print("   requirements_minimal.txt not found!")
             return False
-        
+
         # Install dependencies
         self.run_command(
             f'"{self.venv_python}" -m pip install -r requirements_minimal.txt',
-            "Installing Python dependencies"
+            "Installing Python dependencies",
         )
         return True
-    
+
     def create_admin_user(self):
         """Create admin user if not exists"""
         print("\nSetting up admin user...")
-        
+
         admin_script = self.project_root / "create_admin.py"
         if admin_script.exists():
             self.run_command(
                 f'"{self.venv_python}" create_admin.py',
                 "Creating admin user",
-                check=False
+                check=False,
             )
         else:
             print("   create_admin.py not found, skipping admin creation")
-    
+
     def create_sample_data(self):
         """Create sample celebrities and votes"""
         print("\nCreating sample data...")
-        
+
         # Create celebrities
         celeb_script = self.project_root / "create_sample_celebrities.py"
         if celeb_script.exists():
             self.run_command(
                 f'"{self.venv_python}" create_sample_celebrities.py',
                 "Creating sample celebrities",
-                check=False
+                check=False,
             )
         else:
             print("   create_sample_celebrities.py not found")
-        
+
         # Create votes
         vote_script = self.project_root / "create_sample_votes.py"
         if vote_script.exists():
             self.run_command(
                 f'"{self.venv_python}" create_sample_votes.py',
                 "Creating sample votes",
-                check=False
+                check=False,
             )
         else:
             print("   create_sample_votes.py not found")
-    
+
     def start_server(self, background=True):
         """Start the FastAPI server"""
         print("\nStarting FastAPI server...")
-        
+
         if background:
             # Start server in background
             try:
                 process = subprocess.Popen(
-                    [str(self.venv_uvicorn), "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"],
+                    [
+                        str(self.venv_uvicorn),
+                        "app.main:app",
+                        "--host",
+                        "0.0.0.0",
+                        "--port",
+                        "8000",
+                        "--reload",
+                    ],
                     cwd=self.project_root,
                     stdout=subprocess.PIPE,
-                    stderr=subprocess.PIPE
+                    stderr=subprocess.PIPE,
                 )
-                
+
                 # Wait a bit for server to start
                 time.sleep(3)
-                
+
                 # Check if server is running
                 if self.check_server():
                     print("   Server started successfully")
@@ -158,7 +167,7 @@ EMAIL_FROM=noreply@mbti-roster.com"""
                 else:
                     print("   Server failed to start")
                     return None
-                    
+
             except Exception as e:
                 print(f"   Failed to start server: {e}")
                 return None
@@ -167,9 +176,9 @@ EMAIL_FROM=noreply@mbti-roster.com"""
             self.run_command(
                 f'"{self.venv_uvicorn}" app.main:app --host 0.0.0.0 --port 8000 --reload',
                 "Starting server (foreground)",
-                check=False
+                check=False,
             )
-    
+
     def check_server(self):
         """Check if server is running"""
         try:
@@ -177,15 +186,15 @@ EMAIL_FROM=noreply@mbti-roster.com"""
             return response.status_code == 200
         except:
             return False
-    
+
     def test_endpoints(self):
         """Test basic endpoints"""
         print("\nTesting endpoints...")
-        
+
         if not self.check_server():
             print("   Server not running, skipping tests")
             return
-        
+
         endpoints = [
             ("/health", "Health check"),
             ("/", "Root endpoint"),
@@ -193,7 +202,7 @@ EMAIL_FROM=noreply@mbti-roster.com"""
             ("/celebrities/", "Celebrities list"),
             ("/votes/mbti-types", "MBTI types"),
         ]
-        
+
         for endpoint, description in endpoints:
             try:
                 response = requests.get(f"{self.server_url}{endpoint}", timeout=5)
@@ -201,7 +210,7 @@ EMAIL_FROM=noreply@mbti-roster.com"""
                 print(f"   {status} {description}: {response.status_code}")
             except Exception as e:
                 print(f"   FAIL {description}: Error - {e}")
-    
+
     def show_info(self):
         """Show development information"""
         print("\nDevelopment Information")
@@ -233,41 +242,41 @@ EMAIL_FROM=noreply@mbti-roster.com"""
         print("   python dev_setup.py --server - Start server only")
         print("   python dev_setup.py --test - Test endpoints only")
         print("   python dev_setup.py --data - Create sample data only")
-    
+
     def full_setup(self):
         """Run full development setup"""
         print("16型花名册 (MBTI Roster) - Development Setup")
         print("=" * 60)
-        
+
         # Check virtual environment
         if not self.check_venv():
             return False
-        
+
         # Setup environment
         self.setup_environment()
-        
+
         # Install dependencies
         if not self.install_dependencies():
             return False
-        
+
         # Create admin user
         self.create_admin_user()
-        
+
         # Create sample data
         self.create_sample_data()
-        
+
         # Start server
         server_process = self.start_server(background=True)
-        
+
         # Test endpoints
         self.test_endpoints()
-        
+
         # Show information
         self.show_info()
-        
+
         print("\nDevelopment setup complete!")
         print("   Press Ctrl+C to stop the server")
-        
+
         # Keep server running
         try:
             if server_process:
@@ -276,16 +285,17 @@ EMAIL_FROM=noreply@mbti-roster.com"""
             print("\nStopping server...")
             if server_process:
                 server_process.terminate()
-        
+
         return True
+
 
 def main():
     """Main function"""
     setup = DevSetup()
-    
+
     if len(sys.argv) > 1:
         command = sys.argv[1]
-        
+
         if command == "--full":
             setup.full_setup()
         elif command == "--server":
@@ -303,5 +313,6 @@ def main():
         # Default: full setup
         setup.full_setup()
 
+
 if __name__ == "__main__":
-    main() 
+    main()

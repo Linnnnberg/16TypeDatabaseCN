@@ -11,11 +11,14 @@ from app.database.models import User
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
+
 def verify_password(plain_password: str, hashed_password: str) -> bool:
     return pwd_context.verify(plain_password, hashed_password)
 
+
 def get_password_hash(password: str) -> str:
     return pwd_context.hash(password)
+
 
 def create_access_token(data: dict, expires_delta: Optional[timedelta] = None):
     to_encode = data.copy()
@@ -27,6 +30,7 @@ def create_access_token(data: dict, expires_delta: Optional[timedelta] = None):
     encoded_jwt = jwt.encode(to_encode, settings.secret_key, algorithm="HS256")
     return encoded_jwt
 
+
 def verify_token(token: str) -> dict:
     try:
         payload = jwt.decode(token, settings.secret_key, algorithms=["HS256"])
@@ -37,21 +41,21 @@ def verify_token(token: str) -> dict:
             detail="Could not validate credentials",
         )
 
+
 def get_current_admin_user(
     credentials: HTTPAuthorizationCredentials = Depends(HTTPBearer()),
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
 ) -> User:
     """Dependency to get current authenticated admin user"""
     from app.services.auth_service import AuthService
     from app.database.models import User, UserRole
-    
+
     auth_service = AuthService(db)
     user = auth_service.get_current_user(credentials.credentials)
-    
+
     if user.role != UserRole.SYSTEM:
         raise HTTPException(
-            status_code=status.HTTP_403_FORBIDDEN,
-            detail="只有系统管理员才能访问此功能"
+            status_code=status.HTTP_403_FORBIDDEN, detail="只有系统管理员才能访问此功能"
         )
-    
-    return user 
+
+    return user

@@ -3,6 +3,7 @@
 Script to create .env file with proper UTF-8 encoding
 """
 
+
 def create_env_file():
     """Create .env file with proper encoding"""
     env_content = """# Database Configuration (SQLite for local development)
@@ -23,11 +24,12 @@ DAILY_NO_REASON_LIMIT=5
 NEW_USER_24H_LIMIT=3
 DAILY_REGISTRATIONS_PER_IP=3
 """
-    
-    with open('.env', 'w', encoding='utf-8') as f:
+
+    with open(".env", "w", encoding="utf-8") as f:
         f.write(env_content)
-    
+
     print(".env file created successfully with UTF-8 encoding")
 
+
 if __name__ == "__main__":
-    create_env_file() 
+    create_env_file()

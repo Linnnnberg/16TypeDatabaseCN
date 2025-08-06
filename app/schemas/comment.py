@@ -2,10 +2,16 @@ from pydantic import BaseModel, Field
 from typing import Optional, List
 from datetime import datetime
 
+
 class CommentCreate(BaseModel):
     celebrity_id: str = Field(..., description="ID of the celebrity to comment on")
-    content: str = Field(..., min_length=1, max_length=1000, description="Comment content")
-    parent_id: Optional[str] = Field(None, description="ID of parent comment for replies")
+    content: str = Field(
+        ..., min_length=1, max_length=1000, description="Comment content"
+    )
+    parent_id: Optional[str] = Field(
+        None, description="ID of parent comment for replies"
+    )
+
 
 class CommentResponse(BaseModel):
     id: str
@@ -16,6 +22,6 @@ class CommentResponse(BaseModel):
     level: int
     created_at: datetime
     updated_at: Optional[datetime] = None
-    
+
     class Config:
-        from_attributes = True 
+        from_attributes = True

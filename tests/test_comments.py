@@ -2,8 +2,10 @@
 Comment system regression tests
 Tests comment creation, retrieval, and nested replies
 """
+
 import requests
 from tests.config import test_config
+
 
 def test_get_all_comments():
     """Test getting all comments"""
@@ -14,12 +16,13 @@ def test_get_all_comments():
         test_config.add_test_result(
             "Get All Comments",
             success,
-            f"Status: {response.status_code}, Count: {len(data)}"
+            f"Status: {response.status_code}, Count: {len(data)}",
         )
         return success
     except Exception as e:
         test_config.add_test_result("Get All Comments", False, str(e))
         return False
+
 
 def test_create_comment():
     """Test creating a new comment"""
@@ -32,25 +35,32 @@ def test_create_comment():
                 celebrity_id = celebrities[0]["id"]
                 comment_data = {
                     "celebrity_id": celebrity_id,
-                    "content": "Test comment for regression testing"
+                    "content": "Test comment for regression testing",
                 }
-                response = test_config.make_request("POST", "/comments/", json=comment_data)
+                response = test_config.make_request(
+                    "POST", "/comments/", json=comment_data
+                )
                 success = response.status_code == 201
                 test_config.add_test_result(
                     "Create Comment",
                     success,
-                    f"Status: {response.status_code}, Celebrity: {celebrity_id}"
+                    f"Status: {response.status_code}, Celebrity: {celebrity_id}",
                 )
                 return success
             else:
-                test_config.add_test_result("Create Comment", False, "No celebrities found")
+                test_config.add_test_result(
+                    "Create Comment", False, "No celebrities found"
+                )
                 return False
         else:
-            test_config.add_test_result("Create Comment", False, "Failed to get celebrities")
+            test_config.add_test_result(
+                "Create Comment", False, "Failed to get celebrities"
+            )
             return False
     except Exception as e:
         test_config.add_test_result("Create Comment", False, str(e))
         return False
+
 
 def test_get_user_comments():
     """Test getting comments for current user"""
@@ -61,12 +71,13 @@ def test_get_user_comments():
         test_config.add_test_result(
             "Get User Comments",
             success,
-            f"Status: {response.status_code}, Count: {len(data)}"
+            f"Status: {response.status_code}, Count: {len(data)}",
         )
         return success
     except Exception as e:
         test_config.add_test_result("Get User Comments", False, str(e))
         return False
+
 
 def test_get_celebrity_comments():
     """Test getting comments for a specific celebrity"""
@@ -77,24 +88,31 @@ def test_get_celebrity_comments():
             celebrities = response.json()
             if celebrities:
                 celebrity_id = celebrities[0]["id"]
-                response = test_config.make_request("GET", f"/comments/celebrity/{celebrity_id}")
+                response = test_config.make_request(
+                    "GET", f"/comments/celebrity/{celebrity_id}"
+                )
                 success = response.status_code == 200
                 data = response.json()
                 test_config.add_test_result(
                     "Get Celebrity Comments",
                     success,
-                    f"Status: {response.status_code}, Count: {len(data)}"
+                    f"Status: {response.status_code}, Count: {len(data)}",
                 )
                 return success
             else:
-                test_config.add_test_result("Get Celebrity Comments", False, "No celebrities found")
+                test_config.add_test_result(
+                    "Get Celebrity Comments", False, "No celebrities found"
+                )
                 return False
         else:
-            test_config.add_test_result("Get Celebrity Comments", False, "Failed to get celebrities")
+            test_config.add_test_result(
+                "Get Celebrity Comments", False, "Failed to get celebrities"
+            )
             return False
     except Exception as e:
         test_config.add_test_result("Get Celebrity Comments", False, str(e))
         return False
+
 
 def test_create_reply():
     """Test creating a reply to a comment"""
@@ -108,25 +126,30 @@ def test_create_reply():
                 reply_data = {
                     "celebrity_id": comments[0]["celebrity_id"],
                     "content": "Test reply for regression testing",
-                    "parent_id": parent_id
+                    "parent_id": parent_id,
                 }
-                response = test_config.make_request("POST", "/comments/", json=reply_data)
+                response = test_config.make_request(
+                    "POST", "/comments/", json=reply_data
+                )
                 success = response.status_code == 201
                 test_config.add_test_result(
                     "Create Reply",
                     success,
-                    f"Status: {response.status_code}, Parent: {parent_id}"
+                    f"Status: {response.status_code}, Parent: {parent_id}",
                 )
                 return success
             else:
                 test_config.add_test_result("Create Reply", False, "No comments found")
                 return False
         else:
-            test_config.add_test_result("Create Reply", False, "Failed to get user comments")
+            test_config.add_test_result(
+                "Create Reply", False, "Failed to get user comments"
+            )
             return False
     except Exception as e:
         test_config.add_test_result("Create Reply", False, str(e))
         return False
+
 
 def test_update_comment():
     """Test updating a comment"""
@@ -137,26 +160,31 @@ def test_update_comment():
             comments = response.json()
             if comments:
                 comment_id = comments[0]["id"]
-                update_data = {
-                    "content": "Updated comment content for testing"
-                }
-                response = test_config.make_request("PUT", f"/comments/{comment_id}", json=update_data)
+                update_data = {"content": "Updated comment content for testing"}
+                response = test_config.make_request(
+                    "PUT", f"/comments/{comment_id}", json=update_data
+                )
                 success = response.status_code == 200
                 test_config.add_test_result(
                     "Update Comment",
                     success,
-                    f"Status: {response.status_code}, ID: {comment_id}"
+                    f"Status: {response.status_code}, ID: {comment_id}",
                 )
                 return success
             else:
-                test_config.add_test_result("Update Comment", False, "No comments found")
+                test_config.add_test_result(
+                    "Update Comment", False, "No comments found"
+                )
                 return False
         else:
-            test_config.add_test_result("Update Comment", False, "Failed to get user comments")
+            test_config.add_test_result(
+                "Update Comment", False, "Failed to get user comments"
+            )
             return False
     except Exception as e:
         test_config.add_test_result("Update Comment", False, str(e))
         return False
+
 
 def test_delete_comment():
     """Test deleting a comment"""
@@ -172,18 +200,23 @@ def test_delete_comment():
                 test_config.add_test_result(
                     "Delete Comment",
                     success,
-                    f"Status: {response.status_code}, ID: {comment_id}"
+                    f"Status: {response.status_code}, ID: {comment_id}",
                 )
                 return success
             else:
-                test_config.add_test_result("Delete Comment", False, "No comments found")
+                test_config.add_test_result(
+                    "Delete Comment", False, "No comments found"
+                )
                 return False
         else:
-            test_config.add_test_result("Delete Comment", False, "Failed to get user comments")
+            test_config.add_test_result(
+                "Delete Comment", False, "Failed to get user comments"
+            )
             return False
     except Exception as e:
         test_config.add_test_result("Delete Comment", False, str(e))
         return False
+
 
 def test_get_comment_statistics():
     """Test getting comment statistics"""
@@ -194,17 +227,18 @@ def test_get_comment_statistics():
         test_config.add_test_result(
             "Get Comment Statistics",
             success,
-            f"Status: {response.status_code}, Stats: {len(data)}"
+            f"Status: {response.status_code}, Stats: {len(data)}",
         )
         return success
     except Exception as e:
         test_config.add_test_result("Get Comment Statistics", False, str(e))
         return False
 
+
 def run_comments_tests():
     """Run all comment system tests"""
     print("Running Comment System Tests...")
-    
+
     tests = [
         test_get_all_comments,
         test_create_comment,
@@ -213,18 +247,19 @@ def run_comments_tests():
         test_create_reply,
         test_update_comment,
         test_delete_comment,
-        test_get_comment_statistics
+        test_get_comment_statistics,
     ]
-    
+
     passed = 0
     total = len(tests)
-    
+
     for test in tests:
         if test():
             passed += 1
-    
+
     print(f"Comment System Tests: {passed}/{total} passed")
     return passed == total
 
+
 if __name__ == "__main__":
-    run_comments_tests() 
+    run_comments_tests()

@@ -7,10 +7,20 @@ from .comment import CommentCreate, CommentResponse
 from .tag import TagCreate, TagResponse
 
 __all__ = [
-    "UserCreate", "UserLogin", "UserResponse", "Token", "TokenData",
-    "UserProfile", "UserUpdate",
-    "CelebrityCreate", "CelebrityUpdate", "CelebrityResponse",
-    "VoteCreate", "VoteResponse",
-    "CommentCreate", "CommentResponse",
-    "TagCreate", "TagResponse"
-] 
+    "UserCreate",
+    "UserLogin",
+    "UserResponse",
+    "Token",
+    "TokenData",
+    "UserProfile",
+    "UserUpdate",
+    "CelebrityCreate",
+    "CelebrityUpdate",
+    "CelebrityResponse",
+    "VoteCreate",
+    "VoteResponse",
+    "CommentCreate",
+    "CommentResponse",
+    "TagCreate",
+    "TagResponse",
+]
