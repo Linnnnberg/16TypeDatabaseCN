@@ -1,4 +1,20 @@
 # CI/CD and Testing Dependencies
+# This file includes both runtime and testing dependencies for CI
+
+# Runtime dependencies (from requirements_minimal.txt)
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+sqlalchemy==2.0.31
+alembic==1.12.1
+python-jose[cryptography]==3.3.0
+passlib[bcrypt]==1.7.4
+python-multipart==0.0.6
+jinja2==3.1.2
+python-dotenv==1.0.0
+redis==5.0.1
+email-validator==2.1.0
+pydantic-settings==2.1.0
+
 # Core testing framework
 pytest==7.4.3
 pytest-cov==4.1.0
@@ -27,18 +43,9 @@ pdoc3==0.10.0
 pre-commit==3.5.0
 coverage==7.3.2
 
-# Database testing
-pytest-django==4.7.0
-
 # Mocking and fixtures
 factory-boy==3.3.0
 faker==20.1.0
 
-# Environment management
-python-dotenv==1.0.0
-
 # Logging and monitoring
-structlog==23.2.0
-
-# Security scanning
-safety==2.3.5 
+structlog==23.2.0 
