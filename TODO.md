@@ -3,7 +3,7 @@
 ## Project Overview
 **16型花名册 (MBTI Roster)** - A FastAPI web application for voting on celebrities' MBTI personality types with user authentication, voting system, and comment functionality.
 
-## 🎯 Task ID System & Branching Strategy
+## Task ID System & Branching Strategy
 
 ### New Task ID Format (Updated)
 Based on task type, use the following prefixes:
@@ -56,16 +56,16 @@ Based on task type, use the following prefixes:
 
 ---
 
-## 🎯 First Priority Tasks (Phase 1 - Setup & Foundation)
+## First Priority Tasks (Phase 1 - Setup & Foundation)
 
-### TASK-001: **Project Structure Setup** ⭐ **COMPLETED** ✅
+### TASK-001: **Project Structure Setup** **COMPLETED**
 - [x] Create proper directory structure
 - [x] Set up virtual environment
 - [x] Install dependencies from requirements.txt
 - [x] Create .env file with proper configuration
 - [x] Test basic FastAPI installation
 
-### TASK-002: **Database Setup** ⭐ **COMPLETED** ✅
+### TASK-002: **Database Setup** **COMPLETED**
 - [x] **Use SQLite for prototype** (easier, faster development)
 - [x] Implement database models with SQLAlchemy
 - [x] Set up SQLite database connection
@@ -73,20 +73,20 @@ Based on task type, use the following prefixes:
 - [x] Run initial database migrations with Alembic
 - [x] Test database connectivity
 
-### TASK-003: **Core Configuration** ⭐ **COMPLETED** ✅
+### TASK-003: **Core Configuration** **COMPLETED**
 - [x] Set up environment variables
 - [x] Configure security settings
 - [x] Set up logging
 - [x] Test configuration loading
 
-### TASK-004: **Dependency Management** ⭐ **COMPLETED** ✅
+### TASK-004: **Dependency Management** **COMPLETED**
 - [x] Fix SQLAlchemy Python 3.13 compatibility issues
 - [x] Resolve Pydantic Rust compilation problems
 - [x] Create minimal requirements file for easy installation
 - [x] Update all dependencies to compatible versions
 - [x] Test server startup and functionality
 
-## 📋 Phase 2 - Core Backend Development
+## Phase 2 - Core Backend Development
 
 ### TASK-005: **Database Models Implementation** ⭐ **COMPLETED** ✅
 - [x] Implement User model

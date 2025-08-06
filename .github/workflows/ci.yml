@@ -189,14 +189,14 @@ jobs:
     - name: Deploy to staging environment
       run: |
         echo "Deploying to staging environment..."
-        echo "✅ Staging deployment simulation completed"
+        echo "Staging deployment simulation completed"
         # Add your staging deployment commands here
         # Example: kubectl apply, docker-compose up, etc.
         
     - name: Run smoke tests
       run: |
         echo "Running smoke tests on staging..."
-        echo "✅ Smoke tests passed"
+        echo "Smoke tests passed"
         # Add smoke test commands here
         
     - name: Notify deployment status
@@ -218,13 +218,13 @@ jobs:
     - name: Deploy to production environment
       run: |
         echo "Deploying to production environment..."
-        echo "✅ Production deployment simulation completed"
+        echo "Production deployment simulation completed"
         # Add your production deployment commands here
         
     - name: Run production health checks
       run: |
         echo "Running production health checks..."
-        echo "✅ Health checks passed"
+        echo "Health checks passed"
         # Add health check commands here
         
     - name: Notify deployment status

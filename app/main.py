@@ -131,9 +131,9 @@ async def startup_event():
     """Initialize database on startup"""
     try:
         create_tables()
-        print("✅ Database tables created successfully")
+        print("Database tables created successfully")
     except Exception as e:
-        print(f"❌ Database initialization error: {e}")
+        print(f"Database initialization error: {e}")
 
 if __name__ == "__main__":
     import uvicorn
