@@ -109,7 +109,7 @@ def test_invalid_login():
 
 def run_auth_tests():
     """Run all authentication tests"""
-    print("🔐 Running Authentication Tests...")
+    print("Running Authentication Tests...")
     
     tests = [
         test_health_check,
@@ -126,7 +126,7 @@ def run_auth_tests():
         if test():
             passed += 1
     
-    print(f"✅ Authentication Tests: {passed}/{total} passed")
+    print(f"Authentication Tests: {passed}/{total} passed")
     return passed == total
 
 if __name__ == "__main__":

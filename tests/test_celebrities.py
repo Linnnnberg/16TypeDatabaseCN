@@ -176,7 +176,7 @@ def test_add_tag_to_celebrity():
 
 def run_celebrities_tests():
     """Run all celebrity management tests"""
-    print("🎭 Running Celebrity Management Tests...")
+    print("Running Celebrity Management Tests...")
     
     tests = [
         test_get_all_celebrities,
@@ -196,7 +196,7 @@ def run_celebrities_tests():
         if test():
             passed += 1
     
-    print(f"✅ Celebrity Management Tests: {passed}/{total} passed")
+    print(f"Celebrity Management Tests: {passed}/{total} passed")
     return passed == total
 
 if __name__ == "__main__":

@@ -203,7 +203,7 @@ def test_get_comment_statistics():
 
 def run_comments_tests():
     """Run all comment system tests"""
-    print("💬 Running Comment System Tests...")
+    print("Running Comment System Tests...")
     
     tests = [
         test_get_all_comments,
@@ -223,7 +223,7 @@ def run_comments_tests():
         if test():
             passed += 1
     
-    print(f"✅ Comment System Tests: {passed}/{total} passed")
+    print(f"Comment System Tests: {passed}/{total} passed")
     return passed == total
 
 if __name__ == "__main__":

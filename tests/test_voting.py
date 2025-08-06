@@ -197,7 +197,7 @@ def test_duplicate_vote_validation():
 
 def run_voting_tests():
     """Run all voting system tests"""
-    print("🗳️ Running Voting System Tests...")
+    print("Running Voting System Tests...")
     
     tests = [
         test_get_mbti_types,
@@ -217,7 +217,7 @@ def run_voting_tests():
         if test():
             passed += 1
     
-    print(f"✅ Voting System Tests: {passed}/{total} passed")
+    print(f"Voting System Tests: {passed}/{total} passed")
     return passed == total
 
 if __name__ == "__main__":

@@ -21,7 +21,7 @@ def setup_environment():
     os.environ["NEW_USER_24H_LIMIT"] = "3"
     os.environ["DAILY_REGISTRATIONS_PER_IP"] = "3"
     
-    print("✅ 环境变量设置完成")
+    print("环境变量设置完成")
 
 def install_dependencies():
     """安装依赖"""
@@ -33,19 +33,19 @@ def install_dependencies():
             subprocess.run([venv_python, "-m", "pip", "install", "-r", "requirements_minimal.txt"], check=True)
         else:
             subprocess.run([sys.executable, "-m", "pip", "install", "-r", "requirements_minimal.txt"], check=True)
-        print("✅ 依赖安装完成")
+        print("依赖安装完成")
     except subprocess.CalledProcessError:
-        print("❌ 依赖安装失败")
+        print("依赖安装失败")
         return False
     return True
 
 def run_server():
     """启动服务器"""
     print("启动FastAPI服务器...")
-    print("🌐 访问地址: http://localhost:8000")
-    print("📚 API文档: http://localhost:8000/docs")
-    print("🔍 健康检查: http://localhost:8000/health")
-    print("🧪 测试接口: http://localhost:8000/test")
+    print("访问地址: http://localhost:8000")
+    print("API文档: http://localhost:8000/docs")
+    print("健康检查: http://localhost:8000/health")
+    print("测试接口: http://localhost:8000/test")
     print("\n按 Ctrl+C 停止服务器")
     
     try:
@@ -68,14 +68,14 @@ def run_server():
                 "--reload"
             ])
     except KeyboardInterrupt:
-        print("\n👋 服务器已停止")
+        print("\n服务器已停止")
 
 if __name__ == "__main__":
     print("=== 16型花名册 (MBTI Roster) - 本地开发模式 ===")
     
     # Check if requirements_minimal.txt exists
     if not os.path.exists("requirements_minimal.txt"):
-        print("❌ 错误: requirements_minimal.txt 文件不存在")
+        print("错误: requirements_minimal.txt 文件不存在")
         sys.exit(1)
     
     # Setup environment

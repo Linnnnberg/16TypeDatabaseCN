@@ -16,38 +16,38 @@ from tests.test_search import run_search_tests
 def print_banner():
     """Print test suite banner"""
     print("=" * 80)
-    print("🧪 MBTI Roster Regression Test Suite")
+    print("MBTI Roster Regression Test Suite")
     print("=" * 80)
-    print(f"📅 Test Run: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
-    print(f"🌐 Base URL: {test_config.base_url}")
-    print(f"👤 Admin User: {test_config.admin_credentials['email']}")
+    print(f"Test Run: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+    print(f"Base URL: {test_config.base_url}")
+    print(f"Admin User: {test_config.admin_credentials['email']}")
     print("=" * 80)
 
 def check_server_availability():
     """Check if the server is running and accessible"""
-    print("🔍 Checking server availability...")
+    print("Checking server availability...")
     try:
         import requests
         response = requests.get(f"{test_config.base_url}/health", timeout=5)
         if response.status_code == 200:
-            print("✅ Server is running and accessible")
+            print("Server is running and accessible")
             return True
         else:
-            print(f"❌ Server responded with status: {response.status_code}")
+            print(f"Server responded with status: {response.status_code}")
             return False
     except Exception as e:
-        print(f"❌ Cannot connect to server: {e}")
-        print("💡 Make sure the server is running with: python run_local.py")
+        print(f"Cannot connect to server: {e}")
+        print("Make sure the server is running with: python run_local.py")
         return False
 
 def login_admin():
     """Login as admin user"""
-    print("🔐 Logging in as admin user...")
+    print("Logging in as admin user...")
     if test_config.login_admin():
-        print("✅ Admin login successful")
+        print("Admin login successful")
         return True
     else:
-        print("❌ Admin login failed")
+        print("Admin login failed")
         return False
 
 def run_test_suite(suite_name, test_function):
@@ -61,13 +61,13 @@ def run_test_suite(suite_name, test_function):
         duration = end_time - start_time
         
         if success:
-            print(f"✅ {suite_name} completed successfully ({duration:.2f}s)")
+            print(f"{suite_name} completed successfully ({duration:.2f}s)")
         else:
-            print(f"❌ {suite_name} had failures ({duration:.2f}s)")
+            print(f"{suite_name} had failures ({duration:.2f}s)")
         
         return success
     except Exception as e:
-        print(f"❌ {suite_name} failed with exception: {e}")
+        print(f"{suite_name} failed with exception: {e}")
         return False
 
 def print_summary():
@@ -75,18 +75,18 @@ def print_summary():
     summary = test_config.get_test_summary()
     
     print("\n" + "=" * 80)
-    print("📊 TEST SUMMARY")
+    print("TEST SUMMARY")
     print("=" * 80)
-    print(f"📈 Total Tests: {summary['total_tests']}")
-    print(f"✅ Passed: {summary['passed_tests']}")
-    print(f"❌ Failed: {summary['failed_tests']}")
-    print(f"📊 Success Rate: {summary['success_rate']:.1f}%")
+    print(f"Total Tests: {summary['total_tests']}")
+    print(f"Passed: {summary['passed_tests']}")
+    print(f"Failed: {summary['failed_tests']}")
+    print(f"Success Rate: {summary['success_rate']:.1f}%")
     print("=" * 80)
     
     # Print failed tests
     failed_tests = [result for result in summary['results'] if not result['success']]
     if failed_tests:
-        print("\n❌ FAILED TESTS:")
+        print("\nFAILED TESTS:")
         for test in failed_tests:
             print(f"  • {test['test_name']}: {test['details']}")
     
@@ -108,12 +108,12 @@ def main():
     
     # Check server availability
     if not check_server_availability():
-        print("\n❌ Cannot proceed with tests. Server is not available.")
+        print("\nCannot proceed with tests. Server is not available.")
         sys.exit(1)
     
     # Login as admin
     if not login_admin():
-        print("\n❌ Cannot proceed with tests. Admin login failed.")
+        print("\nCannot proceed with tests. Admin login failed.")
         sys.exit(1)
     
     # Define test suites
@@ -144,16 +144,16 @@ def main():
     report_file = save_test_report()
     
     # Final summary
-    print(f"\n🎯 FINAL RESULTS:")
-    print(f"📊 Test Suites: {passed_suites}/{total_suites} passed")
-    print(f"⏱️  Total Duration: {total_duration:.2f}s")
-    print(f"📄 Detailed Report: {report_file}")
+    print(f"\nFINAL RESULTS:")
+    print(f"Test Suites: {passed_suites}/{total_suites} passed")
+    print(f"Total Duration: {total_duration:.2f}s")
+    print(f"Detailed Report: {report_file}")
     
     if all_passed:
-        print("🎉 All tests passed! The application is working correctly.")
+        print("All tests passed! The application is working correctly.")
         sys.exit(0)
     else:
-        print("⚠️  Some tests failed. Please check the detailed report.")
+        print("Some tests failed. Please check the detailed report.")
         sys.exit(1)
 
 if __name__ == "__main__":

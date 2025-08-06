@@ -199,7 +199,7 @@ def test_empty_search_query():
 
 def run_search_tests():
     """Run all search functionality tests"""
-    print("🔍 Running Search Functionality Tests...")
+    print("Running Search Functionality Tests...")
     
     tests = [
         test_basic_search,
@@ -223,7 +223,7 @@ def run_search_tests():
         if test():
             passed += 1
     
-    print(f"✅ Search Functionality Tests: {passed}/{total} passed")
+    print(f"Search Functionality Tests: {passed}/{total} passed")
     return passed == total
 
 if __name__ == "__main__":
