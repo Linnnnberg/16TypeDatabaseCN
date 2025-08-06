@@ -293,7 +293,7 @@ Based on task type, use the following prefixes:
   - Account disabled: "账户已被停用，请联系管理员激活账户"
   - Token expired: "登录令牌已过期或无效，请重新登录"
 
-## 🔧 Phase 4 - Advanced Features
+## Phase 4 - Advanced Features
 
 ### TASK-013: **Voting System Enhancement**
 - [ ] Implement daily vote limits
@@ -324,7 +324,7 @@ Based on task type, use the following prefixes:
 - [ ] Implement backup strategy
 - [ ] Performance optimization
 
-## 📊 Phase 6 - Analytics & Monitoring
+## Phase 6 - Analytics & Monitoring
 
 ### TASK-017: **Analytics**
 - [ ] Implement user analytics
@@ -393,7 +393,7 @@ python run_local.py
 - **Dependencies: All compatibility issues resolved**
 - **Frontend: FastAPI + Jinja2 + Tailwind CSS + Vanilla JavaScript**
 
-## 🔍 **TASK-010 Search Strategy Documentation**
+## **TASK-010 Search Strategy Documentation**
 
 ### **Chosen Strategy: Hybrid Search with Relevance Scoring**
 

@@ -16,7 +16,7 @@ def test_with_timeout(url, timeout=30):
         print(f"Status: {response.status_code}")
         return response
     except requests.exceptions.Timeout:
-        print(f"⏰ Timeout after {timeout} seconds")
+        print(f"Timeout after {timeout} seconds")
         return None
     except requests.exceptions.ConnectionError:
         print("Connection error")
@@ -38,7 +38,7 @@ def test_registration_flow():
         return False
     
     # Wait a bit for server to be fully ready
-    print("⏳ Waiting 3 seconds for server to be ready...")
+    print("Waiting 3 seconds for server to be ready...")
     time.sleep(3)
     
     # Test 2: Homepage

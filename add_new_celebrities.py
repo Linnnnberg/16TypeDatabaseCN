@@ -85,7 +85,7 @@ def add_new_celebrities():
         for celeb_data in new_celebrities:
             try:
                 celebrity = celebrity_service.create_celebrity(CelebrityCreate(**celeb_data))
-                print(f"✅ Created celebrity: {celebrity.name} ({celebrity.name_en})")
+                print(f"Created celebrity: {celebrity.name} ({celebrity.name_en})")
                 created_count += 1
                 
                 # Add tags based on description content
@@ -109,24 +109,24 @@ def add_new_celebrities():
                     celebrity_service.add_tag_to_celebrity(celebrity.id, "新生代")
                     
             except Exception as e:
-                print(f"❌ Error creating {celeb_data['name']}: {e}")
+                print(f"Error creating {celeb_data['name']}: {e}")
         
-        print(f"\n🎉 Successfully created {created_count} new celebrities!")
-        print(f"📝 New celebrities added to database")
+        print(f"\nSuccessfully created {created_count} new celebrities!")
+        print(f"New celebrities added to database")
         
     except Exception as e:
-        print(f"❌ Error: {e}")
+        print(f"Error: {e}")
     finally:
         db.close()
 
 if __name__ == "__main__":
-    print("🎭 Adding New Celebrities to 16型花名册")
+    print("Adding New Celebrities to 16型花名册")
     print("=" * 50)
     
     add_new_celebrities()
     
     print("\n" + "=" * 50)
-    print("📝 Next steps:")
+    print("Next steps:")
     print("1. Check the celebrities page: http://localhost:8000/celebrities")
     print("2. View API documentation: http://localhost:8000/docs")
     print("3. Test celebrity endpoints:")

@@ -25,7 +25,7 @@ def add_initial_votes():
         # Get or create a system user for these votes
         system_user = db.query(User).filter(User.role == UserRole.SYSTEM).first()
         if not system_user:
-            print("❌ System user not found. Please run create_admin.py first.")
+            print("System user not found. Please run create_admin.py first.")
             return
         
         # Initial votes data
@@ -88,7 +88,7 @@ def add_initial_votes():
                 # Find the celebrity by name
                 celebrity = celebrity_service.get_celebrity_by_name(vote_data["name"])
                 if not celebrity:
-                    print(f"❌ Celebrity not found: {vote_data['name']}")
+                    print(f"Celebrity not found: {vote_data['name']}")
                     continue
                 
                 # Create vote
@@ -99,28 +99,28 @@ def add_initial_votes():
                 )
                 
                 vote = vote_service.create_vote(system_user.id, vote_create)
-                print(f"✅ Added vote for {celebrity.name}: {vote_data['mbti']} - {vote_data['comment'][:50]}...")
+                print(f"Added vote for {celebrity.name}: {vote_data['mbti']} - {vote_data['comment'][:50]}...")
                 created_count += 1
                     
             except Exception as e:
-                print(f"❌ Error creating vote for {vote_data['name']}: {e}")
+                print(f"Error creating vote for {vote_data['name']}: {e}")
         
-        print(f"\n🎉 Successfully created {created_count} initial votes!")
-        print(f"📝 Initial votes added to database")
+        print(f"\nSuccessfully created {created_count} initial votes!")
+        print(f"Initial votes added to database")
         
     except Exception as e:
-        print(f"❌ Error: {e}")
+        print(f"Error: {e}")
     finally:
         db.close()
 
 if __name__ == "__main__":
-    print("🎭 Adding Initial Votes to 16型花名册")
+    print("Adding Initial Votes to 16型花名册")
     print("=" * 50)
     
     add_initial_votes()
     
     print("\n" + "=" * 50)
-    print("📝 Next steps:")
+    print("Next steps:")
     print("1. Check the celebrities page: http://localhost:8000/celebrities")
     print("2. View vote statistics: http://localhost:8000/votes/")
     print("3. Test vote endpoints:")

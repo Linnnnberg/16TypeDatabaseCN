@@ -1,10 +1,10 @@
-# 🚀 CI/CD Pipeline Guide - MBTI Roster
+# CI/CD Pipeline Guide - MBTI Roster
 
-## 📋 Overview
+## Overview
 
 This document describes the comprehensive CI/CD (Continuous Integration/Continuous Deployment) pipeline for the MBTI Roster application. The pipeline ensures code quality, security, and reliable deployments.
 
-## 🏗️ Pipeline Architecture
+## Pipeline Architecture
 
 ### **Pipeline Stages**
 
@@ -28,7 +28,7 @@ The pipeline is defined in `.github/workflows/ci.yml` and includes:
 7. **Performance Tests** - Load testing
 8. **Documentation** - Auto-generated docs
 
-## 🛠️ Local Development Setup
+## Local Development Setup
 
 ### **Prerequisites**
 
@@ -82,7 +82,7 @@ safety check
 locust -f performance_tests/locustfile.py --host=http://localhost:8000
 ```
 
-## 🔧 Pipeline Configuration
+## Pipeline Configuration
 
 ### **Environment Variables**
 
@@ -130,7 +130,7 @@ docker-compose --profile monitoring up -d
 docker-compose --profile production up -d
 ```
 
-## 🧪 Testing Strategy
+## Testing Strategy
 
 ### **Test Types**
 
@@ -194,7 +194,7 @@ trivy image mbti-roster:latest
 pre-commit run --all-files
 ```
 
-## 📊 Monitoring & Observability
+## Monitoring & Observability
 
 ### **Monitoring Stack**
 
@@ -223,7 +223,7 @@ http://localhost:3000
 # Password: admin
 ```
 
-## 🚀 Deployment
+## Deployment
 
 ### **Deployment Environments**
 
@@ -255,7 +255,7 @@ git push origin main  # Triggers automatic staging deployment
 # Go to GitHub Actions → Deploy to Production → Run workflow
 ```
 
-## 📈 Performance Testing
+## Performance Testing
 
 ### **Performance Test Types**
 
@@ -284,7 +284,7 @@ docker-compose --profile performance up locust
 http://localhost:8089
 ```
 
-## 🔄 Continuous Integration
+## Continuous Integration
 
 ### **CI Triggers**
 
@@ -308,7 +308,7 @@ http://localhost:8089
 - Parallel job execution
 - Comprehensive test coverage
 
-## 📚 Documentation
+## Documentation
 
 ### **Auto-Generated Documentation**
 
@@ -324,7 +324,7 @@ http://localhost:8089
 - DEPLOYMENT_GUIDE.md
 - TROUBLESHOOTING.md
 
-## 🛠️ Troubleshooting
+## Troubleshooting
 
 ### **Common Issues**
 
@@ -383,7 +383,7 @@ docker-compose logs -f app
 locust -f performance_tests/locustfile.py
 ```
 
-## 📋 Best Practices
+## Best Practices
 
 ### **Code Quality**
 

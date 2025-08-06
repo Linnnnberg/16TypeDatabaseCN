@@ -58,13 +58,13 @@ data_uploads/
 
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
-| `name` | String | ✅ | Celebrity's Chinese name (max 200 chars) |
-| `name_en` | String | ❌ | English name (max 200 chars) |
-| `description` | String | ❌ | Brief description |
-| `image_url` | String | ❌ | Image URL |
-| `mbti` | String | ✅ | One of 16 MBTI types |
-| `vote_reason` | String | ✅ | Reason for MBTI classification |
-| `tags` | Array | ❌ | List of tags |
+| `name` | String | Required | Celebrity's Chinese name (max 200 chars) |
+| `name_en` | String | Optional | English name (max 200 chars) |
+| `description` | String | Optional | Brief description |
+| `image_url` | String | Optional | Image URL |
+| `mbti` | String | Required | One of 16 MBTI types |
+| `vote_reason` | String | Required | Reason for MBTI classification |
+| `tags` | Array | Optional | List of tags |
 
 ### Valid MBTI Types
 

@@ -19,12 +19,12 @@ def bulk_import_data():
     db = Session()
     
     try:
-        print("🚀 Starting bulk data import...")
+        print("Starting bulk data import...")
         
         # Get system user
         system_user = db.query(User).filter(User.role == UserRole.SYSTEM).first()
         if not system_user:
-            print("❌ System user not found. Please run create_admin.py first.")
+            print("System user not found. Please run create_admin.py first.")
             return
         
         # Celebrities data with votes
@@ -122,7 +122,7 @@ def bulk_import_data():
         ]
         
         # Bulk create celebrities
-        print("📝 Creating celebrities...")
+        print("Creating celebrities...")
         celebrities_to_add = []
         votes_to_add = []
         tags_to_add = []
@@ -174,26 +174,26 @@ def bulk_import_data():
                 celebrity_tags_to_add.append(celebrity_tag)
         
         # Bulk insert everything
-        print("💾 Bulk inserting data...")
+        print("Bulk inserting data...")
         
         if tags_to_add:
             db.bulk_save_objects(tags_to_add)
-            print(f"✅ Added {len(tags_to_add)} new tags")
+            print(f"Added {len(tags_to_add)} new tags")
         
         db.bulk_save_objects(celebrities_to_add)
-        print(f"✅ Added {len(celebrities_to_add)} celebrities")
+        print(f"Added {len(celebrities_to_add)} celebrities")
         
         db.bulk_save_objects(votes_to_add)
-        print(f"✅ Added {len(votes_to_add)} votes")
+        print(f"Added {len(votes_to_add)} votes")
         
         db.bulk_save_objects(celebrity_tags_to_add)
-        print(f"✅ Added {len(celebrity_tags_to_add)} celebrity-tag relationships")
+        print(f"Added {len(celebrity_tags_to_add)} celebrity-tag relationships")
         
         # Commit all changes
         db.commit()
         
-        print(f"\n🎉 Bulk import completed successfully!")
-        print(f"📊 Summary:")
+        print(f"\nBulk import completed successfully!")
+        print(f"Summary:")
         print(f"   - Celebrities: {len(celebrities_to_add)}")
         print(f"   - Votes: {len(votes_to_add)}")
         print(f"   - Tags: {len(tags_to_add)}")
@@ -201,19 +201,19 @@ def bulk_import_data():
         
     except Exception as e:
         db.rollback()
-        print(f"❌ Error during bulk import: {e}")
+        print(f"Error during bulk import: {e}")
         raise
     finally:
         db.close()
 
 if __name__ == "__main__":
-    print("🚀 Fast Bulk Data Import for 16型花名册")
+    print("Fast Bulk Data Import for 16型花名册")
     print("=" * 50)
     
     bulk_import_data()
     
     print("\n" + "=" * 50)
-    print("📝 Next steps:")
+    print("Next steps:")
     print("1. Check the celebrities page: http://localhost:8000/celebrities")
     print("2. View vote statistics: http://localhost:8000/votes/")
     print("3. Test the application with real data!") 
