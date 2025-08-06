@@ -118,36 +118,42 @@ def test_app_imports():
     try:
         # Test core imports
         from app.core.config import settings
+
         assert settings is not None
-        
+
         # Test database imports
         from app.database.models import Base, User, Celebrity, Vote, Comment
+
         assert Base is not None
         assert User is not None
         assert Celebrity is not None
         assert Vote is not None
         assert Comment is not None
-        
+
         # Test schema imports
         from app.schemas.auth import UserCreate, UserLogin, UserResponse
+
         assert UserCreate is not None
         assert UserLogin is not None
         assert UserResponse is not None
-        
+
         from app.schemas.celebrity import CelebrityCreate, CelebrityResponse
+
         assert CelebrityCreate is not None
         assert CelebrityResponse is not None
-        
+
         from app.schemas.vote import VoteCreate, VoteResponse
+
         assert VoteCreate is not None
         assert VoteResponse is not None
-        
+
         # Test service imports
         from app.services.auth_service import AuthService
         from app.services.user_service import UserService
+
         assert AuthService is not None
         assert UserService is not None
-        
+
     except ImportError as e:
         pytest.fail(f"Failed to import app modules: {e}")
 
@@ -156,17 +162,17 @@ def test_config_loading():
     """Test that configuration loads correctly"""
     try:
         from app.core.config import settings
-        
+
         # Test that required settings are available
-        assert hasattr(settings, 'database_url')
-        assert hasattr(settings, 'secret_key')
-        assert hasattr(settings, 'redis_url')
-        assert hasattr(settings, 'email_from')
-        
+        assert hasattr(settings, "database_url")
+        assert hasattr(settings, "secret_key")
+        assert hasattr(settings, "redis_url")
+        assert hasattr(settings, "email_from")
+
         # Test that secret_key has a value (should have default)
         assert settings.secret_key is not None
         assert len(settings.secret_key) > 0
-        
+
     except Exception as e:
         pytest.fail(f"Failed to load configuration: {e}")
 
@@ -175,19 +181,19 @@ def test_database_models():
     """Test that database models can be defined"""
     try:
         from app.database.models import User, Celebrity, Vote, Comment
-        
+
         # Test that models have required attributes
-        assert hasattr(User, '__tablename__')
-        assert hasattr(Celebrity, '__tablename__')
-        assert hasattr(Vote, '__tablename__')
-        assert hasattr(Comment, '__tablename__')
-        
+        assert hasattr(User, "__tablename__")
+        assert hasattr(Celebrity, "__tablename__")
+        assert hasattr(Vote, "__tablename__")
+        assert hasattr(Comment, "__tablename__")
+
         # Test that tablenames are defined
-        assert User.__tablename__ == 'users'
-        assert Celebrity.__tablename__ == 'celebrities'
-        assert Vote.__tablename__ == 'votes'
-        assert Comment.__tablename__ == 'comments'
-        
+        assert User.__tablename__ == "users"
+        assert Celebrity.__tablename__ == "celebrities"
+        assert Vote.__tablename__ == "votes"
+        assert Comment.__tablename__ == "comments"
+
     except Exception as e:
         pytest.fail(f"Failed to test database models: {e}")
 
@@ -196,25 +202,22 @@ def test_schema_validation():
     """Test that Pydantic schemas work correctly"""
     try:
         from app.schemas.auth import UserCreate, UserLogin
-        
+
         # Test UserCreate schema
         user_data = {
             "email": "test@example.com",
             "password": "testpassword123",
-            "name": "Test User"
+            "name": "Test User",
         }
         user_create = UserCreate(**user_data)
         assert user_create.email == "test@example.com"
         assert user_create.name == "Test User"
-        
+
         # Test UserLogin schema
-        login_data = {
-            "email": "test@example.com",
-            "password": "testpassword123"
-        }
+        login_data = {"email": "test@example.com", "password": "testpassword123"}
         user_login = UserLogin(**login_data)
         assert user_login.email == "test@example.com"
-        
+
     except Exception as e:
         pytest.fail(f"Failed to test schema validation: {e}")
 
@@ -222,21 +225,25 @@ def test_schema_validation():
 def test_security_functions():
     """Test that security functions can be imported and used"""
     try:
-        from app.core.security import create_access_token, verify_password, get_password_hash
-        
+        from app.core.security import (
+            create_access_token,
+            verify_password,
+            get_password_hash,
+        )
+
         # Test password hashing
         password = "testpassword123"
         hashed = get_password_hash(password)
         assert hashed != password
         assert verify_password(password, hashed)
         assert not verify_password("wrongpassword", hashed)
-        
+
         # Test token creation (basic test)
         token_data = {"sub": "test@example.com"}
         token = create_access_token(token_data)
         assert token is not None
         assert len(token) > 0
-        
+
     except Exception as e:
         pytest.fail(f"Failed to test security functions: {e}")
 
