@@ -214,7 +214,7 @@ class JSONUploadService:
 
     def process_pending_files(self) -> Dict[str, Any]:
         """Process all pending JSON files in the upload directory"""
-        results = {
+        results: Dict[str, Any] = {
             "processed_files": 0,
             "successful_imports": 0,
             "failed_imports": 0,

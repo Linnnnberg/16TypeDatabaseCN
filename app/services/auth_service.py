@@ -108,7 +108,7 @@ class AuthService:
         """Get current user from token"""
         try:
             payload = verify_token(token)
-            user_id: str = payload.get("sub")
+            user_id: str = payload.get("sub") or ""
             if user_id is None:
                 raise HTTPException(
                     status_code=status.HTTP_401_UNAUTHORIZED,

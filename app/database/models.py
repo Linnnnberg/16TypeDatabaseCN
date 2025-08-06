@@ -14,9 +14,14 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
 from enum import Enum
+from typing import TYPE_CHECKING
 import uuid
 
-Base = declarative_base()
+if TYPE_CHECKING:
+    from sqlalchemy.orm import DeclarativeBase
+    Base = DeclarativeBase
+else:
+    Base = declarative_base()
 
 
 class UserRole(str, Enum):

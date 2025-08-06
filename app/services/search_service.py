@@ -321,7 +321,7 @@ class SearchService:
         )
 
         # Combine and deduplicate suggestions
-        all_suggestions = []
+        all_suggestions: List[str] = []
         for suggestion in name_suggestions + name_en_suggestions + tag_suggestions:
             if suggestion[0] and suggestion[0].lower() not in [
                 s.lower() for s in all_suggestions
