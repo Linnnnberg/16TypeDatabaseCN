@@ -1,10 +1,47 @@
+# CI/CD Pipeline - MBTI Roster
+# 
+# Skip Options:
+# - [skip ci] - Skip entire pipeline
+# - [skip tests] - Skip test and integration jobs
+# - [skip integration] - Skip integration tests only
+# - [skip build] - Skip build job
+# - [skip security] - Skip security scanning
+# - [skip docs] - Skip documentation generation
+# 
+# Manual triggers available with options to skip tests or security scanning
 name: CI/CD Pipeline - MBTI Roster
 
 on:
   push:
     branches: [ main, develop ]
+    paths-ignore:
+      - '**.md'
+      - 'docs/**'
+      - 'README.md'
+      - 'LICENSE'
+      - '.gitignore'
+      - '*.txt'
+      - '*.rst'
   pull_request:
     branches: [ main, develop ]
+    paths-ignore:
+      - '**.md'
+      - 'docs/**'
+      - 'README.md'
+      - 'LICENSE'
+      - '.gitignore'
+      - '*.txt'
+      - '*.rst'
+  workflow_dispatch:
+    inputs:
+      skip_tests:
+        description: 'Skip tests and run only build'
+        required: false
+        default: 'false'
+      skip_security:
+        description: 'Skip security scanning'
+        required: false
+        default: 'false'
 
 permissions:
   actions: read
@@ -21,6 +58,10 @@ jobs:
   test:
     name: Test & Quality Check
     runs-on: ubuntu-latest
+    if: |
+      github.event_name == 'workflow_dispatch' || 
+      (github.event_name == 'push' && !contains(github.event.head_commit.message, '[skip ci]') && !contains(github.event.head_commit.message, '[skip tests]')) ||
+      (github.event_name == 'pull_request' && !contains(github.event.pull_request.title, '[skip ci]') && !contains(github.event.pull_request.title, '[skip tests]'))
     
     steps:
     - name: Checkout code
@@ -34,18 +75,25 @@ jobs:
     - name: Cache pip dependencies
       uses: actions/cache@v4
       with:
-        path: ~/.cache/pip
-        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements*.txt') }}
+        path: |
+          ~/.cache/pip
+          ~/.local/lib/python3.13/site-packages
+        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements*.txt') }}-${{ hashFiles('**/requirements-ci.txt') }}
         restore-keys: |
+          ${{ runner.os }}-pip-${{ hashFiles('**/requirements*.txt') }}-
           ${{ runner.os }}-pip-
           
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install -r requirements_minimal.txt
-        pip install pytest pytest-cov pytest-asyncio
-        pip install black flake8 mypy
-        pip install bandit safety
+        # Install main dependencies only if not cached
+        if ! python -c "import fastapi, sqlalchemy, pydantic" 2>/dev/null; then
+          pip install -r requirements_minimal.txt
+        fi
+        # Install CI tools only if not cached
+        if ! python -c "import pytest, black, flake8, mypy, bandit" 2>/dev/null; then
+          pip install -r requirements-ci.txt
+        fi
         
     - name: Run code formatting check (Black)
       run: |
@@ -107,6 +155,10 @@ jobs:
     name: Integration Tests
     runs-on: ubuntu-latest
     needs: test
+    if: |
+      github.event_name == 'workflow_dispatch' || 
+      (github.event_name == 'push' && !contains(github.event.head_commit.message, '[skip ci]') && !contains(github.event.head_commit.message, '[skip integration]')) ||
+      (github.event_name == 'pull_request' && !contains(github.event.pull_request.title, '[skip ci]') && !contains(github.event.pull_request.title, '[skip integration]'))
     
     steps:
     - name: Checkout code
@@ -117,12 +169,29 @@ jobs:
       with:
         python-version: ${{ env.PYTHON_VERSION }}
         
+    - name: Cache pip dependencies
+      uses: actions/cache@v4
+      with:
+        path: |
+          ~/.cache/pip
+          ~/.local/lib/python3.13/site-packages
+        key: ${{ runner.os }}-pip-integration-${{ hashFiles('**/requirements*.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-integration-
+          ${{ runner.os }}-pip-
+          
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install -r requirements_minimal.txt
-        pip install httpx pytest-asyncio requests
-        pip install "pytest>=7.0.0,<8.0.0"
+        # Install main dependencies only if not cached
+        if ! python -c "import fastapi, sqlalchemy, pydantic" 2>/dev/null; then
+          pip install -r requirements_minimal.txt
+        fi
+        # Install integration test dependencies only if not cached
+        if ! python -c "import httpx, pytest_asyncio, requests" 2>/dev/null; then
+          pip install httpx pytest-asyncio requests
+          pip install "pytest>=7.0.0,<8.0.0"
+        fi
         
     - name: Set up environment variables
       run: |
@@ -186,6 +255,10 @@ jobs:
     name: Build Application
     runs-on: ubuntu-latest
     needs: [test, integration]
+    if: |
+      github.event_name == 'workflow_dispatch' || 
+      (github.event_name == 'push' && !contains(github.event.head_commit.message, '[skip ci]') && !contains(github.event.head_commit.message, '[skip build]')) ||
+      (github.event_name == 'pull_request' && !contains(github.event.pull_request.title, '[skip ci]') && !contains(github.event.pull_request.title, '[skip build]'))
     
     steps:
     - name: Checkout code
@@ -194,6 +267,14 @@ jobs:
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v2
       
+    - name: Cache Docker layers
+      uses: actions/cache@v4
+      with:
+        path: /tmp/.buildx-cache
+        key: ${{ runner.os }}-buildx-${{ github.sha }}
+        restore-keys: |
+          ${{ runner.os }}-buildx-
+          
     - name: Build Docker image
       uses: docker/build-push-action@v4
       with:
@@ -201,8 +282,13 @@ jobs:
         file: ./Dockerfile
         push: false
         tags: mbti-roster:latest
-        cache-from: type=gha
-        cache-to: type=gha,mode=max
+        cache-from: type=local,src=/tmp/.buildx-cache
+        cache-to: type=local,dest=/tmp/.buildx-cache-new,mode=max
+        
+    - name: Move cache
+      run: |
+        rm -rf /tmp/.buildx-cache
+        mv /tmp/.buildx-cache-new /tmp/.buildx-cache
         
     - name: Upload Docker image
       uses: actions/upload-artifact@v4
@@ -215,6 +301,10 @@ jobs:
     name: Security Scan
     runs-on: ubuntu-latest
     needs: build
+    if: |
+      (github.event_name == 'workflow_dispatch' && github.event.inputs.skip_security != 'true') || 
+      (github.event_name == 'push' && !contains(github.event.head_commit.message, '[skip ci]') && !contains(github.event.head_commit.message, '[skip security]')) ||
+      (github.event_name == 'pull_request' && !contains(github.event.pull_request.title, '[skip ci]') && !contains(github.event.pull_request.title, '[skip security]'))
     permissions:
       actions: read
       contents: read
@@ -372,6 +462,10 @@ jobs:
     name: Generate Documentation
     runs-on: ubuntu-latest
     needs: test
+    if: |
+      github.event_name == 'workflow_dispatch' || 
+      (github.event_name == 'push' && !contains(github.event.head_commit.message, '[skip ci]') && !contains(github.event.head_commit.message, '[skip docs]')) ||
+      (github.event_name == 'pull_request' && !contains(github.event.pull_request.title, '[skip ci]') && !contains(github.event.pull_request.title, '[skip docs]'))
     
     steps:
     - name: Checkout code
@@ -382,11 +476,28 @@ jobs:
       with:
         python-version: ${{ env.PYTHON_VERSION }}
         
+    - name: Cache pip dependencies
+      uses: actions/cache@v4
+      with:
+        path: |
+          ~/.cache/pip
+          ~/.local/lib/python3.13/site-packages
+        key: ${{ runner.os }}-pip-docs-${{ hashFiles('**/requirements*.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-docs-
+          ${{ runner.os }}-pip-
+          
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install -r requirements_minimal.txt
-        pip install pdoc3
+        # Install main dependencies only if not cached
+        if ! python -c "import fastapi, sqlalchemy, pydantic" 2>/dev/null; then
+          pip install -r requirements_minimal.txt
+        fi
+        # Install documentation tools only if not cached
+        if ! python -c "import pdoc" 2>/dev/null; then
+          pip install pdoc3
+        fi
         
     - name: Generate API documentation
       run: |
