@@ -46,6 +46,12 @@ function showToast(message, type = 'info', duration = 5000) {
     return toast;
 }
 
+// Global utility functions
+function showMessage(message, type = 'info') {
+    console.log(`${type.toUpperCase()}: ${message}`);
+    showToast(message, type);
+}
+
 // API helper functions
 async function apiCall(endpoint, options = {}) {
     try {
@@ -152,7 +158,7 @@ async function loginUser(email, password) {
             setToken(response.access_token);
             showMessage('登录成功！欢迎回来！', 'success');
             hideModal('loginModal');
-            updateAuthUI();
+            updateAuthUI(); // This will now show user info
             return true;
         } else {
             showMessage('登录失败：服务器响应格式错误', 'error');
@@ -189,7 +195,7 @@ async function signupUser(name, email, password) {
             setToken(response.access_token);
             showMessage('注册成功！欢迎加入16型花名册！', 'success');
             hideModal('signupModal');
-            updateAuthUI();
+            updateAuthUI(); // This will now show user info
             return true;
         } else {
             showMessage('注册失败：服务器响应格式错误', 'error');
@@ -214,6 +220,7 @@ async function signupUser(name, email, password) {
 
 function logoutUser() {
     removeToken();
+    removeUserInfoDisplay(); // Clean up user info display
     updateAuthUI();
     showMessage('已退出登录', 'info');
 }
@@ -225,12 +232,89 @@ function updateAuthUI() {
     
     if (token) {
         // User is logged in
-        if (loginBtn) loginBtn.textContent = '退出';
+        if (loginBtn) {
+            loginBtn.textContent = '退出';
+            loginBtn.className = 'text-gray-700 hover:text-red-600 px-3 py-2 rounded-md text-sm font-medium transition-colors';
+        }
         if (signupBtn) signupBtn.style.display = 'none';
+        
+        // Get and display user info
+        getUserProfile();
     } else {
         // User is not logged in
-        if (loginBtn) loginBtn.textContent = '登录';
+        if (loginBtn) {
+            loginBtn.textContent = '登录';
+            loginBtn.className = 'text-gray-700 hover:text-primary-600 px-3 py-2 rounded-md text-sm font-medium transition-colors';
+        }
         if (signupBtn) signupBtn.style.display = 'inline-block';
+        
+        // Remove user info display
+        removeUserInfoDisplay();
+    }
+}
+
+async function getUserProfile() {
+    try {
+        const token = getToken();
+        if (!token) return;
+        
+        const response = await apiCall('/auth/me', {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+        
+        if (response.name) {
+            displayUserInfo(response.name);
+        }
+    } catch (error) {
+        console.error('Failed to get user profile:', error);
+        // If token is invalid, remove it
+        if (error.message.includes('401')) {
+            removeToken();
+            updateAuthUI();
+        }
+    }
+}
+
+function displayUserInfo(userName) {
+    // Remove existing user info if any
+    removeUserInfoDisplay();
+    
+    const loginBtn = document.getElementById('loginBtn');
+    if (loginBtn) {
+        // Create user info container
+        const userInfoContainer = document.createElement('div');
+        userInfoContainer.className = 'flex items-center space-x-3';
+        userInfoContainer.id = 'userInfoContainer';
+        
+        // Create user name display
+        const userNameDisplay = document.createElement('span');
+        userNameDisplay.className = 'text-sm text-gray-700 font-medium';
+        userNameDisplay.textContent = `欢迎，${userName}`;
+        
+        // Add user info to container
+        userInfoContainer.appendChild(userNameDisplay);
+        userInfoContainer.appendChild(loginBtn);
+        
+        // Replace login button with container
+        loginBtn.parentNode.insertBefore(userInfoContainer, loginBtn);
+        loginBtn.parentNode.removeChild(loginBtn);
+    }
+}
+
+function removeUserInfoDisplay() {
+    const userInfoContainer = document.getElementById('userInfoContainer');
+    if (userInfoContainer) {
+        const loginBtn = userInfoContainer.querySelector('#loginBtn');
+        if (loginBtn) {
+            // Move login button back to original position
+            const originalContainer = document.querySelector('.flex.items-center.space-x-4');
+            if (originalContainer) {
+                originalContainer.appendChild(loginBtn);
+            }
+        }
+        userInfoContainer.remove();
     }
 }
 
