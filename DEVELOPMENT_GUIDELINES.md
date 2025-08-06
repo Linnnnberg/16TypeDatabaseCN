@@ -47,6 +47,140 @@ print("WARNING: Warning message")
 - CI/CD pipeline will fail if emojis are found in code
 - Use `run_local_ci.py` to check for emoji violations before committing
 
+## CI/CD Implementation Rules
+
+### 1. Test Structure Rules
+
+#### Test File Organization
+```
+tests/
+├── test_basic.py          # Server-independent tests (runs in test job)
+├── test_integration.py    # Server-dependent tests (runs in integration job)
+├── test_auth.py          # Server-dependent tests
+├── test_celebrities.py   # Server-dependent tests
+├── test_voting.py        # Server-dependent tests
+├── test_comments.py      # Server-dependent tests
+├── test_search.py        # Server-dependent tests
+└── simple_integration_test.py  # Fallback tests
+```
+
+#### Test Job Rules
+- **MUST** only run `test_basic.py` in the test job
+- **MUST** set up environment variables before running tests
+- **MUST** not require a running server
+- **MUST** test app imports and basic functionality
+- **MUST** generate coverage reports
+
+#### Integration Job Rules
+- **MUST** start the server before running tests
+- **MUST** run all server-dependent tests
+- **MUST** have fallback test options
+- **MUST** handle server startup failures gracefully
+
+### 2. Environment Variable Rules
+
+#### Required Environment Variables
+```bash
+# Always required in CI
+CI=true
+DATABASE_URL=sqlite:///./test_mbti_roster.db
+SECRET_KEY=test-secret-key-for-ci-12345
+REDIS_URL=redis://localhost:6379
+EMAIL_FROM=noreply@mbti-roster.local
+DAILY_VOTE_LIMIT=20
+DAILY_NO_REASON_LIMIT=5
+NEW_USER_24H_LIMIT=3
+DAILY_REGISTRATIONS_PER_IP=3
+```
+
+#### Environment Setup Rules
+- **MUST** set environment variables before importing app modules
+- **MUST** use `echo "VAR=value" >> $GITHUB_ENV` format
+- **MUST** set `CI=true` for CI-specific behavior
+- **MUST** provide default values for all required settings
+
+### 3. Import and Dependency Rules
+
+#### Import Order Rules
+```python
+# 1. Standard library imports
+import os
+import sys
+from pathlib import Path
+
+# 2. Third-party imports
+import requests
+import pytest
+
+# 3. Local app imports (only after environment is set)
+from app.core.config import settings
+from app.database.models import User
+```
+
+#### Dependency Rules
+- **MUST** list all dependencies in `requirements_minimal.txt`
+- **MUST** specify version constraints for CI tools
+- **MUST** install dependencies before running tests
+- **MUST** use compatible versions (e.g., `pytest>=7.0.0,<8.0.0`)
+
+### 4. Configuration Rules
+
+#### Pydantic Settings Rules
+```python
+class Settings(BaseSettings):
+    # MUST have default values for CI
+    secret_key: str = "test_secret_key"
+    
+    # MUST handle CI environment
+    def __init__(self, **kwargs):
+        if "secret_key" not in kwargs and os.getenv("CI"):
+            kwargs["secret_key"] = "test-secret-key-for-ci-12345"
+        super().__init__(**kwargs)
+```
+
+#### Configuration Rules
+- **MUST** provide default values for all fields
+- **MUST** handle CI environment detection
+- **MUST** not require external services in CI
+- **MUST** validate configuration on startup
+
+### 5. Server Startup Rules
+
+#### CI Server Rules
+- **MUST** use `run_ci_server.py` for CI environments
+- **MUST** set environment variables before importing app
+- **MUST** include health check endpoints
+- **MUST** handle startup failures gracefully
+- **MUST** provide clear error messages
+
+#### Health Check Rules
+```python
+# MUST have health check endpoint
+@app.get("/health")
+async def health_check():
+    return {"status": "healthy"}
+```
+
+### 6. Error Handling Rules
+
+#### CI Error Handling
+- **MUST** provide clear error messages
+- **MUST** include fallback options
+- **MUST** not fail silently
+- **MUST** log errors appropriately
+
+#### Test Error Handling
+```python
+# MUST handle import errors gracefully
+try:
+    from app.core.config import settings
+except ImportError as e:
+    pytest.fail(f"Failed to import settings: {e}")
+
+# MUST provide fallback for server tests
+python -m pytest tests/test_integration.py || python tests/simple_integration_test.py || true
+```
+
 ## Code Quality Standards
 
 ### Python Code Style
@@ -141,6 +275,13 @@ If you encounter import errors in CI:
 2. Verify import paths are correct
 3. Ensure no circular imports exist
 
+### Test Failures
+If tests fail in CI:
+1. Check environment variable setup
+2. Verify server startup in integration tests
+3. Ensure fallback tests are available
+4. Check that basic tests don't require a server
+
 ## Best Practices
 
 ### Code Organization
@@ -161,10 +302,59 @@ If you encounter import errors in CI:
 - Implement proper authentication
 - Follow OWASP guidelines
 
+## CI/CD Pipeline Rules
+
+### Job Dependencies
+```
+test → integration → build → security → deploy-staging
+  ↓        ↓         ↓        ↓           ↓
+quality  server    docker   security   staging
+checks   tests     build    scan       deploy
+```
+
+### Required Steps
+1. **Code Quality**: Black, Flake8, MyPy, Bandit, Safety
+2. **Basic Tests**: Server-independent tests with coverage
+3. **Integration Tests**: Server-dependent tests with fallback
+4. **Build**: Docker image creation
+5. **Security**: Vulnerability scanning
+6. **Deploy**: Staging deployment (automatic), Production (manual)
+
+### Failure Handling
+- **MUST** provide clear error messages
+- **MUST** include fallback options
+- **MUST** not fail silently
+- **MUST** upload artifacts even on failure
+
+## Implementation Checklist
+
+### Before Committing
+- [ ] Run `python run_local_ci.py`
+- [ ] Check for emoji usage
+- [ ] Verify Black formatting
+- [ ] Confirm Flake8 passes
+- [ ] Test basic functionality
+- [ ] Update documentation if needed
+
+### Before Pushing
+- [ ] All local tests pass
+- [ ] No emoji violations
+- [ ] Code is properly formatted
+- [ ] Environment variables are set
+- [ ] Fallback options are available
+
+### After CI Failure
+- [ ] Check error logs
+- [ ] Verify environment setup
+- [ ] Test locally with same conditions
+- [ ] Fix root cause, not symptoms
+- [ ] Update guidelines if needed
+
 ## Resources
 
 - [PEP 8 Style Guide](https://www.python.org/dev/peps/pep-0008/)
 - [Black Documentation](https://black.readthedocs.io/)
 - [Flake8 Documentation](https://flake8.pycqa.org/)
 - [Pytest Documentation](https://docs.pytest.org/)
-- [FastAPI Documentation](https://fastapi.tiangolo.com/) 
+- [FastAPI Documentation](https://fastapi.tiangolo.com/)
+- [GitHub Actions Documentation](https://docs.github.com/en/actions) 

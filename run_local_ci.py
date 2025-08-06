@@ -318,6 +318,24 @@ class LocalCI:
             
         print(f"\nTimestamp: {datetime.now().isoformat()}")
     
+    def run_cicd_rules_validation(self):
+        """Run CI/CD rules validation"""
+        print("\n" + "="*60)
+        print("RUNNING CI/CD RULES VALIDATION")
+        print("="*60)
+        
+        if self.run_command(
+            "python validate_cicd_rules.py",
+            "Running CI/CD rules validation",
+            check_output=False
+        ):
+            self.success_count += 1
+            print("SUCCESS: CI/CD rules validation passed")
+            return True
+        else:
+            self.errors.append("CI/CD rules validation failed")
+            return False
+
     def run_all_checks(self):
         """Run all CI/CD checks"""
         print("STARTING: Local CI/CD Pipeline")
@@ -325,6 +343,9 @@ class LocalCI:
         
         # Install dependencies
         self.install_dependencies()
+        
+        # Run CI/CD rules validation
+        self.run_cicd_rules_validation()
         
         # Run code quality checks
         self.check_for_emojis()

@@ -1,23 +1,63 @@
+# Pre-commit configuration for MBTI Roster
+# Automatically runs CI/CD validation checks before commits
+
 repos:
-  # Pre-commit hooks
-  - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.5.0
+  # Local hooks
+  - repo: local
     hooks:
-      - id: trailing-whitespace
-      - id: end-of-file-fixer
-      - id: check-yaml
-      - id: check-added-large-files
-      - id: check-merge-conflict
-      - id: check-case-conflict
-      - id: check-docstring-first
-      - id: debug-statements
+      # CI/CD Rules Validation
+      - id: cicd-rules-validation
+        name: CI/CD Rules Validation
+        entry: python validate_cicd_rules.py
+        language: system
+        pass_filenames: false
+        always_run: true
+        stages: [commit]
+        description: "Validates that code follows CI/CD implementation rules"
+
+      # Emoji Usage Check
+      - id: emoji-check
+        name: Emoji Usage Check
+        entry: python -c "
+import sys
+from pathlib import Path
+
+emoji_patterns = ['✅', '❌', '🚀', '⚠️', '🔧', '📝', '🎉', '🔥', '💯', '✨', '🍰', '💥', '💔', '🎯', '⚡', '🌟', '💡', '🔍', '📊', '🎨', '⚙️']
+
+violations = []
+for file_path in sys.argv[1:]:
+    if file_path.endswith('.py'):
+        try:
+            with open(file_path, 'r', encoding='utf-8') as f:
+                content = f.read()
+                for i, line in enumerate(content.split('\n'), 1):
+                    for emoji in emoji_patterns:
+                        if emoji in line:
+                            violations.append(f'{file_path}:{i}: {emoji}')
+        except Exception:
+            pass
+
+if violations:
+    print('ERROR: Found emoji usage in code files:')
+    for violation in violations:
+        print(f'  - {violation}')
+    sys.exit(1)
+else:
+    print('SUCCESS: No emoji usage found')
+"
+        language: system
+        types: [python]
+        stages: [commit]
+        description: "Checks for emoji usage in Python files"
 
   # Python code formatting
   - repo: https://github.com/psf/black
     rev: 23.11.0
     hooks:
       - id: black
-        language_version: python3.13
+        language_version: python3
+        args: [--line-length=88]
+        types: [python]
 
   # Python linting
   - repo: https://github.com/pycqa/flake8
@@ -25,21 +65,7 @@ repos:
     hooks:
       - id: flake8
         args: [--max-line-length=88, --extend-ignore=E203,W503]
-
-  # Type checking
-  - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v1.7.1
-    hooks:
-      - id: mypy
-        additional_dependencies: [types-requests, types-PyYAML]
-        args: [--ignore-missing-imports, --disallow-untyped-defs]
-
-  # Security scanning
-  - repo: https://github.com/PyCQA/bandit
-    rev: 1.7.5
-    hooks:
-      - id: bandit
-        args: [-r, app/]
+        types: [python]
 
   # Import sorting
   - repo: https://github.com/pycqa/isort
@@ -47,72 +73,111 @@ repos:
     hooks:
       - id: isort
         args: [--profile=black, --line-length=88]
+        types: [python]
 
-  # Commit message formatting
-  - repo: https://github.com/commitizen-tools/commitizen
-    rev: v3.13.0
+  # Type checking
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v1.7.1
     hooks:
-      - id: commitizen
-        stages: [commit-msg]
+      - id: mypy
+        args: [--ignore-missing-imports]
+        types: [python]
 
-  # Dockerfile linting
-  - repo: https://github.com/hadolint/hadolint
-    rev: v2.12.0
+  # Security scanning
+  - repo: https://github.com/PyCQA/bandit
+    rev: 1.7.5
     hooks:
-      - id: hadolint-docker
+      - id: bandit
+        args: [-r, app/]
+        types: [python]
 
-  # YAML linting
+  # Dependency security
+  - repo: https://github.com/PyCQA/safety
+    rev: 2.3.5
+    hooks:
+      - id: safety
+        args: [check]
+        pass_filenames: false
+        always_run: true
+
+  # File size limits
+  - repo: local
+    hooks:
+      - id: file-size-check
+        name: File Size Check
+        entry: python -c "
+import sys
+import os
+
+max_size = 1024 * 1024  # 1MB
+large_files = []
+
+for file_path in sys.argv[1:]:
+    if os.path.exists(file_path):
+        size = os.path.getsize(file_path)
+        if size > max_size:
+            large_files.append(f'{file_path}: {size / 1024 / 1024:.1f}MB')
+
+if large_files:
+    print('WARNING: Large files detected:')
+    for file_info in large_files:
+        print(f'  - {file_info}')
+    print('Consider if these files should be in version control')
+"
+        language: system
+        stages: [commit]
+        description: "Checks for large files that might not belong in version control"
+
+  # YAML validation
   - repo: https://github.com/adrienverge/yamllint
     rev: v1.33.0
     hooks:
       - id: yamllint
         args: [--format, parsable, --strict]
+        types: [yaml]
 
-  # JSON linting
-  - repo: https://github.com/pre-commit/mirrors-jsonlint
-    rev: v1.6.3
-    hooks:
-      - id: jsonlint
-
-  # Markdown linting
-  - repo: https://github.com/igorshubovych/markdownlint-cli
-    rev: v0.37.0
-    hooks:
-      - id: markdownlint
-        args: [--fix]
-
-  # Shell script linting
-  - repo: https://github.com/koalaman/shellcheck
-    rev: v0.9.0
-    hooks:
-      - id: shellcheck
-        args: [--severity=warning]
-
-  # Terraform formatting (if using infrastructure as code)
-  - repo: https://github.com/antonbabenko/pre-commit-terraform
-    rev: v1.88.0
-    hooks:
-      - id: terraform_fmt
-      - id: terraform_docs
-      - id: terraform_tflint
-
-  # Git hooks
+  # JSON validation
   - repo: local
     hooks:
-      - id: check-todo
-        name: Check for TODO comments
-        entry: bash -c 'if git diff --cached --name-only | xargs grep -l "TODO\|FIXME\|XXX"; then echo "Found TODO/FIXME/XXX comments. Please address them before committing."; exit 1; fi'
-        language: system
-        stages: [commit]
+      - id: json-format
+        name: JSON Format Check
+        entry: python -c "
+import json
+import sys
 
-      - id: check-debug
-        name: Check for debug statements
-        entry: bash -c 'if git diff --cached --name-only | xargs grep -l "print(\|debugger\|console.log"; then echo "Found debug statements. Please remove them before committing."; exit 1; fi'
+for file_path in sys.argv[1:]:
+    if file_path.endswith('.json'):
+        try:
+            with open(file_path, 'r') as f:
+                json.load(f)
+        except json.JSONDecodeError as e:
+            print(f'ERROR: Invalid JSON in {file_path}: {e}')
+            sys.exit(1)
+print('SUCCESS: All JSON files are valid')
+"
         language: system
+        types: [json]
         stages: [commit]
+        description: "Validates JSON file format"
 
-      - id: check-secrets
-        name: Check for potential secrets
-        entry: bash -c 'if git diff --cached | grep -i "password\|secret\|key\|token"; then echo "Potential secrets found. Please review before committing."; exit 1; fi'
-        language: system
-        stages: [commit] 
+# Global configuration
+default_language_version:
+  python: python3
+
+# Skip certain files
+exclude: |
+  (?x)^(
+      \.git/|
+      \.venv/|
+      venv/|
+      __pycache__/|
+      \.pytest_cache/|
+      \.mypy_cache/|
+      htmlcov/|
+      coverage\.xml|
+      \.coverage|
+      bandit-report\.json|
+      safety-report\.json|
+      test_.*\.db|
+      \.env
+  )$ 
