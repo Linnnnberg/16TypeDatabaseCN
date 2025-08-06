@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="{{ url_for('static', path='/css/style.css') }}">
     
     <!-- Custom JavaScript -->
-    <script src="{{ url_for('static', path='/js/main.js') }}" defer></script>
+    <script src="{{ url_for('static', path='/js/main.js') }}?v=1.1" defer></script>
     
     <!-- Tailwind Config -->
     <script>
@@ -66,10 +66,10 @@
                         关于MBTI
                     </a>
                     <div class="flex items-center space-x-4">
-                        <button id="loginBtn" class="text-gray-700 hover:text-primary-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">
+                        <button id="loginBtn" class="text-gray-700 hover:text-primary-600 px-3 py-2 rounded-md text-sm font-medium transition-colors" onclick="console.log('Login button clicked via inline!')">
                             登录
                         </button>
-                        <button id="signupBtn" class="bg-primary-600 hover:bg-primary-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors">
+                        <button id="signupBtn" class="bg-primary-600 hover:bg-primary-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors" onclick="console.log('Signup button clicked via inline!')">
                             注册
                         </button>
                     </div>

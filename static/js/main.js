@@ -1,4 +1,5 @@
 // Main JavaScript for MBTI Roster
+console.log('JavaScript file loaded!');
 
 // Toast notification system
 let toastContainer = null;
@@ -202,71 +203,98 @@ function updateAuthUI() {
 // Initialize when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
     console.log('MBTI Roster website loaded successfully!');
+    console.log('Setting up authentication buttons...');
     
     // Initialize authentication UI
     updateAuthUI();
     
     // Login button event listener
     const loginBtn = document.getElementById('loginBtn');
+    console.log('Login button found:', loginBtn);
     if (loginBtn) {
-        loginBtn.addEventListener('click', function() {
+        loginBtn.addEventListener('click', function(e) {
+            console.log('Login button clicked!');
+            e.preventDefault();
             const token = getToken();
             if (token) {
                 // User is logged in, show logout
+                console.log('User is logged in, logging out...');
                 logoutUser();
             } else {
                 // User is not logged in, show login modal
+                console.log('User is not logged in, showing login modal...');
                 showModal('loginModal');
             }
         });
+        console.log('Login button event listener attached');
+    } else {
+        console.error('Login button not found!');
     }
     
     // Signup button event listener
     const signupBtn = document.getElementById('signupBtn');
+    console.log('Signup button found:', signupBtn);
     if (signupBtn) {
-        signupBtn.addEventListener('click', function() {
+        signupBtn.addEventListener('click', function(e) {
+            console.log('Signup button clicked!');
+            e.preventDefault();
             showModal('signupModal');
         });
+        console.log('Signup button event listener attached');
+    } else {
+        console.error('Signup button not found!');
     }
     
     // Close modal buttons
     const closeLoginModal = document.getElementById('closeLoginModal');
+    console.log('Close login modal button found:', closeLoginModal);
     if (closeLoginModal) {
         closeLoginModal.addEventListener('click', function() {
+            console.log('Closing login modal');
             hideModal('loginModal');
         });
     }
     
     const closeSignupModal = document.getElementById('closeSignupModal');
+    console.log('Close signup modal button found:', closeSignupModal);
     if (closeSignupModal) {
         closeSignupModal.addEventListener('click', function() {
+            console.log('Closing signup modal');
             hideModal('signupModal');
         });
     }
     
     // Switch between modals
     const switchToSignup = document.getElementById('switchToSignup');
+    console.log('Switch to signup button found:', switchToSignup);
     if (switchToSignup) {
         switchToSignup.addEventListener('click', function() {
+            console.log('Switching to signup modal');
             switchModal('loginModal', 'signupModal');
         });
     }
     
     const switchToLogin = document.getElementById('switchToLogin');
+    console.log('Switch to login button found:', switchToLogin);
     if (switchToLogin) {
         switchToLogin.addEventListener('click', function() {
+            console.log('Switching to login modal');
             switchModal('signupModal', 'loginModal');
         });
     }
     
     // Login form submission
     const loginForm = document.getElementById('loginForm');
+    console.log('Login form found:', loginForm);
     if (loginForm) {
         loginForm.addEventListener('submit', async function(e) {
+            console.log('Login form submitted');
             e.preventDefault();
             
             const email = document.getElementById('loginEmail').value;
             const password = document.getElementById('loginPassword').value;
+            
+            console.log('Login attempt with email:', email);
             
             // Clear previous errors
             hideFieldError('loginEmail');
@@ -293,14 +321,18 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Signup form submission
     const signupForm = document.getElementById('signupForm');
+    console.log('Signup form found:', signupForm);
     if (signupForm) {
         signupForm.addEventListener('submit', async function(e) {
+            console.log('Signup form submitted');
             e.preventDefault();
             
             const name = document.getElementById('signupName').value;
             const email = document.getElementById('signupEmail').value;
             const password = document.getElementById('signupPassword').value;
             const confirmPassword = document.getElementById('signupConfirmPassword').value;
+            
+            console.log('Signup attempt with email:', email);
             
             // Clear previous errors
             hideFieldError('signupName');
@@ -341,15 +373,18 @@ document.addEventListener('DOMContentLoaded', function() {
     const modals = ['loginModal', 'signupModal'];
     modals.forEach(modalId => {
         const modal = document.getElementById(modalId);
+        console.log(`Modal ${modalId} found:`, modal);
         if (modal) {
             modal.addEventListener('click', function(e) {
                 if (e.target === modal) {
+                    console.log(`Closing modal ${modalId} by clicking outside`);
                     hideModal(modalId);
                 }
             });
         }
     });
     
+    console.log('All event listeners attached successfully!');
     showMessage('Website ready!', 'success');
 });
 
