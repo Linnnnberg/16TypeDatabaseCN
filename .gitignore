@@ -25,33 +25,126 @@ MANIFEST
 venv/
 env/
 ENV/
+.venv/
 
 # Environment variables
 .env
 .env.local
 .env.production
+.env.development
+.env.test
 
 # Database
 *.db
 *.sqlite3
+*.sqlite
+mbti_roster.db
+test_mbti_roster.db
 
-# IDE
+# IDE and Editor
 .vscode/
 .idea/
 *.swp
 *.swo
+*~
+.cursor/
 
 # OS
 .DS_Store
 Thumbs.db
+desktop.ini
 
 # Documents
 *.docx
+*.doc
+*.pdf
 
 # Logs
 *.log
+logs/
+*.out
 
-# Coverage
+# Coverage and Testing
 htmlcov/
 .coverage
-.pytest_cache/ 
+.pytest_cache/
+.tox/
+.coverage.*
+coverage.xml
+*.cover
+.hypothesis/
+
+# Security and Dependency Reports
+bandit-report.json
+safety-report.json
+*.sarif
+
+# Documentation (generated)
+docs/app/
+docs/api/
+
+# Temporary Files
+*.tmp
+*.temp
+*.bak
+*.backup
+
+# Data Uploads (processed files)
+data_uploads/processed/
+data_uploads/failed/
+
+# Docker
+.dockerignore
+
+# Node.js (if using frontend tools)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Local Development
+local_settings.py
+local_config.py
+
+# Backup Files
+*.orig
+*.rej
+
+# Cache Directories
+.mypy_cache/
+.pytest_cache/
+__pycache__/
+
+# Jupyter Notebooks
+.ipynb_checkpoints/
+
+# pyenv
+.python-version
+
+# pipenv
+Pipfile.lock
+
+# PEP 582
+__pypackages__/
+
+# Celery
+celerybeat-schedule
+celerybeat.pid
+
+# SageMath parsed files
+*.sage.py
+
+# Spyder project settings
+.spyderproject
+.spyproject
+
+# Rope project settings
+.ropeproject
+
+# mkdocs documentation
+/site
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json 
