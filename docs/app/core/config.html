@@ -48,7 +48,7 @@ el.replaceWith(d);
 <dl>
 <dt id="app.core.config.Settings"><code class="flex name class">
 <span>class <span class="ident">Settings</span></span>
-<span>(</span><span>**values: Any)</span>
+<span>(</span><span>**kwargs)</span>
 </code></dt>
 <dd>
 <details class="source">
@@ -56,8 +56,8 @@ el.replaceWith(d);
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">class Settings(BaseSettings):
-    database_url: str
-    secret_key: str
+    database_url: str = &#34;sqlite:///./mbti_roster.db&#34;  # Default to SQLite
+    secret_key: str = &#34;test_secret_key&#34;  # Safe default for CI or docs
     redis_url: str = &#34;redis://localhost:6379&#34;
     email_from: str = &#34;noreply@mbti-roster.com&#34;
 
@@ -68,7 +68,13 @@ el.replaceWith(d);
     daily_registrations_per_ip: int = 3
 
     class Config:
-        env_file = &#34;.env&#34;</code></pre>
+        env_file = &#34;.env&#34;
+
+    def __init__(self, **kwargs):
+        # Override secret_key for CI environment if not provided
+        if &#34;secret_key&#34; not in kwargs and os.getenv(&#34;CI&#34;):
+            kwargs[&#34;secret_key&#34;] = &#34;test-secret-key-for-ci-12345&#34;
+        super().__init__(**kwargs)</code></pre>
 </details>
 <div class="desc"><p>Base class for settings, allowing values to be overridden by environment variables.</p>
 <p>This is useful in production for secrets you do not wish to save in code, it plays nicely with docker(-compose),

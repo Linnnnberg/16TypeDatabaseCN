@@ -65,7 +65,7 @@ el.replaceWith(d);
 <div class="desc"></div>
 </dd>
 <dt id="app.core.security.get_current_admin_user"><code class="name flex">
-<span>def <span class="ident">get_current_admin_user</span></span>(<span>credentials: fastapi.security.http.HTTPAuthorizationCredentials = Depends(HTTPBearer),<br>db: sqlalchemy.orm.session.Session = Depends(get_db)) ‑> <a title="app.database.models.User" href="../database/models.html#app.database.models.User">User</a></span>
+<span>def <span class="ident">get_current_admin_user</span></span>(<span>credentials: fastapi.security.http.HTTPAuthorizationCredentials = Depends(HTTPBearer),<br>db: sqlalchemy.orm.session.Session = Depends(get_db))</span>
 </code></dt>
 <dd>
 <details class="source">
@@ -75,10 +75,10 @@ el.replaceWith(d);
 <pre><code class="python">def get_current_admin_user(
     credentials: HTTPAuthorizationCredentials = Depends(HTTPBearer()),
     db: Session = Depends(get_db),
-) -&gt; User:
+):
     &#34;&#34;&#34;Dependency to get current authenticated admin user&#34;&#34;&#34;
     from app.services.auth_service import AuthService
-    from app.database.models import User, UserRole
+    from app.database.models import UserRole
 
     auth_service = AuthService(db)
     user = auth_service.get_current_user(credentials.credentials)

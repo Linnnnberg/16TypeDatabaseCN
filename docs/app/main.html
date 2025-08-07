@@ -239,6 +239,23 @@ def test_endpoint():
 </details>
 <div class="desc"></div>
 </dd>
+<dt id="app.main.test_frontend_page"><code class="name flex">
+<span>async def <span class="ident">test_frontend_page</span></span>(<span>request: starlette.requests.Request)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@app.get(&#34;/test-frontend&#34;, response_class=HTMLResponse)
+async def test_frontend_page(request: Request):
+    &#34;&#34;&#34;Frontend test page for debugging&#34;&#34;&#34;
+    with open(&#34;test_frontend.html&#34;, &#34;r&#34;, encoding=&#34;utf-8&#34;) as f:
+        content = f.read()
+    return HTMLResponse(content=content)</code></pre>
+</details>
+<div class="desc"><p>Frontend test page for debugging</p></div>
+</dd>
 <dt id="app.main.test_page"><code class="name flex">
 <span>async def <span class="ident">test_page</span></span>(<span>request: starlette.requests.Request)</span>
 </code></dt>
@@ -281,6 +298,7 @@ async def test_page(request: Request):
 <li><code><a title="app.main.startup_event" href="#app.main.startup_event">startup_event</a></code></li>
 <li><code><a title="app.main.test_database" href="#app.main.test_database">test_database</a></code></li>
 <li><code><a title="app.main.test_endpoint" href="#app.main.test_endpoint">test_endpoint</a></code></li>
+<li><code><a title="app.main.test_frontend_page" href="#app.main.test_frontend_page">test_frontend_page</a></code></li>
 <li><code><a title="app.main.test_page" href="#app.main.test_page">test_page</a></code></li>
 </ul>
 </li>

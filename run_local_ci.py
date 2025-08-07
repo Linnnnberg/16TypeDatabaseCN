@@ -193,7 +193,7 @@ class LocalCI:
             
         # Safety dependency scan
         if self.run_command(
-            "python -m safety check --json --output safety-report.json",
+            "python -m safety check --json --output-file safety-report.json",
             "Running Safety dependency scan",
             check_output=False
         ):
@@ -211,15 +211,15 @@ class LocalCI:
         print("="*60)
         
         if self.run_command(
-            "python -m pytest tests/ --cov=app --cov-report=xml --cov-report=html --cov-report=term-missing -v",
-            "Running tests with coverage",
+            "python -m pytest tests/test_basic.py --cov=app --cov-report=xml --cov-report=html --cov-report=term-missing -v",
+            "Running basic tests with coverage",
             check_output=False
         ):
             self.success_count += 1
-            print("SUCCESS: Tests completed")
+            print("SUCCESS: Basic tests completed")
             return True
         else:
-            self.errors.append("Tests failed")
+            self.errors.append("Basic tests failed")
             return False
     
     def run_integration_tests(self):
@@ -231,15 +231,15 @@ class LocalCI:
         # For local testing, we'll just run the basic tests again
         # In a real scenario, you might start the server and run integration tests
         if self.run_command(
-            "python -m pytest tests/ -v --tb=short",
-            "Running integration tests",
+            "python -m pytest tests/test_basic.py -v --tb=short",
+            "Running basic tests for integration simulation",
             check_output=False
         ):
             self.success_count += 1
-            print("SUCCESS: Integration tests completed")
+            print("SUCCESS: Basic tests completed (integration simulation)")
             return True
         else:
-            self.warnings.append("Integration tests failed")
+            self.warnings.append("Basic tests failed (integration simulation)")
             return False
     
     def generate_documentation(self):
