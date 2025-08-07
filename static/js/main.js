@@ -487,6 +487,12 @@ document.addEventListener('DOMContentLoaded', function() {
     
     console.log('All event listeners attached successfully!');
     showMessage('Website ready!', 'success');
+    
+    // Load celebrities for main page if we're on the homepage
+    if (window.location.pathname === '/' || window.location.pathname === '/index.html') {
+        console.log('Loading celebrities for main page...');
+        loadCelebritiesForMainPage();
+    }
 });
 
 // Export functions for use in templates
@@ -500,4 +506,81 @@ window.MBTIApp = {
     loginUser,
     signupUser,
     logoutUser
-}; 
+};
+
+// Load celebrities for main page
+async function loadCelebritiesForMainPage() {
+    try {
+        // Get recent celebrities (limit to 6 for display)
+        const response = await apiCall('/celebrities/?limit=6');
+        
+        const container = document.getElementById('celebritiesPreview');
+        if (!container) {
+            console.log('Celebrities preview container not found');
+            return;
+        }
+        
+        if (response && response.length > 0) {
+            container.innerHTML = '';
+            
+            response.forEach(celebrity => {
+                const celebrityCard = document.createElement('div');
+                celebrityCard.className = 'bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow p-6 text-center';
+                
+                // Get MBTI type from votes
+                let mbtiType = '未知';
+                if (celebrity.votes && celebrity.votes.length > 0) {
+                    mbtiType = celebrity.votes[0].mbti_type;
+                }
+                
+                celebrityCard.innerHTML = `
+                    <div class="w-20 h-20 bg-primary-100 rounded-full mx-auto mb-4 flex items-center justify-center">
+                        <span class="text-2xl font-bold text-primary-600">${celebrity.name.charAt(0)}</span>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-900 mb-1">${celebrity.name}</h3>
+                    <p class="text-sm text-gray-600 mb-2">${celebrity.name_en || ''}</p>
+                    <div class="inline-block bg-primary-100 text-primary-700 px-3 py-1 rounded-full text-sm font-medium mb-2">
+                        ${mbtiType}
+                    </div>
+                    <p class="text-xs text-gray-500 line-clamp-2">${celebrity.description || ''}</p>
+                `;
+                
+                // Add click event to navigate to celebrity detail
+                celebrityCard.style.cursor = 'pointer';
+                celebrityCard.addEventListener('click', () => {
+                    window.location.href = `/celebrities/${celebrity.id}`;
+                });
+                
+                container.appendChild(celebrityCard);
+            });
+        } else {
+            container.innerHTML = `
+                <div class="col-span-full text-center text-gray-500 py-8">
+                    <div class="w-16 h-16 bg-gray-200 rounded-full mx-auto mb-4 flex items-center justify-center">
+                        <svg class="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                        </svg>
+                    </div>
+                    <p class="text-lg font-medium">暂无名人数据</p>
+                    <p class="text-sm">名人数据库正在建设中...</p>
+                </div>
+            `;
+        }
+    } catch (error) {
+        console.error('Failed to load celebrities:', error);
+        const container = document.getElementById('celebritiesPreview');
+        if (container) {
+            container.innerHTML = `
+                <div class="col-span-full text-center text-gray-500 py-8">
+                    <div class="w-16 h-16 bg-gray-200 rounded-full mx-auto mb-4 flex items-center justify-center">
+                        <svg class="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"></path>
+                        </svg>
+                    </div>
+                    <p class="text-lg font-medium">加载失败</p>
+                    <p class="text-sm">无法加载名人数据，请稍后重试</p>
+                </div>
+            `;
+        }
+    }
+} 
