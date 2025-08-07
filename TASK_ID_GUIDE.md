@@ -22,9 +22,9 @@ Based on task type, use the following prefixes:
 - User experience improvements
 
 **Examples:**
-- STORY-001: Add user profile page
-- STORY-002: Implement dark mode theme
-- STORY-003: Add celebrity search filters
+- STORY-006: Display 16 Type Codes with Chinese Names on Root Page
+- STORY-007: Make MBTI Type Cards Clickable
+- STORY-008: Create MBTI Type Description Pages
 
 #### FIX- (Bug Fix/Issue Resolution)
 - Bug fixes

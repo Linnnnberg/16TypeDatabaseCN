@@ -45,28 +45,28 @@ el.replaceWith(d);
 <h2 class="section-title" id="header-functions">Functions</h2>
 <dl>
 <dt id="app.database.database.create_tables"><code class="name flex">
-<span>def <span class="ident">create_tables</span></span>(<span>)</span>
+<span>def <span class="ident">create_tables</span></span>(<span>) ‑> None</span>
 </code></dt>
 <dd>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def create_tables():
+<pre><code class="python">def create_tables() -&gt; None:
     &#34;&#34;&#34;Create all database tables&#34;&#34;&#34;
     Base.metadata.create_all(bind=engine)</code></pre>
 </details>
 <div class="desc"><p>Create all database tables</p></div>
 </dd>
 <dt id="app.database.database.get_db"><code class="name flex">
-<span>def <span class="ident">get_db</span></span>(<span>)</span>
+<span>def <span class="ident">get_db</span></span>(<span>) ‑> Generator[sqlalchemy.orm.session.Session, None, None]</span>
 </code></dt>
 <dd>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def get_db():
+<pre><code class="python">def get_db() -&gt; Generator[Session, None, None]:
     &#34;&#34;&#34;Dependency to get database session&#34;&#34;&#34;
     db = SessionLocal()
     try:

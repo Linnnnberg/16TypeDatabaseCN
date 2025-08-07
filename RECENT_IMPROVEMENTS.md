@@ -132,21 +132,20 @@ This document summarizes all the recent improvements and fixes made to the 16-Ty
 ## 🎯 Next Steps
 
 ### **Immediate Priorities**
-1. **TASK-012: User Experience Enhancement**
-   - Loading states and error handling
-   - Success notifications
-   - User dashboard and profile management
-   - Enhanced authentication flow
+1. **STORY-006: Display 16 Type Codes with Chinese Names on Root Page**
+   - Create MBTI type mapping data structure
+   - Update root page template with 4-column grid
+   - Add API endpoint for MBTI types
+   - Implement dynamic data loading
 
-2. **STORY-001: User Profile Page**
-   - Profile data display and editing
-   - Avatar upload functionality
-   - User statistics display
+2. **STORY-007: Make MBTI Type Cards Clickable**
+   - Add click functionality to MBTI type cards
+   - Link to type description pages
 
-3. **STORY-002: Dark Mode Theme**
-   - Dark mode CSS implementation
-   - Theme toggle functionality
-   - Theme persistence
+3. **STORY-008: Create MBTI Type Description Pages**
+   - Individual pages for each MBTI type
+   - Detailed descriptions, strengths, weaknesses
+   - Career suggestions and famous examples
 
 ### **Future Enhancements**
 - **Performance Optimization**: Caching and database optimization

@@ -1,6 +1,6 @@
 {
   "errors": [],
-  "generated_at": "2025-08-07T10:20:19Z",
+  "generated_at": "2025-08-07T20:50:35Z",
   "metrics": {
     "_totals": {
       "CONFIDENCE.HIGH": 0,
@@ -11,7 +11,7 @@
       "SEVERITY.LOW": 3,
       "SEVERITY.MEDIUM": 1,
       "SEVERITY.UNDEFINED": 0,
-      "loc": 3096,
+      "loc": 3102,
       "nosec": 0,
       "skipped_tests": 0
     },
@@ -206,7 +206,7 @@
       "SEVERITY.LOW": 0,
       "SEVERITY.MEDIUM": 1,
       "SEVERITY.UNDEFINED": 0,
-      "loc": 120,
+      "loc": 126,
       "nosec": 0,
       "skipped_tests": 0
     },
@@ -452,7 +452,7 @@
       "test_name": "hardcoded_password_string"
     },
     {
-      "code": "165 \n166     uvicorn.run(\"app.main:app\", host=\"0.0.0.0\", port=8000, reload=True)\n",
+      "code": "173 \n174     uvicorn.run(\"app.main:app\", host=\"0.0.0.0\", port=8000, reload=True)\n",
       "col_offset": 37,
       "end_col_offset": 46,
       "filename": "app/main.py",
@@ -463,9 +463,9 @@
       },
       "issue_severity": "MEDIUM",
       "issue_text": "Possible binding to all interfaces.",
-      "line_number": 166,
+      "line_number": 174,
       "line_range": [
-        166
+        174
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b104_hardcoded_bind_all_interfaces.html",
       "test_id": "B104",

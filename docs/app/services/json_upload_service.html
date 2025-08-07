@@ -166,7 +166,8 @@ validated to form a valid model.</p>
             for i, celeb in enumerate(upload_data.celebrities):
                 if celeb.mbti not in valid_mbti_types:
                     validation_errors.append(
-                        f&#34;Celebrity {i+1} ({celeb.name}): Invalid MBTI type &#39;{celeb.mbti}&#39;&#34;
+                        f&#34;Celebrity {i+1} ({celeb.name}): &#34;
+                        f&#34;Invalid MBTI type &#39;{celeb.mbti}&#39;&#34;
                     )
 
                 # Check for duplicate names
@@ -339,7 +340,8 @@ validated to form a valid model.</p>
                         f.write(f&#34;File: {file_path.name}\n&#34;)
                         f.write(f&#34;Timestamp: {datetime.now().isoformat()}\n&#34;)
                         f.write(
-                            f&#34;Imported: {process_result[&#39;imported_count&#39;]} celebrities\n&#34;
+                            f&#34;Imported: {process_result[&#39;imported_count&#39;]} &#34;
+                            f&#34;celebrities\n&#34;
                         )
 
                     results[&#34;successful_imports&#34;] += 1
@@ -473,7 +475,8 @@ validated to form a valid model.</p>
                     f.write(f&#34;File: {file_path.name}\n&#34;)
                     f.write(f&#34;Timestamp: {datetime.now().isoformat()}\n&#34;)
                     f.write(
-                        f&#34;Imported: {process_result[&#39;imported_count&#39;]} celebrities\n&#34;
+                        f&#34;Imported: {process_result[&#39;imported_count&#39;]} &#34;
+                        f&#34;celebrities\n&#34;
                     )
 
                 results[&#34;successful_imports&#34;] += 1
@@ -637,7 +640,8 @@ validated to form a valid model.</p>
         for i, celeb in enumerate(upload_data.celebrities):
             if celeb.mbti not in valid_mbti_types:
                 validation_errors.append(
-                    f&#34;Celebrity {i+1} ({celeb.name}): Invalid MBTI type &#39;{celeb.mbti}&#39;&#34;
+                    f&#34;Celebrity {i+1} ({celeb.name}): &#34;
+                    f&#34;Invalid MBTI type &#39;{celeb.mbti}&#39;&#34;
                 )
 
             # Check for duplicate names
