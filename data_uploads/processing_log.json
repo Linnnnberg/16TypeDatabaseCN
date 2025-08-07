@@ -1,0 +1,39 @@
+{
+  "fix_results": {
+    "celebrities_batch_sports": {
+      "success": true,
+      "message": "Fixed celebrities_batch_sports.json format",
+      "fixed_file": "data_uploads\\fixed\\celebrities_batch_sports_fixed.json",
+      "original_moved_to": "data_uploads\\failed\\celebrities_batch_sports_original.json"
+    },
+    "votes_batch_sports": {
+      "success": true,
+      "message": "Merged votes with celebrities data",
+      "merged_file": "data_uploads\\fixed\\celebrities_batch_sports_merged.json",
+      "votes_moved_to": "data_uploads\\failed\\votes_batch_sports_original.json"
+    },
+    "sample_celebrities": {
+      "success": true,
+      "message": "Filtered 2 new celebrities",
+      "existing_count": 1,
+      "new_count": 2,
+      "filtered_file": "data_uploads\\fixed\\sample_celebrities_filtered.json",
+      "original_moved_to": "data_uploads\\failed\\sample_celebrities_original.json"
+    }
+  },
+  "processing_results": {
+    "processed_files": 2,
+    "successful_imports": 2,
+    "failed_imports": 1,
+    "errors": [
+      "celebrities_batch_sports_fixed.json: Data validation error: 16 validation errors for UploadData\ncelebrities.0.mbti\n  Field required [type=missing, input_value={'name': '刘翔', 'name_... '', 'tags': ['sports']}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.9/v/missing\ncelebrities.0.vote_reason\n  Field required [type=missing, input_value={'name': '刘翔', 'name_... '', 'tags': ['sports']}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.9/v/missing\ncelebrities.1.mbti\n  Field required [type=missing, input_value={'name': '姚明', 'name_... '', 'tags': ['sports']}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.9/v/missing\ncelebrities.1.vote_reason\n  Field required [type=missing, input_value={'name': '姚明', 'name_... '', 'tags': ['sports']}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.9/v/missing\ncelebrities.2.mbti\n  Field required [type=missing, input_value={'name': '孙杨', 'name_... '', 'tags': ['sports']}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.9/v/missing\ncelebrities.2.vote_reason\n  Field required [type=missing, input_value={'name': '孙杨', 'name_... '', 'tags': ['sports']}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.9/v/missing\ncelebrities.3.mbti\n  Field required [type=missing, input_value={'name': '马龙', 'name_... '', 'tags': ['sports']}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.9/v/missing\ncelebrities.3.vote_reason\n  Field required [type=missing, input_value={'name': '马龙', 'name_... '', 'tags': ['sports']}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.9/v/missing\ncelebrities.4.mbti\n  Field required [type=missing, input_value={'name': '王楚钦', 'na... '', 'tags': ['sports']}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.9/v/missing\ncelebrities.4.vote_reason\n  Field required [type=missing, input_value={'name': '王楚钦', 'na... '', 'tags': ['sports']}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.9/v/missing\ncelebrities.5.mbti\n  Field required [type=missing, input_value={'name': '林诗栋', 'na... '', 'tags': ['sports']}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.9/v/missing\ncelebrities.5.vote_reason\n  Field required [type=missing, input_value={'name': '林诗栋', 'na... '', 'tags': ['sports']}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.9/v/missing\ncelebrities.6.mbti\n  Field required [type=missing, input_value={'name': '贾一凡', 'na... '', 'tags': ['sports']}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.9/v/missing\ncelebrities.6.vote_reason\n  Field required [type=missing, input_value={'name': '贾一凡', 'na... '', 'tags': ['sports']}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.9/v/missing\ncelebrities.7.mbti\n  Field required [type=missing, input_value={'name': '郑钦文', 'na... '', 'tags': ['sports']}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.9/v/missing\ncelebrities.7.vote_reason\n  Field required [type=missing, input_value={'name': '郑钦文', 'na... '', 'tags': ['sports']}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.9/v/missing"
+    ]
+  },
+  "summary": {
+    "total_fixes": 3,
+    "total_processed": 2,
+    "total_successful": 2,
+    "total_failed": 1,
+    "timestamp": "2025-08-07T10:57:59.492294"
+  }
+}

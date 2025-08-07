@@ -1,0 +1,98 @@
+{
+  "celebrities": [
+    {
+      "name": "刘翔",
+      "name_en": "Liu Xiang",
+      "description": "中国著名男子110米栏运动员，奥运冠军",
+      "image_url": "",
+      "tags": [
+        "sports"
+      ],
+      "mbti": "ESTJ",
+      "vote_reason": "作为田径跨栏英雄，执行力强、目标导向明显，常被粉丝推测为 ESTJ 类型"
+    },
+    {
+      "name": "姚明",
+      "name_en": "Yao Ming",
+      "description": "前NBA球员，中国篮球协会主席",
+      "image_url": "",
+      "tags": [
+        "sports"
+      ],
+      "mbti": "ENFJ",
+      "vote_reason": "社会影响力大、善于沟通与代表国家发声，符合 ENFJ 社交型领袖形象"
+    },
+    {
+      "name": "孙杨",
+      "name_en": "Sun Yang",
+      "description": "中国男子游泳运动员，奥运多金得主",
+      "image_url": "",
+      "tags": [
+        "sports"
+      ],
+      "mbti": "ISTP",
+      "vote_reason": "比赛风格理性、专注技术控制，社区中多推测为 ISTP"
+    },
+    {
+      "name": "马龙",
+      "name_en": "Ma Long",
+      "description": "中国男子乒乓球运动员，多次奥运及世锦赛冠军",
+      "image_url": "",
+      "tags": [
+        "sports"
+      ],
+      "mbti": "ENTJ",
+      "vote_reason": "乒坛统治者，目标坚定、领导力强，粉丝常认为其为 ENTJ"
+    },
+    {
+      "name": "王楚钦",
+      "name_en": "Wang Chuqin",
+      "description": "中国乒乓球运动员，新生代主力",
+      "image_url": "",
+      "tags": [
+        "sports"
+      ],
+      "mbti": "ISTP",
+      "vote_reason": "技术型选手、表现冷静稳定，社群中倾向 ISTP"
+    },
+    {
+      "name": "林诗栋",
+      "name_en": "Lin Shidong",
+      "description": "中国乒乓球运动员，技术全面的新生代选手",
+      "image_url": "",
+      "tags": [
+        "sports"
+      ],
+      "mbti": "INTJ",
+      "vote_reason": "新生代天才选手，策略性强、有远见，有人推测为 INTJ"
+    },
+    {
+      "name": "贾一凡",
+      "name_en": "Jia Yifan",
+      "description": "中国羽毛球女子双打选手，世界冠军",
+      "image_url": "",
+      "tags": [
+        "sports"
+      ],
+      "mbti": "ISFJ",
+      "vote_reason": "团体合作型选手、责任感强、偏稳定内向型，符合 ISFJ"
+    },
+    {
+      "name": "郑钦文",
+      "name_en": "Zheng Qinwen",
+      "description": "中国女子网球运动员，新生代希望之星",
+      "image_url": "",
+      "tags": [
+        "sports"
+      ],
+      "mbti": "ENFP",
+      "vote_reason": "情绪表达丰富、比赛中变化多端，推测为 ENFP 类型"
+    }
+  ],
+  "metadata": {
+    "source": "Sports Celebrities Batch",
+    "version": "1.0",
+    "upload_date": "2025-08-07",
+    "fixed": true
+  }
+}
