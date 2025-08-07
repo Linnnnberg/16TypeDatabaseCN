@@ -3,7 +3,7 @@ import os
 
 
 class Settings(BaseSettings):
-    database_url: str
+    database_url: str = "sqlite:///./mbti_roster.db"  # Default to SQLite
     secret_key: str = "test_secret_key"  # Safe default for CI or docs
     redis_url: str = "redis://localhost:6379"
     email_from: str = "noreply@mbti-roster.com"
