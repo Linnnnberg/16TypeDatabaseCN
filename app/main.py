@@ -73,6 +73,14 @@ async def about_page(request: Request):
     return templates.TemplateResponse("about.html", {"request": request})
 
 
+@app.get("/test-frontend", response_class=HTMLResponse)
+async def test_frontend_page(request: Request):
+    """Frontend test page for debugging"""
+    with open("test_frontend.html", "r", encoding="utf-8") as f:
+        content = f.read()
+    return HTMLResponse(content=content)
+
+
 # API root path
 @app.get("/api")
 def read_root():

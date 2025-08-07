@@ -299,6 +299,7 @@ jobs:
     permissions:
       actions: read
       contents: read
+      pull-requests: write
     
     steps:
     - name: Checkout code

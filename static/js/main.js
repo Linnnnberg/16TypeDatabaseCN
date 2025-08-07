@@ -55,13 +55,20 @@ function showMessage(message, type = 'info') {
 // API helper functions
 async function apiCall(endpoint, options = {}) {
     try {
+        // Add timeout to prevent hanging requests
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
+        
         const response = await fetch(endpoint, {
             headers: {
                 'Content-Type': 'application/json',
                 ...options.headers
             },
+            signal: controller.signal,
             ...options
         });
+        
+        clearTimeout(timeoutId);
         
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
@@ -70,6 +77,9 @@ async function apiCall(endpoint, options = {}) {
         return await response.json();
     } catch (error) {
         console.error('API call failed:', error);
+        if (error.name === 'AbortError') {
+            throw new Error('Request timed out');
+        }
         throw error;
     }
 }
