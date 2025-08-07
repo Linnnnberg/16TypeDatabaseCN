@@ -1,6 +1,6 @@
 {
   "errors": [],
-  "generated_at": "2025-08-06T21:37:16Z",
+  "generated_at": "2025-08-07T10:20:19Z",
   "metrics": {
     "_totals": {
       "CONFIDENCE.HIGH": 0,
@@ -408,7 +408,7 @@
   },
   "results": [
     {
-      "code": "43 \n44     return Token(\n45         access_token=access_token,\n46         token_type=\"bearer\",\n47         expires_in=24 * 60 * 60,  # 24 hours in seconds\n48     )\n49 \n",
+      "code": "45 \n46     return Token(\n47         access_token=access_token,\n48         token_type=\"bearer\",\n49         expires_in=24 * 60 * 60,  # 24 hours in seconds\n50     )\n51 \n",
       "col_offset": 11,
       "end_col_offset": 5,
       "filename": "app/api\\auth.py",
@@ -419,13 +419,13 @@
       },
       "issue_severity": "LOW",
       "issue_text": "Possible hardcoded password: 'bearer'",
-      "line_number": 44,
+      "line_number": 46,
       "line_range": [
-        44,
-        45,
         46,
         47,
-        48
+        48,
+        49,
+        50
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b106_hardcoded_password_funcarg.html",
       "test_id": "B106",
@@ -452,7 +452,7 @@
       "test_name": "hardcoded_password_string"
     },
     {
-      "code": "164 \n165     uvicorn.run(\"app.main:app\", host=\"0.0.0.0\", port=8000, reload=True)\n",
+      "code": "165 \n166     uvicorn.run(\"app.main:app\", host=\"0.0.0.0\", port=8000, reload=True)\n",
       "col_offset": 37,
       "end_col_offset": 46,
       "filename": "app/main.py",
@@ -463,9 +463,9 @@
       },
       "issue_severity": "MEDIUM",
       "issue_text": "Possible binding to all interfaces.",
-      "line_number": 165,
+      "line_number": 166,
       "line_range": [
-        165
+        166
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b104_hardcoded_bind_all_interfaces.html",
       "test_id": "B104",

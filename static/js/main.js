@@ -55,21 +55,37 @@ function showMessage(message, type = 'info') {
 // API helper functions
 async function apiCall(endpoint, options = {}) {
     try {
+        console.log('API Call:', endpoint, options);
+        
+        // Add timeout to prevent hanging requests
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
+        
         const response = await fetch(endpoint, {
             headers: {
                 'Content-Type': 'application/json',
                 ...options.headers
             },
+            signal: controller.signal,
             ...options
         });
+        
+        clearTimeout(timeoutId);
+        
+        console.log('API Response:', response.status, response.statusText);
         
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
         
-        return await response.json();
+        const data = await response.json();
+        console.log('API Data:', data);
+        return data;
     } catch (error) {
         console.error('API call failed:', error);
+        if (error.name === 'AbortError') {
+            throw new Error('Request timed out');
+        }
         throw error;
     }
 }
@@ -184,6 +200,8 @@ async function loginUser(email, password) {
 async function signupUser(name, email, password) {
     try {
         console.log('Attempting to signup user:', { name, email });
+        console.log('Making API call to /auth/signup');
+        
         const response = await apiCall('/auth/signup', {
             method: 'POST',
             body: JSON.stringify({ name, email, password })
@@ -211,6 +229,8 @@ async function signupUser(name, email, password) {
             errorMessage = '请检查输入信息是否正确';
         } else if (error.message.includes('400')) {
             errorMessage = '请求参数错误，请检查输入';
+        } else if (error.message.includes('timed out')) {
+            errorMessage = '请求超时，请检查网络连接';
         }
         
         showMessage(errorMessage, 'error');

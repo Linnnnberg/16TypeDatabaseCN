@@ -1,9 +1,10 @@
+import os
+
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from fastapi.responses import HTMLResponse
-import os
 
 # Import database
 from app.database.database import create_tables
@@ -70,6 +71,14 @@ async def celebrities_page(request: Request):
 async def about_page(request: Request):
     """About MBTI page"""
     return templates.TemplateResponse("about.html", {"request": request})
+
+
+@app.get("/test-frontend", response_class=HTMLResponse)
+async def test_frontend_page(request: Request):
+    """Frontend test page for debugging"""
+    with open("test_frontend.html", "r", encoding="utf-8") as f:
+        content = f.read()
+    return HTMLResponse(content=content)
 
 
 # API root path
