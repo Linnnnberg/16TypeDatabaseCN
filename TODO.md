@@ -1,8 +1,29 @@
 # TODO List
 
-## 🚀 Current Sprint
+## 📋 Planning Summary
 
-### STORY-006: Display 16 Type Codes with Chinese Names on Root Page
+### **Immediate Priorities (This Week)**
+- **BUG-001**: Add missing `requests` dependency (30 min)
+- **STORY-001**: Display 16 Type Codes with Chinese Names (4-5 hours)
+
+### **High Priority (Next 2 weeks)**
+- **TECH-001**: CI/CD Data Pipeline Separation (4-6 hours)
+- **STORY-002**: Make MBTI Type Cards Clickable (2-3 hours)
+
+### **Medium Priority (Next 1-2 months)**
+- **STORY-003**: Create MBTI Type Description Pages (6-8 hours)
+- **STORY-004**: Basic Admin Panel for Content Management (8-10 hours)
+- **STORY-005**: Basic UI Pages for Each Section (12-16 hours)
+- **TECH-002**: Separate MBTI Module Architecture (3-4 hours)
+- **TECH-003**: API Caching Implementation (2-3 hours)
+
+### **Total Estimated Time for High/Medium Priority**: ~55-65 hours
+
+---
+
+## 🚀 Current Sprint (Next 2-3 weeks)
+
+### STORY-001: Display 16 Type Codes with Chinese Names on Root Page
 **Priority**: High  
 **Status**: Ready to Start  
 **Estimated Time**: 4-5 hours
@@ -86,94 +107,242 @@
 - `app/main.py`
 - `tests/test_mbti_types.py` (new)
 
-## 📋 Future Stories
+## 📋 Short-term Stories (Next 1-2 months)
 
-### STORY-007: Make MBTI Type Cards Clickable
+### STORY-002: Make MBTI Type Cards Clickable
 **Priority**: Medium  
-**Dependencies**: STORY-006
+**Dependencies**: STORY-001
+**Estimated Time**: 2-3 hours
 **Description**: Add click functionality to MBTI type cards on root page
 
-### STORY-008: Create MBTI Type Description Pages
+### STORY-003: Create MBTI Type Description Pages
 **Priority**: Medium  
-**Dependencies**: STORY-006, STORY-007
+**Dependencies**: STORY-001, STORY-002
+**Estimated Time**: 6-8 hours
 **Description**: Individual pages for each MBTI type with detailed descriptions, strengths, weaknesses, career suggestions, and famous examples
 
-### STORY-009: Add Function Stack for Each MBTI Type
+### STORY-004: Basic Admin Panel for Content Management
 **Priority**: Medium  
-**Dependencies**: STORY-008
+**Dependencies**: STORY-001
+**Estimated Time**: 8-10 hours
+**Description**: Simple admin interface for managing celebrities, votes, and basic CRUD operations
+
+### STORY-005: Basic UI Pages for Each Section
+**Priority**: Medium  
+**Dependencies**: TECH-001 (CI/CD improvements)
+**Estimated Time**: 12-16 hours
+**Description**: Create basic working UI pages for each major section of the application
+**Subtasks:**
+- [ ] **Celebrities Section UI** (4-5 hours)
+  - [ ] Create `templates/celebrities_section.html` with grid layout
+  - [ ] Add filtering by MBTI type, profession, region
+  - [ ] Display celebrity cards with images, names, top MBTI votes
+  - [ ] Add pagination for large lists
+- [ ] **Voting Section UI** (3-4 hours)
+  - [ ] Create `templates/voting_section.html` with voting interface
+  - [ ] Show current user's voting history and limits
+  - [ ] Display vote statistics and trends
+  - [ ] Add reason input form for votes
+- [ ] **Search & Discovery UI** (3-4 hours)
+  - [ ] Create `templates/search_section.html` with advanced search
+  - [ ] Add filters for MBTI type, tags, profession
+  - [ ] Show search results with sorting options
+  - [ ] Add "similar celebrities" suggestions
+- [ ] **User Profile & Stats UI** (2-3 hours)
+  - [ ] Create `templates/profile_section.html` with user dashboard
+  - [ ] Display personal voting statistics
+  - [ ] Show favorite MBTI types and voting patterns
+  - [ ] Add profile editing capabilities
+
+## 📋 Medium-term Stories (Next 2-4 months)
+
+### STORY-006: Add Function Stack for Each MBTI Type
+**Priority**: Medium  
+**Dependencies**: STORY-003
+**Estimated Time**: 4-6 hours
 **Description**: Display cognitive function stack (Ni, Te, Fi, Se, etc.) for each MBTI type with explanations
 
-### STORY-010: Internationalization Support
+### STORY-007: Wikipedia + AI Data Pipeline
+**Priority**: Medium  
+**Dependencies**: STORY-004, STORY-005
+**Estimated Time**: 12-16 hours
+**Description**: Automated data collection from Wikipedia with AI enhancement for MBTI analysis
+
+### STORY-008: Enhanced UI with Interactive Features
+**Priority**: Medium  
+**Dependencies**: STORY-005
+**Estimated Time**: 8-12 hours
+**Description**: Add interactive features and polish to the basic UI pages
+**Subtasks:**
+- [ ] **Interactive Charts & Graphs** (3-4 hours)
+  - [ ] Add MBTI distribution charts using Chart.js or similar
+  - [ ] Create voting trend visualizations
+  - [ ] Show user activity heatmaps
+- [ ] **Real-time Updates** (2-3 hours)
+  - [ ] Add WebSocket support for live vote updates
+  - [ ] Implement real-time notifications
+  - [ ] Show live voting counters
+- [ ] **Advanced Filtering & Sorting** (3-5 hours)
+  - [ ] Add multi-select filters
+  - [ ] Implement saved search preferences
+  - [ ] Add sorting by popularity, date, MBTI type
+
+## 📋 Long-term Stories (Future)
+
+### STORY-009: Internationalization Support
 **Priority**: Low  
-**Dependencies**: STORY-006
+**Dependencies**: STORY-001
+**Estimated Time**: 8-10 hours
 **Description**: Add multi-language support for English and other languages
 
-### STORY-011: MBTI Type Metadata Enhancement
+### STORY-010: MBTI Type Metadata Enhancement
+**Priority**: Low  
+**Dependencies**: STORY-003
+**Estimated Time**: 6-8 hours
+**Description**: Add comprehensive metadata including type percentages, famous examples, relationship compatibility, etc.
+
+### STORY-011: Advanced UI & User Experience
 **Priority**: Low  
 **Dependencies**: STORY-008
-**Description**: Add comprehensive metadata including type percentages, famous examples, relationship compatibility, etc.
+**Estimated Time**: 10-15 hours
+**Description**: Advanced UI features and user experience improvements
+**Subtasks:**
+- [ ] **Mobile App-like Experience** (4-6 hours)
+  - [ ] Progressive Web App (PWA) features
+  - [ ] Offline functionality for basic features
+  - [ ] Touch-optimized interactions
+- [ ] **Personalization & Customization** (3-4 hours)
+  - [ ] User-customizable dashboards
+  - [ ] Theme switching (light/dark mode)
+  - [ ] Customizable notification preferences
+- [ ] **Accessibility Improvements** (3-5 hours)
+  - [ ] Screen reader support
+  - [ ] Keyboard navigation
+  - [ ] High contrast mode
+  - [ ] Font size adjustments
 
 ## 🔧 Technical Tasks
 
-### TECH-001: Separate MBTI Module Architecture
-**Priority**: Low  
-**Dependencies**: STORY-006
+### TECH-001: CI/CD Data Pipeline Separation
+**Priority**: High  
+**Dependencies**: None
+**Estimated Time**: 4-6 hours
+**Description**: Separate data management from CI/CD pipeline to improve deployment speed and reliability
+**Subtasks:**
+- [ ] Exclude actual celebrity/vote data from CI/CD builds
+- [ ] Include only data schemas, validation rules, and test fixtures in CI/CD
+- [ ] Create separate data deployment pipeline for content updates
+- [ ] Implement data validation in CI/CD without importing actual content
+- [ ] Add data integrity checks to deployment process
+
+### TECH-002: Separate MBTI Module Architecture
+**Priority**: Medium  
+**Dependencies**: STORY-001  
+**Estimated Time**: 3-4 hours
 **Description**: Refactor MBTI-related code into a separate module for better organization and maintainability
 
-### TECH-002: API Caching Implementation
-**Priority**: Low  
-**Dependencies**: STORY-006
+### TECH-003: API Caching Implementation
+**Priority**: Medium  
+**Dependencies**: STORY-001  
+**Estimated Time**: 2-3 hours
 **Description**: Add caching layer for MBTI type data and other frequently accessed API endpoints
 
-### TECH-003: Performance Optimization
-**Priority**: Low  
+### TECH-004: Performance Optimization
+**Priority**: Medium  
+**Dependencies**: None
+**Estimated Time**: 6-8 hours
 **Description**: Optimize database queries, add database indexing, implement connection pooling
+
+### TECH-005: AI-Powered Data Generation Pipeline
+**Priority**: Low  
+**Dependencies**: STORY-007
+**Estimated Time**: 16-20 hours
+**Description**: Implement automated data generation using AI for celebrity MBTI types and vote reasons
+**Subtasks:**
+- [ ] Research AI API integration options (OpenAI, Claude, etc.)
+- [ ] Create batch generation scripts for multiple celebrities at once
+- [ ] Implement data validation and quality checks for AI-generated content
+- [ ] Build Wikipedia + AI enhancement pipeline for factual data
+- [ ] Create content moderation tools for AI-generated suggestions
 
 ## 🐛 Bug Fixes
 
-### BUG-001: Fix Import Order Validation
-**Priority**: Low  
-**Status**: Identified
-**Description**: The import order validation in `validate_cicd_rules.py` is too restrictive and causing false positives
-
-### BUG-002: Add Missing Dependencies
-**Priority**: Low  
+### BUG-001: Add Missing Dependencies
+**Priority**: High  
 **Status**: Identified  
+**Estimated Time**: 30 minutes
 **Description**: Add `requests` package to `requirements_minimal.txt` as identified by CI validation
+
+### BUG-002: Fix Import Order Validation
+**Priority**: Medium  
+**Status**: Identified
+**Estimated Time**: 1-2 hours
+**Description**: The import order validation in `validate_cicd_rules.py` is too restrictive and causing false positives
 
 ## 📚 Documentation
 
 ### DOC-001: Update API Documentation
-**Priority**: Low  
-**Dependencies**: STORY-006
+**Priority**: Medium  
+**Dependencies**: STORY-001
+**Estimated Time**: 2-3 hours
 **Description**: Update API documentation to include new MBTI endpoints
 
 ### DOC-002: Code Comments and Documentation
-**Priority**: Low  
-**Dependencies**: STORY-006
+**Priority**: Medium  
+**Dependencies**: STORY-001
+**Estimated Time**: 1-2 hours
 **Description**: Add comprehensive comments to new MBTI-related code
 
 ## 🎨 UI/UX Improvements
 
 ### UI-001: Enhanced MBTI Type Cards Design
-**Priority**: Low  
-**Dependencies**: STORY-006
+**Priority**: Medium  
+**Dependencies**: STORY-001
+**Estimated Time**: 3-4 hours
 **Description**: Improve visual design of MBTI type cards with better colors, animations, and hover effects
 
 ### UI-002: Mobile Responsiveness Improvements
-**Priority**: Low  
+**Priority**: Medium  
+**Dependencies**: None
+**Estimated Time**: 4-6 hours
 **Description**: Enhance mobile experience across all pages
+
+### UI-003: Section-Based UI Architecture (Post CI/CD)
+**Priority**: High  
+**Dependencies**: TECH-001 (CI/CD improvements)
+**Estimated Time**: 8-10 hours
+**Description**: Design and implement the basic UI structure for each major section
+**Subtasks:**
+- [ ] **Design System Setup** (2-3 hours)
+  - [ ] Create consistent color scheme and typography
+  - [ ] Design reusable UI components (cards, buttons, forms)
+  - [ ] Establish grid system and spacing standards
+- [ ] **Navigation & Layout** (2-3 hours)
+  - [ ] Design main navigation structure
+  - [ ] Create consistent page layouts
+  - [ ] Implement breadcrumb navigation
+- [ ] **Responsive Framework** (2-2 hours)
+  - [ ] Set up CSS Grid/Flexbox for responsive layouts
+  - [ ] Create mobile-first design approach
+  - [ ] Implement breakpoint system
+- [ ] **Component Library** (2-2 hours)
+  - [ ] Build reusable form components
+  - [ ] Create data display components (tables, lists, cards)
+  - [ ] Implement loading states and error handling
 
 ## 🔍 Code Quality
 
-### QUALITY-001: Code Review and Refactoring
-**Priority**: Low  
-**Description**: Review existing code for improvements and refactoring opportunities
-
-### QUALITY-002: Test Coverage Enhancement
-**Priority**: Low  
-**Dependencies**: STORY-006
+### QUALITY-001: Test Coverage Enhancement
+**Priority**: Medium  
+**Dependencies**: STORY-001
+**Estimated Time**: 2-3 hours
 **Description**: Increase test coverage for new MBTI-related functionality
+
+### QUALITY-002: Code Review and Refactoring
+**Priority**: Low  
+**Dependencies**: None
+**Estimated Time**: 4-6 hours
+**Description**: Review existing code for improvements and refactoring opportunities
 
 ---
 
@@ -187,11 +356,13 @@
 - ✅ STORY-005: CI/CD pipeline and code quality
 
 ### In Progress
-- 🔄 STORY-006: Display 16 Type Codes with Chinese Names on Root Page
+- 🔄 STORY-001: Display 16 Type Codes with Chinese Names on Root Page
 
 ### Next Up
-- 📋 STORY-007: Make MBTI Type Cards Clickable
-- 📋 STORY-008: Create MBTI Type Description Pages
+- 📋 STORY-002: Make MBTI Type Cards Clickable
+- 📋 STORY-003: Create MBTI Type Description Pages
+- 📋 TECH-001: CI/CD Data Pipeline Separation
+- 📋 STORY-005: Basic UI Pages for Each Section (after CI/CD)
 
 ---
 
