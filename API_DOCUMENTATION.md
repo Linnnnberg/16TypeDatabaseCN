@@ -26,6 +26,84 @@ Authorization: Bearer <your_jwt_token>
 
 ## Endpoints
 
+### MBTI Types Endpoints
+
+#### Get All MBTI Types
+```http
+GET /api/mbti/types
+```
+
+**Response:**
+```json
+{
+  "types": [
+    {
+      "code": "INTJ",
+      "chinese_name": "建筑师",
+      "english_name": "Architect",
+      "description": "富有想象力和战略性的思考者，一切都要经过深思熟虑"
+    },
+    {
+      "code": "INTP",
+      "chinese_name": "逻辑学家",
+      "english_name": "Logician",
+      "description": "具有创新想法和独特见解的发明家"
+    }
+  ],
+  "total": 16,
+  "message": "MBTI types retrieved successfully"
+}
+```
+
+#### Get Specific MBTI Type
+```http
+GET /api/mbti/types/{type_code}
+```
+
+**Parameters:**
+- `type_code` (string): The MBTI type code (e.g., "INTJ", "ENFP")
+
+**Response:**
+```json
+{
+  "code": "INTJ",
+  "chinese_name": "建筑师",
+  "english_name": "Architect",
+  "description": "富有想象力和战略性的思考者，一切都要经过深思熟虑"
+}
+```
+
+#### Get MBTI Types List
+```http
+GET /api/mbti/types-list
+```
+
+**Response:**
+```json
+{
+  "types": ["INTJ", "INTP", "ENTJ", "ENTP", "INFJ", "INFP", "ENFJ", "ENFP", "ISTJ", "ISFJ", "ESTJ", "ESFJ", "ISTP", "ISFP", "ESTP", "ESFP"],
+  "total": 16,
+  "message": "MBTI type codes retrieved successfully"
+}
+```
+
+#### Validate MBTI Type
+```http
+GET /api/mbti/validate/{type_code}
+```
+
+**Parameters:**
+- `type_code` (string): The MBTI type code to validate
+
+**Response:**
+```json
+{
+  "type_code": "INTJ",
+  "is_valid": true,
+  "message": "MBTI type INTJ is valid"
+}
+```
+
 ### Authentication Endpoints
 
 #### Register User

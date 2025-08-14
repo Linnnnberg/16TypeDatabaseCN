@@ -54,70 +54,29 @@
         <div class="bg-white rounded-lg shadow-lg p-8 mb-8">
             <h2 class="text-2xl font-bold text-gray-900 mb-6">16种人格类型</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                <div class="text-center p-4 bg-gray-50 rounded-lg">
-                    <div class="text-lg font-bold text-primary-600 mb-2">INTJ</div>
-                    <div class="text-sm text-gray-600">建筑师</div>
-                </div>
-                <div class="text-center p-4 bg-gray-50 rounded-lg">
-                    <div class="text-lg font-bold text-primary-600 mb-2">INTP</div>
-                    <div class="text-sm text-gray-600">逻辑学家</div>
-                </div>
-                <div class="text-center p-4 bg-gray-50 rounded-lg">
-                    <div class="text-lg font-bold text-primary-600 mb-2">ENTJ</div>
-                    <div class="text-sm text-gray-600">指挥官</div>
-                </div>
-                <div class="text-center p-4 bg-gray-50 rounded-lg">
-                    <div class="text-lg font-bold text-primary-600 mb-2">ENTP</div>
-                    <div class="text-sm text-gray-600">辩论家</div>
-                </div>
-                <div class="text-center p-4 bg-gray-50 rounded-lg">
-                    <div class="text-lg font-bold text-primary-600 mb-2">INFJ</div>
-                    <div class="text-sm text-gray-600">提倡者</div>
-                </div>
-                <div class="text-center p-4 bg-gray-50 rounded-lg">
-                    <div class="text-lg font-bold text-primary-600 mb-2">INFP</div>
-                    <div class="text-sm text-gray-600">调停者</div>
-                </div>
-                <div class="text-center p-4 bg-gray-50 rounded-lg">
-                    <div class="text-lg font-bold text-primary-600 mb-2">ENFJ</div>
-                    <div class="text-sm text-gray-600">主人公</div>
-                </div>
-                <div class="text-center p-4 bg-gray-50 rounded-lg">
-                    <div class="text-lg font-bold text-primary-600 mb-2">ENFP</div>
-                    <div class="text-sm text-gray-600">竞选者</div>
-                </div>
-                <div class="text-center p-4 bg-gray-50 rounded-lg">
-                    <div class="text-lg font-bold text-primary-600 mb-2">ISTJ</div>
-                    <div class="text-sm text-gray-600">物流师</div>
-                </div>
-                <div class="text-center p-4 bg-gray-50 rounded-lg">
-                    <div class="text-lg font-bold text-primary-600 mb-2">ISFJ</div>
-                    <div class="text-sm text-gray-600">守卫者</div>
-                </div>
-                <div class="text-center p-4 bg-gray-50 rounded-lg">
-                    <div class="text-lg font-bold text-primary-600 mb-2">ESTJ</div>
-                    <div class="text-sm text-gray-600">总经理</div>
-                </div>
-                <div class="text-center p-4 bg-gray-50 rounded-lg">
-                    <div class="text-lg font-bold text-primary-600 mb-2">ESFJ</div>
-                    <div class="text-sm text-gray-600">执政官</div>
-                </div>
-                <div class="text-center p-4 bg-gray-50 rounded-lg">
-                    <div class="text-lg font-bold text-primary-600 mb-2">ISTP</div>
-                    <div class="text-sm text-gray-600">鉴赏家</div>
-                </div>
-                <div class="text-center p-4 bg-gray-50 rounded-lg">
-                    <div class="text-lg font-bold text-primary-600 mb-2">ISFP</div>
-                    <div class="text-sm text-gray-600">探险家</div>
-                </div>
-                <div class="text-center p-4 bg-gray-50 rounded-lg">
-                    <div class="text-lg font-bold text-primary-600 mb-2">ESTP</div>
-                    <div class="text-sm text-gray-600">企业家</div>
-                </div>
-                <div class="text-center p-4 bg-gray-50 rounded-lg">
-                    <div class="text-lg font-bold text-primary-600 mb-2">ESFP</div>
-                    <div class="text-sm text-gray-600">表演者</div>
-                </div>
+                {% if mbti_types %}
+                    {% for type_info in mbti_types %}
+                    <div class="text-center p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                        <div class="text-lg font-bold text-primary-600 mb-2">{{ type_info.code }}</div>
+                        <div class="text-sm text-gray-600 mb-1">{{ type_info.chinese_name }}</div>
+                        <div class="text-xs text-gray-500">{{ type_info.english_name }}</div>
+                    </div>
+                    {% endfor %}
+                {% else %}
+                    <!-- Fallback if no data available -->
+                    {% set fallback_types = [
+                        "INTJ", "INTP", "ENTJ", "ENTP",
+                        "INFJ", "INFP", "ENFJ", "ENFP", 
+                        "ISTJ", "ISFJ", "ESTJ", "ESFJ",
+                        "ISTP", "ISFP", "ESTP", "ESFP"
+                    ] %}
+                    {% for type in fallback_types %}
+                    <div class="text-center p-4 bg-gray-50 rounded-lg">
+                        <div class="text-lg font-bold text-primary-600 mb-2">{{ type }}</div>
+                        <div class="text-sm text-gray-600">MBTI类型</div>
+                    </div>
+                    {% endfor %}
+                {% endif %}
             </div>
         </div>
 

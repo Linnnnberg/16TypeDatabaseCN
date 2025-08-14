@@ -87,25 +87,37 @@
             <p class="text-lg text-gray-600">探索不同的人格类型特点</p>
         </div>
         
-        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-4">
-            {% set mbti_types = [
-                "INTJ", "INTP", "ENTJ", "ENTP",
-                "INFJ", "INFP", "ENFJ", "ENFP", 
-                "ISTJ", "ISFJ", "ESTJ", "ESFJ",
-                "ISTP", "ISFP", "ESTP", "ESFP"
-            ] %}
-            
-            {% for type in mbti_types %}
-            <div class="bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow text-center">
-                <div class="text-lg font-bold text-primary-600 mb-1">{{ type }}</div>
-                <div class="text-xs text-gray-500">
-                    {% if type.startswith('I') %}内向{% else %}外向{% endif %}
-                    {% if type[1] == 'N' %}直觉{% else %}感觉{% endif %}
-                    {% if type[2] == 'T' %}思考{% else %}情感{% endif %}
-                    {% if type[3] == 'J' %}判断{% else %}感知{% endif %}
+        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-6">
+            {% if mbti_types %}
+                {% for type_info in mbti_types %}
+                <div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow text-center border border-gray-100">
+                    <div class="text-xl font-bold text-primary-600 mb-2">{{ type_info.code }}</div>
+                    <div class="text-lg font-medium text-gray-800 mb-2">{{ type_info.chinese_name }}</div>
+                    <div class="text-sm text-gray-600 mb-3">{{ type_info.english_name }}</div>
+                    <div class="text-xs text-gray-500 leading-relaxed">
+                        {{ type_info.description }}
+                    </div>
                 </div>
-            </div>
-            {% endfor %}
+                {% endfor %}
+            {% else %}
+                <!-- Fallback if no data available -->
+                {% set fallback_types = [
+                    "INTJ", "INTP", "ENTJ", "ENTP",
+                    "INFJ", "INFP", "ENFJ", "ENFP", 
+                    "ISTJ", "ISFJ", "ESTJ", "ESFJ",
+                    "ISTP", "ISFP", "ESTP", "ESFP"
+                ] %}
+                {% for type in fallback_types %}
+                <div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow text-center border border-gray-100">
+                    <div class="text-xl font-bold text-primary-600 mb-2">{{ type }}</div>
+                    <div class="text-lg font-medium text-gray-800 mb-2">MBTI类型</div>
+                    <div class="text-sm text-gray-600 mb-3">Personality Type</div>
+                    <div class="text-xs text-gray-500 leading-relaxed">
+                        探索这个MBTI类型的特点
+                    </div>
+                </div>
+                {% endfor %}
+            {% endif %}
         </div>
         
         <div class="text-center mt-8">
