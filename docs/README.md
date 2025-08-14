@@ -4,7 +4,7 @@ Welcome to the MBTI Roster project documentation. This directory contains compre
 
 ## 📚 Documentation Structure
 
-### 🚀 Getting Started
+### Getting Started
 - **[README.md](../README.md)** - Project overview and quick start guide
 - **[LOCAL_DEVELOPMENT.md](../LOCAL_DEVELOPMENT.md)** - Local development setup
 - **[API_DOCUMENTATION.md](../API_DOCUMENTATION.md)** - API endpoints and usage
@@ -14,12 +14,12 @@ Welcome to the MBTI Roster project documentation. This directory contains compre
 - **[CI_CD_RULES.md](../CI_CD_RULES.md)** - Quick reference for CI/CD implementation
 - **[TECH_TASKS.md](../TECH_TASKS.md)** - Technical tasks and implementation details
 
-### 🛠️ CI/CD & DevOps
+### CI/CD & DevOps
 - **[CI_CD_GUIDE.md](../CI_CD_GUIDE.md)** - Detailed CI/CD pipeline documentation
 - **[DEVELOPMENT_CYCLE_ANALYSIS.md](../DEVELOPMENT_CYCLE_ANALYSIS.md)** - Development process analysis
 - **[TASK_ID_GUIDE.md](../TASK_ID_GUIDE.md)** - Task management and workflow
 
-### 📋 Project Management
+### Project Management
 - **[TODO.md](../TODO.md)** - Current tasks and roadmap
 - **[RECENT_IMPROVEMENTS.md](../RECENT_IMPROVEMENTS.md)** - Recent changes and improvements
 - **[MVP_Frontend_Plan.md](../MVP_Frontend_Plan.md)** - Frontend development plan
@@ -32,7 +32,7 @@ Welcome to the MBTI Roster project documentation. This directory contains compre
   - [Services](app/services/) - Business logic services
   - [Schemas](app/schemas/) - Pydantic models
 
-## 🎯 Quick Navigation
+## Quick Navigation
 
 ### For New Developers
 1. Start with [README.md](../README.md) for project overview
@@ -80,7 +80,7 @@ Welcome to the MBTI Roster project documentation. This directory contains compre
 - [Development Guidelines](../DEVELOPMENT_GUIDELINES.md)
 - [CI/CD Rules](../CI_CD_RULES.md)
 
-## 📝 Contributing to Documentation
+## Contributing to Documentation
 
 When adding or updating documentation:
 

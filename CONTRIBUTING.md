@@ -2,7 +2,7 @@
 
 Thank you for your interest in contributing to the MBTI Roster project! This document provides guidelines and information for contributors.
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 - Python 3.8+
@@ -30,7 +30,7 @@ Thank you for your interest in contributing to the MBTI Roster project! This doc
    python dev_setup.py --full
    ```
 
-## 📋 Development Workflow
+## Development Workflow
 
 ### 1. Create a Feature Branch
 ```bash
@@ -73,7 +73,7 @@ git commit -m "feat(scope): descriptive commit message"
 git push origin feature/your-feature-name
 ```
 
-## 🎯 Contribution Areas
+## Contribution Areas
 
 ### High Priority
 - **Bug fixes** - Critical issues affecting functionality
@@ -92,7 +92,7 @@ git push origin feature/your-feature-name
 - **Documentation typos** - Grammar and spelling fixes
 - **Code comments** - Additional inline documentation
 
-## 📝 Code Style Guidelines
+## Code Style Guidelines
 
 ### Python Code
 - Follow PEP 8 style guide
@@ -253,7 +253,7 @@ For feature requests:
 - **GitHub Discussions** - For questions and general discussion
 - **Pull Request comments** - For code review feedback
 
-## 🎉 Recognition
+## Recognition
 
 Contributors will be recognized in:
 - [README.md](README.md) - Contributors section
@@ -266,4 +266,4 @@ By contributing to this project, you agree that your contributions will be licen
 
 ---
 
-Thank you for contributing to MBTI Roster! 🚀
+Thank you for contributing to MBTI Roster!
