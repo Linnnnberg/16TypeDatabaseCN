@@ -1,6 +1,6 @@
 {
   "errors": [],
-  "generated_at": "2025-08-07T20:50:35Z",
+  "generated_at": "2025-08-14T22:05:28Z",
   "metrics": {
     "_totals": {
       "CONFIDENCE.HIGH": 0,
@@ -11,7 +11,7 @@
       "SEVERITY.LOW": 3,
       "SEVERITY.MEDIUM": 1,
       "SEVERITY.UNDEFINED": 0,
-      "loc": 3102,
+      "loc": 3761,
       "nosec": 0,
       "skipped_tests": 0
     },
@@ -37,7 +37,7 @@
       "SEVERITY.LOW": 0,
       "SEVERITY.MEDIUM": 0,
       "SEVERITY.UNDEFINED": 0,
-      "loc": 4,
+      "loc": 5,
       "nosec": 0,
       "skipped_tests": 0
     },
@@ -77,6 +77,19 @@
       "SEVERITY.MEDIUM": 0,
       "SEVERITY.UNDEFINED": 0,
       "loc": 230,
+      "nosec": 0,
+      "skipped_tests": 0
+    },
+    "app/api\\mbti.py": {
+      "CONFIDENCE.HIGH": 0,
+      "CONFIDENCE.LOW": 0,
+      "CONFIDENCE.MEDIUM": 0,
+      "CONFIDENCE.UNDEFINED": 0,
+      "SEVERITY.HIGH": 0,
+      "SEVERITY.LOW": 0,
+      "SEVERITY.MEDIUM": 0,
+      "SEVERITY.UNDEFINED": 0,
+      "loc": 103,
       "nosec": 0,
       "skipped_tests": 0
     },
@@ -158,6 +171,45 @@
       "nosec": 0,
       "skipped_tests": 0
     },
+    "app/data\\__init__.py": {
+      "CONFIDENCE.HIGH": 0,
+      "CONFIDENCE.LOW": 0,
+      "CONFIDENCE.MEDIUM": 0,
+      "CONFIDENCE.UNDEFINED": 0,
+      "SEVERITY.HIGH": 0,
+      "SEVERITY.LOW": 0,
+      "SEVERITY.MEDIUM": 0,
+      "SEVERITY.UNDEFINED": 0,
+      "loc": 0,
+      "nosec": 0,
+      "skipped_tests": 0
+    },
+    "app/data\\mbti_types.py": {
+      "CONFIDENCE.HIGH": 0,
+      "CONFIDENCE.LOW": 0,
+      "CONFIDENCE.MEDIUM": 0,
+      "CONFIDENCE.UNDEFINED": 0,
+      "SEVERITY.HIGH": 0,
+      "SEVERITY.LOW": 0,
+      "SEVERITY.MEDIUM": 0,
+      "SEVERITY.UNDEFINED": 0,
+      "loc": 126,
+      "nosec": 0,
+      "skipped_tests": 0
+    },
+    "app/data\\questions.py": {
+      "CONFIDENCE.HIGH": 0,
+      "CONFIDENCE.LOW": 0,
+      "CONFIDENCE.MEDIUM": 0,
+      "CONFIDENCE.UNDEFINED": 0,
+      "SEVERITY.HIGH": 0,
+      "SEVERITY.LOW": 0,
+      "SEVERITY.MEDIUM": 0,
+      "SEVERITY.UNDEFINED": 0,
+      "loc": 396,
+      "nosec": 0,
+      "skipped_tests": 0
+    },
     "app/database\\__init__.py": {
       "CONFIDENCE.HIGH": 0,
       "CONFIDENCE.LOW": 0,
@@ -180,7 +232,7 @@
       "SEVERITY.LOW": 0,
       "SEVERITY.MEDIUM": 0,
       "SEVERITY.UNDEFINED": 0,
-      "loc": 17,
+      "loc": 30,
       "nosec": 0,
       "skipped_tests": 0
     },
@@ -206,7 +258,7 @@
       "SEVERITY.LOW": 0,
       "SEVERITY.MEDIUM": 1,
       "SEVERITY.UNDEFINED": 0,
-      "loc": 126,
+      "loc": 146,
       "nosec": 0,
       "skipped_tests": 0
     },
@@ -452,7 +504,7 @@
       "test_name": "hardcoded_password_string"
     },
     {
-      "code": "173 \n174     uvicorn.run(\"app.main:app\", host=\"0.0.0.0\", port=8000, reload=True)\n",
+      "code": "197 \n198     uvicorn.run(\"app.main:app\", host=\"0.0.0.0\", port=8000, reload=True)\n",
       "col_offset": 37,
       "end_col_offset": 46,
       "filename": "app/main.py",
@@ -463,9 +515,9 @@
       },
       "issue_severity": "MEDIUM",
       "issue_text": "Possible binding to all interfaces.",
-      "line_number": 174,
+      "line_number": 198,
       "line_range": [
-        174
+        198
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b104_hardcoded_bind_all_interfaces.html",
       "test_id": "B104",
