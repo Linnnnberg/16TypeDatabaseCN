@@ -19,7 +19,7 @@ A FastAPI-based web application for voting on celebrities' MBTI personality type
 ## Development Guidelines
 
 Before contributing to this project, please read our [Development Guidelines](DEVELOPMENT_GUIDELINES.md) which include:
-- **Emoji Usage Policy**: No emojis in code or print statements
+- **Emoji Usage Policy**: No emojis allowed in code, documentation, or any project files
 - **Code Quality Standards**: Black formatting, Flake8 linting, MyPy type checking
 - **Testing Requirements**: Unit and integration test coverage
 - **Git Workflow**: Commit message conventions and branch naming

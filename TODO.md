@@ -351,8 +351,39 @@
 ### Next Up
 - STORY-002: Make MBTI Type Cards Clickable
 - STORY-003: Create MBTI Type Description Pages
+- STORY-004: Cognitive Function Stack Scoring System (MBTI Test)
 - TECH-001: CI/CD Data Pipeline Separation
 - STORY-005: Basic UI Pages for Each Section (after CI/CD)
+
+### STORY-004: Cognitive Function Stack Scoring System (MBTI Test)
+**Status**: Ready to Start  
+**Priority**: High  
+**Dependencies**: STORY-001 (MBTI Types Display)  
+**Effort Estimate**: 3-4 weeks  
+
+**Description**: Implement a comprehensive MBTI test system that measures cognitive functions through real-world scenario questions without revealing function types to users.
+
+**Subtasks**:
+1. [ ] Create data models for questions and user responses
+2. [ ] Implement question bank management system
+3. [ ] Create scoring algorithm and calculation engine
+4. [ ] Build test interface with randomized question order
+5. [ ] Implement result processing and MBTI type mapping
+6. [ ] Create results display with function stack analysis
+7. [ ] Add celebrity comparison and growth tips
+8. [ ] Write comprehensive tests for all components
+9. [ ] Update API documentation
+
+**Files to Create/Modify**:
+- `app/models/question.py` - Question data model
+- `app/models/user_response.py` - User response data model
+- `app/services/test_service.py` - Test logic and scoring
+- `app/api/test.py` - Test API endpoints
+- `app/data/questions.py` - Question bank data
+- `templates/test.html` - Test interface
+- `templates/results.html` - Results display
+- `tests/test_mbti_test.py` - Test coverage
+- `docs/MBTI_TEST_PRD.md` - Product Requirements Document
 
 ---
 
