@@ -49,19 +49,17 @@ app.include_router(mbti_router)
 async def homepage(request: Request):
     """Homepage with hero section and features"""
     from app.data.mbti_types import get_all_types_with_info
-    
+
     try:
         mbti_types = get_all_types_with_info()
-        return templates.TemplateResponse("index.html", {
-            "request": request,
-            "mbti_types": mbti_types
-        })
+        return templates.TemplateResponse(
+            "index.html", {"request": request, "mbti_types": mbti_types}
+        )
     except Exception as e:
         # Fallback to empty list if there's an error
-        return templates.TemplateResponse("index.html", {
-            "request": request,
-            "mbti_types": []
-        })
+        return templates.TemplateResponse(
+            "index.html", {"request": request, "mbti_types": []}
+        )
 
 
 @app.get("/test", response_class=HTMLResponse)
