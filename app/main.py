@@ -83,7 +83,18 @@ async def celebrities_page(request: Request):
 @app.get("/about", response_class=HTMLResponse)
 async def about_page(request: Request):
     """About MBTI page"""
-    return templates.TemplateResponse("about.html", {"request": request})
+    from app.data.mbti_types import get_all_types_with_info
+
+    try:
+        mbti_types = get_all_types_with_info()
+        return templates.TemplateResponse(
+            "about.html", {"request": request, "mbti_types": mbti_types}
+        )
+    except Exception as e:
+        # Fallback to empty list if there's an error
+        return templates.TemplateResponse(
+            "about.html", {"request": request, "mbti_types": []}
+        )
 
 
 @app.get("/test-frontend", response_class=HTMLResponse)

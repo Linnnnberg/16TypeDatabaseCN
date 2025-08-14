@@ -8,6 +8,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- **STORY-001: MBTI Types Display with Chinese Names**
+  - Complete MBTI data structure with Chinese names, English names, and descriptions
+  - New API endpoints for MBTI types (`/api/mbti/types`, `/api/mbti/types/{type_code}`, etc.)
+  - Dynamic MBTI type cards on homepage with 4-column responsive grid
+  - Enhanced about page with dynamic MBTI types display
+  - Comprehensive test suite for MBTI functionality (11 tests)
+  - MBTI type validation and helper functions
 - Comprehensive CI/CD rules and validation system
 - `validate_cicd_rules.py` script with 9 validation checks
 - Enhanced `DEVELOPMENT_GUIDELINES.md` with detailed implementation rules
