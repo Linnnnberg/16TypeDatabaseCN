@@ -52,8 +52,7 @@ async def get_mbti_type(type_code: str):
         raise HTTPException(
             status_code=404,
             detail=(
-                f"Invalid MBTI type: {type_code}. "
-                f"Must be one of {get_all_types()}"
+                f"Invalid MBTI type: {type_code}. " f"Must be one of {get_all_types()}"
             ),
         )
 
@@ -92,8 +91,7 @@ async def get_mbti_types_list():
         }
     except Exception as e:
         raise HTTPException(
-            status_code=500,
-            detail=f"Error retrieving MBTI types list: {str(e)}"
+            status_code=500, detail=f"Error retrieving MBTI types list: {str(e)}"
         )
 
 
