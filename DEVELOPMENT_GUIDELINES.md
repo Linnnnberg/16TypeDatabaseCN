@@ -3,14 +3,13 @@
 ## Code Style and Standards
 
 ### Emoji Usage Policy
-**NO EMOJIS IN CODE OR PRINT STATEMENTS**
+**NO EMOJIS ALLOWED IN CODE, DOCUMENTATION, OR ANY PROJECT FILES**
 
-- ❌ **Forbidden**: Using emojis in print statements, log messages, or any code output
-- ✅ **Required**: Use descriptive text prefixes instead of emojis
+Use descriptive text prefixes instead of emojis for better CI/CD compatibility, terminal support, and accessibility.
 
 #### Examples:
 
-**❌ WRONG:**
+**WRONG:**
 ```python
 print("✅ Black formatting completed")
 print("❌ Formatting failed")
@@ -18,7 +17,7 @@ print("🚀 Starting server...")
 print("⚠️  Warning message")
 ```
 
-**✅ CORRECT:**
+**CORRECT:**
 ```python
 print("SUCCESS: Black formatting completed")
 print("ERROR: Formatting failed")
