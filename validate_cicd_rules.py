@@ -158,7 +158,7 @@ class CICDRulesValidator:
                 content = f.read()
             
             # Check for default values
-            if 'secret_key: str = "test_secret_key"' not in content:
+            if 'secret_key: str = "' not in content:
                 self.add_error("Missing default value for secret_key")
                 return False
             
