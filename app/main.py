@@ -16,6 +16,7 @@ from app.api.votes import router as votes_router
 from app.api.comments import router as comments_router
 from app.api.uploads import router as uploads_router
 from app.api.search import router as search_router
+from app.api.mbti import router as mbti_router
 
 # Create FastAPI application
 app = FastAPI(title="16型花名册", description="MBTI人格类型数据库API", version="1.0.0")
@@ -40,13 +41,27 @@ app.include_router(votes_router)
 app.include_router(comments_router)
 app.include_router(uploads_router)
 app.include_router(search_router)
+app.include_router(mbti_router)
 
 
 # Template routes
 @app.get("/", response_class=HTMLResponse)
 async def homepage(request: Request):
     """Homepage with hero section and features"""
-    return templates.TemplateResponse("index.html", {"request": request})
+    from app.data.mbti_types import get_all_types_with_info
+    
+    try:
+        mbti_types = get_all_types_with_info()
+        return templates.TemplateResponse("index.html", {
+            "request": request,
+            "mbti_types": mbti_types
+        })
+    except Exception as e:
+        # Fallback to empty list if there's an error
+        return templates.TemplateResponse("index.html", {
+            "request": request,
+            "mbti_types": []
+        })
 
 
 @app.get("/test", response_class=HTMLResponse)
