@@ -161,13 +161,13 @@ def main():
     validation_errors = validate_all_data()
     
     if validation_errors:
-        print("❌ Validation errors found:")
+        print("ERROR: Validation errors found:")
         for error in validation_errors:
             print(f"  - {error}")
         print("\nPlease fix the errors before proceeding.")
         return False
     
-    print("✅ All data validation passed!")
+    print("SUCCESS: All data validation passed!")
     
     # Generate upload JSON
     upload_data = generate_upload_json()
@@ -179,12 +179,12 @@ def main():
     # Save file
     try:
         filepath = save_json_file(upload_data, filename)
-        print(f"\n✅ JSON file generated successfully!")
-        print(f"📁 File: {filepath}")
-        print(f"📊 Celebrities: {len(CELEBRITIES_DATA)}")
+        print(f"\nSUCCESS: JSON file generated successfully!")
+        print(f"File: {filepath}")
+        print(f"Celebrities: {len(CELEBRITIES_DATA)}")
         
         # Show next steps
-        print("\n📋 Next steps:")
+        print("\nNext steps:")
         print("1. Review the generated JSON file")
         print("2. Place it in data_uploads/pending/ folder")
         print("3. Use the upload service to import the data")
@@ -193,7 +193,7 @@ def main():
         return True
         
     except Exception as e:
-        print(f"❌ Error saving file: {e}")
+        print(f"ERROR: Error saving file: {e}")
         return False
 
 def show_data_summary():
@@ -227,6 +227,6 @@ if __name__ == "__main__":
     success = main()
     
     if success:
-        print("\n🎉 Phase 1 data template completed successfully!")
+        print("\nSUCCESS: Phase 1 data template completed successfully!")
     else:
-        print("\n💥 Phase 1 data template failed. Please check the errors above.")
+        print("\nERROR: Phase 1 data template failed. Please check the errors above.")
