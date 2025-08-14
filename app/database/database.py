@@ -16,7 +16,9 @@ if settings.database_url.startswith("sqlite"):
         # Only attempt to create directories for non-absolute paths
         if directory_path and not os.path.isabs(directory_path):
             os.makedirs(directory_path, exist_ok=True)
-    engine = create_engine(settings.database_url, connect_args={"check_same_thread": False})
+    engine = create_engine(
+        settings.database_url, connect_args={"check_same_thread": False}
+    )
 else:
     engine = create_engine(settings.database_url)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
