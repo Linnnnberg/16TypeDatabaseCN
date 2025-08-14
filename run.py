@@ -10,7 +10,7 @@ import os
 def install_dependencies():
     """安装依赖"""
     print("正在安装Python依赖...")
-    subprocess.run([sys.executable, "-m", "pip", "install", "-r", "requirements.txt"])
+    subprocess.run([sys.executable, "-m", "pip", "install", "-r", "requirements_minimal.txt"])
 
 
 def setup_database():
@@ -31,9 +31,9 @@ def run_server():
 if __name__ == "__main__":
     print("=== 16型花名册 (MBTI Roster) ===")
 
-    # Check if requirements.txt exists
-    if not os.path.exists("requirements.txt"):
-        print("错误: requirements.txt 文件不存在")
+    # Check if requirements_minimal.txt exists
+    if not os.path.exists("requirements_minimal.txt"):
+        print("错误: requirements_minimal.txt 文件不存在")
         sys.exit(1)
 
     # Install dependencies
