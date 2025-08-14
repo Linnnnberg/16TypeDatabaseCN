@@ -55,7 +55,7 @@ async def homepage(request: Request):
         return templates.TemplateResponse(
             "index.html", {"request": request, "mbti_types": mbti_types}
         )
-    except Exception as e:
+    except Exception:
         # Fallback to empty list if there's an error
         return templates.TemplateResponse(
             "index.html", {"request": request, "mbti_types": []}
@@ -90,7 +90,7 @@ async def about_page(request: Request):
         return templates.TemplateResponse(
             "about.html", {"request": request, "mbti_types": mbti_types}
         )
-    except Exception as e:
+    except Exception:
         # Fallback to empty list if there's an error
         return templates.TemplateResponse(
             "about.html", {"request": request, "mbti_types": []}

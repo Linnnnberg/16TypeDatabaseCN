@@ -2,7 +2,6 @@
 Tests for MBTI types functionality
 """
 
-import pytest
 from app.data.mbti_types import (
     get_mbti_type_info,
     get_chinese_name,

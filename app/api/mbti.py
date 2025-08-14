@@ -4,7 +4,6 @@ Provides endpoints for MBTI type information and related functionality
 """
 
 from fastapi import APIRouter, HTTPException
-from typing import List, Dict
 
 from app.data.mbti_types import (
     get_all_types_with_info,
@@ -22,7 +21,8 @@ async def get_mbti_types():
     Get all MBTI types with their information
 
     Returns:
-        Dictionary containing all MBTI types with Chinese names, English names, and descriptions
+        Dictionary containing all MBTI types with Chinese names,
+        English names, and descriptions
     """
     try:
         types_data = get_all_types_with_info()
@@ -51,7 +51,10 @@ async def get_mbti_type(type_code: str):
     if not validate_mbti_type(type_code):
         raise HTTPException(
             status_code=404,
-            detail=f"Invalid MBTI type: {type_code}. Must be one of {get_all_types()}",
+            detail=(
+                f"Invalid MBTI type: {type_code}. "
+                f"Must be one of {get_all_types()}"
+            ),
         )
 
     try:
@@ -89,7 +92,8 @@ async def get_mbti_types_list():
         }
     except Exception as e:
         raise HTTPException(
-            status_code=500, detail=f"Error retrieving MBTI types list: {str(e)}"
+            status_code=500,
+            detail=f"Error retrieving MBTI types list: {str(e)}"
         )
 
 
@@ -109,7 +113,10 @@ async def validate_mbti_type_endpoint(type_code: str):
         return {
             "type_code": type_code.upper(),
             "is_valid": is_valid,
-            "message": f"MBTI type {type_code.upper()} is {'valid' if is_valid else 'invalid'}",
+            "message": (
+                f"MBTI type {type_code.upper()} is "
+                f"{'valid' if is_valid else 'invalid'}"
+            ),
         }
     except Exception as e:
         raise HTTPException(
